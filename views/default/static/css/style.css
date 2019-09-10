@@ -1,0 +1,291 @@
+/* CSS Document */
+
+body {
+    background: #A8ABA8;
+    font-size: 13px;
+}
+
+.layui-field-title {
+    margin: 12px 0 9px;
+}
+
+.layui-field-title legend {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.wrapper {
+    background: #FFF;
+    padding: 0;
+    margin: 0 auto;
+    border-radius: 0;
+    width: 810px;
+    height: 100%;
+}
+
+/* -------------- head -------------- */
+.header {
+    height: 90px;
+}
+
+.navigator {
+    padding: 0;
+    top: 0;
+}
+
+.navigator ul {
+    padding: 0;
+}
+
+.notice {
+    height: 36px;
+    padding: 6px 0 0 9px;
+    line-height: 32px;
+    border-bottom: 1px solid #ddd;
+}
+
+.icon-speaker {
+    width: 24px;
+    float: left;
+    position: relative;
+}
+
+/* -------------- content -------------- */
+
+.main {
+}
+
+.content {
+    padding: 12px;
+}
+
+.recommend {
+
+}
+
+.recommend .item {
+    display: block;
+    margin: 0 5px;
+    padding: 2px;
+    float: left;
+    position: relative;
+    width: 120px;
+}
+
+.recommend .item:hover {
+    background: #5FB878;
+}
+
+.recommend .item .remark {
+    height: 27px;
+    overflow: hidden;
+    line-height: 2.5em;
+    text-align: center;
+    font-size: 13px;
+}
+
+.popular .category {
+    line-height: 32px;
+    letter-spacing: 0.86px;
+    border-bottom: 1px dotted #ccc;
+    font-size: 14px;
+}
+
+.popular .category .catName {
+    display: inline;
+    margin-right: 3px;
+    float: left;
+    position: relative;
+    color: #999;
+}
+
+.popular .category .item {
+    margin: 0 12px 0 0;
+    display: block;
+    float: left;
+    position: relative;
+    color: #333;
+}
+
+.popular .category .item .author {
+    color: #129151;
+    font-size: 10px;
+}
+
+/* ------------------------------------ sidebar ------------------------------------ */
+
+.sidebar {
+    padding-left: 8px;
+}
+
+.sidebar .comment li {
+    display: block;
+    height: 32px;
+    line-height: 30px;
+    letter-spacing: 0.86px;
+    overflow: hidden;
+}
+
+.sidebar .keyword .item {
+    margin: 0 7px 0 0;
+    display: block;
+    float: left;
+    position: relative;
+    line-height: 24px;
+    letter-spacing: 0.7px;
+}
+
+
+/* ------------------------------------ cat ------------------------------------ */
+
+.cat-list div {
+    line-height: 36px;
+    letter-spacing: 0.86px;
+    border-bottom: 1px dotted #ccc;
+}
+
+.cat-list > .head-cat, .head-name, .head-author {
+    color: #222;
+    font-size: 12px;
+}
+
+.cat-list .head-cat {
+    text-indent: 1.5em;
+}
+
+.cat-list .book-cat {
+    color: #999;
+    text-indent: 1em;
+}
+
+.cat-list .head-name {
+    text-indent: 2em;
+}
+
+.cat-list .book-name {
+    text-indent: 1em;
+}
+
+#paging {
+    text-align: center;
+}
+
+/* ------------------------------------ chapter ------------------------------------ */
+.catalog {
+    padding: 12px;
+    line-height: 210%;
+}
+
+.catalog .name {
+    padding: 12px 12px 6px;
+    font-weight: bolder;
+    font-size: 27px;
+    color: #1d6300;
+    border-bottom: 2px solid #129151;
+}
+
+.catalog .info {
+    padding: 6px 12px;
+    text-align: left;
+    color: #737383;
+    line-height: 180%;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.catalog .outline {
+    padding: 6px 12px;
+    color: #737383;
+}
+
+.volume .name {
+    padding: 9px 12px 6px;
+    background-color: #fcfcfc;
+    text-align: left;
+    font: 18px Arial;
+    border-top: 2px solid #129151;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.volume .chapter {
+    padding: 6px 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    border-bottom: 1px dashed #e2e2e2;
+}
+
+/* ------------------------------------ chapter ------------------------------------ */
+.readerTools {
+    border-bottom: 1px solid #ddd;
+    font-size: 12px;
+}
+
+.chapterName {
+    padding: 9px 0 6px;
+    font-size: 12px;
+    color: #129151;
+    text-align: center;
+    border-bottom: 1px dotted #ddd;
+}
+
+.chapterNav {
+    font-size: 12px;
+    line-height: 32px;
+    text-align: center;
+    border-bottom: 1px dotted #ddd;
+}
+
+.chapterNav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #129151;
+}
+
+.chapterContent {
+    padding: 12px;
+    min-height: 90px;
+    border-bottom: 1px dotted #ddd;
+}
+
+.chapterContent p {
+    text-indent: 2em;
+}
+
+/* -------------- foot -------------- */
+
+.footer {
+    height: 81px;
+    background: #393D49;
+}
+
+.footer .copyright {
+    color: #8F989C;
+    font-size: 15px;
+    line-height: 2.0em;
+    width: 100%;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+/* ------------------------------------ multi device ------------------------------------ */
+@media screen and (min-width: 810px) {
+    .content {
+        border-right: 1px solid #CCC;
+        padding-right: 6px;
+    }
+}
+
+@media screen and (max-width: 810px) {
+    .wrapper {
+        width: 100%;
+    }
+
+    .wrapper {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header {
+        display: none;
+    }
+}
