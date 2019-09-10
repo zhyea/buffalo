@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>分类页模板</title>
+	<meta name="renderer" content="webkit" charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link href="../static/layui/css/layui.css" rel="stylesheet" type="text/css" media="all">
+	<link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all">
+</head>
+
+<body>
+
+<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+<!--[if lt IE 9]>
+<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<div class="layui-container wrapper">
+	<div class="layui-row header">
+		&nbsp;
+	</div>
+	
+	<div class="layui-row navigator">
+		<ul class="layui-nav">
+			<li class="layui-nav-item"><a href="">最新活动</a></li>
+			<li class="layui-nav-item layui-this"><a href="">产品</a></li>
+			<li class="layui-nav-item"><a href="">大数据</a></li>
+			<li class="layui-nav-item"><a href="">社区</a></li>
+		</ul>
+	</div>
+	
+	<div class="layui-row notice">
+		<span class="layui-breadcrumb ">
+			<a href="">首页</a>
+			<a href="">分类</a>
+			<a><cite>分类</cite></a>
+		</span>
+	</div>
+	
+	<div class="layui-row main">
+			<div class="layui-row">
+				<div class="layui-col-md12 layui-hide-xs recommend">
+					<div class="item">
+						<div class="cover">
+							<img src="../static/imgs/tuijian.jpg"/>
+						</div>
+						<div class="remark">知否知否，应是绿肥红瘦</div>
+					</div>
+					<div class="item">
+						<div class="cover">
+							<img src="../static/imgs/tuijian.jpg"/>
+						</div>
+						<div class="remark">作品2</div>
+					</div>
+					<div class="item">
+						<div class="cover">
+							<img src="../static/imgs/tuijian.jpg"/>
+						</div>
+						<div class="remark">作品3</div>
+					</div>
+					<div class="item">
+						<div class="cover">
+							<img src="../static/imgs/tuijian.jpg"/>
+						</div>
+						<div class="remark">作品4</div>
+					</div>
+					<div class="item">
+						<div class="cover">
+							<img src="../static/imgs/tuijian.jpg"/>
+						</div>
+						<div class="remark">作品5</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="layui-row">
+				<fieldset class="layui-elem-field layui-field-title">
+					<legend>推荐</legend>
+				</fieldset>
+				
+				<div class="layui-row cat-list">
+					<!--表头-->
+					<div class="layui-col-md2 layui-hide-xs head-cat">类别</div>
+					<div class="layui-col-md3 layui-col-xs8 head-name">书名</div>
+					<div class="layui-col-md3 layui-col-xs4 head-author">作者</div>
+					<div class="layui-col-md4 layui-col-xs4 head-author">最新章节</div>
+					<!--详情-->
+					<div class="layui-col-md2 layui-hide-xs book-cat">[玄幻]</div>
+					<div class="layui-col-md3 layui-col-xs8 book-name">佛本是道</div>
+					<div class="layui-col-md3 layui-col-xs4 book-author">梦入神机</div>
+					<div class="layui-col-md4 layui-col-xs4 book-author">第四十一章 大破灭后一曲邪风</div>
+					<!--详情-->
+					<div class="layui-col-md2 layui-hide-xs book-cat">[玄幻]</div>
+					<div class="layui-col-md3 layui-col-xs8 book-name">佛本是道</div>
+					<div class="layui-col-md3 layui-col-xs4 book-author">梦入神机</div>
+					<div class="layui-col-md4 layui-col-xs4 book-author">第四十一章 大破灭后一曲邪风</div>
+					<!--详情-->
+					<div class="layui-col-md2 layui-hide-xs book-cat">[玄幻]</div>
+					<div class="layui-col-md3 layui-col-xs8 book-name">佛本是道</div>
+					<div class="layui-col-md3 layui-col-xs4 book-author">梦入神机</div>
+					<div class="layui-col-md4 layui-col-xs4 book-author">第四十一章 大破灭后一曲邪风</div>
+					<!--详情-->
+					<div class="layui-col-md2 layui-hide-xs book-cat">[玄幻]</div>
+					<div class="layui-col-md3 layui-col-xs8 book-name">佛本是道</div>
+					<div class="layui-col-md3 layui-col-xs4 book-author">梦入神机</div>
+					<div class="layui-col-md4 layui-col-xs4 book-author">第四十一章 大破灭后一曲邪风</div>
+				</div>
+				
+				<div class="layui-row">
+					<div class="layui-col-md12 layui-col-sm12 layui-col-xs12" id="paging"></div>
+				</div>
+			</div>
+	</div>
+	
+	
+	<div class="layui-row footer">
+		<div class="layui-row">
+			<div class="layui-col-md12 layui-col-xs12 copyright">
+				&nbsp;
+			</div>
+			<div class="layui-col-md12 layui-col-xs12 copyright">
+				2019 © 所有内容版权归版权方或原作者所有
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script src="../static/layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['element', 'laypage', 'layer'], function () {
+        //分页
+        layui.laypage.render({
+            elem: 'paging', //注意，这里的 test1 是 ID，不用加 # 号
+            count: 50 //数据总数，从服务端得到
+        });
+    });
+</script>
+</body>
+</html>
