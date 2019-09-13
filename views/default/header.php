@@ -15,7 +15,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <body>
 
-<?php  ?>
+<?php
+	print_r($categories);
+?>
 
 <div class="layui-container wrapper">
 	<div class="layui-row header">
