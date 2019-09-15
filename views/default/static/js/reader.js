@@ -103,13 +103,13 @@ let ReadSet = {
 
     LoadSet: function () {
         let tmpStr = this.ReadCookies("backgroundColor");
-        if (tmpStr != "") this.backgroundColorValue = tmpStr;
+        if (tmpStr !== "") this.backgroundColorValue = tmpStr;
         this.SetBackgroundColor(this.backgroundColorValue);
         tmpStr = this.ReadCookies("fontColor");
-        if (tmpStr != "") this.fontColorValue = tmpStr;
+        if (tmpStr !== "") this.fontColorValue = tmpStr;
         this.SetFontcolor(this.fontColorValue);
         tmpStr = this.ReadCookies("fontSize");
-        if (tmpStr != "") this.fontSizeValue = tmpStr;
+        if (tmpStr !== "") this.fontSizeValue = tmpStr;
         this.SetFontsize(this.fontSizeValue);
     }
 };

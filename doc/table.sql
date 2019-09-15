@@ -25,3 +25,14 @@ values ('category', '语文'),
 insert into bu_meta (parent, type, name)
 values (4, 'category', '东方历史'),
        (4, 'category', '西方历史');
+
+
+create table if not exists bu_settings
+(
+    id    int not null auto_increment primary key,
+
+    name  varchar(64),
+    value varchar(128)
+
+) ENGINE = MyISAM
+  DEFAULT CHARSET = utf8mb4;
