@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="container main">
 	<div class="page-header">
-		<h3>推荐内容</h3>
+		<h3><span class="glyphicon glyphicon-book"></span> 推荐内容</h3>
 	</div>
 	<div class="row recommend">
         <?php
@@ -22,22 +22,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 	<div class="page-header">
-		<h3>分类名称</h3>
+		<h3><span class="glyphicon glyphicon-bookmark"></span> 分类名称</h3>
 	</div>
 	<div class="row popular">
-		<div class="item col-md-4 col-xs-4">小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">小说名称<span class="author">[作者名称]</span></div>
+		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
+		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
+		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
+		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
+		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
+		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
+		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
+		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
+		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
+		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
+		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
+		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
 	</div>
 </div>
