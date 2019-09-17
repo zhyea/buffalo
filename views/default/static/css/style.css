@@ -222,7 +222,9 @@ body {
 /* -------------- foot -------------- */
 
 .footer {
+    margin: 12px 0 0;
     border-top: 1px solid #ddd;
+    padding: 21px 24px 0;
     height: 81px;
     text-align: center;
     vertical-align: bottom;
@@ -230,7 +232,7 @@ body {
 
 .footer .copyright {
     width: 100%;
-    line-height: 300%;
+    line-height: 180%;
     color: #8F989C;
     font-size: 15px;
 }

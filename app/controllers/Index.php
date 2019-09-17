@@ -11,6 +11,7 @@ class Index extends MY_Controller
         parent::__construct();
         self::helperOf('array');
         self::modelOf('meta');
+        self::modelOf('settings');
     }
 
 
@@ -19,10 +20,11 @@ class Index extends MY_Controller
         $cats = $this->meta->query_category();
         $data['categories'] = list_to_tree($cats);
 
-        $data['page_header'] = self::viewOf('header');
-        $data['page_navigator'] = self::viewOf('navigator', $data);
+        $data['site_name'] =  $this->settings->get('site_name');
+        $data['notice'] =  $this->settings->get('notice');
 
-
+        self::viewOf('header', $data);
+        self::viewOf('navigator', $data);
         self::viewOf('content');
         self::viewOf('footer');
     }

@@ -44,5 +44,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <div class="container notice">
-	<span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> ： 通知信息，有一些
+	<span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> ： <?= $notice ?>
 </div>

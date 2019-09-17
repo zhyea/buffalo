@@ -39,7 +39,8 @@ create table if not exists bu_settings
   DEFAULT CHARSET = utf8mb4;
 
 insert into bu_settings (name, value)
-values ('site_name', 'Buffalo');
+values ('site_name', 'Buffalo'),
+       ('notice', '这里是通知信息，有时间可以翻阅一下');
 
 -- media
 create table if not exists bu_media
@@ -55,10 +56,11 @@ create table if not exists bu_media
 -- authors
 create table if not exists bu_author
 (
-    id    int not null auto_increment primary key,
+    id      int not null auto_increment primary key,
 
-    name  varchar(64),
-    value varchar(128)
+    name    varchar(64),
+    country varchar(32),
+    bio     mediumtext
 
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;
@@ -73,7 +75,7 @@ create table if not exists bu_works
     pic_id      int,
 
     name        varchar(64),
-    value       varchar(128)
+    brief       tinytext
 
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;

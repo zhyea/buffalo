@@ -6,7 +6,7 @@ isset($base_url) OR exit('No base url exists')
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>首页模板</title>
+	<title><?= $site_name ?></title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,4 +15,4 @@ isset($base_url) OR exit('No base url exists')
 </head>
 
 <body>
-	<div class="wrapper">
+<div class="wrapper">
