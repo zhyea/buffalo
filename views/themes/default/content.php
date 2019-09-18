@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+isset($theme_url) OR exit('No base url exists')
 ?>
 
 <div class="container main">
@@ -13,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             ?>
 			<div class="item col-md-2 col-xs-2">
 				<div class="cover">
-					<img src="<?php echo $base_url ?>/static/imgs/tuijian.jpg"/>
+					<img src="<?php echo $theme_url ?>/static/imgs/tuijian.jpg"/>
 				</div>
 				<div class="remark">知否知否，应是绿肥红瘦</div>
 			</div>
