@@ -10,6 +10,11 @@ class MY_Controller extends CI_Controller
         $this->load->view($view, $vars, $return);
     }
 
+    public function adminViewOf($view, $vars = array(), $return = FALSE)
+    {
+        $this->load->admin_view($view, $vars, $return);
+    }
+
 
     public function modelOf($model, $name = '', $db_conn = FALSE)
     {
