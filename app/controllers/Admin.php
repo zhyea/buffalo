@@ -10,4 +10,20 @@ class Admin extends MY_Controller
         self::adminViewOf('login');
         self::adminViewOf('footer');
     }
+
+
+    public function home()
+    {
+
+    }
+
+
+    public function login_check()
+    {
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+
+        echo $username;
+        echo $password;
+    }
 }

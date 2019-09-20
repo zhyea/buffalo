@@ -1,4 +1,20 @@
 --
+-- user table
+create table if not exists bu_user
+(
+    id       int not null auto_increment primary key,
+
+    username varchar(32),
+    password varchar(64),
+    nickname varchar(32)
+
+) ENGINE = MyISAM
+  DEFAULT CHARSET = utf8mb4;
+
+insert into bu_user (username, password, nickname)
+values ('myAdmin', 'thisIsAdmin', 'long');
+
+
 -- meta data
 create table if not exists bu_meta
 (
