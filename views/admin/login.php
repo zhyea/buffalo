@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="container login">
 
-	<form class="form-login" method="post" action="./admin/login_check">
+	<form class="form-login" method="post" action="./login_check">
 		<div class="logo"><img src="<?= $admin_url ?>static/img/logo.png" width="36%"/></div>
 		<div class="form-item">
 			<span class="form-label">用户名</span>

@@ -1,10 +1,17 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Admin extends MY_Controller
 {
-    public function index()
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->helper('array');
+        $this->load->model('meta');
+        $this->load->library('session');
+    }
+
+    public function login()
     {
         self::adminViewOf('header');
         self::adminViewOf('login');
@@ -12,9 +19,11 @@ class Admin extends MY_Controller
     }
 
 
-    public function home()
+    public function index()
     {
-
+        self::adminViewOf('header');
+        self::adminViewOf('home');
+        self::adminViewOf('footer');
     }
 
 

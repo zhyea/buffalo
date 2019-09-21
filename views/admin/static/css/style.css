@@ -8,7 +8,35 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: #000;
+    background-color: #ddd;
+}
+
+/* ----------------- */
+.wrapper {
+    max-width: 870px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #FFF;
+    margin: 0 auto;
+    padding: 0;
+    box-shadow: 0 0 27px 27px rgba(200, 200, 200, .36);
+}
+
+.navigator, .main, .footer {
+    width: 100%;
+}
+
+.navigator {
+    padding: 0;
+}
+
+.navbar {
+    margin: 0;
+}
+
+.navbar-brand{
+    padding: 0 15px;
 }
 
 /* ------------------login------------------ */
@@ -21,7 +49,7 @@ body {
 
 .form-login {
     position: absolute;
-    top: 42%;
+    top: 50%;
     left: 50%;
     margin-top: -160px;
     margin-left: -120px;
@@ -60,4 +88,15 @@ body {
 
 .form-login input[type="password"] {
     margin-bottom: 18px;
+}
+
+.wrapper {
+    max-width: 870px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #FFF;
+    margin: 0 auto;
+    padding: 0;
+    box-shadow: 0 0 27px 27px rgba(200, 200, 200, .36);
 }
