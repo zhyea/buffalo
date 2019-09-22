@@ -13,6 +13,7 @@ class MY_Loader extends CI_Loader
         }
         $theme = 'default';
         $vars['theme_url'] = BASE_URL . 'themes/' . $theme;
+        $vars['site_url'] = self::site_url();
         $view = 'themes/' . $theme . '/' . $view;
         return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_prepare_view_vars($vars), '_ci_return' => $return));
     }
@@ -24,6 +25,7 @@ class MY_Loader extends CI_Loader
             define('BASE_URL', self::base_url());
         }
         $vars['admin_url'] = BASE_URL . 'admin/';
+        $vars['site_url'] = self::site_url();
         $view = 'admin/' . $view;
         return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_prepare_view_vars($vars), '_ci_return' => $return));
     }
@@ -36,6 +38,11 @@ class MY_Loader extends CI_Loader
         $idx = strrpos($view_path, DIRECTORY_SEPARATOR);
         $view_folder = substr($view_path, $idx + 1);
         return $base_url . $view_folder . '/';
+    }
+
+    private static function site_url()
+    {
+        return get_instance()->config->site_url();
     }
 
 }
