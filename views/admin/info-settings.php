@@ -5,29 +5,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container main">
 
 	<div class="page-header">
-		<h3>网站设置</h3>
+		<h3>信息维护</h3>
 	</div>
 
 
-	<form method="post" action="<?= site_url() ?>/admin/update_site_settings">
+	<form method="post" action="<?= site_url() ?>/admin/update_info_settings">
 		<div class="row">
-			<div class="form-label col-md-3 col-xs-12">站点名称</div>
+			<div class="form-label col-md-3 col-xs-12">LOGO</div>
 			<div class="form-input col-md-9 col-xs-12">
-				<input type="text" class="form-control" name="site_name" value="<?= $site_name ?>" required autofocus/>
+				<img alt="logo" src="<?= $logo ?>">
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="form-label col-md-3 col-xs-12">站点描述</div>
+			<div class="form-label col-md-3 col-xs-12">背景图片</div>
 			<div class="form-input col-md-9 col-xs-12">
-				<textarea class="form-control" name="site_description"><?= $site_description ?></textarea>
+				<img alt="背景图" src="<?= $bg_img ?>">
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="form-label col-md-3 col-xs-12">关键词</div>
+			<div class="form-label col-md-3 col-xs-12">通知信息</div>
 			<div class="form-input col-md-9 col-xs-12">
-				<input type="text" class="form-control" name="site_keywords" value="<?= $site_keywords ?>"/>
+				<textarea class="form-control" name="notice"><?= $notice ?></textarea>
 			</div>
 		</div>
 

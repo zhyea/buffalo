@@ -51,9 +51,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					   aria-expanded="false"><span class="glyphicon glyphicon-dashboard"></span> 控制台<span
 								class="caret"></span></a>
 					<ul class="dropdown-menu navbar-child">
-						<li class="navbar-child-item"><a href="#">信息维护</a></li>
+						<li class="navbar-child-item"><a href="<?= $site_url ?>/admin/info_settings">信息维护</a></li>
+						<li class="navbar-child-item"><a href="<?= $site_url ?>/admin/user_settings">个人设置</a></li>
 						<li class="navbar-child-item"><a href="<?= $site_url ?>/admin/site_settings">网站设置</a></li>
-						<li class="navbar-child-item"><a href="#">个人设置</a></li>
 					</ul>
 				</li>
 

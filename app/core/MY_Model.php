@@ -11,7 +11,7 @@ class MY_Model extends CI_Model
     }
 
 
-    public function select_where($columns = '*', $where = NULL, $limit = NULL, $offset = NULL)
+    protected function select_where($columns = '*', $where = NULL, $limit = NULL, $offset = NULL)
     {
         $this->db->select($columns);
         $query = $this->db->get_where($this->table, $where, $limit, $offset);
@@ -19,7 +19,7 @@ class MY_Model extends CI_Model
     }
 
 
-    public function get_where($column, $where = NULL)
+    protected function get_where($column, $where = NULL)
     {
         $this->db->select($column);
         $query = $this->db->get_where($this->table, $where);
@@ -28,7 +28,7 @@ class MY_Model extends CI_Model
     }
 
 
-    public function replace($set = NULL)
+    protected function replace0($set = NULL)
     {
         return $this->db->replace($this->table, $set);
     }

@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 
-	<form method="post" action="<?= site_url() ?>/admin/update_site_settings">
+	<form method="post" action="<?= site_url() ?>/admin/update_user_settings">
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">站点名称</div>
 			<div class="form-input col-md-9 col-xs-12">
@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">关键词</div>
 			<div class="form-input col-md-9 col-xs-12">
-				<input type="text" class="form-control" name="site_keywords" value="<?= $site_keywords ?>"/>
+				<input type="textarea" class="form-control" name="site_keywords" value="<?= $site_keywords ?>"/>
 			</div>
 		</div>
 

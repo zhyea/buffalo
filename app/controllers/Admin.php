@@ -41,24 +41,16 @@ class Admin extends MY_Controller
         self::content_view('site-settings', $data);
     }
 
+    /**
+     * 更新网站配置
+     */
     public function update_site_settings()
     {
-        $data = array(
-            array(
-                'name' => 'site_name',
-                'value' => $_POST['site_name']
-            ),
-            array(
-                'name' => 'site_keywords',
-                'value' => $_POST['site_keywords']
-            ),
-            array(
-                'name' => 'site_description',
-                'value' => $_POST['site_description']
-            )
-        );
+        $this->settings->replace('site_name',  $_POST['site_name']);
+        $this->settings->replace('site_keywords',  $_POST['site_keywords']);
+        $this->settings->replace('site_description',  $_POST['site_description']);
 
-        redirect('/site_settings');
+        redirect('admin/site_settings');
     }
 
 

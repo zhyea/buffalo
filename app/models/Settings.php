@@ -9,10 +9,14 @@ class Settings extends MY_Model
         return self::get_where('value', array('name' => $key));
     }
 
-
-    public function replace($data)
+    public function replace($name, $value)
     {
-        return self::replace($data);
+        $data = array(
+            'name' => $name,
+            'value' => $value
+        );
+        return parent::replace0($data);
     }
+
 
 }
