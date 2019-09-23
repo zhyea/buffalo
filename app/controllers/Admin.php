@@ -43,9 +43,20 @@ class Admin extends MY_Controller
 
     public function update_site_settings()
     {
-        $site_name = $this->input->post('site_name');
-        $site_keywords = $this->input->post('site_keywords');
-        $site_description = $this->input->post('site_description');
+        $data = array(
+            array(
+                'name' => 'site_name',
+                'value' => $_POST['site_name']
+            ),
+            array(
+                'name' => 'site_keywords',
+                'value' => $_POST['site_keywords']
+            ),
+            array(
+                'name' => 'site_description',
+                'value' => $_POST['site_description']
+            )
+        );
 
         redirect('/site_settings');
     }
@@ -53,8 +64,8 @@ class Admin extends MY_Controller
 
     public function login_check()
     {
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
         echo $username;
         echo $password;

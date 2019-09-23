@@ -46,9 +46,9 @@ values (4, 'category', '东方历史'),
 -- settings table
 create table if not exists bu_settings
 (
-    id    int not null auto_increment primary key,
+    id    int         not null auto_increment primary key,
 
-    name  varchar(64),
+    name  varchar(64) not null unique,
     value varchar(128)
 
 ) ENGINE = MyISAM
