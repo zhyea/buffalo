@@ -9,6 +9,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 
+    <?php if (isset($msg)): ?>
+		<div class="alert alert-success alert-dismissible fade in" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+						aria-hidden="true">&times;</span></button>
+			<strong>提示!</strong> <?= $msg ?>
+		</div>
+    <?php endif; ?>
+
 	<form method="post" action="<?= site_url() ?>/admin/update_site_settings">
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">站点名称</div>

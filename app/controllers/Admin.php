@@ -7,9 +7,9 @@ class Admin extends MY_Controller
     {
         parent::__construct();
         $this->load->helper('array');
+        $this->load->helper('cookie');
         $this->load->model('meta');
         $this->load->model('settings');
-        $this->load->library('session');
     }
 
     public function login()
@@ -38,6 +38,11 @@ class Admin extends MY_Controller
         $data['site_keywords'] = $this->settings->get('site_keywords');
         $data['site_description'] = $this->settings->get('site_description');
 
+        if (get_cookie('update')) {
+            $data['msg'] = '更新网站设置成功！';
+            delete_cookie('update');
+        }
+
         self::content_view('site-settings', $data);
     }
 
@@ -46,9 +51,11 @@ class Admin extends MY_Controller
      */
     public function update_site_settings()
     {
-        $this->settings->replace('site_name',  $_POST['site_name']);
-        $this->settings->replace('site_keywords',  $_POST['site_keywords']);
-        $this->settings->replace('site_description',  $_POST['site_description']);
+        $this->settings->replace('site_name', $_POST['site_name']);
+        $this->settings->replace('site_keywords', $_POST['site_keywords']);
+        $this->settings->replace('site_description', $_POST['site_description']);
+
+        set_cookie('update', true, 60);
 
         redirect('admin/site_settings');
     }
