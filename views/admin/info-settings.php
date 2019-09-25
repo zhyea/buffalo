@@ -13,14 +13,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">LOGO</div>
 			<div class="form-input col-md-9 col-xs-12">
-				<img alt="logo" src="<?= $logo ?>">
+				<input type="file" class="form-control"/>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">背景图片</div>
 			<div class="form-input col-md-9 col-xs-12">
-				<img alt="背景图" src="<?= $bg_img ?>">
+				<input type="file" class="form-control"/>
 			</div>
 		</div>
 

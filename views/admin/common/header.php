@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</button>
 
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">
+				<a class="navbar-brand" href="<?= $site_url ?>/admin">
 					<img alt="Buffalo Console" src="<?= $admin_url ?>static/img/logo-white.png" height="100%">
 				</a>
 			</div>

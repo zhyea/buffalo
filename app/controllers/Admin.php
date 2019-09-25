@@ -12,11 +12,23 @@ class Admin extends MY_Controller
         $this->load->model('settings');
     }
 
+
     public function login()
     {
         self::adminViewOf('login');
     }
 
+
+    public function login_check()
+    {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        echo $username;
+        echo $password;
+
+        redirect('admin');
+    }
 
     public function index()
     {
@@ -34,7 +46,6 @@ class Admin extends MY_Controller
     {
         $data['title'] = '网站管理 - Buffalo';
 
-        $data['site_name'] = $this->settings->get('site_name');
         $data['site_keywords'] = $this->settings->get('site_keywords');
         $data['site_description'] = $this->settings->get('site_description');
 
@@ -61,18 +72,20 @@ class Admin extends MY_Controller
     }
 
 
-    public function login_check()
+    public function info_settings()
     {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        echo $username;
-        echo $password;
+        $data['title'] = '信息维护 - Buffalo';
+        $data['logo'] = 'logo';
+        $data['bg_img'] = 'bg_img';
+        $data['notice'] = 'notice';
+        self::content_view('info-settings', $data);
     }
 
 
     private function content_view($content_name, $data = array())
     {
+        $data['site_name'] = $this->settings->get('site_name');
+
         self::adminViewOf('common/header', $data);
         self::adminViewOf($content_name, $data);
         self::adminViewOf('common/footer', $data);

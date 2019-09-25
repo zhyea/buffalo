@@ -15,6 +15,13 @@ h2, h3, h4, h5, h6 {
     font-size: 18px;
 }
 
+
+
+input[type="file"] {
+    align-items: flex-end !important;
+    padding-bottom: 6px;
+}
+
 .wrapper {
     max-width: 870px;
     width: 100%;
