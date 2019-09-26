@@ -49,7 +49,7 @@ class Admin extends MY_Controller
         $data['site_keywords'] = $this->settings->get('site_keywords');
         $data['site_description'] = $this->settings->get('site_description');
 
-        if (get_cookie('update')) {
+        if (get_cookie('update_site')) {
             $data['msg'] = '更新网站设置成功！';
             delete_cookie('update');
         }
@@ -66,19 +66,42 @@ class Admin extends MY_Controller
         $this->settings->replace('site_keywords', $_POST['site_keywords']);
         $this->settings->replace('site_description', $_POST['site_description']);
 
-        set_cookie('update', true, 60);
+        set_cookie('update_site', true, 60);
 
-        redirect('admin/site_settings');
+        redirect('admin/info_settings');
     }
 
 
     public function info_settings()
     {
+        $this->load->helper('form');
+
         $data['title'] = '信息维护 - Buffalo';
         $data['logo'] = 'logo';
         $data['bg_img'] = 'bg_img';
         $data['notice'] = 'notice';
         self::content_view('info-settings', $data);
+    }
+
+
+    public function update_info_settings()
+    {
+        $config['upload_path'] = './user/uploads';
+        $config['allowed_types'] = 'jpg|png';
+        $config['max_size'] = 1024;
+        $config['file_name'] = uniqid();
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('logo')) {
+            print_r($this->upload->data());
+        } else {
+            print_r($this->upload->display_errors());
+        }
+
+        set_cookie('update_info', true, 60);
+
+        //redirect('admin/info_settings');
     }
 
 
