@@ -1,7 +1,7 @@
 <?php
 
 
-class Settings extends MY_Model
+class Settings_Model extends MY_Model
 {
 
     public function get($key)

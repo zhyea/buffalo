@@ -10,18 +10,18 @@ class Index extends MY_Controller
     {
         parent::__construct();
         self::helperOf('array');
-        self::modelOf('meta');
-        self::modelOf('settings');
+        self::modelOf('meta_model');
+        self::modelOf('settings_model');
     }
 
 
     public function index()
     {
-        $cats = $this->meta->query_category();
+        $cats = $this->meta_model->query_category();
         $data['categories'] = list_to_tree($cats);
 
-        $data['site_name'] =  $this->settings->get('site_name');
-        $data['notice'] =  $this->settings->get('notice');
+        $data['site_name'] =  $this->settings_model->get('site_name');
+        $data['notice'] =  $this->settings_model->get('notice');
 
         self::viewOf('header', $data);
         self::viewOf('navigator', $data);

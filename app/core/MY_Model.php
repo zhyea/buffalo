@@ -7,7 +7,7 @@ class MY_Model extends CI_Model
     public function __construct()
     {
         $this->load->database();
-        $this->table = strtolower(get_called_class());
+        $this->table = strtolower(str_ireplace('_model', '', get_called_class()));
     }
 
 

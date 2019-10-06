@@ -1,7 +1,7 @@
 <?php
 
 
-class Meta extends MY_Model
+class Meta_Model extends MY_Model
 {
 
     public function query_category()
