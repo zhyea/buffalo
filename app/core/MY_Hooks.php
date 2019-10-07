@@ -10,7 +10,6 @@ class MY_Hooks extends CI_Hooks
     {
         parent::__construct();
 
-
         $this->load =& load_class('Loader', 'core');
         $this->load->initialize();
 

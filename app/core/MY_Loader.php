@@ -13,6 +13,7 @@ class MY_Loader extends CI_Loader
         }
         $theme = 'default';
         $vars['theme_url'] = BASE_URL . 'themes/' . $theme;
+        $vars['upload_url'] = BASE_URL . 'uploads/';
         $vars['site_url'] = self::site_url();
         $view = 'themes/' . $theme . '/' . $view;
         return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_prepare_view_vars($vars), '_ci_return' => $return));
@@ -25,6 +26,7 @@ class MY_Loader extends CI_Loader
             define('BASE_URL', self::base_url());
         }
         $vars['admin_url'] = BASE_URL . 'admin/';
+        $vars['upload_url'] = BASE_URL . 'uploads/';
         $vars['site_url'] = self::site_url();
         $view = 'admin/' . $view;
         return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_prepare_view_vars($vars), '_ci_return' => $return));
@@ -102,10 +104,10 @@ class MY_Loader extends CI_Loader
 
         // Is the service in a sub-folder? If so, parse out the filename and path.
         if (($last_slash = strrpos($service, '/')) !== FALSE) {
-        // The path is in front of the last slash
+            // The path is in front of the last slash
             $sub_dir = substr($service, 0, $last_slash + 1);
 
-        // And the service name behind it
+            // And the service name behind it
             $service = substr($service, $last_slash + 1);
         }
         foreach ($this->_ci_service_paths as $path) {
@@ -128,6 +130,7 @@ class MY_Loader extends CI_Loader
             }
             $this->_ci_services[] = $object_name;
             return;
-        }}
-
+        }
     }
+
+}

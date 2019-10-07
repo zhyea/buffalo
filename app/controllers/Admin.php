@@ -52,7 +52,7 @@ class Admin extends MY_Controller
 
         if (get_cookie('update_site')) {
             $data['msg'] = '更新网站设置成功！';
-            delete_cookie('update');
+            delete_cookie('update_site');
         }
 
         self::content_view('site-settings', $data);
@@ -77,19 +77,28 @@ class Admin extends MY_Controller
     {
         $this->load->helper('form');
 
+        if (get_cookie('update_info')) {
+            $data['msg'] = '更新网站设置成功！';
+        } else {
+            $data['msg'] = get_cookie('update_info_msg');
+        }
+        delete_cookie('update_info');
+
         $data['title'] = '信息维护 - Buffalo';
-        $data['logo'] = 'logo';
-        $data['bg_img'] = 'bg_img';
-        $data['notice'] = 'notice';
+        $data['logo'] = $this->settings_model->get('logo');
+        $data['bg_img'] = $this->settings_model->get('bg_img');
+        $data['notice'] = $this->settings_model->get('notice');
         self::content_view('info-settings', $data);
     }
+
     public function update_info_settings()
     {
-        $this->admin_service->update_info_settings();
-
-        set_cookie('update_info', true, 60);
-
-        //redirect('admin/info_settings');
+        $this->settings_model->replace('notice', $_POST['notice']);
+        $r = $this->admin_service->update_img_setting('logo');
+        if ($r) {
+            $this->admin_service->update_img_setting('bg_img');
+        }
+        redirect('admin/info_settings');
     }
 
 
