@@ -94,9 +94,11 @@ class Admin extends MY_Controller
     public function update_info_settings()
     {
         $this->settings_model->replace('notice', $_POST['notice']);
-        $r = $this->admin_service->update_img_setting('logo');
-        if ($r) {
-            $this->admin_service->update_img_setting('bg_img');
+        if ($_POST['logo']) {
+            $r = $this->admin_service->update_img_setting('logo');
+            if ($r && $_POST['bg_img']) {
+                $this->admin_service->update_img_setting('bg_img');
+            }
         }
         redirect('admin/info_settings');
     }
