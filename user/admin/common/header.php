@@ -52,7 +52,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								class="caret"></span></a>
 					<ul class="dropdown-menu navbar-child">
 						<li class="navbar-child-item"><a href="<?= $site_url ?>/admin/info_settings">信息维护</a></li>
-						<li class="navbar-child-item"><a href="<?= $site_url ?>/admin/user_settings">个人设置</a></li>
 						<li class="navbar-child-item"><a href="<?= $site_url ?>/admin/site_settings">网站设置</a></li>
 					</ul>
 				</li>
@@ -68,7 +67,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<ul class="dropdown-menu navbar-child">
 						<li class="navbar-child-item"><a href="#">文章管理</a></li>
 						<li class="navbar-child-item"><a href="#">分类管理</a></li>
-						<li class="navbar-child-item"><a href="#">用户管理</a></li>
+						<li class="navbar-child-item"><a href="<?= $site_url ?>/admin/users">用户管理</a></li>
 					</ul>
 				</li>
 
@@ -88,7 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-home"></span> <?= $site_name ?></a></li>
+				<li><a href="<?= $site_url ?>"><span class="glyphicon glyphicon-home"></span> <?= $site_name ?></a></li>
 				<li class="active"><a href="#"><span class="glyphicon glyphicon-off"></span> 登出</a></li>
 			</ul>
 		</nav>

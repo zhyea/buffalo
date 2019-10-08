@@ -10,7 +10,7 @@ class Admin extends MY_Controller
         $this->load->helper('cookie');
         $this->load->model('meta_model');
         $this->load->model('settings_model');
-        $this->load->service('admin_service');
+        $this->load->service('settings_service');
     }
 
 
@@ -77,10 +77,13 @@ class Admin extends MY_Controller
 
         set_cookie('update_site', true, 60);
 
-        redirect('admin/info_settings');
+        redirect('admin/site_settings');
     }
 
 
+    /**
+     * 加载信息维护页
+     */
     public function info_settings()
     {
         $this->load->helper('form');
@@ -99,16 +102,30 @@ class Admin extends MY_Controller
         self::content_view('info-settings', $data);
     }
 
+    /**
+     * 更新信息维护数据
+     */
     public function update_info_settings()
     {
         $this->settings_model->replace('notice', $_POST['notice']);
+
+        set_cookie('update_info', true, 60);
+
         if ($_POST['logo']) {
-            $r = $this->admin_service->update_img_setting('logo');
+            $r = $this->settings_service->update_img_setting('logo');
             if ($r && $_POST['bg_img']) {
-                $this->admin_service->update_img_setting('bg_img');
+                $this->settings_service->update_img_setting('bg_img');
             }
         }
         redirect('admin/info_settings');
+    }
+
+
+    public function users()
+    {
+        $data['title'] = '用户信息 - Buffalo';
+
+        $this->content_view('users', $data);
     }
 
 

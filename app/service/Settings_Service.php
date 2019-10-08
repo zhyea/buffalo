@@ -1,7 +1,7 @@
 <?php
 
 
-class Admin_Service extends MY_Service
+class Settings_Service extends MY_Service
 {
 
     public function __construct()
@@ -25,7 +25,7 @@ class Admin_Service extends MY_Service
             return TRUE;
         } else {
             set_cookie('update_info', false, 60);
-            set_cookie('update_info_msg', $r[1], 60);
+            set_cookie('update_info_msg', $name . ':' . str_replace(PHP_EOL, '', $r[1]), 60);
             return FALSE;
         }
     }
