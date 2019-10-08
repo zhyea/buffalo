@@ -14,12 +14,17 @@ class Admin extends MY_Controller
     }
 
 
+    /**
+     * 加载登录页面
+     */
     public function login()
     {
         self::adminViewOf('login');
     }
 
-
+    /**
+     * 登录信息校验
+     */
     public function login_check()
     {
         $username = $_POST['username'];
@@ -31,6 +36,9 @@ class Admin extends MY_Controller
         redirect('admin');
     }
 
+    /**
+     * 后台首页
+     */
     public function index()
     {
         $data['title'] = 'Buffalo Console';
@@ -41,7 +49,7 @@ class Admin extends MY_Controller
 
 
     /**
-     * 网站管理
+     * 网站配置管理页
      */
     public function site_settings()
     {

@@ -4,15 +4,28 @@
 class Settings_Model extends MY_Model
 {
 
+    /**
+     * 获取配置信息
+     *
+     * @param $key string 配置项
+     * @return string 配置信息
+     */
     public function get($key)
     {
-        return self::get_where('value', array('name' => $key));
+        return self::get_column_where('value', array('name' => $key));
     }
 
-    public function replace($name, $value)
+    /**
+     * 新增或更新配置信息
+     *
+     * @param $key string 配置项
+     * @param $value string  配置信息
+     * @return int 影响的记录数量
+     */
+    public function replace($key, $value)
     {
         $data = array(
-            'name' => $name,
+            'name' => $key,
             'value' => $value
         );
         return parent::replace0($data);

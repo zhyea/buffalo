@@ -6,6 +6,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class MY_Loader extends CI_Loader
 {
 
+    /**
+     * 视图页信息增强
+     */
     public function view($view, $vars = array(), $return = FALSE)
     {
         if (!defined('BASE_URL')) {
@@ -20,6 +23,9 @@ class MY_Loader extends CI_Loader
     }
 
 
+    /**
+     * 管理后台视图页信息增强
+     */
     public function admin_view($view, $vars = array(), $return = FALSE)
     {
         if (!defined('BASE_URL')) {
@@ -33,6 +39,9 @@ class MY_Loader extends CI_Loader
     }
 
 
+    /**
+     * 获取网站根路径（含视图路径）
+     */
     private static function base_url()
     {
         $base_url = get_instance()->config->base_url();
@@ -42,20 +51,24 @@ class MY_Loader extends CI_Loader
         return $base_url . $view_folder . '/';
     }
 
+    /**
+     * 获取网站根路径
+     */
     private static function site_url()
     {
         return get_instance()->config->site_url();
     }
 
     /**
-     * List of loaded services
+     * 加载的 services 列表
      *
      * @var array
      * @access protected
      */
     protected $_ci_services = array();
+
     /**
-     * List of paths to load services from
+     * 加载的 services 路径列表
      *
      * @var array
      * @access protected
@@ -64,7 +77,7 @@ class MY_Loader extends CI_Loader
 
 
     /**
-     * Constructor
+     * 构造器
      *
      * Set the path to the Service files
      */
