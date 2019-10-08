@@ -8,6 +8,11 @@ class MY_Loader extends CI_Loader
 
     /**
      * 视图页信息增强
+     *
+     * @param  $view string 要加载的视图页
+     * @param  $vars array 视图页参数
+     * @param  $return bool 是否有返回值
+     * @return object|string 加载的视图页内容
      */
     public function view($view, $vars = array(), $return = FALSE)
     {
@@ -25,6 +30,11 @@ class MY_Loader extends CI_Loader
 
     /**
      * 管理后台视图页信息增强
+     *
+     * @param  $view string 要加载的视图页
+     * @param  $vars array 视图页参数
+     * @param  $return bool 是否有返回值
+     * @return object|string 加载的视图页内容
      */
     public function admin_view($view, $vars = array(), $return = FALSE)
     {
