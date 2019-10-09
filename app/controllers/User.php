@@ -10,6 +10,9 @@ class User extends MY_Controller
         $this->load->model('user_model');
     }
 
+    /**
+     * 返回搜有用户数据
+     */
     public function all()
     {
         $data = $this->user_model->all_users();
