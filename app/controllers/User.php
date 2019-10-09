@@ -11,7 +11,7 @@ class User extends MY_Controller
     }
 
     /**
-     * 返回搜有用户数据
+     * 返回所有用户数据
      */
     public function all()
     {
