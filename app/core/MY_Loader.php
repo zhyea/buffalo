@@ -71,25 +71,17 @@ class MY_Loader extends CI_Loader
 
     /**
      * 加载的 services 列表
-     *
-     * @var array
-     * @access protected
      */
     protected $_ci_services = array();
 
     /**
      * 加载的 services 路径列表
-     *
-     * @var array
-     * @access protected
      */
     protected $_ci_service_paths = array();
 
 
     /**
      * 构造器
-     *
-     * Set the path to the Service files
      */
     public function __construct()
     {
