@@ -174,3 +174,19 @@ input[type="file"] {
 .form-login input[type="password"] {
     margin-bottom: 18px;
 }
+
+/* ------------------table------------------ */
+.bootstrap-table .fixed-table-container {
+    padding: 30px !important;
+    background: #FFF;
+    line-height: 180%;
+}
+
+.bootstrap-table label {
+    margin: 0 !important;
+    font-size: 0;
+}
+
+.bootstrap-table .fixed-table-container .table tbody tr.selected td{
+    background-color: #FFF9E8;
+}

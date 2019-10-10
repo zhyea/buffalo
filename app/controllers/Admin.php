@@ -125,7 +125,7 @@ class Admin extends MY_Controller
     {
         $data['title'] = '用户信息 - Buffalo';
 
-        $this->content_view('users', $data);
+        $this->content_view('user-list', $data);
     }
 
 
