@@ -19,4 +19,18 @@ class User extends MY_Controller
         echo json_encode($data);
     }
 
+    /**
+     * 登录信息校验
+     */
+    public function login_check()
+    {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        echo $username;
+        echo $password;
+
+        redirect('admin');
+    }
+
 }

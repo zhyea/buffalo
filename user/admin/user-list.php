@@ -11,12 +11,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="userTableToolbar">
 		<div class="btn-group">
-			<button id="btnAdd" class="btn btn-default">
+			<a class="btn btn-default" href="<?= $site_url ?>/admin/user_settings">
 				<i class="glyphicon glyphicon-plus"></i>新增
-			</button>
-			<button id="btnAdd" class="btn btn-default">
+			</a>
+			<a id="btnAdd" class="btn btn-default">
 				<i class="glyphicon glyphicon-minus"></i>删除
-			</button>
+			</a>
 		</div>
 	</div>
 	<table id="userTable"

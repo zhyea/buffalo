@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
     <?php endif; ?>
 
-    <?= form_open_multipart('admin/update_info_settings'); ?>
+    <?= form_open_multipart('settings/update_settings_info'); ?>
 	<div class="row">
 		<div class="form-label col-md-2 col-xs-12">LOGO</div>
 		<div class="form-input col-md-10 col-xs-12">

@@ -184,9 +184,10 @@ input[type="file"] {
 
 .bootstrap-table label {
     margin: 0 !important;
+    vertical-align: middle;
     font-size: 0;
 }
 
-.bootstrap-table .fixed-table-container .table tbody tr.selected td{
+.bootstrap-table .fixed-table-container .table tbody tr.selected td {
     background-color: #FFF9E8;
 }

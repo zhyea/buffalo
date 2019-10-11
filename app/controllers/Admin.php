@@ -8,8 +8,11 @@ class Admin extends MY_Controller
         parent::__construct();
         $this->load->helper('array');
         $this->load->helper('cookie');
+
         $this->load->model('meta_model');
         $this->load->model('settings_model');
+        $this->load->model('user_model');
+
         $this->load->service('settings_service');
     }
 
@@ -20,20 +23,6 @@ class Admin extends MY_Controller
     public function login()
     {
         self::adminViewOf('login');
-    }
-
-    /**
-     * 登录信息校验
-     */
-    public function login_check()
-    {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        echo $username;
-        echo $password;
-
-        redirect('admin');
     }
 
     /**
@@ -51,7 +40,7 @@ class Admin extends MY_Controller
     /**
      * 网站配置管理页
      */
-    public function site_settings()
+    public function settings_site()
     {
         $data['title'] = '网站管理 - Buffalo';
 
@@ -63,28 +52,14 @@ class Admin extends MY_Controller
             delete_cookie('update_site');
         }
 
-        self::content_view('site-settings', $data);
-    }
-
-    /**
-     * 更新网站配置
-     */
-    public function update_site_settings()
-    {
-        $this->settings_model->replace('site_name', $_POST['site_name']);
-        $this->settings_model->replace('site_keywords', $_POST['site_keywords']);
-        $this->settings_model->replace('site_description', $_POST['site_description']);
-
-        set_cookie('update_site', true, 60);
-
-        redirect('admin/site_settings');
+        self::content_view('settings-site', $data);
     }
 
 
     /**
      * 加载信息维护页
      */
-    public function info_settings()
+    public function settings_info()
     {
         $this->load->helper('form');
 
@@ -99,35 +74,37 @@ class Admin extends MY_Controller
         $data['logo'] = $this->settings_model->get('logo');
         $data['bg_img'] = $this->settings_model->get('bg_img');
         $data['notice'] = $this->settings_model->get('notice');
-        self::content_view('info-settings', $data);
+        self::content_view('settings-info', $data);
     }
+
 
     /**
-     * 更新信息维护数据
+     * 加载用户信息列表页
      */
-    public function update_info_settings()
-    {
-        $this->settings_model->replace('notice', $_POST['notice']);
-
-        set_cookie('update_info', true, 60);
-
-        if ($_POST['logo']) {
-            $r = $this->settings_service->update_img_setting('logo');
-            if ($r && $_POST['bg_img']) {
-                $this->settings_service->update_img_setting('bg_img');
-            }
-        }
-        redirect('admin/info_settings');
-    }
-
-
-    public function users()
+    public function user_list()
     {
         $data['title'] = '用户信息 - Buffalo';
-
         $this->content_view('user-list', $data);
     }
 
+    /**
+     * 加载用户信息维护页
+     */
+    public function user_settings()
+    {
+        $data['title'] = '新增用户 - Buffalo';
+        $user = $this->user_model->get_by_id($this->get_param_or_default('id', 0));
+
+        $data['username'] = is_null($user) ? $user['username'] : '';
+        $data['nickname'] = is_null($user) ? $user['nickname'] : '';
+        $this->content_view('user-settings', $data);
+    }
+
+
+    private function get_param_or_default($name = NULL, $default = NULL)
+    {
+        return isset($_GET[$name]) ? $_GET[$name] : $default;
+    }
 
     private function content_view($content_name, $data = array())
     {

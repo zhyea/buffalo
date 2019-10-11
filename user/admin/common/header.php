@@ -51,8 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					   aria-expanded="false"><span class="glyphicon glyphicon-dashboard"></span> 控制台<span
 								class="caret"></span></a>
 					<ul class="dropdown-menu navbar-child">
-						<li class="navbar-child-item"><a href="<?= $site_url ?>/admin/info_settings">信息维护</a></li>
-						<li class="navbar-child-item"><a href="<?= $site_url ?>/admin/site_settings">网站设置</a></li>
+						<li class="navbar-child-item"><a href="<?= $site_url ?>/admin/settings_info">信息维护</a></li>
+						<li class="navbar-child-item"><a href="<?= $site_url ?>/admin/settings_site">网站设置</a></li>
 					</ul>
 				</li>
 
@@ -67,7 +67,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<ul class="dropdown-menu navbar-child">
 						<li class="navbar-child-item"><a href="#">文章管理</a></li>
 						<li class="navbar-child-item"><a href="#">分类管理</a></li>
-						<li class="navbar-child-item"><a href="<?= $site_url ?>/admin/users">用户管理</a></li>
+						<li class="navbar-child-item"><a href="<?= $site_url ?>/admin/user_list">用户管理</a></li>
 					</ul>
 				</li>
 
