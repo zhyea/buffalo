@@ -19,6 +19,14 @@ class User extends MY_Controller
         echo json_encode($data);
     }
 
+
+    /**
+     * 更新用户信息
+     */
+    public function update(){
+
+    }
+
     /**
      * 登录信息校验
      */

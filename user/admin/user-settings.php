@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 <div class="container main">
-
+	
 	<div class="page-header">
 		<h3>新增用户</h3>
 	</div>
@@ -21,32 +21,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">用户名</div>
 			<div class="form-input col-md-9 col-xs-12">
-				<input type="text" class="form-control" name="username" required autofocus/>
+				<input type="hidden" value="<?= $id ?>"/>
+				<input type="text" class="form-control" name="username" value="<?= $username ?>" required autofocus/>
 			</div>
 		</div>
-
+		
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">昵称</div>
 			<div class="form-input col-md-9 col-xs-12">
-				<input type="text" class="form-control" name="nickname" required/>
+				<input type="text" class="form-control" name="nickname" value="<?= $nickname ?>" required/>
 			</div>
 		</div>
-
+		
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">密码</div>
 			<div class="form-input col-md-9 col-xs-12">
 				<input type="password" class="form-control" name="pwd"/>
 			</div>
 		</div>
-
+		
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">确认密码</div>
 			<div class="form-input col-md-9 col-xs-12">
 				<input type="password" class="form-control" name="pwd_confirm"/>
 			</div>
 		</div>
-
-
+		
+		
 		<div class="row">
 			<div class="col-md-3 col-xs-12">&nbsp;</div>
 			<div class="form-input col-md-9 col-xs-12">

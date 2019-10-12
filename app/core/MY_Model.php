@@ -62,4 +62,68 @@ class MY_Model extends CI_Model
     }
 
 
+    /**
+     * 新增数据
+     *
+     * @param $data array 源数据
+     * @return int 影响的记录数
+     */
+    protected function insert($data = array())
+    {
+        if (0 === sizeof($data)) {
+            return 0;
+        }
+        return $this->db->insert($this->table, $data);
+    }
+
+
+    /**
+     * 更新记录
+     *
+     * @param $data array 要更新的内容
+     * @param $id int 要更新的记录ID
+     * @return int 操作影响的行数
+     */
+    protected function update($data = array(), $id = 0)
+    {
+        if (0 >= $id || 0 === sizeof($data)) {
+            return 0;
+        }
+        return $this->db->update($this->table, $data, array('id' => $id));
+    }
+
+
+    /**
+     * 新增或更新记录
+     *
+     * @param $data array 要更新的内容
+     * @param $id int 要更新的记录ID
+     * @return int 操作影响的行数
+     */
+    protected function insertOrUpdate($data = array(), $id = 0)
+    {
+        if (0 === sizeof($data)) {
+            return 0;
+        }
+        if ($id <= 0) {
+            return $this->insert($data);
+        } else {
+            return $this->update($data, $id);
+        }
+    }
+
+    /**
+     * 删除记录
+     *
+     * @param $id int 要更新的记录ID
+     * @return int 操作影响的行数
+     */
+    protected function delete($id = 0)
+    {
+        if ($id <= 0) {
+            return 0;
+        }
+        return $this->db->delete($this->table, array('id' => $id));
+    }
+
 }
