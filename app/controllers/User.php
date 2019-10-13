@@ -23,8 +23,23 @@ class User extends MY_Controller
     /**
      * 更新用户信息
      */
-    public function update(){
+    public function update()
+    {
+        $id = $_POST['id'];
+        $data = array(
+            'username' => $_POST['username'],
+            'nickname' => $_POST['nickname'],
+            'password' => md5('a3D#_%' . $_POST['password'])
+        );
+        $this->user_model->insertOrUpdate($data, $id);
 
+        redirect('admin/user_list');
+    }
+
+    public function delete()
+    {
+        $ids = $_POST('ids');
+        echo $this->user_model->deleteBatch($ids);
     }
 
     /**

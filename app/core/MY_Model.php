@@ -100,7 +100,7 @@ class MY_Model extends CI_Model
      * @param $id int 要更新的记录ID
      * @return int 操作影响的行数
      */
-    protected function insertOrUpdate($data = array(), $id = 0)
+    public function insertOrUpdate($data = array(), $id = 0)
     {
         if (0 === sizeof($data)) {
             return 0;
@@ -118,7 +118,7 @@ class MY_Model extends CI_Model
      * @param $id int 要更新的记录ID
      * @return int 操作影响的行数
      */
-    protected function delete($id = 0)
+    public function delete($id = 0)
     {
         if ($id <= 0) {
             return 0;
@@ -126,4 +126,13 @@ class MY_Model extends CI_Model
         return $this->db->delete($this->table, array('id' => $id));
     }
 
+
+    public function deleteBatch($ids = array())
+    {
+        if (0 === sizeof($ids)) {
+            return 0;
+        }
+        $this->db->where_in('id',$ids);
+        return $this->db->delete($this->table);
+    }
 }

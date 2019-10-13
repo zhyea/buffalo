@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">用户名</div>
 			<div class="form-input col-md-9 col-xs-12">
-				<input type="hidden" value="<?= $id ?>"/>
+				<input type="hidden" name="id" value="<?= $id ?>"/>
 				<input type="text" class="form-control" name="username" value="<?= $username ?>" required autofocus/>
 			</div>
 		</div>
@@ -36,14 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">密码</div>
 			<div class="form-input col-md-9 col-xs-12">
-				<input type="password" class="form-control" name="pwd"/>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="form-label col-md-3 col-xs-12">确认密码</div>
-			<div class="form-input col-md-9 col-xs-12">
-				<input type="password" class="form-control" name="pwd_confirm"/>
+				<input type="password" class="form-control" name="password" required/>
 			</div>
 		</div>
 		

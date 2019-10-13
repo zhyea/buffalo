@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<a class="btn btn-default" href="<?= $site_url ?>/admin/user_settings">
 				<i class="glyphicon glyphicon-plus"></i>新增
 			</a>
-			<a id="btnAdd" class="btn btn-default">
+			<a id="btnDelete" class="btn btn-default">
 				<i class="glyphicon glyphicon-minus"></i>删除
 			</a>
 		</div>
@@ -35,3 +35,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</thead>
 	</table>
 </div>
+
+
+<script charset="utf-8" src="<?= $admin_url ?>/static/js/jquery.min.js"></script>
+<script>
+    // 删除按钮事件
+    $("#btnDelete").on("click", function () {
+
+        let rows = $("#userTable").bootstrapTable('getSelections');// 获得要删除的数据
+        if (rows.length > 0) {// rows 主要是为了判断是否选中，下面的else内容才是主要
+            let ids = new Array();// 声明一个数组
+            $(rows).each(function () {// 通过获得别选中的来进行遍历
+                ids.push(this.id);// cid为获得到的整条数据中的一列
+            });
+
+            $.ajax({
+                url: '<?= $site_url ?>/user/delete',
+                data: 'ids=' + ids,
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    $('#userTable').bootstrapTable('refresh');
+                }
+            });
+        }
+    });
+</script>
