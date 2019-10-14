@@ -4,7 +4,7 @@ create table if not exists bu_user
 (
     id       int not null auto_increment primary key,
 
-    username varchar(32),
+    username varchar(32) unique not null ,
     password varchar(64),
     nickname varchar(32)
 
@@ -12,7 +12,7 @@ create table if not exists bu_user
   DEFAULT CHARSET = utf8mb4;
 
 insert into bu_user (username, password, nickname)
-values ('myAdmin', 'thisIsAdmin', 'long');
+values ('admin', '81b1c925de908ce13eaf44c5b9bbe6f0', 'long');
 
 
 -- meta data

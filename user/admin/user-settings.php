@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container main">
 	
 	<div class="page-header">
-		<h3>新增用户</h3>
+		<h3><?= $id === 0 ? '新增用户' : '编辑用户' ?></h3>
 	</div>
 
 

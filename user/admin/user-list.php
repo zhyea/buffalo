@@ -23,13 +23,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	       data-toggle="table"
 	       data-search="true"
 	       data-classes="table table-hover table-borderless"
+	       data-click-to-select="true"
 	       data-toolbar="#userTableToolbar"
 	       data-url="<?= $site_url ?>/user/all">
 		<thead>
 		<tr>
 			<th data-align="center" data-checkbox="true"></th>
 			<th data-field="id" data-visible="false"></th>
-			<th data-align="left" data-field="username">用户名</th>
+			<th data-align="left" data-field="username" data-formatter="nameFormatter">用户名</th>
 			<th data-align="left" data-field="nickname">昵称</th>
 		</tr>
 		</thead>
@@ -60,4 +61,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             });
         }
     });
+
+    function nameFormatter(value, row, index) {
+        return '<a href="<?= $site_url ?>/admin/user_settings?id=' + row.id + '" target="_self">' + value + '</a>';
+    }
 </script>

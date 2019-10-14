@@ -92,13 +92,14 @@ class Admin extends MY_Controller
      */
     public function user_settings()
     {
-        $data['title'] = '新增用户 - Buffalo';
         $id = $this->get_param_or_default('id', 0);
         $user = $this->user_model->get_by_id($id);
 
+        $data['title'] = ($id === 0 ? '新增用户' : '编辑用户') . ' - Buffalo';
+
         $data['id'] = $id;
-        $data['username'] = is_null($user) ? $user['username'] : '';
-        $data['nickname'] = is_null($user) ? $user['nickname'] : '';
+        $data['username'] = is_null($user) ? '' : $user['username'];
+        $data['nickname'] = is_null($user) ? '' : $user['nickname'];
         $this->content_view('user-settings', $data);
     }
 

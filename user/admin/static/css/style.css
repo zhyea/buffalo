@@ -79,7 +79,7 @@ input[type="file"] {
 .page-header {
     margin: 0 -15px;
     padding: 0 0 0 18px;
-    font-weight: bolder;
+    font-weight: 700 !important;
 }
 
 .main form .row {

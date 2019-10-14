@@ -36,10 +36,14 @@ class User extends MY_Controller
         redirect('admin/user_list');
     }
 
+    /**
+     * 删除数据
+     */
     public function delete()
     {
-        $ids = $_POST('ids');
-        echo $this->user_model->deleteBatch($ids);
+        $ids = $_POST['ids'];
+        $this->user_model->deleteBatch(explode(',', $ids));
+        echo $ids;
     }
 
     /**

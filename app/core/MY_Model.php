@@ -51,6 +51,24 @@ class MY_Model extends CI_Model
 
 
     /**
+     * 根据ID查询获取记录
+     *
+     * @param $columns string 要查询的字段
+     * @param $id int 记录的ID
+     * @return array 记录值
+     */
+    public function get_by_id0($columns = '*', $id = 0)
+    {
+        if ($id === 0) {
+            return NULL;
+        }
+        $this->db->select($columns);
+        $query = $this->db->get_where($this->table, array('id' => $id), 1);
+        return $query->row_array(0);
+    }
+
+
+    /**
      * 封装replace语句
      *
      * @param array $set 要更新/新增的数据
@@ -127,12 +145,17 @@ class MY_Model extends CI_Model
     }
 
 
+    /**
+     * 根据ID集合批量删除记录
+     * @param  $ids array ID集合
+     * @return int 删除操作影响的记录数量
+     */
     public function deleteBatch($ids = array())
     {
         if (0 === sizeof($ids)) {
             return 0;
         }
-        $this->db->where_in('id',$ids);
+        $this->db->where_in('id', $ids);
         return $this->db->delete($this->table);
     }
 }
