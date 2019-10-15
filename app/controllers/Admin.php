@@ -100,6 +100,7 @@ class Admin extends MY_Controller
         $data['id'] = $id;
         $data['username'] = is_null($user) ? '' : $user['username'];
         $data['nickname'] = is_null($user) ? '' : $user['nickname'];
+        $data['email'] = is_null($user) ? '' : $user['email'];
         $this->content_view('user-settings', $data);
     }
 

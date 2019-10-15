@@ -2,17 +2,17 @@
 -- user table
 create table if not exists bu_user
 (
-    id       int not null auto_increment primary key,
+    id       int                not null auto_increment primary key,
 
-    username varchar(32) unique not null ,
+    username varchar(32) unique not null,
+    email    varchar(64) unique not null,
     password varchar(64),
     nickname varchar(32)
-
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;
 
-insert into bu_user (username, password, nickname)
-values ('admin', '81b1c925de908ce13eaf44c5b9bbe6f0', 'long');
+insert into bu_user (username, email, password, nickname)
+values ('admin', 'admin@chobit.org', '81b1c925de908ce13eaf44c5b9bbe6f0', 'long');
 
 
 -- meta data

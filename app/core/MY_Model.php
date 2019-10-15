@@ -118,7 +118,7 @@ class MY_Model extends CI_Model
      * @param $id int 要更新的记录ID
      * @return int 操作影响的行数
      */
-    public function insertOrUpdate($data = array(), $id = 0)
+    public function insert_or_update($data = array(), $id = 0)
     {
         if (0 === sizeof($data)) {
             return 0;
@@ -150,7 +150,7 @@ class MY_Model extends CI_Model
      * @param  $ids array ID集合
      * @return int 删除操作影响的记录数量
      */
-    public function deleteBatch($ids = array())
+    public function delete_batch($ids = array())
     {
         if (0 === sizeof($ids)) {
             return 0;

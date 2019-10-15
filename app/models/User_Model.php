@@ -11,7 +11,7 @@ class User_Model extends MY_Model
      */
     public function all_users()
     {
-        return $this->select_where('id, username, nickname');
+        return $this->select_where('id, username, nickname, email');
     }
 
 
@@ -23,7 +23,7 @@ class User_Model extends MY_Model
      */
     public function get_by_id($id = 0)
     {
-        return $this->get_by_id0('id, username, nickname', $id);
+        return $this->get_by_id0('id, username, email, nickname', $id);
     }
 
 }

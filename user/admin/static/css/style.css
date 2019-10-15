@@ -179,7 +179,6 @@ input[type="file"] {
 .bootstrap-table .fixed-table-container {
     padding: 30px !important;
     background: #FFF;
-    line-height: 180%;
 }
 
 .bootstrap-table label {
@@ -190,4 +189,9 @@ input[type="file"] {
 
 .bootstrap-table .fixed-table-container .table tbody tr.selected td {
     background-color: #FFF9E8;
+}
+
+.bootstrap-table .fixed-table-container .table tbody td {
+    padding: 12px;
+    line-height: 1.5 !important;
 }

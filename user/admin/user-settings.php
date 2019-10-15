@@ -25,6 +25,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<input type="text" class="form-control" name="username" value="<?= $username ?>" required autofocus/>
 			</div>
 		</div>
+		<div class="row">
+			<div class="form-label col-md-3 col-xs-12">邮箱</div>
+			<div class="form-input col-md-9 col-xs-12">
+				<input type="text" class="form-control" name="email" value="<?= $email ?>" required />
+			</div>
+		</div>
 		
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">昵称</div>

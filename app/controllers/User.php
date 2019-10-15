@@ -29,9 +29,10 @@ class User extends MY_Controller
         $data = array(
             'username' => $_POST['username'],
             'nickname' => $_POST['nickname'],
-            'password' => md5('a3D#_%' . $_POST['password'])
+            'password' => md5('a3D#_%' . $_POST['password']),
+            'email' => $_POST['email'],
         );
-        $this->user_model->insertOrUpdate($data, $id);
+        $this->user_model->insert_or_update($data, $id);
 
         redirect('admin/user_list');
     }
@@ -42,7 +43,7 @@ class User extends MY_Controller
     public function delete()
     {
         $ids = $_POST['ids'];
-        $this->user_model->deleteBatch(explode(',', $ids));
+        $this->user_model->delete_batch(explode(',', $ids));
         echo $ids;
     }
 

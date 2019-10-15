@@ -32,6 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<th data-field="id" data-visible="false"></th>
 			<th data-align="left" data-field="username" data-formatter="nameFormatter">用户名</th>
 			<th data-align="left" data-field="nickname">昵称</th>
+			<th data-align="left" data-field="email">电子邮件</th>
 		</tr>
 		</thead>
 	</table>
