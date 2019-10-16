@@ -37,7 +37,7 @@ class MY_Model extends CI_Model
     /**
      * 封装单行记录查询语句
      *
-     * @param $column string 要查询的字段
+     * @param string $column 要查询的字段
      * @param string $where 查询条件
      * @return string 查询结果
      */
@@ -53,8 +53,8 @@ class MY_Model extends CI_Model
     /**
      * 根据ID查询获取记录
      *
-     * @param $columns string 要查询的字段
-     * @param $id int 记录的ID
+     * @param string $columns 要查询的字段
+     * @param int $id 记录的ID
      * @return array 记录值
      */
     public function get_by_id0($columns = '*', $id = 0)
@@ -83,7 +83,7 @@ class MY_Model extends CI_Model
     /**
      * 新增数据
      *
-     * @param $data array 源数据
+     * @param array $data 源数据
      * @return int 影响的记录数
      */
     protected function insert($data = array())
@@ -98,8 +98,8 @@ class MY_Model extends CI_Model
     /**
      * 更新记录
      *
-     * @param $data array 要更新的内容
-     * @param $id int 要更新的记录ID
+     * @param array $data 要更新的内容
+     * @param int $id 要更新的记录ID
      * @return int 操作影响的行数
      */
     protected function update($data = array(), $id = 0)
@@ -114,8 +114,8 @@ class MY_Model extends CI_Model
     /**
      * 新增或更新记录
      *
-     * @param $data array 要更新的内容
-     * @param $id int 要更新的记录ID
+     * @param array $data 要更新的内容
+     * @param int $id 要更新的记录ID
      * @return int 操作影响的行数
      */
     public function insert_or_update($data = array(), $id = 0)
@@ -133,7 +133,7 @@ class MY_Model extends CI_Model
     /**
      * 删除记录
      *
-     * @param $id int 要更新的记录ID
+     * @param int $id 要更新的记录ID
      * @return int 操作影响的行数
      */
     public function delete($id = 0)
@@ -147,7 +147,7 @@ class MY_Model extends CI_Model
 
     /**
      * 根据ID集合批量删除记录
-     * @param  $ids array ID集合
+     * @param array $ids ID集合
      * @return int 删除操作影响的记录数量
      */
     public function delete_batch($ids = array())

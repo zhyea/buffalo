@@ -11,6 +11,12 @@ class Settings_Service extends MY_Service
     }
 
 
+    /**
+     * 更新一些图片上传相关的配置
+     *
+     * @param string $name 图片名称
+     * @return bool 是否上传成功
+     */
     public function update_img_setting($name = NULL)
     {
         $r = parent::upload_img($name);

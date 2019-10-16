@@ -17,7 +17,7 @@ class MY_Service
     /**
      * 上传文件
      *
-     * @param $name string 文件表单名称
+     * @param string $name 文件表单名称
      * @return array 上传结果和图片名称(错误信息)
      */
     protected function upload_img($name = NULL)
