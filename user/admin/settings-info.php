@@ -22,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="form-input col-md-10 col-xs-12">
             <?php if (isset($logo)): ?>
 				<div class="form-input col-md-12 col-xs-12">
-					<p><img src="<?= $upload_url . $logo ?>" alt="LOGO"/></p>
+					<p><img src="<?= $ctx_upload . $logo ?>" alt="LOGO"/></p>
 				</div>
             <?php endif; ?>
 			<input type="file" class="form-control" accept="image/png, image/jpeg" name="logo"/>
@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="form-input col-md-10 col-xs-12">
             <?php if (isset($bg_img)): ?>
 				<div class="form-input col-md-12 col-xs-12">
-					<p><img src="<?= $upload_url . $bg_img ?>" alt="BG_IMG"/></p>
+					<p><img src="<?= $ctx_upload . $bg_img ?>" alt="BG_IMG"/></p>
 				</div>
             <?php endif; ?>
 			<input type="file" class="form-control" accept="image/png, image/jpeg" name="bg_img"/>

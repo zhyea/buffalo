@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 
-<script charset="utf-8" src="<?= $admin_url ?>/static/js/jquery.min.js"></script>
+<script charset="utf-8" src="<?= $ctx_admin ?>/static/js/jquery.min.js"></script>
 <script>
     // 删除按钮事件
     $("#btnDelete").on("click", function () {

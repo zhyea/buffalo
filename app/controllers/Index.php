@@ -12,6 +12,8 @@ class Index extends MY_Controller
         $this->load->helper('array');
         $this->load->model('meta_model');
         $this->load->model('settings_model');
+
+        $this->load->helper('url');
     }
 
 
@@ -27,6 +29,12 @@ class Index extends MY_Controller
         self::viewOf('navigator', $data);
         self::viewOf('content');
         self::viewOf('footer');
+    }
+
+
+    public function test()
+    {
+        echo '<br>--------------------------------------------------';
     }
 
 }

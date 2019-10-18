@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-isset($theme_url) OR exit('No base url exists')
+isset($ctx_theme) OR exit('No base url exists')
 ?>
 
 <div class="container footer">
@@ -11,8 +11,8 @@ isset($theme_url) OR exit('No base url exists')
 </div>
 
 
-<script charset="utf-8" src="<?= $theme_url ?>/static/js/jquery.min.js"></script>
-<script charset="utf-8" src="<?= $theme_url ?>/static/js/bootstrap.min.js"></script>
+<script charset="utf-8" src="<?= $ctx_theme ?>/static/js/jquery.min.js"></script>
+<script charset="utf-8" src="<?= $ctx_theme ?>/static/js/bootstrap.min.js"></script>
 
 </body>
 </html>

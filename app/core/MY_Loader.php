@@ -16,12 +16,12 @@ class MY_Loader extends CI_Loader
      */
     public function view($view, $vars = array(), $return = FALSE)
     {
-        if (!defined('BASE_URL')) {
-            define('BASE_URL', self::base_url());
+        if (!defined('VIEW_CONTEXT')) {
+            define('VIEW_CONTEXT', self::view_context());
         }
         $theme = 'default';
-        $vars['theme_url'] = BASE_URL . 'themes/' . $theme;
-        $vars['upload_url'] = BASE_URL . 'uploads/';
+        $vars['ctx_theme'] = VIEW_CONTEXT . 'themes/' . $theme;
+        $vars['ctx_upload'] = VIEW_CONTEXT . 'uploads/';
         $vars['site_url'] = self::site_url();
         $view = 'themes/' . $theme . '/' . $view;
         return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_prepare_view_vars($vars), '_ci_return' => $return));
@@ -38,11 +38,11 @@ class MY_Loader extends CI_Loader
      */
     public function admin_view($view, $vars = array(), $return = FALSE)
     {
-        if (!defined('BASE_URL')) {
-            define('BASE_URL', self::base_url());
+        if (!defined('VIEW_CONTEXT')) {
+            define('VIEW_CONTEXT', self::view_context());
         }
-        $vars['admin_url'] = BASE_URL . 'admin/';
-        $vars['upload_url'] = BASE_URL . 'uploads/';
+        $vars['ctx_admin'] = VIEW_CONTEXT . 'admin/';
+        $vars['ctx_upload'] = VIEW_CONTEXT . 'uploads/';
         $vars['site_url'] = self::site_url();
         $view = 'admin/' . $view;
         return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_prepare_view_vars($vars), '_ci_return' => $return));
@@ -52,13 +52,14 @@ class MY_Loader extends CI_Loader
     /**
      * 获取网站根路径（含视图路径）
      */
-    private static function base_url()
+    private static function view_context()
     {
         $base_url = get_instance()->config->base_url();
+        $arr = parse_url($base_url);
         $view_path = rtrim(VIEWPATH, DIRECTORY_SEPARATOR);
         $idx = strrpos($view_path, DIRECTORY_SEPARATOR);
         $view_folder = substr($view_path, $idx + 1);
-        return $base_url . $view_folder . '/';
+        return $arr['path'] . $view_folder . '/';
     }
 
     /**

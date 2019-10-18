@@ -9,14 +9,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	<link rel="icon" href="<?= $admin_url ?>static/img/favicon.ico" type="image/vnd.microsoft.icon">
+	<link rel="icon" href="<?= $ctx_admin ?>static/img/favicon.ico" type="image/vnd.microsoft.icon">
 
 	<!-- Bootstrap core CSS -->
-	<link href="<?= $admin_url ?>static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="<?= $ctx_admin ?>static/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Bootstrap Table CSS -->
-	<link href="<?= $admin_url ?>static/css/bootstrap-table.min.css" rel="stylesheet">
+	<link href="<?= $ctx_admin ?>static/css/bootstrap-table.min.css" rel="stylesheet">
 	<!-- Custom styles for this template -->
-	<link href="<?= $admin_url ?>static/css/style.css" rel="stylesheet">
+	<link href="<?= $ctx_admin ?>static/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			<div class="navbar-header">
 				<a class="navbar-brand" href="<?= $site_url ?>/admin">
-					<img alt="Buffalo Console" src="<?= $admin_url ?>static/img/logo-white.png" height="100%">
+					<img alt="Buffalo Console" src="<?= $ctx_admin ?>static/img/logo-white.png" height="100%">
 				</a>
 			</div>
 
