@@ -6,8 +6,6 @@ class Admin extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->helper('array');
-        $this->load->helper('cookie');
 
         $this->load->model('meta_model');
         $this->load->model('settings_model');
@@ -106,20 +104,8 @@ class Admin extends MY_Controller
 
 
     /**
-     * 获取参数值，如不存在则取默认值
-     *
-     * @param string $name 参数名
-     * @param mixed $default 默认值
-     * @return mixed 参数值或默认值
-     */
-    private function get_param_or_default($name = NULL, $default = NULL)
-    {
-        return isset($_GET[$name]) ? $_GET[$name] : $default;
-    }
-
-
-    /**
      * 加载内容页
+     *
      * @param string $content_name 内容页
      * @param array $data 页面数据
      */
