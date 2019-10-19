@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="userTableToolbar">
 		<div class="btn-group">
-			<a class="btn btn-default" href="<?= $site_url ?>/admin/user_settings">
+			<a class="btn btn-default" href="<?= $site_url ?>/admin/category_settings">
 				<i class="glyphicon glyphicon-plus"></i>新增
 			</a>
 			<a id="btnDelete" class="btn btn-default">
@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	       data-classes="table table-hover table-borderless"
 	       data-click-to-select="true"
 	       data-toolbar="#userTableToolbar"
-	       data-url="<?= $site_url ?>/user/all">
+	       data-url="<?= $site_url ?>/cat/all">
 		<thead>
 		<tr>
 			<th data-align="center" data-checkbox="true"></th>

@@ -27,4 +27,15 @@ class Meta_Model extends MY_Model
     }
 
 
+    /**
+     * 根据父ID统计子项的数量
+     *
+     * @param int $parent 父ID
+     * @return int 统计结果
+     */
+    public function count_by_parent($parent = 0)
+    {
+        return $this->count_where(array('parent' => $parent));
+    }
+
 }

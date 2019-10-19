@@ -28,10 +28,7 @@ class Admin extends MY_Controller
      */
     public function index()
     {
-        $data['title'] = 'Buffalo Console';
-        $data['site_name'] = $this->settings_model->get('site_name');
-
-        self::content_view('home', $data);
+        self::content_view('home','Buffalo Console');
     }
 
 
@@ -40,8 +37,6 @@ class Admin extends MY_Controller
      */
     public function settings_site()
     {
-        $data['title'] = '网站管理 - Buffalo';
-
         $data['site_keywords'] = $this->settings_model->get('site_keywords');
         $data['site_description'] = $this->settings_model->get('site_description');
 
@@ -50,7 +45,7 @@ class Admin extends MY_Controller
             delete_cookie('update_site');
         }
 
-        self::content_view('settings-site', $data);
+        self::content_view('settings-site', '网站管理 - Buffalo', $data);
     }
 
 
@@ -68,11 +63,10 @@ class Admin extends MY_Controller
         }
         delete_cookie('update_info');
 
-        $data['title'] = '信息维护 - Buffalo';
         $data['logo'] = $this->settings_model->get('logo');
         $data['bg_img'] = $this->settings_model->get('bg_img');
         $data['notice'] = $this->settings_model->get('notice');
-        self::content_view('settings-info', $data);
+        self::content_view('settings-info', '信息维护 - Buffalo', $data);
     }
 
 
@@ -81,25 +75,30 @@ class Admin extends MY_Controller
      */
     public function user_list()
     {
-        $data['title'] = '用户信息 - Buffalo';
-        $this->content_view('user-list', $data);
+        $this->content_view('user-list', '用户信息 - Buffalo');
     }
 
     /**
      * 加载用户信息维护页
+     * @param int $id 用户ID
      */
-    public function user_settings()
+    public function user_settings($id = 0)
     {
-        $id = $this->get_param_or_default('id', 0);
         $user = $this->user_model->get_by_id($id);
 
-        $data['title'] = ($id === 0 ? '新增用户' : '编辑用户') . ' - Buffalo';
+        $title = ($id === 0 ? '新增用户' : '编辑用户') . ' - Buffalo';
 
         $data['id'] = $id;
         $data['username'] = is_null($user) ? '' : $user['username'];
         $data['nickname'] = is_null($user) ? '' : $user['nickname'];
         $data['email'] = is_null($user) ? '' : $user['email'];
-        $this->content_view('user-settings', $data);
+        $this->content_view('user-settings', $title, $data);
+    }
+
+
+    public function category_list()
+    {
+
     }
 
 
@@ -108,9 +107,11 @@ class Admin extends MY_Controller
      *
      * @param string $content_name 内容页
      * @param array $data 页面数据
+     * @param string $title 页面title
      */
-    private function content_view($content_name, $data = array())
+    private function content_view($content_name, $title = '', $data = array())
     {
+        $data['title'] = $title;
         $data['site_name'] = $this->settings_model->get('site_name');
 
         self::adminViewOf('common/header', $data);

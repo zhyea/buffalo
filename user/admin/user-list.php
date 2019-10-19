@@ -64,6 +64,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     });
 
     function nameFormatter(value, row, index) {
-        return '<a href="<?= $site_url ?>/admin/user_settings?id=' + row.id + '" target="_self">' + value + '</a>';
+        return '<a href="<?= $site_url ?>/admin/user_settings/' + row.id + '" target="_self">' + value + '</a>';
     }
 </script>

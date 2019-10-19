@@ -18,6 +18,20 @@ class MY_Model extends CI_Model
 
 
     /**
+     * 按条件进行统计
+     *
+     * @param array $where 查询条件
+     * @return int 统计结果
+     */
+    protected function count_where( $where = NULL){
+        $this->db->select('count(id) as count');
+        $query = $this->db->get_where($this->table, $where);
+        $row = $query->row_array(0);
+        return $row['count'];
+    }
+
+
+    /**
      * 封装多行查询语句
      *
      * @param string $columns 查询的字段
@@ -57,7 +71,7 @@ class MY_Model extends CI_Model
      * @param int $id 记录的ID
      * @return array 记录值
      */
-    public function get_by_id0($columns = '*', $id = 0)
+    protected function get_by_id0($columns = '*', $id = 0)
     {
         if ($id === 0) {
             return NULL;
