@@ -5,11 +5,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container main">
 
 	<div class="page-header">
-		<h3>用户列表</h3>
+		<h3>分类列表<?= is_null($parent_name) || empty($parent_name) ? '' : ' - ' . $parent_name ?></h3>
 	</div>
 
 
-	<div id="userTableToolbar">
+	<div id="categoryTableToolbar">
 		<div class="btn-group">
 			<a class="btn btn-default" href="<?= $site_url ?>/admin/category_settings">
 				<i class="glyphicon glyphicon-plus"></i>新增
@@ -19,20 +19,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</a>
 		</div>
 	</div>
-	<table id="userTable"
+	<table id="categoryTable"
 	       data-toggle="table"
 	       data-search="true"
 	       data-classes="table table-hover table-borderless"
 	       data-click-to-select="true"
-	       data-toolbar="#userTableToolbar"
-	       data-url="<?= $site_url ?>/cat/all">
+	       data-toolbar="#categoryTableToolbar"
+	       data-url="<?= $site_url ?>/meta/child_category/<?= $parent ?>">
 		<thead>
 		<tr>
 			<th data-align="center" data-checkbox="true"></th>
 			<th data-field="id" data-visible="false"></th>
-			<th data-align="left" data-field="username" data-formatter="nameFormatter">用户名</th>
-			<th data-align="left" data-field="nickname">昵称</th>
-			<th data-align="left" data-field="email">电子邮件</th>
+			<th data-align="left" data-field="child_num" data-formatter="<span class='badge'>%s</span>">子分类数量</th>
+			<th data-align="left" data-field="name" data-formatter="nameFormatter">分类名</th>
+			<th data-align="left" data-field="slug">英文简称</th>
 		</tr>
 		</thead>
 	</table>
@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     // 删除按钮事件
     $("#btnDelete").on("click", function () {
 
-        let rows = $("#userTable").bootstrapTable('getSelections');// 获得要删除的数据
+        let rows = $("#categoryTable").bootstrapTable('getSelections');// 获得要删除的数据
         if (rows.length > 0) {// rows 主要是为了判断是否选中，下面的else内容才是主要
             let ids = new Array();// 声明一个数组
             $(rows).each(function () {// 通过获得别选中的来进行遍历
@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             });
 
             $.ajax({
-                url: '<?= $site_url ?>/user/delete',
+                url: '<?= $site_url ?>/category/delete',
                 data: 'ids=' + ids,
                 type: 'post',
                 dataType: 'json',

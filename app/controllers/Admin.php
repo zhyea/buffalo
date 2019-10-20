@@ -28,7 +28,7 @@ class Admin extends MY_Controller
      */
     public function index()
     {
-        self::content_view('home','Buffalo Console');
+        self::admin_page_view('home', 'Buffalo Console');
     }
 
 
@@ -45,7 +45,7 @@ class Admin extends MY_Controller
             delete_cookie('update_site');
         }
 
-        self::content_view('settings-site', '网站管理 - Buffalo', $data);
+        self::admin_page_view('settings-site', '网站管理 - Buffalo', $data);
     }
 
 
@@ -66,7 +66,7 @@ class Admin extends MY_Controller
         $data['logo'] = $this->settings_model->get('logo');
         $data['bg_img'] = $this->settings_model->get('bg_img');
         $data['notice'] = $this->settings_model->get('notice');
-        self::content_view('settings-info', '信息维护 - Buffalo', $data);
+        self::admin_page_view('settings-info', '信息维护 - Buffalo', $data);
     }
 
 
@@ -75,7 +75,7 @@ class Admin extends MY_Controller
      */
     public function user_list()
     {
-        $this->content_view('user-list', '用户信息 - Buffalo');
+        $this->admin_page_view('user-list', '用户信息 - Buffalo');
     }
 
     /**
@@ -92,30 +92,37 @@ class Admin extends MY_Controller
         $data['username'] = is_null($user) ? '' : $user['username'];
         $data['nickname'] = is_null($user) ? '' : $user['nickname'];
         $data['email'] = is_null($user) ? '' : $user['email'];
-        $this->content_view('user-settings', $title, $data);
+        $this->admin_page_view('user-settings', $title, $data);
     }
 
 
-    public function category_list()
+    /**
+     * 加载分类列表页
+     * @param int $parent 分类父ID
+     */
+    public function category_list($parent = 0)
     {
-
+        $p = $this->meta_model->get_by_id($parent);
+        $data['parent'] = is_null($p) ? 0 : $p['id'];
+        $data['parent_name'] = is_null($p) ? '' : $p['name'];
+        $this->admin_page_view('category-list', '分类信息', $data);
     }
 
 
     /**
      * 加载内容页
      *
-     * @param string $content_name 内容页
+     * @param string $page_name 内容页
      * @param array $data 页面数据
      * @param string $title 页面title
      */
-    private function content_view($content_name, $title = '', $data = array())
+    private function admin_page_view($page_name, $title = '', $data = array())
     {
         $data['title'] = $title;
         $data['site_name'] = $this->settings_model->get('site_name');
 
         self::adminViewOf('common/header', $data);
-        self::adminViewOf($content_name, $data);
+        self::adminViewOf($page_name, $data);
         self::adminViewOf('common/footer', $data);
     }
 }

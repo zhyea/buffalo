@@ -38,4 +38,15 @@ class Meta_Model extends MY_Model
         return $this->count_where(array('parent' => $parent));
     }
 
+
+    /**
+     * 根据ID查找记录
+     *
+     * @param int $id 记录ID
+     * @return array 记录信息
+     */
+    public function get_by_id($id = 0)
+    {
+        return $this->get_by_id0('id, parent, name, slug', $id);
+    }
 }

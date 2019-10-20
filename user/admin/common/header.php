@@ -66,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								class="caret"></span></a>
 					<ul class="dropdown-menu navbar-child">
 						<li class="navbar-child-item"><a href="#">文章管理</a></li>
-						<li class="navbar-child-item"><a href="#">分类管理</a></li>
+						<li class="navbar-child-item"><a href="<?= $site_url ?>/admin/category_list">分类管理</a></li>
 						<li class="navbar-child-item"><a href="<?= $site_url ?>/admin/user_list">用户管理</a></li>
 					</ul>
 				</li>

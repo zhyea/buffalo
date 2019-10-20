@@ -21,6 +21,11 @@ input[type="file"] {
     padding-bottom: 6px;
 }
 
+.badge {
+    border-radius: 8px !important;
+    background-color: #a5cadc;
+}
+
 .wrapper {
     max-width: 870px;
     width: 100%;
