@@ -10,6 +10,7 @@ class MY_Controller extends CI_Controller
         parent::__construct();
         $this->load->helper('array');
         $this->load->helper('cookie');
+        $this->load->model('settings_model');
     }
 
 
@@ -33,7 +34,7 @@ class MY_Controller extends CI_Controller
      * @param array $vars 视图页变量
      * @param bool $return 是否有返回值
      */
-    protected function viewOf($view, $vars = array(), $return = FALSE)
+    protected function view_of($view, $vars = array(), $return = FALSE)
     {
         $this->load->view($view, $vars, $return);
     }
@@ -45,9 +46,27 @@ class MY_Controller extends CI_Controller
      * @param array $vars 视图页变量
      * @param bool $return 是否有返回值
      */
-    protected function adminViewOf($view, $vars = array(), $return = FALSE)
+    protected function admin_view_of($view, $vars = array(), $return = FALSE)
     {
         $this->load->admin_view($view, $vars, $return);
+    }
+
+
+    /**
+     * 加载内容页
+     *
+     * @param string $page_name 内容页
+     * @param array $data 页面数据
+     * @param string $title 页面title
+     */
+    protected function admin_page_view($page_name, $title = '', $data = array())
+    {
+        $data['title'] = $title;
+        $data['site_name'] = $this->settings_model->get('site_name');
+
+        self::admin_view_of('common/header', $data);
+        self::admin_view_of($page_name, $data);
+        self::admin_view_of('common/footer', $data);
     }
 
 }

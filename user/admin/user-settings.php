@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
     <?php endif; ?>
 
-	<form method="post" action="<?= site_url() ?>/user/update">
+	<form method="post" action="<?= $ctx_site ?>/admin/user/update">
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">用户名</div>
 			<div class="form-input col-md-9 col-xs-12">

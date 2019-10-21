@@ -51,8 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					   aria-expanded="false"><span class="glyphicon glyphicon-dashboard"></span> 控制台<span
 								class="caret"></span></a>
 					<ul class="dropdown-menu navbar-child">
-						<li class="navbar-child-item"><a href="<?= $ctx_site ?>/admin/settings_info">信息维护</a></li>
-						<li class="navbar-child-item"><a href="<?= $ctx_site ?>/admin/settings_site">网站设置</a></li>
+						<li class="navbar-child-item"><a href="<?= $ctx_site ?>/admin/settings/info">信息维护</a></li>
+						<li class="navbar-child-item"><a href="<?= $ctx_site ?>/admin/settings/site">网站设置</a></li>
 					</ul>
 				</li>
 
@@ -66,8 +66,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								class="caret"></span></a>
 					<ul class="dropdown-menu navbar-child">
 						<li class="navbar-child-item"><a href="#">文章管理</a></li>
-						<li class="navbar-child-item"><a href="<?= $ctx_site ?>/admin/category_list">分类管理</a></li>
-						<li class="navbar-child-item"><a href="<?= $ctx_site ?>/admin/user_list">用户管理</a></li>
+						<li class="navbar-child-item"><a href="<?= $ctx_site ?>/admin/category/list_page">分类管理</a></li>
+						<li class="navbar-child-item"><a href="<?= $ctx_site ?>/admin/user/list_page">用户管理</a></li>
 					</ul>
 				</li>
 

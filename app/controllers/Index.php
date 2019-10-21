@@ -25,10 +25,10 @@ class Index extends MY_Controller
         $data['site_name'] = $this->settings_model->get('site_name');
         $data['notice'] = $this->settings_model->get('notice');
 
-        self::viewOf('header', $data);
-        self::viewOf('navigator', $data);
-        self::viewOf('content');
-        self::viewOf('footer');
+        self::view_of('header', $data);
+        self::view_of('navigator', $data);
+        self::view_of('content');
+        self::view_of('footer');
     }
 
 

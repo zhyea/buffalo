@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="userTableToolbar">
 		<div class="btn-group">
-			<a class="btn btn-default" href="<?= $ctx_site ?>/admin/user_settings">
+			<a class="btn btn-default" href="<?= $ctx_site ?>/admin/user/settings_page">
 				<i class="glyphicon glyphicon-plus"></i>新增
 			</a>
 			<a id="btnDelete" class="btn btn-default">
@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	       data-classes="table table-hover table-borderless"
 	       data-click-to-select="true"
 	       data-toolbar="#userTableToolbar"
-	       data-url="<?= $ctx_site ?>/admin/user/all">
+	       data-url="<?= $ctx_site ?>/admin/user/data">
 		<thead>
 		<tr>
 			<th data-align="center" data-checkbox="true"></th>
@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             });
 
             $.ajax({
-                url: '<?= $ctx_site ?>/user/delete',
+                url: '<?= $ctx_site ?>/admin/user/delete',
                 data: 'ids=' + ids,
                 type: 'post',
                 dataType: 'json',
@@ -64,6 +64,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     });
 
     function nameFormatter(value, row, index) {
-        return '<a href="<?= $ctx_site ?>/admin/user_settings/' + row.id + '" target="_self">' + value + '</a>';
+        return '<a href="<?= $ctx_site ?>/admin/user/settings_page/' + row.id + '" target="_self">' + value + '</a>';
     }
 </script>

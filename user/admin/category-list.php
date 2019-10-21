@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="categoryTableToolbar">
 		<div class="btn-group">
-			<a class="btn btn-default" href="<?= $ctx_site ?>/admin/category_settings">
+			<a class="btn btn-default" href="<?= $ctx_site ?>/admin/category/settings">
 				<i class="glyphicon glyphicon-plus"></i>新增
 			</a>
 			<a id="btnDelete" class="btn btn-default">
@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	       data-classes="table table-hover table-borderless"
 	       data-click-to-select="true"
 	       data-toolbar="#categoryTableToolbar"
-	       data-url="<?= $ctx_site ?>/meta/child_category/<?= $parent ?>">
+	       data-url="<?= $ctx_site ?>/admin/category/data/<?= $parent ?>">
 		<thead>
 		<tr>
 			<th data-align="center" data-checkbox="true"></th>
@@ -64,6 +64,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     });
 
     function nameFormatter(value, row, index) {
-        return '<a href="<?= $ctx_site ?>/admin/user_settings/' + row.id + '" target="_self">' + value + '</a>';
+        return '<a href="<?= $ctx_site ?>/admin/category/list_page/' + row.id + '" target="_self">' + value + '</a>';
     }
 </script>

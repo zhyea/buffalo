@@ -10,10 +10,39 @@ class User extends MY_Controller
         $this->load->model('user_model');
     }
 
+
+
+    /**
+     * 加载用户信息列表页
+     */
+    public function list_page()
+    {
+        $this->admin_page_view('user-list', '用户信息 - Buffalo');
+    }
+
+    /**
+     * 加载用户信息维护页
+     *
+     * @param int $id 用户ID
+     */
+    public function settings_page($id = 0)
+    {
+        $user = $this->user_model->get_by_id($id);
+
+        $title = ($id === 0 ? '新增用户' : '编辑用户') . ' - Buffalo';
+
+        $data['id'] = $id;
+        $data['username'] = is_null($user) ? '' : $user['username'];
+        $data['nickname'] = is_null($user) ? '' : $user['nickname'];
+        $data['email'] = is_null($user) ? '' : $user['email'];
+        $this->admin_page_view('user-settings', $title, $data);
+    }
+
+
     /**
      * 返回所有用户数据
      */
-    public function all()
+    public function data()
     {
         $data = $this->user_model->all_users();
         echo json_encode($data);
@@ -34,7 +63,7 @@ class User extends MY_Controller
         );
         $this->user_model->insert_or_update($data, $id);
 
-        redirect('admin/user_list');
+        redirect('admin/user/list_page');
     }
 
     /**
@@ -45,20 +74,6 @@ class User extends MY_Controller
         $ids = $_POST['ids'];
         $this->user_model->delete_batch(explode(',', $ids));
         echo $ids;
-    }
-
-    /**
-     * 登录信息校验
-     */
-    public function login_check()
-    {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        echo $username;
-        echo $password;
-
-        redirect('admin');
     }
 
 }
