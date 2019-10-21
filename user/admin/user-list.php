@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="userTableToolbar">
 		<div class="btn-group">
-			<a class="btn btn-default" href="<?= $site_url ?>/admin/user_settings">
+			<a class="btn btn-default" href="<?= $ctx_site ?>/admin/user_settings">
 				<i class="glyphicon glyphicon-plus"></i>新增
 			</a>
 			<a id="btnDelete" class="btn btn-default">
@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	       data-classes="table table-hover table-borderless"
 	       data-click-to-select="true"
 	       data-toolbar="#userTableToolbar"
-	       data-url="<?= $site_url ?>/user/all">
+	       data-url="<?= $ctx_site ?>/admin/user/all">
 		<thead>
 		<tr>
 			<th data-align="center" data-checkbox="true"></th>
@@ -46,13 +46,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         let rows = $("#userTable").bootstrapTable('getSelections');// 获得要删除的数据
         if (rows.length > 0) {// rows 主要是为了判断是否选中，下面的else内容才是主要
-            let ids = new Array();// 声明一个数组
+            let ids = [];// 声明一个数组
             $(rows).each(function () {// 通过获得别选中的来进行遍历
                 ids.push(this.id);// cid为获得到的整条数据中的一列
             });
 
             $.ajax({
-                url: '<?= $site_url ?>/user/delete',
+                url: '<?= $ctx_site ?>/user/delete',
                 data: 'ids=' + ids,
                 type: 'post',
                 dataType: 'json',
@@ -64,6 +64,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     });
 
     function nameFormatter(value, row, index) {
-        return '<a href="<?= $site_url ?>/admin/user_settings/' + row.id + '" target="_self">' + value + '</a>';
+        return '<a href="<?= $ctx_site ?>/admin/user_settings/' + row.id + '" target="_self">' + value + '</a>';
     }
 </script>

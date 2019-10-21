@@ -22,7 +22,7 @@ class MY_Loader extends CI_Loader
         $theme = 'default';
         $vars['ctx_theme'] = VIEW_CONTEXT . 'themes/' . $theme;
         $vars['ctx_upload'] = VIEW_CONTEXT . 'uploads/';
-        $vars['site_url'] = self::site_url();
+        $vars['site_url'] = self::site_context();
         $view = 'themes/' . $theme . '/' . $view;
         return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_prepare_view_vars($vars), '_ci_return' => $return));
     }
@@ -43,7 +43,7 @@ class MY_Loader extends CI_Loader
         }
         $vars['ctx_admin'] = VIEW_CONTEXT . 'admin/';
         $vars['ctx_upload'] = VIEW_CONTEXT . 'uploads/';
-        $vars['site_url'] = self::site_url();
+        $vars['ctx_site'] = self::site_context();
         $view = 'admin/' . $view;
         return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_prepare_view_vars($vars), '_ci_return' => $return));
     }
@@ -56,18 +56,21 @@ class MY_Loader extends CI_Loader
     {
         $base_url = get_instance()->config->base_url();
         $arr = parse_url($base_url);
+        $ctx = isset($arr['path']) ? $arr['path'] : '';
         $view_path = rtrim(VIEWPATH, DIRECTORY_SEPARATOR);
         $idx = strrpos($view_path, DIRECTORY_SEPARATOR);
         $view_folder = substr($view_path, $idx + 1);
-        return $arr['path'] . $view_folder . '/';
+        return $ctx . $view_folder . '/';
     }
 
     /**
      * 获取网站根路径
      */
-    private static function site_url()
+    private static function site_context()
     {
-        return get_instance()->config->site_url();
+        $site_url = get_instance()->config->site_url();
+        $arr = parse_url($site_url);
+        return isset($arr['path']) ? $arr['path'] : '';
     }
 
     /**

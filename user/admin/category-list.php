@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="categoryTableToolbar">
 		<div class="btn-group">
-			<a class="btn btn-default" href="<?= $site_url ?>/admin/category_settings">
+			<a class="btn btn-default" href="<?= $ctx_site ?>/admin/category_settings">
 				<i class="glyphicon glyphicon-plus"></i>新增
 			</a>
 			<a id="btnDelete" class="btn btn-default">
@@ -25,12 +25,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	       data-classes="table table-hover table-borderless"
 	       data-click-to-select="true"
 	       data-toolbar="#categoryTableToolbar"
-	       data-url="<?= $site_url ?>/meta/child_category/<?= $parent ?>">
+	       data-url="<?= $ctx_site ?>/meta/child_category/<?= $parent ?>">
 		<thead>
 		<tr>
 			<th data-align="center" data-checkbox="true"></th>
 			<th data-field="id" data-visible="false"></th>
-			<th data-align="left" data-field="child_num" data-formatter="<span class='badge'>%s</span>">子分类数量</th>
+			<th data-align="left" data-field="child_num" data-formatter="<span class='badge'>%s </span>">子分类数量</th>
 			<th data-align="left" data-field="name" data-formatter="nameFormatter">分类名</th>
 			<th data-align="left" data-field="slug">英文简称</th>
 		</tr>
@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             });
 
             $.ajax({
-                url: '<?= $site_url ?>/category/delete',
+                url: '<?= $ctx_site ?>/category/delete',
                 data: 'ids=' + ids,
                 type: 'post',
                 dataType: 'json',
@@ -64,6 +64,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     });
 
     function nameFormatter(value, row, index) {
-        return '<a href="<?= $site_url ?>/admin/user_settings?id=' + row.id + '" target="_self">' + value + '</a>';
+        return '<a href="<?= $ctx_site ?>/admin/user_settings/' + row.id + '" target="_self">' + value + '</a>';
     }
 </script>

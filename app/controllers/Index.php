@@ -34,6 +34,17 @@ class Index extends MY_Controller
 
     public function test()
     {
+        $arr1 = parse_url('http://www.baidu.com');
+        print_r($arr1);
+
+        echo isset($arr1['path']) ? 'a' : 'n';
+        echo '<br>--------------------------------------------------';
+        $arr2 = parse_url('http://127.0.0.1:8082/zzy');
+        print_r($arr2);
+        echo '<br>--------------------------------------------------';
+        $arr3 = parse_url('http://127.0.0.1:8082/zzy/index.php/zbc');
+        print_r($arr3);
+        echo '<br>--------------------------------------------------';
         echo '<br>--------------------------------------------------';
     }
 
