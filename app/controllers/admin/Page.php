@@ -1,6 +1,6 @@
 <?php
 
-class Admin extends MY_Controller
+class Page extends MY_Controller
 {
 
     public function __construct()

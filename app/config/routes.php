@@ -54,6 +54,4 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 /*-------------custom configs*/
-$route['admin/user/'] = 'user/';
-$route['admin/settings/'] = 'settings/';
-$route['admin/meta/'] = 'meta/';
+$route['admin'] = 'admin/page';
