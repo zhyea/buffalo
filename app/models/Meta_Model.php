@@ -23,7 +23,7 @@ class Meta_Model extends MY_Model
      */
     public function query_category_by_parent($parent = 0)
     {
-        return $this->select_where('id, name, slug', array('type' => 'category', 'parent' => $parent));
+        return $this->select_where('id, parent, name, slug', array('type' => 'category', 'parent' => $parent));
     }
 
 
@@ -47,6 +47,6 @@ class Meta_Model extends MY_Model
      */
     public function get_by_id($id = 0)
     {
-        return $this->get_by_id0('id, parent, name, slug', $id);
+        return $this->get_by_id0('id, parent, name, slug, remark', $id);
     }
 }

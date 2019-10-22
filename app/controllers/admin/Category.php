@@ -21,7 +21,7 @@ class Category extends MY_Controller
         $p = $this->meta_model->get_by_id($parent);
         $data['parent'] = is_null($p) ? 0 : $p['id'];
         $data['parent_name'] = is_null($p) ? '' : $p['name'];
-        $this->admin_page_view('category-list', '分类信息', $data);
+        $this->admin_page_view('category-list', '分类信息 - Buffalo', $data);
     }
 
 
@@ -31,14 +31,39 @@ class Category extends MY_Controller
      * @param int $parent 父分类ID
      * @param int $id 当前分类ID
      */
-    public function settings_page($parent = 0, $id = 0)
+    public function settings_page($id = 0, $parent = 0)
     {
+        $cat = $this->meta_model->get_by_id($id);
+
+        $title = ($id > 0 ? '编辑分类' : '新增分类') . ' - Buffalo';
+
+        $data['id'] = $id;
+        $data['parent'] = $parent;
+        $data['name'] = is_null($cat) ? '' : $cat['name'];
+        $data['slug'] = is_null($cat) ? '' : $cat['slug'];
+        $data['remark'] = is_null($cat) ? '' : $cat['remark'];
+        $this->admin_page_view('category-settings', $title, $data);
 
     }
 
 
-    public function update(){
+    /**
+     * 执行更新
+     */
+    public function update()
+    {
+        $id = $_POST['id'];
+        $parent = $_POST['parent'];
+        $data = array(
+            'parent' => $parent,
+            'name' => $_POST['name'],
+            'slug' => $_POST['slug'],
+            'remark' => $_POST['remark'],
+            'type' => 'category'
+        );
+        $this->meta_model->insert_or_update($data, $id);
 
+        redirect('admin/category/list_page/' . $parent);
     }
 
 

@@ -4,39 +4,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="container main">
 
-    <div class="page-header">
-        <h3>分类列表<?= is_null($parent_name) || empty($parent_name) ? '' : ' - ' . $parent_name ?></h3>
-    </div>
+	<div class="page-header">
+		<h3>分类列表<?= is_null($parent_name) || empty($parent_name) ? '' : ' - ' . $parent_name ?></h3>
+	</div>
 
 
-    <div id="categoryTableToolbar">
-        <div class="btn-group">
-            <a class="btn btn-default" href="<?= $ctx_site ?>/admin/category/settings">
-                <i class="glyphicon glyphicon-plus"></i>新增
-            </a>
-            <a id="btnDelete" class="btn btn-default">
-                <i class="glyphicon glyphicon-minus"></i>删除
-            </a>
-        </div>
-    </div>
-    <table id="categoryTable"
-           data-toggle="table"
-           data-search="true"
-           data-classes="table table-hover table-borderless"
-           data-click-to-select="true"
-           data-toolbar="#categoryTableToolbar"
-           data-url="<?= $ctx_site ?>/admin/category/data/<?= $parent ?>">
-        <thead>
-        <tr>
-            <th data-align="center" data-checkbox="true"></th>
-            <th data-field="id" data-visible="false"></th>
-            <th data-align="left" data-field="child_num" data-formatter="<span class='badge'>%s </span>">子分类</th>
-            <th data-align="left" data-field="name" data-formatter="nameFormatter">分类名</th>
-            <th data-align="left" data-field="slug">缩写名</th>
-            <th data-align="center" data-field="slug" data-formatter="operateFormatter">操作</th>
-        </tr>
-        </thead>
-    </table>
+	<div id="categoryTableToolbar">
+		<div class="btn-group">
+			<a class="btn btn-default" href="<?= $ctx_site ?>/admin/category/settings">
+				<i class="glyphicon glyphicon-plus"></i>新增
+			</a>
+			<a id="btnDelete" class="btn btn-default">
+				<i class="glyphicon glyphicon-minus"></i>删除
+			</a>
+		</div>
+	</div>
+	<table id="categoryTable"
+	       data-toggle="table"
+	       data-search="true"
+	       data-classes="table table-hover table-borderless"
+	       data-click-to-select="true"
+	       data-toolbar="#categoryTableToolbar"
+	       data-url="<?= $ctx_site ?>/admin/category/data/<?= $parent ?>">
+		<thead>
+		<tr>
+			<th data-align="center" data-checkbox="true"></th>
+			<th data-field="id" data-visible="false"></th>
+			<th data-field="parent" data-visible="false"></th>
+			<th data-align="left" data-field="name" data-formatter="nameFormatter">分类名</th>
+			<th data-align="left" data-field="child_num" data-formatter="childFormatter">子分类</th>
+			<th data-align="left" data-field="slug">缩写名</th>
+		</tr>
+		</thead>
+	</table>
 </div>
 
 
@@ -65,13 +65,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     });
 
     function nameFormatter(value, row, index) {
-        return '<a href="<?= $ctx_site ?>/admin/category/list_page/' + row.id + '" target="_self">' + value + '</a>';
+        return '<a href="<?= $ctx_site ?>/admin/category/settings_page/' + row.id + '/' + row.parent + '" target="_self">' + value + '</a>';
+    }
+
+    function childFormatter(value, row, index) {
+        let arr = ['<span class="badge">' + row.child_num + '</span>'];
+        if (row.child_num > 0) {
+            arr.push('<a href="<?= $ctx_site ?>/admin/category/list_page/' + row.id + '" target="_self">查看</a>');
+        } else {
+            arr.push('<a href="<?= $ctx_site ?>/admin/category/settings_page/0/' + row.id + '" target="_self">新增</a>');
+        }
+        return arr.join('&nbsp;');
     }
 
     function operateFormatter(value, row, index) {
         return [
-            '<a href="<?= $ctx_site ?>/admin/category/list_page/' + row.id + '" target="_self">编辑</a>',
-            '<a href="<?= $ctx_site ?>/admin/category/list_page/' + row.id + '" target="_self">删除</a>',
+
+            ,
             '<a href="<?= $ctx_site ?>/admin/category/list_page/' + row.id + '" target="_self">默认</a>',
             '<a href="<?= $ctx_site ?>/admin/category/list_page/' + row.id + '" target="_self">子分类</a>']
             .join('&nbsp;&nbsp;&nbsp;');
