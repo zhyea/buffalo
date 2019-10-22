@@ -26,6 +26,23 @@ class Category extends MY_Controller
 
 
     /**
+     * 分类信息维护页
+     *
+     * @param int $parent 父分类ID
+     * @param int $id 当前分类ID
+     */
+    public function settings_page($parent = 0, $id = 0)
+    {
+
+    }
+
+
+    public function update(){
+
+    }
+
+
+    /**
      * 分类页数据
      *
      * @param int $parent 分类父ID

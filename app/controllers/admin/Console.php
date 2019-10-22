@@ -1,15 +1,11 @@
 <?php
 
-class Page extends MY_Controller
+class Console extends MY_Controller
 {
 
     public function __construct()
     {
         parent::__construct();
-
-        $this->load->model('meta_model');
-        $this->load->model('settings_model');
-        $this->load->model('user_model');
 
     }
 
@@ -21,6 +17,7 @@ class Page extends MY_Controller
     {
         self::admin_view_of('login');
     }
+
 
     /**
      * 后台首页
