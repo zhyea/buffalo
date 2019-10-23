@@ -20,6 +20,7 @@ class Category extends MY_Controller
     {
         $p = $this->meta_model->get_by_id($parent);
         $data['parent'] = is_null($p) ? 0 : $p['id'];
+        $data['senior'] = is_null($p) ? -1 : $p['parent'];
         $data['parent_name'] = is_null($p) ? '' : $p['name'];
         $this->admin_page_view('category-list', '分类信息 - Buffalo', $data);
     }
@@ -81,6 +82,16 @@ class Category extends MY_Controller
         }
 
         echo json_encode($arr);
+    }
+
+    /**
+     * 删除数据
+     */
+    public function delete()
+    {
+        $ids = $_POST['ids'];
+        $this->meta_model->delete_batch(explode(',', $ids));
+        echo $ids;
     }
 
 }

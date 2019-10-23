@@ -11,12 +11,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="categoryTableToolbar">
 		<div class="btn-group">
-			<a class="btn btn-default" href="<?= $ctx_site ?>/admin/category/settings">
-				<i class="glyphicon glyphicon-plus"></i>新增
+			<a class="btn btn-default" href="<?= $ctx_site ?>/admin/category/settings_page/0/<?= $parent ?>">
+				<i class="glyphicon glyphicon-plus"></i> 新增
 			</a>
 			<a id="btnDelete" class="btn btn-default">
-				<i class="glyphicon glyphicon-minus"></i>删除
+				<i class="glyphicon glyphicon-minus"></i> 删除
 			</a>
+            <?php if (isset($senior) && $senior>=0) : ?>
+			<a class="btn btn-default" href="<?= $ctx_site ?>/admin/category/list_page/<?= $senior ?>">
+				<i class="glyphicon glyphicon-chevron-left"></i> 返回上一级
+			</a>
+            <?php endif; ?>
 		</div>
 	</div>
 	<table id="categoryTable"
@@ -44,7 +49,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script>
     // 删除按钮事件
     $("#btnDelete").on("click", function () {
-
         let rows = $("#categoryTable").bootstrapTable('getSelections');// 获得要删除的数据
         if (rows.length > 0) {// rows 主要是为了判断是否选中，下面的else内容才是主要
             let ids = [];// 声明一个数组
@@ -53,12 +57,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             });
 
             $.ajax({
-                url: '<?= $ctx_site ?>/category/delete',
+                url: '<?= $ctx_site ?>/admin/category/delete',
                 data: 'ids=' + ids,
                 type: 'post',
                 dataType: 'json',
                 success: function (data) {
-                    $('#userTable').bootstrapTable('refresh');
+                    $('#categoryTable').bootstrapTable('refresh');
                 }
             });
         }
@@ -76,14 +80,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             arr.push('<a href="<?= $ctx_site ?>/admin/category/settings_page/0/' + row.id + '" target="_self">新增</a>');
         }
         return arr.join('&nbsp;');
-    }
-
-    function operateFormatter(value, row, index) {
-        return [
-
-            ,
-            '<a href="<?= $ctx_site ?>/admin/category/list_page/' + row.id + '" target="_self">默认</a>',
-            '<a href="<?= $ctx_site ?>/admin/category/list_page/' + row.id + '" target="_self">子分类</a>']
-            .join('&nbsp;&nbsp;&nbsp;');
     }
 </script>
