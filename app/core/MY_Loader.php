@@ -22,7 +22,7 @@ class MY_Loader extends CI_Loader
         $theme = 'default';
         $vars['ctx_theme'] = VIEW_CONTEXT . 'themes/' . $theme;
         $vars['ctx_upload'] = VIEW_CONTEXT . 'uploads/';
-        $vars['site_url'] = self::site_context();
+        $vars['ctx_site'] = self::site_context();
         $view = 'themes/' . $theme . '/' . $view;
         return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_prepare_view_vars($vars), '_ci_return' => $return));
     }
