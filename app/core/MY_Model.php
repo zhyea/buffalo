@@ -23,7 +23,8 @@ class MY_Model extends CI_Model
      * @param array $where 查询条件
      * @return int 统计结果
      */
-    protected function count_where( $where = NULL){
+    protected function count_where($where = NULL)
+    {
         $this->db->select('count(id) as count');
         $query = $this->db->get_where($this->table, $where);
         $row = $query->row_array(0);
@@ -38,13 +39,20 @@ class MY_Model extends CI_Model
      * @param string $where 查询条件
      * @param int $limit 查询数量
      * @param int $offset 查询起始位置
+     * @param string $orderby 排序字段
+     * @param string $direction 排序方向
      * @return array 查询结果
      */
-    protected function select_where($columns = '*', $where = NULL, $limit = NULL, $offset = NULL)
+    protected function select_where($columns = '*', $where = NULL, $limit = NULL, $offset = NULL, $orderby = NULL, $direction = '')
     {
-        $this->db->select($columns);
-        $query = $this->db->get_where($this->table, $where, $limit, $offset);
-        return $query->result_array();
+        echo $limit;
+        return $this->db->select($columns)
+            ->from($this->table)
+            ->where($where)
+            ->limit($limit, $offset)
+            ->order_by($orderby, $direction)
+            ->get()
+            ->result_array();
     }
 
 

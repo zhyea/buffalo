@@ -23,7 +23,7 @@ class Meta_Model extends MY_Model
      */
     public function query_category_by_parent($parent = 0)
     {
-        return $this->select_where('id, parent, name, slug', array('type' => 'category', 'parent' => $parent));
+        return $this->select_where('id, parent, name, slug', array('type' => 'category', 'parent' => $parent), NULL, NULL, 'sn desc, id asc');
     }
 
 
@@ -48,5 +48,40 @@ class Meta_Model extends MY_Model
     public function get_by_id($id = 0)
     {
         return $this->get_by_id0('id, parent, name, slug, remark', $id);
+    }
+
+
+    /**
+     * 按ID或parent删除记录
+     * @param int $id 记录ID
+     * @return int 删除操作影响的行数
+     */
+    public function delete_by_id_or_parent($id = 0)
+    {
+        if ($id <= 0) {
+            return 0;
+        }
+        return $this->db
+            ->or_where('id', $id)
+            ->or_where('parent', $id)
+            ->delete($this->table);
+    }
+
+
+    /**
+     * 根据ID集合批量删除记录
+     *
+     * @param array $ids ID集合
+     * @return int 删除操作影响的记录数量
+     */
+    public function delete_in_batch($ids = array())
+    {
+        if (0 === sizeof($ids)) {
+            return 0;
+        }
+        return $this->db
+            ->where_in('id', $ids)
+            ->or_where_in('parent', $ids)
+            ->delete($this->table);
     }
 }

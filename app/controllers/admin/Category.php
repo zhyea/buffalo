@@ -90,8 +90,7 @@ class Category extends MY_Controller
     public function delete()
     {
         $ids = $_POST['ids'];
-        $this->meta_model->delete_batch(explode(',', $ids));
-        echo $ids;
+        echo $this->meta_model->delete_in_batch(explode(',', $ids));
     }
 
 }
