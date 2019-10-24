@@ -11,7 +11,7 @@ class Meta_Model extends MY_Model
      */
     public function query_category()
     {
-        return $this->select_where('id, parent, name, slug', array('type' => 'category'));
+        return $this->select_where('id, parent, name, slug', array('type' => 'category'), NULL, NULL, 'sn desc, id asc');
     }
 
 
