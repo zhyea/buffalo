@@ -93,4 +93,16 @@ class Category extends MY_Controller
         echo $this->meta_model->delete_in_batch(explode(',', $ids));
     }
 
+    /**
+     * 调整排序
+     *
+     * @param int $id 记录ID
+     * @param int $sn 顺序号
+     * @param int $direct 调整方向，1 递增， 2 递减
+     */
+    public function change_order($id, $sn, $direct = 1)
+    {
+        echo $this->meta_model->change_sn($id, $sn, $direct);
+    }
+
 }

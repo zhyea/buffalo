@@ -11,7 +11,7 @@ class Meta_Model extends MY_Model
      */
     public function query_category()
     {
-        return $this->select_where('id, parent, name, slug', array('type' => 'category'), NULL, NULL, 'sn desc, id asc');
+        return $this->select_where('id, parent, name, slug, sn', array('type' => 'category'), NULL, NULL, 'sn desc, id asc');
     }
 
 
@@ -23,7 +23,7 @@ class Meta_Model extends MY_Model
      */
     public function query_category_by_parent($parent = 0)
     {
-        return $this->select_where('id, parent, name, slug', array('type' => 'category', 'parent' => $parent), NULL, NULL, 'sn desc, id asc');
+        return $this->select_where('id, parent, name, slug, sn', array('type' => 'category', 'parent' => $parent), NULL, NULL, 'sn desc, id asc');
     }
 
 
@@ -83,5 +83,20 @@ class Meta_Model extends MY_Model
             ->where_in('id', $ids)
             ->or_where_in('parent', $ids)
             ->delete($this->table);
+    }
+
+
+    /**
+     * 调整排序
+     *
+     * @param int $id 记录ID
+     * @param int $sn 记录顺序号
+     * @param int $direct 调整方向，1 递增， 2 递减
+     * @return int 操作影响的行数
+     */
+    public function change_sn($id, $sn, $direct = 1)
+    {
+        $sn = $direct * 1 === 1 ? $sn + 1 : $sn - 1;
+        return $this->update(array('sn' => $sn), $id);
     }
 }

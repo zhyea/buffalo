@@ -188,6 +188,11 @@ input[type="file"] {
     background: #FFF;
 }
 
+.bootstrap-table .fixed-table-loading {
+    right: 0px !important;
+    left: 0px !important;
+}
+
 .bootstrap-table label {
     margin: 0 !important;
     vertical-align: middle;
