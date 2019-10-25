@@ -45,12 +45,15 @@ class MY_Model extends CI_Model
      */
     protected function select_where($columns = '*', $where = NULL, $limit = NULL, $offset = NULL, $orderby = NULL, $direction = '')
     {
-        echo $limit;
-        return $this->db->select($columns)
-            ->from($this->table)
-            ->where($where)
-            ->limit($limit, $offset)
-            ->order_by($orderby, $direction)
+        $query = $this->db->select($columns)
+            ->from($this->table);
+        if ($where !== NULL) {
+            $query->where($where);
+        }
+        if (!empty($limit)) {
+            $query->limit($limit, $offset);
+        }
+        return $query->order_by($orderby, $direction)
             ->get()
             ->result_array();
     }

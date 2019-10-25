@@ -21,22 +21,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">名称</div>
 			<div class="form-input col-md-9 col-xs-12">
-                <input type="hidden" name="id" value="<?= $id ?>"/>
-                <input type="hidden" name="parent" value="<?= $parent ?>"/>
+				<input type="hidden" name="id" value="<?= $id ?>"/>
+				<input type="hidden" name="parent" value="<?= $parent ?>"/>
 				<input type="text" class="form-control" name="name" value="<?= $name ?>" required autofocus/>
 			</div>
 		</div>
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">缩略名</div>
 			<div class="form-input col-md-9 col-xs-12">
-				<input type="text" class="form-control" name="slug" value="<?= $slug ?>" required />
+				<input type="text" class="form-control" name="slug" value="<?= $slug ?>" required/>
 			</div>
 		</div>
 		
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">备注</div>
 			<div class="form-input col-md-9 col-xs-12">
-                <textarea class="form-control" name="remark"><?= $remark ?></textarea>
+				<textarea class="form-control" name="remark"><?= $remark ?></textarea>
 			</div>
 		</div>
 		
@@ -44,7 +44,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="row">
 			<div class="col-md-3 col-xs-12">&nbsp;</div>
 			<div class="form-input col-md-9 col-xs-12">
-				<button type="submit" class="btn btn-success">保存分类</button>
+				<button type="submit" class="btn btn-default">保存分类</button>
+				&nbsp;&nbsp;&nbsp;
+				<a class="btn btn-success" href="<?= $ctx_site ?>/admin/category/list_page/<?= $parent ?>">返回列表</a>
 			</div>
 		</div>
 	</form>
