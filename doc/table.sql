@@ -32,15 +32,8 @@ create table if not exists bu_meta
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;
 
-insert into bu_meta (type, name)
-values ('category', '语文'),
-       ('category', '数学'),
-       ('category', '外语'),
-       ('category', '历史');
-
-insert into bu_meta (parent, type, name)
-values (4, 'category', '东方历史'),
-       (4, 'category', '西方历史');
+insert into bu_meta (type, name, slug)
+values ('category', '未分类', 'default');
 
 
 -- settings table
@@ -75,14 +68,14 @@ create table if not exists bu_author
     id      int not null auto_increment primary key,
 
     name    varchar(64),
-    country varchar(32),
+    country varchar(32) default 'unknown',
     bio     mediumtext
 
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;
 
 -- works
-create table if not exists bu_works
+create table if not exists bu_work
 (
     id          int not null auto_increment primary key,
 
@@ -96,3 +89,41 @@ create table if not exists bu_works
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;
 
+-- chapter
+create table if not exists bu_chapter
+(
+    id        int not null auto_increment primary key,
+
+    parent    int,
+    work_id   int,
+
+    name      varchar(64),
+    key_words varchar(64),
+    content   mediumtext
+
+) ENGINE = MyISAM
+  DEFAULT CHARSET = utf8mb4;
+
+
+-- feature
+create table if not exists bu_feature
+(
+    id        int not null auto_increment primary key,
+
+    pic_id    int,
+
+    name      varchar(64),
+    key_words varchar(64),
+    brief     tinytext
+
+) ENGINE = MyISAM
+  DEFAULT CHARSET = utf8mb4;
+
+-- feature-work
+create table if not exists bu_feature_work
+(
+    id         int not null auto_increment primary key,
+    feature_id int,
+    work_id    int
+) ENGINE = MyISAM
+  DEFAULT CHARSET = utf8mb4;

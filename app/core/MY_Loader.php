@@ -19,7 +19,7 @@ class MY_Loader extends CI_Loader
         if (!defined('VIEW_CONTEXT')) {
             define('VIEW_CONTEXT', self::view_context());
         }
-        $theme = 'default';
+        $theme = get_instance()->config->item('theme');
         $vars['ctx_theme'] = VIEW_CONTEXT . 'themes/' . $theme;
         $vars['ctx_upload'] = VIEW_CONTEXT . 'uploads/';
         $vars['ctx_site'] = self::site_context();
