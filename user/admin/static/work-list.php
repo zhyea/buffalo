@@ -5,13 +5,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container main">
 
 	<div class="page-header">
-		<h3>用户列表</h3>
+		<h3>作品列表</h3>
 	</div>
 
 
-	<div id="userTableToolbar">
+	<div id="workTableToolbar">
 		<div class="btn-group">
-			<a class="btn btn-default" href="<?= $ctx_site ?>/admin/user/settings_page">
+			<a class="btn btn-default" href="<?= $ctx_site ?>/admin/work/settings_page">
 				<i class="glyphicon glyphicon-plus"></i>新增
 			</a>
 			<a id="btnDelete" class="btn btn-default">
@@ -19,19 +19,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</a>
 		</div>
 	</div>
-	<table id="userTable"
+	<table id="workTable"
 	       data-toggle="table"
 	       data-search="true"
 	       data-classes="table table-hover table-borderless"
 	       data-click-to-select="true"
-	       data-toolbar="#userTableToolbar"
+	       data-toolbar="#workTableToolbar"
 	       data-url="<?= $ctx_site ?>/admin/user/data">
 		<thead>
 		<tr>
 			<th data-align="center" data-checkbox="true"></th>
-			<th data-align="left" data-field="username" data-formatter="nameFormatter">用户名</th>
-			<th data-align="left" data-field="nickname">昵称</th>
-			<th data-align="left" data-field="email">电子邮件</th>
+			<th data-align="left" data-field="name" data-formatter="nameFormatter">作品名称</th>
+			<th data-align="left" data-field="author" data-formatter="authorFormatter">作者</th>
+			<th data-align="left" data-field="cat" data-formatter="catFormatter">分类</th>
 		</tr>
 		</thead>
 	</table>
@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     // 删除按钮事件
     $("#btnDelete").on("click", function () {
 
-        let rows = $("#userTable").bootstrapTable('getSelections');// 获得要删除的数据
+        let rows = $("#workTable").bootstrapTable('getSelections');// 获得要删除的数据
         if (rows.length > 0) {// rows 主要是为了判断是否选中，下面的else内容才是主要
             let ids = [];// 声明一个数组
             $(rows).each(function () {// 通过获得别选中的来进行遍历
@@ -56,7 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 type: 'post',
                 dataType: 'json',
                 success: function (data) {
-                    $('#userTable').bootstrapTable('refresh');
+                    $('#workTable').bootstrapTable('refresh');
                 }
             });
         }
