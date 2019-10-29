@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	       data-classes="table table-hover table-borderless"
 	       data-click-to-select="true"
 	       data-toolbar="#workTableToolbar"
-	       data-url="<?= $ctx_site ?>/admin/user/data">
+	       data-url="<?= $ctx_site ?>/admin/work/data">
 		<thead>
 		<tr>
 			<th data-align="center" data-checkbox="true"></th>
@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             });
 
             $.ajax({
-                url: '<?= $ctx_site ?>/admin/user/delete',
+                url: '<?= $ctx_site ?>/admin/work/delete',
                 data: 'ids=' + ids,
                 type: 'post',
                 dataType: 'json',
@@ -63,6 +63,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     });
 
     function nameFormatter(value, row, index) {
-        return '<a href="<?= $ctx_site ?>/admin/user/settings_page/' + row.id + '" target="_self">' + value + '</a>';
+        return '<a href="<?= $ctx_site ?>/admin/work/settings_page/' + row.id + '" target="_self">' + value + '</a>';
     }
 </script>
