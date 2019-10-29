@@ -32,7 +32,7 @@ class Work extends MY_Controller
         $title = ($id > 0 ? '编辑作品' : '新增作品') . ' - Buffalo';
 
         $data['id'] = $id;
-        $this->admin_page_view('category-settings', $title, $data);
+        $this->admin_page_view('work-settings', $title, $data);
 
     }
 
