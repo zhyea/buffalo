@@ -28,6 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">作者</div>
 			<div class="form-input col-md-9 col-xs-12">
+				//http://lzw.me/pages/demo/bootstrap-suggest-plugin/demo/
 				<select class="selectpicker form-control" name="author" data-live-search="true" id="authorSelector">
 					<option value="">请选择作者</option>
 				</select>
