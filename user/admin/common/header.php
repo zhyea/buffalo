@@ -15,8 +15,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link href="<?= $ctx_admin ?>static/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Table CSS -->
 	<link href="<?= $ctx_admin ?>static/css/bootstrap-table.min.css" rel="stylesheet">
-    <!-- Bootstrap Table CSS -->
-	<link href="<?= $ctx_admin ?>static/css/bootstrap-select.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="<?= $ctx_admin ?>static/css/style.css" rel="stylesheet">
 </head>

@@ -28,7 +28,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">作者</div>
 			<div class="form-input col-md-9 col-xs-12">
-				//http://lzw.me/pages/demo/bootstrap-suggest-plugin/demo/
 				<select class="selectpicker form-control" name="author" data-live-search="true" id="authorSelector">
 					<option value="">请选择作者</option>
 				</select>
@@ -54,29 +53,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <script charset="utf-8" src="<?= $ctx_admin ?>/static/js/jquery.min.js"></script>
 <script>
-
-    $("#authorSelector").on('shown.bs.select', function (e) {
-        //获取下拉select里的输入框,提示一下搜索下拉
-        $(this).prev().find("input").attr('placeholder', "请输入公司名称搜索");
-        //绑定一下键盘输入
-        $(this).prev().find("input").keyup(function () {
-            //为select里的输入框绑定id,方便获取
-            $(this).prev().find("input").attr('id', "authorName");
-            let authorName = $(this).val();
-			alert(0);
-            $.ajax({
-                type: "GET",
-                url: "<?= $ctx_site ?>/admin/author/find_by_name/" + authorName,
-                success: function (data) {
-                    let html = '';
-                    $.each(data, function (index, ele) {
-                        html += '<option value="' + ele.id + '">' + ele.name + '</option>';
-                    });
-                    $(this).html(html);
-                    //刷新select
-                    $(this).selectpicker('refresh');
-                }
-            });
-        })
-    });
+    function initTest() {
+        $("#test").bsSuggest('init', {
+            clearable: true,
+            url: "data.json",
+            idField: "userId",
+            keyField: "userName"
+        }).on('onDataRequestSuccess', function (e, result) {
+            console.log('onDataRequestSuccess: ', result);
+        }).on('onSetSelectValue', function (e, keyword, data) {
+            console.log('onSetSelectValue: ', keyword, data);
+        }).on('onUnsetSelectValue', function () {
+            console.log('onUnsetSelectValue');
+        }).on('onShowDropdown', function (e, data) {
+            console.log('onShowDropdown', e.target.value, data);
+        }).on('onHideDropdown', function (e, data) {
+            console.log('onHideDropdown', e.target.value, data);
+        });
+    }
 </script>
