@@ -28,9 +28,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="row">
 			<div class="form-label col-md-3 col-xs-12">作者</div>
 			<div class="form-input col-md-9 col-xs-12">
-				<select class="selectpicker form-control" name="author" data-live-search="true" id="authorSelector">
-					<option value="">请选择作者</option>
-				</select>
+				<div class="input-group">
+					<input type="text" class="form-control" name="author" id="authorSelector">
+					<div class="input-group-btn">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu dropdown-menu-right" role="menu">
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -52,13 +59,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 <script charset="utf-8" src="<?= $ctx_admin ?>/static/js/jquery.min.js"></script>
+<script charset="utf-8" src="<?= $ctx_admin ?>/static/js/bootstrap.min.js"></script>
+<script charset="utf-8" src="<?= $ctx_admin ?>/static/js/bootstrap-suggest.js"></script>
 <script>
-    function initTest() {
-        $("#test").bsSuggest('init', {
+    function initSelector() {
+        $("#authorSelector").bsSuggest('init', {
+            allowNoKeyword: false,
             clearable: true,
-            url: "data.json",
-            idField: "userId",
-            keyField: "userName"
+            url: "<?= $ctx_site ?>/admin/author/find_by_name/",
+            idField: "id",
+            keyField: "name"
         }).on('onDataRequestSuccess', function (e, result) {
             console.log('onDataRequestSuccess: ', result);
         }).on('onSetSelectValue', function (e, keyword, data) {
@@ -71,4 +81,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             console.log('onHideDropdown', e.target.value, data);
         });
     }
+
+    initSelector();
 </script>
