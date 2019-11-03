@@ -20,7 +20,7 @@ class Author extends MY_Controller
      */
     public function find_by_name($name = NULL)
     {
-        $result = $this->author_model->find_by_name($name);
+        $result = $this->author_model->find_by_name(urldecode($name));
         echo json_encode(array('value' => $result));
     }
 }
