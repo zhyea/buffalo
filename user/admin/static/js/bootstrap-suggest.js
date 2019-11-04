@@ -18,9 +18,9 @@
         throw new Error('Not found jQuery.');
     }
 })(function ($) {
-    var VERSION = 'VERSION_PLACEHOLDER';
-    var $window = $(window);
-    var isIe = 'ActiveXObject' in window; // 用于对 IE 的兼容判断
+    const VERSION = 'VERSION_PLACEHOLDER';
+    const $window = $(window);
+    const isIe = 'ActiveXObject' in window; // 用于对 IE 的兼容判断
     var inputLock; // 用于中文输入法输入时锁定搜索
 
     // ie 下和 chrome 51 以上浏览器版本，出现滚动条时不计算 padding
@@ -31,11 +31,11 @@
     var notNeedCalcPadding = isIe || chromeVer > 51;
 
     // 一些常量
-    var BSSUGGEST = 'bsSuggest';
-    var onDataRequestSuccess = 'onDataRequestSuccess';
-    var DISABLED = 'disabled';
-    var TRUE = true;
-    var FALSE = false;
+    const BSSUGGEST = 'bsSuggest';
+    const onDataRequestSuccess = 'onDataRequestSuccess';
+    const DISABLED = 'disabled';
+    const TRUE = true;
+    const FALSE = false;
 
     function isUndefined(val) {
         return val === void (0);
@@ -83,7 +83,7 @@
             return;
         }
 
-        var separator = options.separator || ',',
+        let separator = options.separator || ',',
             inputValList,
             inputIdList,
             dataId = setOrGetDataId($input);
@@ -122,15 +122,15 @@
             return;
         }
 
-        var $parent = $input.parent();
-        var parentHeight = $parent.height();
-        var parentWidth = $parent.width();
+        let $parent = $input.parent();
+        let parentHeight = $parent.height();
+        let parentWidth = $parent.width();
 
         if (options.autoDropup) {
             setTimeout(function () {
-                var offsetTop = $input.offset().top;
-                var winScrollTop = $window.scrollTop();
-                var menuHeight = $dropdownMenu.height();
+                let offsetTop = $input.offset().top;
+                let winScrollTop = $window.scrollTop();
+                let menuHeight = $dropdownMenu.height();
 
                 if ( // 自动判断菜单向上展开
                     ($window.height() + winScrollTop - offsetTop) < menuHeight && // 假如向下会撑长页面
@@ -144,7 +144,7 @@
         }
 
         // 列表对齐方式
-        var dmcss = {};
+        let dmcss = {};
         if (options.listAlign === 'left') {
             dmcss = {
                 'left': $input.siblings('div').width() - parentWidth,
@@ -186,7 +186,7 @@
      * 当设置了 indexId，而输入框的 data-id 为空时，输入框加载警告色
      */
     function setBackground($input, options) {
-        var inputbg, bg, warnbg;
+        let inputbg, bg, warnbg;
         if ((options.indexId === -1 && !options.idField) || options.multiWord) {
             return $input;
         }
@@ -194,8 +194,8 @@
         bg = options.inputBgColor;
         warnbg = options.inputWarnColor;
 
-        var curVal = $input.val();
-        var preVal = $input.data('pre-val');
+        let curVal = $input.val();
+        let preVal = $input.data('pre-val');
 
         if (setOrGetDataId($input) || !curVal) {
             $input.css('background', bg || '');
@@ -223,7 +223,7 @@
      */
     function adjustScroll($input, $dropdownMenu, options) {
         // 控制滑动条
-        var $hover = $input.parent().find('tbody tr.' + options.listHoverCSS),
+        let $hover = $input.parent().find('tbody tr.' + options.listHoverCSS),
             pos, maxHeight;
 
         if ($hover.length) {
@@ -273,7 +273,7 @@
      * data 格式：{"value": [{}, {}...]}
      */
     function checkData(data) {
-        var isEmpty = TRUE, o;
+        let isEmpty = TRUE, o;
 
         for (o in data) {
             if (o === 'value') {
@@ -300,7 +300,7 @@
      * @return {Boolean}        effectiveFields 为空时始终返回 true
      */
     function inEffectiveFields(field, options) {
-        var effectiveFields = options.effectiveFields;
+        let effectiveFields = options.effectiveFields;
 
         return !(field === '__index' ||
             effectiveFields.length &&
@@ -338,7 +338,7 @@
      * 隐藏下拉列表
      */
     function hideDropMenu($input, options) {
-        var $dropdownMenu = $input.parent().find('ul:eq(0)');
+        let $dropdownMenu = $input.parent().find('ul:eq(0)');
         if ($dropdownMenu.is(':visible')) {
             // $dropdownMenu.css('display', '');
             $dropdownMenu.hide();
@@ -351,12 +351,12 @@
      * 作为 fnGetData 的 callback 函数调用
      */
     function refreshDropMenu($input, data, options) {
-        var $dropdownMenu = $input.parent().find('ul:eq(0)'),
+        let $dropdownMenu = $input.parent().find('ul:eq(0)'),
             len, i, field, index = 0,
             tds,
             html = ['<table class="table table-condensed table-sm" style="margin:0">'],
             idValue, keyValue; // 作为输入框 data-id 和内容的字段值
-        var dataList = data.value;
+        let dataList = data.value;
 
         if (!data || !(len = dataList.length)) {
             if (options.emptyTip) {
@@ -399,7 +399,7 @@
 
         // console.log(data, len);
         // 按列加数据
-        var dataI;
+        let dataI;
         for (i = 0; i < len; i++) {
             index = 0;
             tds = [];
@@ -441,7 +441,7 @@
                 return;
             }
 
-            var $table = $dropdownMenu.find('table:eq(0)'),
+            let $table = $dropdownMenu.find('table:eq(0)'),
                 pdr = 0,
                 mgb = 0;
 
@@ -470,7 +470,7 @@
     function ajax(options, keyword) {
         keyword = keyword || '';
 
-        var preAjax = options._preAjax;
+        let preAjax = options._preAjax;
 
         if (preAjax && preAjax.abort && preAjax.readyState !== 4) {
             // console.log('abort pre ajax');
