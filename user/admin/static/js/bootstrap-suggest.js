@@ -21,17 +21,17 @@
     const VERSION = 'VERSION_PLACEHOLDER';
     const $window = $(window);
     const isIe = 'ActiveXObject' in window; // 用于对 IE 的兼容判断
-    var inputLock; // 用于中文输入法输入时锁定搜索
+    let inputLock; // 用于中文输入法输入时锁定搜索
 
     // ie 下和 chrome 51 以上浏览器版本，出现滚动条时不计算 padding
-    var chromeVer = navigator.userAgent.match(/Chrome\/(\d+)/);
+    let chromeVer = navigator.userAgent.match(/Chrome\/(\d+)/);
     if (chromeVer) {
         chromeVer = +chromeVer[1];
     }
-    var notNeedCalcPadding = isIe || chromeVer > 51;
+    let notNeedCalcPadding = isIe || chromeVer > 51;
 
     // 一些常量
-    const BSSUGGEST = 'bsSuggest';
+    const BS_SUGGEST = 'bsSuggest';
     const onDataRequestSuccess = 'onDataRequestSuccess';
     const DISABLED = 'disabled';
     const TRUE = true;
@@ -255,12 +255,12 @@
     function checkInput($input, $dropdownMenu, options) {
         if (
             !$dropdownMenu.length || // 过滤非 bootstrap 下拉式菜单对象
-            $input.data(BSSUGGEST) // 是否已经初始化的检测
+            $input.data(BS_SUGGEST) // 是否已经初始化的检测
         ) {
             return FALSE;
         }
 
-        $input.data(BSSUGGEST, {
+        $input.data(BS_SUGGEST, {
             options: options
         });
 
@@ -753,8 +753,8 @@
             }
 
             // 鼠标滑动到条目样式
-            if (!$('#' + BSSUGGEST).length) {
-                $('head:eq(0)').append('<style id="' + BSSUGGEST + '">.' + options.listHoverCSS + '{' + options.listHoverStyle + '}</style>');
+            if (!$('#' + BS_SUGGEST).length) {
+                $('head:eq(0)').append('<style id="' + BS_SUGGEST + '">.' + options.listHoverCSS + '{' + options.listHoverStyle + '}</style>');
             }
 
             return self.each(function () {
@@ -1030,7 +1030,7 @@
         },
         destroy: function () {
             return this.each(function () {
-                $(this).off().removeData(BSSUGGEST).removeAttr('style')
+                $(this).off().removeData(BS_SUGGEST).removeAttr('style')
                     .parent().find('.btn:eq(0)').off().show().attr('data-toggle', 'dropdown').prop(DISABLED, FALSE) // .addClass(DISABLED);
                     .next().css('display', '').off();
             });
@@ -1040,12 +1040,12 @@
         }
     };
 
-    $.fn[BSSUGGEST] = function (options) {
+    $.fn[BS_SUGGEST] = function (options) {
         // 方法判断
         if (typeof options === 'string' && methods[options]) {
-            var inited = TRUE;
+            let inited = TRUE;
             this.each(function () {
-                if (!$(this).data(BSSUGGEST)) {
+                if (!$(this).data(BS_SUGGEST)) {
                     return inited = FALSE;
                 }
             });

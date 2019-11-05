@@ -29,7 +29,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="form-label col-md-3 col-xs-12">作者</div>
 			<div class="form-input col-md-9 col-xs-12">
 				<div class="input-group">
-					<input type="text" class="form-control" name="author" id="authorSelector">
+					<i class="clearable fa fa-remove"></i>
+					<input type="text" class="form-control" id="authorSelector">
 					<div class="input-group-btn">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 							<span class="caret"></span>
@@ -62,27 +63,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script charset="utf-8" src="<?= $ctx_admin ?>/static/js/bootstrap.min.js"></script>
 <script charset="utf-8" src="<?= $ctx_admin ?>/static/js/bootstrap-suggest.js"></script>
 <script>
-    function initSelector() {
-        $("#authorSelector").bsSuggest({
-            allowNoKeyword: false,
-            clearable: true,
-            url: "<?= $ctx_site ?>/admin/author/find_by_name/",
-            getDataMethod: "url",
-            showBtn: false,
-            idField: "id",
-            keyField: "name"
-        }).on('onDataRequestSuccess', function (e, result) {
-            console.log('onDataRequestSuccess: ', result);
-        }).on('onSetSelectValue', function (e, keyword, data) {
-            console.log('onSetSelectValue: ', keyword, data);
-        }).on('onUnsetSelectValue', function () {
-            console.log('onUnsetSelectValue');
-        }).on('onShowDropdown', function (e, data) {
-            console.log('onShowDropdown', e.target.value, data);
-        }).on('onHideDropdown', function (e, data) {
-            console.log('onHideDropdown', e.target.value, data);
-        });
-    }
-
-    initSelector();
+    $("#authorSelector").bsSuggest({
+        allowNoKeyword: false,
+        clearable: true,
+        url: "<?= $ctx_site ?>/admin/author/find_by_name/",
+        getDataMethod: "url",
+        showBtn: true,
+        idField: "id",
+        keyField: "name"
+    }).on('onDataRequestSuccess', function (e, result) {
+        console.log('onDataRequestSuccess: ', result);
+    }).on('onSetSelectValue', function (e, keyword, data) {
+        console.log('onSetSelectValue: ', keyword, data);
+    }).on('onUnsetSelectValue', function () {
+        console.log('onUnsetSelectValue');
+    }).on('onShowDropdown', function (e, data) {
+        console.log('onShowDropdown', e.target.value, data);
+    }).on('onHideDropdown', function (e, data) {
+        console.log('onHideDropdown', e.target.value, data);
+    });
 </script>
