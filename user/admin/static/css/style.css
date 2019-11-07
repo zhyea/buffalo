@@ -104,7 +104,6 @@ input[type="file"] {
 }
 
 .main form .form-input {
-    overflow: hidden;
     padding: 0;
 }
 

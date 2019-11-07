@@ -326,7 +326,7 @@
      * 显示下拉列表
      */
     function showDropMenu($input, options) {
-        var $dropdownMenu = $input.parent().find('ul:eq(0)');
+        let $dropdownMenu = $input.parent().find('ul:eq(0)');
         if (!$dropdownMenu.is(':visible')) {
             // $dropdownMenu.css('display', 'block');
             $dropdownMenu.show();
@@ -354,7 +354,7 @@
         let $dropdownMenu = $input.parent().find('ul:eq(0)'),
             len, i, field, index = 0,
             tds,
-            html = ['<table class="table table-condensed table-sm" style="margin:0">'],
+            html = ['<table class="table table-condensed table-sm" style="margin:0;">'],
             idValue, keyValue; // 作为输入框 data-id 和内容的字段值
         let dataList = data.value;
 
@@ -477,7 +477,7 @@
             preAjax.abort();
         }
 
-        var ajaxParam = {
+        let ajaxParam = {
             type: 'GET',
             dataType: options.jsonp ? 'jsonp' : 'json',
             timeout: 5000,
@@ -489,7 +489,7 @@
         }
 
         // 自定义 ajax 请求参数生成方法
-        var adjustAjaxParam,
+        let adjustAjaxParam,
             fnAdjustAjaxParam = options.fnAdjustAjaxParam;
 
         if ($.isFunction(fnAdjustAjaxParam)) {
@@ -556,7 +556,7 @@
      * 通过 ajax 或 json 参数获取数据
      */
     function getData(keyword, $input, callback, options) {
-        var data, validData, filterData = {
+        let data, validData, filterData = {
                 value: []
             },
             i, key, len,
@@ -571,7 +571,7 @@
         // 给了url参数，则从服务器 ajax 请求
         // console.log(options.url + keyword);
         if (options.url) {
-            var timer;
+            let timer;
             if (options.searchingTip) {
                 timer = setTimeout(function () {
                     showTip(options.searchingTip, $input, $input.parent().find('ul'), options);
@@ -629,7 +629,7 @@
      * 取得 clearable 清除按钮
      */
     function getIClear($input, options) {
-        var $iClear = $input.prev('i.clearable');
+        let $iClear = $input.prev('i.clearable');
 
         // 是否可清除已输入的内容(添加清除按钮)
         if (options.clearable && !$iClear.length) {
@@ -655,7 +655,7 @@
      * 默认的配置选项
      * @type {Object}
      */
-    var defaultOptions = {
+    let defaultOptions = {
         url: null,                      // 请求数据的 URL 地址
         jsonp: null,                    // 设置此参数名，将开启jsonp功能，否则使用json数据结构
         data: {
@@ -723,7 +723,7 @@
         fnAjaxFail: null,               // ajax 失败时回调方法
     };
 
-    var methods = {
+    let methods = {
         init: function (options) {
             // 参数设置
             var self = this;
