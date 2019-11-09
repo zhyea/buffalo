@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="form-input col-md-9 col-xs-12">
 				<div class="input-group">
 					<i class="clearable fa fa-remove"></i>
-					<input type="text" class="form-control" id="authorSelector">
+					<input type="text" class="form-control" id="authorSelector" required/>
 					<div class="input-group-btn">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 							<span class="caret"></span>
