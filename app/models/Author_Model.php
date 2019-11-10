@@ -20,7 +20,7 @@ class Author_Model extends MY_Model
         if (empty($name)) {
             return array();
         }
-        return $this->db->select("id, name")
+        return $this->db->select("id, name, country")
             ->from('author')
             ->limit(9)
             ->like('name', $name, 'both')

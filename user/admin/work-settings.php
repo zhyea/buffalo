@@ -64,11 +64,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script charset="utf-8" src="<?= $ctx_admin ?>/static/js/bootstrap-suggest.js"></script>
 <script>
     $("#authorSelector").bsSuggest({
-        allowNoKeyword: false,
+        allowNoKeyword: true,
         clearable: true,
         url: "<?= $ctx_site ?>/admin/author/find_by_name/",
         getDataMethod: "url",
-        showBtn: true,
+        showBtn: false,
         idField: "id",
         keyField: "name"
     }).on('onDataRequestSuccess', function (e, result) {
