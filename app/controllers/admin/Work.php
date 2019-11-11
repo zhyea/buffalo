@@ -7,7 +7,7 @@ class Work extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('work_model');
+        $this->load->model('work_model', 'author_model', 'meta_model');
     }
 
 
@@ -27,11 +27,21 @@ class Work extends MY_Controller
      */
     public function settings_page($id = 0)
     {
-        $work = $this->work_model->get_by_id($id);
+        $work = $id <= 0 ? null : $this->work_model->get_by_id($id);
 
         $title = ($id > 0 ? '编辑作品' : '新增作品') . ' - Buffalo';
 
+        $cat_id = is_null($work) ? 0 : $work['category_id'];
+        $author_id = is_null($work) ? 0 : $work['author_id'];
+
         $data['id'] = $id;
+        $data['name'] = is_null($work) ? '' : $work['name'];
+        $data['brief'] = is_null($work) ? '' : $work['brief'];
+        $data['author_id'] = $author_id;
+        $data['cat_id'] = $cat_id;
+        $data['author'] = '';
+        $data['cat'] = '';
+
         $this->admin_page_view('work-settings', $title, $data);
 
     }
@@ -79,7 +89,6 @@ class Work extends MY_Controller
         $ids = $_POST['ids'];
         echo $this->work_model->delete_in_batch(explode(',', $ids));
     }
-
 
 
 }
