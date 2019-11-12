@@ -28,5 +28,16 @@ class Author_Model extends MY_Model
             ->result_array();
     }
 
+    /** 获取作者名称
+     *
+     * @param int $id 记录ID
+     * @return string 作者姓名
+     */
+    public function get_name($id = 0)
+    {
+        $r = parent::get_by_id0('name', $id);
+        return is_null($r) ? '' : $r['name'];
+    }
+
 
 }

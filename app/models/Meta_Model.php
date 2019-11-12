@@ -99,4 +99,18 @@ class Meta_Model extends MY_Model
         $sn = $direct * 1 === 1 ? $sn + 1 : $sn - 1;
         return $this->update(array('sn' => $sn), $id);
     }
+
+
+
+
+    /** 获取名称
+     *
+     * @param int $id 记录ID
+     * @return string 名称
+     */
+    public function get_name($id = 0)
+    {
+        $r = parent::get_by_id0('name', $id);
+        return is_null($r) ? '' : $r['name'];
+    }
 }

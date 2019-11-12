@@ -1,12 +1,6 @@
 /**
  * Bootstrap Search Suggest
- * @desc    这是一个基于 bootstrap 按钮式下拉菜单组件的搜索建议插件，必须使用于按钮式下拉菜单组件上。
- * @author  renxia <lzwy0820#qq.com>
- * @github  https://github.com/lzwme/bootstrap-suggest-plugin.git
- * @since   2014-10-09
- *===============================================================================
- * (c) Copyright 2014-2019 http://lzw.me All Rights Reserved.
- ********************************************************************************/
+ */
 (function (factory) {
     if (typeof define === "function" && define.amd) {
         define(['jquery'], factory);
@@ -681,12 +675,12 @@
         delay: 300,                     // 搜索触发的延时时间间隔，单位毫秒
         emptyTip: '',                   // 查询为空时显示的内容，可为 html
         searchingTip: '搜索中...',       // ajax 搜索时显示的提示内容，当搜索时间较长时给出正在搜索的提示
-        hideOnSelect: FALSE,            // 鼠标从列表单击选择了值时，是否隐藏选择列表
+        hideOnSelect: true,             // 鼠标从列表单击选择了值时，是否隐藏选择列表
 
         /* UI */
         autoDropup: FALSE,              // 选择菜单是否自动判断向上展开。设为 true，则当下拉菜单高度超过窗体，且向上方向不会被窗体覆盖，则选择菜单向上弹出
         autoMinWidth: FALSE,            // 是否自动最小宽度，设为 false 则最小宽度不小于输入框宽度
-        showHeader: FALSE,              // 是否显示选择列表的 header。为 true 时，有效字段大于一列则显示表头
+        showHeader: false,              // 是否显示选择列表的 header。为 true 时，有效字段大于一列则显示表头
         showBtn: TRUE,                  // 是否显示下拉按钮
         inputBgColor: '',               // 输入框背景色，当与容器背景色不同时，可能需要该项的配置
         inputWarnColor: 'rgba(255,0,0,.1)', // 输入框内容不是下拉列表选择时的警告色
@@ -726,7 +720,7 @@
     let methods = {
         init: function (options) {
             // 参数设置
-            var self = this;
+            let self = this;
             options = options || {};
 
             // 默认配置有效显示字段多于一个，则显示列表表头，否则不显示
@@ -758,7 +752,7 @@
             }
 
             return self.each(function () {
-                var $input = $(this),
+                let $input = $(this),
                     $parent = $input.parent(),
                     $iClear = getIClear($input, options),
                     isMouseenterMenu,
@@ -793,7 +787,7 @@
 
                 // 开始事件处理
                 $input.on('keydown', function (event) {
-                    var currentList, tipsKeyword; // 提示列表上被选中的关键字
+                    let currentList, tipsKeyword; // 提示列表上被选中的关键字
 
                     // 当提示层显示时才对键盘事件处理
                     if (!$dropdownMenu.is(':visible')) {
@@ -862,7 +856,7 @@
                     // console.log('compositionend');
                     inputLock = FALSE;
                 }).on('keyup input paste', function (event) {
-                    var word;
+                    let word;
 
                     if (event.keyCode) {
                         setBackground($input, options);

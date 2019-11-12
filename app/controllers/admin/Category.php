@@ -87,9 +87,10 @@ class Category extends MY_Controller
     /**
      * 查询获取全部分类数据
      */
-    public function data_all(){
+    public function data_all()
+    {
         $arr = $this->meta_model->query_category();
-        echo json_encode($arr);
+        echo json_encode(array('value' => $arr));
     }
 
     /**

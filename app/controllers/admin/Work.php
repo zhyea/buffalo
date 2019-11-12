@@ -39,8 +39,8 @@ class Work extends MY_Controller
         $data['brief'] = is_null($work) ? '' : $work['brief'];
         $data['author_id'] = $author_id;
         $data['cat_id'] = $cat_id;
-        $data['author'] = '';
-        $data['cat'] = '';
+        $data['author'] = empty($author_id) ? '' : $this->author_model->get_name($author_id);
+        $data['cat'] = empty($cat_id) ? '' : $this->meta_model->get_name($cat_id);;
 
         $this->admin_page_view('work-settings', $title, $data);
 
@@ -53,17 +53,19 @@ class Work extends MY_Controller
     public function update()
     {
         $id = $_POST['id'];
-        $parent = $_POST['parent'];
+        $author_id = $_POST['author_id'];
+
+
+
         $data = array(
-            'parent' => $parent,
             'name' => $_POST['name'],
-            'slug' => $_POST['slug'],
-            'remark' => $_POST['remark'],
-            'type' => 'category'
+            'brief' => $_POST['brief'],
+            'author_id' => $_POST['author_id'],
+            'cat_id' =>  $_POST['cat_id']
         );
         $this->work_model->insert_or_update($data, $id);
 
-        redirect('admin/category/list_page/' . $parent);
+        redirect('admin/work/settings_page/' . $id);
     }
 
 
