@@ -40,4 +40,16 @@ class Author_Model extends MY_Model
     }
 
 
+    /**
+     * 新增作者信息
+     * @param string $name 作者名称
+     * @param string $country 作者国家
+     * @return int 记录ID
+     */
+    public function insert($name, $country = '未知')
+    {
+        return $this->insert_or_update(array('name' => $name, 'country' => $country));
+    }
+
+
 }

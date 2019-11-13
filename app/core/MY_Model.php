@@ -111,12 +111,13 @@ class MY_Model extends CI_Model
      * @param array $data 源数据
      * @return int 影响的记录数
      */
-    protected function insert($data = array())
+    protected function insert0($data = array())
     {
         if (0 === sizeof($data)) {
             return 0;
         }
-        return $this->db->insert($this->table, $data);
+        $this->db->insert($this->table, $data);
+        return $this->db->insert_id();
     }
 
 
@@ -149,7 +150,7 @@ class MY_Model extends CI_Model
             return 0;
         }
         if ($id <= 0) {
-            return $this->insert($data);
+            return $this->insert0($data);
         } else {
             return $this->update($data, $id);
         }

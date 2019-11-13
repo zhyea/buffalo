@@ -181,6 +181,10 @@ input[type="file"] {
     margin-bottom: 18px;
 }
 
+input[readonly], .form-control[readonly] {
+    background-color: #FFFFFF;
+}
+
 /* ------------------table------------------ */
 .bootstrap-table .fixed-table-container {
     padding: 30px !important;

@@ -11,7 +11,11 @@ class Meta_Model extends MY_Model
      */
     public function query_category()
     {
-        return $this->select_where('id, parent, name, slug, sn', array('type' => 'category'), NULL, NULL, 'sn desc, id asc');
+        return $this->select_where('id, parent, name, slug, sn',
+            array('type' => 'category'),
+            NULL,
+            NULL,
+            'sn desc, id asc');
     }
 
 
@@ -23,7 +27,11 @@ class Meta_Model extends MY_Model
      */
     public function query_category_by_parent($parent = 0)
     {
-        return $this->select_where('id, parent, name, slug, sn', array('type' => 'category', 'parent' => $parent), NULL, NULL, 'sn desc, id asc');
+        return $this->select_where('id, parent, name, slug, sn',
+            array('type' => 'category', 'parent' => $parent),
+            NULL,
+            NULL,
+            'sn desc, id asc');
     }
 
 

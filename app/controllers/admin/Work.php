@@ -7,7 +7,9 @@ class Work extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('work_model', 'author_model', 'meta_model');
+        $this->load->model('work_model');
+        $this->load->model('author_model');
+        $this->load->model('meta_model');
     }
 
 
@@ -54,18 +56,19 @@ class Work extends MY_Controller
     {
         $id = $_POST['id'];
         $author_id = $_POST['author_id'];
-
-
+        if (empty($author_id)) {
+            $author_id = $this->author_model->insert($_POST['author']);
+        }
 
         $data = array(
             'name' => $_POST['name'],
             'brief' => $_POST['brief'],
-            'author_id' => $_POST['author_id'],
-            'cat_id' =>  $_POST['cat_id']
+            'author_id' => $author_id,
+            'category_id' => $_POST['cat_id']
         );
         $this->work_model->insert_or_update($data, $id);
 
-        redirect('admin/work/settings_page/' . $id);
+        redirect('admin/work/list_page/');
     }
 
 
