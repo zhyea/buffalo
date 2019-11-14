@@ -55,7 +55,7 @@ class Meta_Model extends MY_Model
      */
     public function get_by_id($id = 0)
     {
-        return $this->get_by_id0('id, parent, name, slug, remark', $id);
+        return $this->get_by_id0($id, 'id, parent, name, slug, remark');
     }
 
 
@@ -109,8 +109,6 @@ class Meta_Model extends MY_Model
     }
 
 
-
-
     /** 获取名称
      *
      * @param int $id 记录ID
@@ -118,7 +116,7 @@ class Meta_Model extends MY_Model
      */
     public function get_name($id = 0)
     {
-        $r = parent::get_by_id0('name', $id);
+        $r = parent::get_by_id0($id, 'name');
         return is_null($r) ? '' : $r['name'];
     }
 }

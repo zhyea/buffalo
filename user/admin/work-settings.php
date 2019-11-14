@@ -19,16 +19,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<form method="post" action="<?= $ctx_site ?>/admin/work/update">
 		<div class="row">
-			<div class="form-label col-md-3 col-xs-12">作品名称</div>
-			<div class="form-input col-md-9 col-xs-12">
+			<div class="form-label col-md-2 col-xs-12">作品名称</div>
+			<div class="form-input col-md-10 col-xs-12">
 				<input type="hidden" name="id" value="<?= $id ?>"/>
 				<input type="text" class="form-control" name="name" value="<?= $name ?>" required autofocus/>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="form-label col-md-3 col-xs-12">作者</div>
-			<div class="form-input col-md-9 col-xs-12">
+			<div class="form-label col-md-2 col-xs-12">作者</div>
+			<div class="form-input col-md-7 col-xs-8">
 				<div class="input-group">
 					<input type="hidden" name="author_id" id="authorId" value="<?= $author_id ?>"/>
 					<input type="text" class="form-control" name="author" value="<?= $author ?>" id="authorSelector"
@@ -42,11 +42,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 				</div>
 			</div>
+			<div class="form-input col-md-3 col-xs-4">
+				<input type="text" class="form-control" name="authorCountry" id="authorCountry"
+				       value="<?= $authorCountry ?>"
+				       placeholder="作者国籍" required/>
+			</div>
 		</div>
 
 		<div class="row">
-			<div class="form-label col-md-3 col-xs-12">分类</div>
-			<div class="form-input col-md-9 col-xs-12">
+			<div class="form-label col-md-2 col-xs-12">分类</div>
+			<div class="form-input col-md-10 col-xs-12">
 				<div class="input-group">
 					<input type="hidden" name="cat_id" id="categoryId" value="<?= $cat_id ?>"/>
 					<input type="text" class="form-control" name="cat" value="<?= $cat ?>" id="categorySelector"
@@ -63,16 +68,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 
 		<div class="row">
-			<div class="form-label col-md-3 col-xs-12">概述</div>
-			<div class="form-input col-md-9 col-xs-12">
+			<div class="form-label col-md-2 col-xs-12">概述</div>
+			<div class="form-input col-md-10 col-xs-12">
 				<textarea class="form-control" name="brief"><?= $brief ?></textarea>
 			</div>
 		</div>
 
 
 		<div class="row">
-			<div class="col-md-3 col-xs-12">&nbsp;</div>
-			<div class="form-input col-md-9 col-xs-12">
+			<div class="col-md-2 col-xs-12">&nbsp;</div>
+			<div class="form-input col-md-10 col-xs-12">
 				<button type="submit" class="btn btn-success">保存作品信息</button>
 			</div>
 		</div>
@@ -93,7 +98,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         keyField: "name",
         effectiveFields: ["name", "country"]
     }).on('onSetSelectValue', function (e, keyword, data) {
-        $("#authorId").val(data.id)
+        $("#authorId").val(data.id);
+        $("#authorCountry").val(data.country)
     });
 
 

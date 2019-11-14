@@ -12,7 +12,7 @@ class Settings_Model extends MY_Model
      */
     public function get($key)
     {
-        return self::get_column_where('value', array('name' => $key));
+        return $this->get_column_where('value', array('name' => $key));
     }
 
     /**

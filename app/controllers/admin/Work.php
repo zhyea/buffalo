@@ -35,13 +35,15 @@ class Work extends MY_Controller
 
         $cat_id = is_null($work) ? 0 : $work['category_id'];
         $author_id = is_null($work) ? 0 : $work['author_id'];
+        $author = $this->author_model->get_by_id($author_id);
 
         $data['id'] = $id;
         $data['name'] = is_null($work) ? '' : $work['name'];
         $data['brief'] = is_null($work) ? '' : $work['brief'];
         $data['author_id'] = $author_id;
         $data['cat_id'] = $cat_id;
-        $data['author'] = empty($author_id) ? '' : $this->author_model->get_name($author_id);
+        $data['author'] = empty($author) ? '' : $author['name'];
+        $data['authorCountry'] = empty($author) ? '' : $author['country'];
         $data['cat'] = empty($cat_id) ? '' : $this->meta_model->get_name($cat_id);;
 
         $this->admin_page_view('work-settings', $title, $data);
@@ -57,7 +59,7 @@ class Work extends MY_Controller
         $id = $_POST['id'];
         $author_id = $_POST['author_id'];
         if (empty($author_id)) {
-            $author_id = $this->author_model->insert($_POST['author']);
+            $author_id = $this->author_model->insert($_POST['author'], $_POST['authorCountry']);
         }
 
         $data = array(

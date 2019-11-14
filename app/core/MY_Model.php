@@ -76,13 +76,28 @@ class MY_Model extends CI_Model
 
 
     /**
+     * 封装单行记录查询语句
+     *
+     * @param string $column 要查询的字段
+     * @param string $where 查询条件
+     * @return array 查询结果
+     */
+    protected function get_where($column, $where = NULL)
+    {
+        $this->db->select($column);
+        $query = $this->db->get_where($this->table, $where, 1);
+        return $query->row_array(0);
+    }
+
+
+    /**
      * 根据ID查询获取记录
      *
      * @param string $columns 要查询的字段
      * @param int $id 记录的ID
      * @return array 记录值
      */
-    protected function get_by_id0($columns = '*', $id = 0)
+    protected function get_by_id0($id = 0, $columns = '*')
     {
         if ($id === 0) {
             return NULL;
