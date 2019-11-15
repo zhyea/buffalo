@@ -25,7 +25,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	       data-classes="table table-hover table-borderless"
 	       data-click-to-select="true"
 	       data-toolbar="#workTableToolbar"
-	       data-url="<?= $ctx_site ?>/admin/work/data">
+	       data-url="<?= $ctx_site ?>/admin/work/data"
+	       data-sort-name="id"
+	       data-sort-order="asc"
+	       data-pagination=true
+	       data-page-size=30
+	       data-page-list=[15,30,50,All]>
 		<thead>
 		<tr>
 			<th data-align="center" data-checkbox="true"></th>

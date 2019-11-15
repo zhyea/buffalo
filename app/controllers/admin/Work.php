@@ -79,12 +79,8 @@ class Work extends MY_Controller
      */
     public function data()
     {
-        $arr = $this->work_model->query_category_by_parent();
-        foreach ($arr as $key => &$v) {
-            $child_num = $this->work_model->count_by_parent($v['id']);
-            $v['child_num'] = $child_num;
-        }
-
+        $search = $_GET['search'];
+        $arr = $this->work_model->data($search);
         echo json_encode($arr);
     }
 

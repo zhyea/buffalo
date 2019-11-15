@@ -17,9 +17,6 @@ class Author_Model extends MY_Model
      */
     public function find_by_name($name)
     {
-        if (empty($name)) {
-            return array();
-        }
         return $this->db->select("id, name, country")
             ->from('author')
             ->limit(9)

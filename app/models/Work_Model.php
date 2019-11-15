@@ -16,4 +16,21 @@ class Work_Model extends MY_Model
         return $this->get_by_id0($id, 'id, name');
     }
 
+
+    public function data($search)
+    {
+        $this->db->select('work.id, work.name, meta.name as category, author.name as author');
+        $this->db->from('work');
+        $this->db->join('meta', 'work.category_id = meta.id', 'left');
+        $this->db->join('author', 'work.author_id = author.id', 'left');
+
+        if (!empty($search)) {
+            $this->db->like('work.name', $search, 'both');
+            $this->db->or_like('meta.name', $search, 'both');
+            $this->db->or_like('author.name', $search, 'both');
+        }
+
+        return $this->db->get()
+            ->result_array();
+    }
 }
