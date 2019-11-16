@@ -80,8 +80,13 @@ class Work extends MY_Controller
     public function data()
     {
         $search = $_GET['search'];
-        $arr = $this->work_model->data($search);
-        echo json_encode($arr);
+        $sort = $_GET['sort'];
+        $order = $_GET['order'];
+        $offset = $_GET['offset'];
+        $limit = $_GET['limit'];
+        $arr = $this->work_model->query_in_page(false, $search, $sort, $order, $offset, $limit);
+        $total = $this->work_model->query_in_page(true);
+        echo json_encode(Array('total' => $total, 'rows' => $arr));
     }
 
     /**

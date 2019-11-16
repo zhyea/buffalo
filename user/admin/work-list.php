@@ -28,6 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	       data-url="<?= $ctx_site ?>/admin/work/data"
 	       data-sort-name="id"
 	       data-sort-order="asc"
+	       data-side-pagination='server'
 	       data-pagination=true
 	       data-page-size=30
 	       data-page-list=[15,30,50,All]>
@@ -35,8 +36,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<tr>
 			<th data-align="center" data-checkbox="true"></th>
 			<th data-align="left" data-field="name" data-formatter="nameFormatter">作品名称</th>
-			<th data-align="left" data-field="author" data-formatter="authorFormatter">作者</th>
-			<th data-align="left" data-field="cat" data-formatter="catFormatter">分类</th>
+			<th data-align="left" data-field="author">作者</th>
+			<th data-align="left" data-field="category">分类</th>
+			<th data-align="center" >章节</th>
 		</tr>
 		</thead>
 	</table>

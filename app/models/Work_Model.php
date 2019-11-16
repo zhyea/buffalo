@@ -13,11 +13,12 @@ class Work_Model extends MY_Model
      */
     public function get_by_id($id = 0)
     {
-        return $this->get_by_id0($id, 'id, name');
+        return $this->get_by_id0($id, '*');
     }
 
 
-    public function data($search)
+
+    public function query_in_page($is_count = false, $search = '', $sort = 'id', $order = 'desc', $offset = 0, $limit = 10)
     {
         $this->db->select('work.id, work.name, meta.name as category, author.name as author');
         $this->db->from('work');
@@ -30,7 +31,12 @@ class Work_Model extends MY_Model
             $this->db->or_like('author.name', $search, 'both');
         }
 
-        return $this->db->get()
-            ->result_array();
+        if ($is_count) {
+            return $this->db->count_all_results();
+        } else {
+            $this->db->order_by($sort, $order);
+            $this->db->limit($limit, $offset);
+            return $this->db->get()->result_array();
+        }
     }
 }
