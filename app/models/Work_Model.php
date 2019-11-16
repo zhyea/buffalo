@@ -17,7 +17,17 @@ class Work_Model extends MY_Model
     }
 
 
-
+    /**
+     * 执行查询，为生成列表数据
+     *
+     * @param bool $is_count 是否是统计查询
+     * @param string $search 查询关键字
+     * @param string $sort 排序字段
+     * @param string $order 排序方向
+     * @param int $offset 位移
+     * @param int $limit 记录数量
+     * @return mixed 如果是统计查询则返回记录总数，否则返回记录信息
+     */
     public function query_in_page($is_count = false, $search = '', $sort = 'id', $order = 'desc', $offset = 0, $limit = 10)
     {
         $this->db->select('work.id, work.name, meta.name as category, author.name as author');
