@@ -30,7 +30,7 @@ class Work_Model extends MY_Model
      */
     public function query_in_page($is_count = false, $search = '', $sort = 'id', $order = 'desc', $offset = 0, $limit = 10)
     {
-        $this->db->select('work.id, work.name, meta.name as category, author.name as author');
+        $this->db->select('work.id, work.name, meta.name as category, author.name as author, work.category_id, work.author_id');
         $this->db->from('work');
         $this->db->join('meta', 'work.category_id = meta.id', 'left');
         $this->db->join('author', 'work.author_id = author.id', 'left');

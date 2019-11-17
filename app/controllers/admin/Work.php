@@ -14,11 +14,20 @@ class Work extends MY_Controller
 
 
     /**
+     * 章节信息
+     */
+    public function chapters()
+    {
+        $this->admin_page_view('work-chapters', '作品章节 - Buffalo');
+    }
+
+
+    /**
      * 加载作品列表页
      */
     public function list_page()
     {
-        $this->admin_page_view('work-list', '分类信息 - Buffalo');
+        $this->admin_page_view('work-list', '作品列表 - Buffalo');
     }
 
 

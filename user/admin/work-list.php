@@ -35,10 +35,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<thead>
 		<tr>
 			<th data-align="center" data-checkbox="true"></th>
-			<th data-align="left" data-field="name" data-formatter="nameFormatter">作品名称</th>
-			<th data-align="left" data-field="author">作者</th>
-			<th data-align="left" data-field="category">分类</th>
-			<th data-align="center" >章节</th>
+			<th data-align="left" data-sortable="true" data-field="name" data-formatter="nameFormatter">作品名称</th>
+			<th data-align="left" data-sortable="true" data-field="author">作者</th>
+			<th data-align="left" data-sortable="true" data-field="category">分类</th>
+			<th data-align="center">章节</th>
 		</tr>
 		</thead>
 	</table>
