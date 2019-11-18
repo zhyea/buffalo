@@ -108,16 +108,33 @@ input[type="file"] {
     padding: 0;
 }
 
-.chapter-row {
-    height: 36px;
+.chapter-container {
+    padding: 0 16px;
+    vertical-align: bottom;
 }
 
 .chapter-unit {
-    padding: 0;
     margin: 0;
-    vertical-align: bottom;
-    height: 100%;
+    padding: 2px;
+}
+
+.chapter-unit:hover{
+    background-color: #deefef;
+}
+
+.chapter {
+    padding-left: 9px;
+    text-align: left;
+    height: 36px;
+    width: 100%;
+    line-height: 36px;
     border: 1px dotted #1b6d85;
+}
+
+.chapter .del {
+    float: right;
+    line-height: 31px;
+    margin-right: 3px;
 }
 
 /* ----------------- footer ----------------- */
