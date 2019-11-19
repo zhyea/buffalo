@@ -18,6 +18,7 @@ class Work extends MY_Controller
      */
     public function chapters()
     {
+        $this->load->helper('form');
         $this->admin_page_view('work-chapters', '作品章节 - Buffalo');
     }
 
