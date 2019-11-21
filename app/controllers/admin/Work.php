@@ -10,6 +10,7 @@ class Work extends MY_Controller
         $this->load->model('work_model');
         $this->load->model('author_model');
         $this->load->model('meta_model');
+        $this->load->service('work_service');
     }
 
 
@@ -99,6 +100,7 @@ class Work extends MY_Controller
         echo json_encode(Array('total' => $total, 'rows' => $arr));
     }
 
+
     /**
      * 删除数据
      */
@@ -108,5 +110,16 @@ class Work extends MY_Controller
         echo $this->work_model->delete_in_batch(explode(',', $ids));
     }
 
+
+    /**
+     * 上传并解析文件内容
+     */
+    public function upload()
+    {
+        echo print_r($_POST);
+        if ($_POST['myTxt']) {
+            $this->work_service->upload_and_read('myTxt');
+        }
+    }
 
 }
