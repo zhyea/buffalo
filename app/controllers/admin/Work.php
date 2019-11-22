@@ -116,10 +116,7 @@ class Work extends MY_Controller
      */
     public function upload()
     {
-        echo print_r($_POST);
-        if ($_POST['myTxt']) {
-            $this->work_service->upload_and_read('myTxt');
-        }
+        $this->work_service->upload_and_read('myTxt');
     }
 
 }

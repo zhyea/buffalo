@@ -19,9 +19,9 @@ class Work_Service extends MY_Service
     {
         $r = parent::upload_txt($name);
         if ($r[0]) {
-            echo 1;
+            echo $r[1];
         } else {
-            echo 2;
+            echo $r[1];
         }
     }
 
