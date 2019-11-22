@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="row">
 		<div class="form-label col-md-2 col-xs-12">选择文本</div>
 		<div class="form-input col-md-8 col-xs-12">
-			<input type="file" class="form-control" accept="text/txt" name="myTxt"/>
+			<input type="file" class="form-control" accept="text/plain" name="myTxt"/>
 		</div>
 		<div class="col-md-2 col-xs-12">
 			<button type="submit" class="btn btn-success">上传文件</button>
