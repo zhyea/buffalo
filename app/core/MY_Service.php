@@ -70,7 +70,7 @@ class MY_Service
         // 执行上传
         if (!is_null($name) && $this->upload->do_upload($name)) {
             $result = $this->upload->data();
-            return array(true, $date . '/' . $result['file_name']);
+            return array(true, VIEWPATH . 'uploads/' . $date . '/' . $result['file_name']);
         } else {
             return array(false, $this->upload->display_errors());
         }
