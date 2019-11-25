@@ -35,6 +35,7 @@ class Work_Service extends MY_Service
      */
     private function read($file)
     {
+        echo  preg_match("b", "abc");
         $all = file($file);
         foreach ($all as $line => $content) {
             echo 'line ' . ($line + 1) . ':' . $content . '<br>';
