@@ -34,8 +34,11 @@ class Index extends MY_Controller
 
     public function test()
     {
-        echo preg_match("/\d.*/i", "abcddd").'<br>';
-        echo preg_match("/\d.*/i", "123456").'<br>';
+
+        $regex = "/^第?[一二三四五六七八九十零〇百千万]{1,5}[章回节卷篇]?.{0,32}$/i";
+        echo preg_match("/^\d{3}$/i", "123").'<br>';
+        echo preg_match("/^\d{0,6}$/i", "1234567").'<br>';
+        echo preg_match($regex, "第一卷 月落乌啼霜满天").'<br>';
         echo '<br>--------------------------------------------------';
         echo '<br>--------------------------------------------------';
     }
