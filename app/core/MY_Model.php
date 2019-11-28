@@ -124,7 +124,7 @@ class MY_Model extends CI_Model
      * 新增数据
      *
      * @param array $data 源数据
-     * @return int 影响的记录数
+     * @return int 记录ID
      */
     protected function insert0($data = array())
     {
@@ -157,7 +157,7 @@ class MY_Model extends CI_Model
      *
      * @param array $data 要更新的内容
      * @param int $id 要更新的记录ID
-     * @return int 操作影响的行数
+     * @return int 操作影响的行数；如是写入语句，则是新写入的记录ID
      */
     public function insert_or_update($data = array(), $id = 0)
     {

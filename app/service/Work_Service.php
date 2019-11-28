@@ -7,21 +7,22 @@ class Work_Service extends MY_Service
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('chapter_model');
     }
 
 
     /**
      * 上传并解析文本文件
      *
-     * @param string $name 文件名称
+     * @param int $work_id 作品ID
+     * @param string $file 文件名称
      */
-    public function upload_and_read($name)
+    public function upload_and_read($work_id, $file)
     {
-        $r = parent::upload_txt($name);
+        $r = parent::upload_txt($file);
         if ($r[0]) {
-            $file = $r[1];
-            echo $r[1];
-            $this->read($file);
+            $f = $r[1];
+            $this->read($work_id, $f);
         } else {
             echo $r[1];
         }
@@ -31,14 +32,26 @@ class Work_Service extends MY_Service
     /**
      * 读取文件
      *
+     * @param int $work_id 作品ID
      * @param string $file 文件地址
      */
-    private function read($file)
+    private function read($work_id, $file)
     {
-        echo  preg_match("b", "abc");
+        $pattern = "/^第?[一二三四五六七八九十零〇百千万]{1,5}[章回节卷篇]?.{0,32}$/i";
+
+        $title = '';
+        $content = '';
+
         $all = file($file);
-        foreach ($all as $line => $content) {
-            echo 'line ' . ($line + 1) . ':' . $content . '<br>';
+        foreach ($all as $num => $line) {
+            if (preg_match($pattern, $line)) {
+                if (!empty($title) && !empty($content)) {
+                    $this->chapter_model->insert($work_id, $title, $content);
+                    $content = '';
+                }
+                $title = $line;
+            }
+            $content = $content . '<p>' . $line . '</p>.\n';
         }
     }
 

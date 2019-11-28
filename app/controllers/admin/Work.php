@@ -116,7 +116,8 @@ class Work extends MY_Controller
      */
     public function upload()
     {
-        $this->work_service->upload_and_read('myTxt');
+        $work_id = $_POST['work_id'];
+        $this->work_service->upload_and_read($work_id, 'myTxt');
     }
 
 }
