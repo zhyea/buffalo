@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<th data-align="left" data-sortable="true" data-field="name" data-formatter="nameFormatter">作品名称</th>
 			<th data-align="left" data-sortable="true" data-field="author">作者</th>
 			<th data-align="left" data-sortable="true" data-field="category">分类</th>
-			<th data-align="center">章节</th>
+			<th data-align="center" data-formatter="operateFormatter">章节</th>
 		</tr>
 		</thead>
 	</table>
@@ -71,5 +71,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     function nameFormatter(value, row, index) {
         return '<a href="<?= $ctx_site ?>/admin/work/settings_page/' + row.id + '" target="_self">' + value + '</a>';
+    }
+
+    function operateFormatter(value, row, index) {
+        return '<a href="<?= $ctx_site ?>/admin/work/chapters/' + row.id + '/' + row.name + '" target="_self">查看</a>';
     }
 </script>

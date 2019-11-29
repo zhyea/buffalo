@@ -16,11 +16,16 @@ class Work extends MY_Controller
 
     /**
      * 章节信息
+     * @param int $work_id 作品ID
+     * @param string $work_name 作品名称
      */
-    public function chapters()
+    public function chapters($work_id = 0, $work_name = '')
     {
+        $work_name = urldecode($work_name);
+        $data['id'] = $work_id;
+        $data['name'] = $work_name;
         $this->load->helper('form');
-        $this->admin_page_view('work-chapters', '作品章节 - Buffalo');
+        $this->admin_page_view('work-chapters', $work_name . ' - Buffalo', $data);
     }
 
 
