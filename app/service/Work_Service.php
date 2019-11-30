@@ -23,6 +23,7 @@ class Work_Service extends MY_Service
         if ($r[0]) {
             $f = $r[1];
             $this->read($work_id, $f);
+            echo 'success';
         } else {
             echo $r[1];
         }
@@ -37,22 +38,44 @@ class Work_Service extends MY_Service
      */
     private function read($work_id, $file)
     {
-        $pattern = "/^第?[一二三四五六七八九十零〇百千万]{1,5}[章回节卷篇]?.{0,32}$/i";
+        $pattern = "/^(　)*第?[\s　]*[一二三四五六七八九十零〇百千万]{1,5}[\s　]*[章回节卷篇]?.{0,32}$/i";
 
         $title = '';
         $content = '';
 
         $all = file($file);
         foreach ($all as $num => $line) {
+            $line = $this->mb_trim($line);
+            $line = str_replace('　', ' ', $line);
+
+            if (empty($line)) {
+                continue;
+            }
+
             if (preg_match($pattern, $line)) {
-                if (!empty($title) && !empty($content)) {
+                if (!empty($content)) {
+                    if (empty($title)) {
+                        $title = '引子';
+                    }
                     $this->chapter_model->insert($work_id, $title, $content);
                     $content = '';
                 }
                 $title = $line;
+            } else {
+                $content = $content . '<p>' . $line . '</p>';
             }
-            $content = $content . '<p>' . $line . '</p>.\n';
         }
+
+        if (!empty($title) && !empty($content)) {
+            $this->chapter_model->insert($work_id, $title, $content);
+        }
+    }
+
+    function mb_trim($str)
+    {
+        $str = mb_ereg_replace('^(([ \r\n\t])*(　)*)*', '', $str);
+        $str = mb_ereg_replace('(([ \r\n\t])*(　)*)*$', '', $str);
+        return $str;
     }
 
 }

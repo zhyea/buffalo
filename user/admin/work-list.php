@@ -74,6 +74,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     function operateFormatter(value, row, index) {
-        return '<a href="<?= $ctx_site ?>/admin/work/chapters/' + row.id + '/' + row.name + '" target="_self">查看</a>';
+        return '<a href="<?= $ctx_site ?>/admin/work/chapters/' + row.id + '" target="_self">查看</a>';
     }
 </script>

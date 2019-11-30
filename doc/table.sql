@@ -94,7 +94,7 @@ create table if not exists bu_chapter
 (
     id        int not null auto_increment primary key,
 
-    parent    int,
+    parent    int default 0,
     work_id   int,
 
     name      varchar(64),

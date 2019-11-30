@@ -35,12 +35,21 @@ class Index extends MY_Controller
     public function test()
     {
 
-        $regex = "/^第?[一二三四五六七八九十零〇百千万]{1,5}[章回节卷篇]?.{0,32}$/i";
-        echo preg_match("/^\d{3}$/i", "123").'<br>';
-        echo preg_match("/^\d{0,6}$/i", "1234567").'<br>';
-        echo preg_match($regex, "第一卷 月落乌啼霜满天").'<br>';
+        $regex = "/^(　)*第?[\s　]*[一二三四五六七八九十零〇百千万]{1,5}[\s　]*[章回节卷篇]?.{0,32}$/i";
+        echo preg_match("/^\d{3}$/i", "123") . '<br>';
+        echo preg_match("/^\d{0,6}$/i", "1234567") . '<br>';
+        echo preg_match($regex, "第 一 卷 月落乌啼霜满天") . '<br>';
+        echo preg_match($regex, "　　第 一 章　仙女庙中邪") . '<br>';
+        echo $this->mb_trim("　　第 一 章　仙女庙中邪");
         echo '<br>--------------------------------------------------';
         echo '<br>--------------------------------------------------';
+    }
+
+    function mb_trim($str)
+    {
+        $str = mb_ereg_replace('^(([ \r\n\t])*(　)*)*', '', $str);
+        $str = mb_ereg_replace('(([ \r\n\t])*(　)*)*$', '', $str);
+        return $str;
     }
 
 }
