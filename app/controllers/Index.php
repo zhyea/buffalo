@@ -39,8 +39,6 @@ class Index extends MY_Controller
         echo preg_match("/^\d{3}$/i", "123") . '<br>';
         echo preg_match("/^\d{0,6}$/i", "1234567") . '<br>';
         echo preg_match($regex, "第 一 卷 月落乌啼霜满天") . '<br>';
-        echo preg_match($regex, "　　第 一 章　仙女庙中邪") . '<br>';
-        echo $this->mb_trim("　　第 一 章　仙女庙中邪");
         echo '<br>--------------------------------------------------';
         echo '<br>--------------------------------------------------';
     }

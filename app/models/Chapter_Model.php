@@ -19,5 +19,28 @@ class Chapter_Model extends MY_Model
         );
     }
 
+    /**
+     * 查找作品章节信息
+     *
+     * @param int $work_id 作品ID
+     * @return array 作品章节信息
+     */
+    public function chapters($work_id)
+    {
+        return $this->select_where1('id, name', array('work_id' => $work_id));
+    }
+
+
+    /**
+     * 查询章节信息
+     *
+     * @param int $id 章节ID
+     * @return array 章节信息
+     */
+    public function get_by_id($id)
+    {
+        return $this->get_by_id0($id, 'id, name, content');
+    }
+
 
 }

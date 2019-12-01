@@ -8,55 +8,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<h3><span class="glyphicon glyphicon-book"></span> <?= $name ?></h3>
 	</div>
 
-    <?= form_open_multipart('admin/work/upload'); ?>
-	<div class="row">
-		<input type="hidden" name="work_id" , value="<?= $id ?>">
-		<div class="form-label col-md-2 col-xs-12">选择文本</div>
-		<div class="form-input col-md-8 col-xs-12">
-			<input type="file" class="form-control" accept="text/plain" name="myTxt"/>
+    <?php if (empty($chapters)): ?>
+        <?= form_open_multipart('admin/work/upload'); ?>
+		<div class="row">
+			<input type="hidden" name="work_id" value="<?= $id ?>">
+			<div class="form-label col-md-2 col-xs-12">选择文本</div>
+			<div class="form-input col-md-8 col-xs-12">
+				<input type="file" class="form-control" accept="text/plain" name="myTxt"/>
+			</div>
+			<div class="col-md-2 col-xs-12">
+				<button type="submit" class="btn btn-success">上传文件</button>
+			</div>
 		</div>
-		<div class="col-md-2 col-xs-12">
-			<button type="submit" class="btn btn-success">上传文件</button>
-		</div>
-	</div>
-    <?= form_close() ?>
+        <?= form_close() ?>
+    <?php endif; ?>
 
 	<div class="row chapter-container">
-		<div class="col-md-4 col-xs-12 chapter-unit">
-			<div class="chapter"><a>章节一 </a><a><span class="glyphicon glyphicon-remove del"></span></a></div>
-		</div>
-		<div class="col-md-4 col-xs-12 chapter-unit">
-			<div class="chapter"><a>章节一 </a><a><span class="glyphicon glyphicon-remove del"></span></a></div>
-		</div>
-		<div class="col-md-4 col-xs-12 chapter-unit">
-			<div class="chapter"><a>章节一 </a><a><span class="glyphicon glyphicon-remove del"></span></a></div>
-		</div>
-		<div class="col-md-4 col-xs-12 chapter-unit">
-			<div class="chapter"><a>章节一 </a><a><span class="glyphicon glyphicon-remove del"></span></a></div>
-		</div>
-		<div class="col-md-4 col-xs-12 chapter-unit">
-			<div class="chapter"><a>章节一 </a><a><span class="glyphicon glyphicon-remove del"></span></a></div>
-		</div>
-		<div class="col-md-4 col-xs-12 chapter-unit">
-			<div class="chapter"><a>章节一 </a><a><span class="glyphicon glyphicon-remove del"></span></a></div>
-		</div>
-		<div class="col-md-4 col-xs-12 chapter-unit">
-			<div class="chapter"><a>章节一 </a><a><span class="glyphicon glyphicon-remove del"></span></a></div>
-		</div>
-		<div class="col-md-4 col-xs-12 chapter-unit">
-			<div class="chapter"><a>章节一 </a><a><span class="glyphicon glyphicon-remove del"></span></a></div>
-		</div>
-		<div class="col-md-4 col-xs-12 chapter-unit">
-			<div class="chapter"><a>章节一 </a><a><span class="glyphicon glyphicon-remove del"></span></a></div>
+        <?php foreach ($chapters as $c): ?>
+			<div class="col-md-6 col-xs-12 chapter-unit">
+				<div class="chapter">
+					<a href="<?= $ctx_site ?>/admin/work/chapter_edit/<?= $id ?>/<?= $c['id'] ?>"
+					   target="_self"><?= $c['name'] ?> </a>
+					<a><span class="glyphicon glyphicon-remove del"></span></a>
+				</div>
+			</div>
+        <?php endforeach; ?>
+		<div class="col-md-6 col-xs-12 chapter-unit">
+			<div class="chapter">
+				<a>新增章节...</a>
+				<a><span class="glyphicon glyphicon-plus del"></span></a>
+			</div>
 		</div>
 	</div>
 
-
-	<div class="row">
-		<div class="col-md-4 col-xs-12">
-			<button type="submit" class="btn btn-success">新增章节</button>
-		</div>
-		<div class="col-md-8 col-xs-12">
-		</div>
-	</div>
 </div>

@@ -10,6 +10,7 @@ class Work extends MY_Controller
         $this->load->model('work_model');
         $this->load->model('author_model');
         $this->load->model('meta_model');
+        $this->load->model('chapter_model');
         $this->load->service('work_service');
     }
 
@@ -23,8 +24,11 @@ class Work extends MY_Controller
     {
         $w = $this->work_model->get_by_id($work_id);
         $work_name = $w['name'];
+
         $data['id'] = $work_id;
         $data['name'] = $work_name;
+        $data['chapters'] = $this->chapter_model->chapters($work_id);
+
         $this->load->helper('form');
         $this->admin_page_view('work-chapters', $work_name . ' - Buffalo', $data);
     }
@@ -125,5 +129,29 @@ class Work extends MY_Controller
         $work_id = $_POST['work_id'];
         $this->work_service->upload_and_read($work_id, 'myTxt');
     }
+
+
+    /**
+     * 编辑章节
+     *
+     * @param int $work_id 作品ID
+     * @param int $chapter_id 章节ID
+     */
+    public function chapter_edit($work_id, $chapter_id)
+    {
+        $work = $this->work_model->get_by_id($work_id);
+        $chapter = $this->chapter_model->get_by_id($chapter_id);
+
+        $data['work_name'] = $work['name'];
+        $data['chapter_name'] = $chapter['name'];
+        $data['content'] = $chapter['content'];
+        $data['work_id'] = $work['id'];
+        $data['chapter_id'] = $chapter['id'];
+
+        $title = '编辑-' . $work['name'] . ':' . $chapter['name'] . ' - Buffalo';
+        $this->admin_page_view('chapter-edit', $title, $data);
+
+    }
+
 
 }

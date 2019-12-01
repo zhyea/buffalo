@@ -36,14 +36,14 @@ class MY_Model extends CI_Model
      * 封装多行查询语句
      *
      * @param string $columns 查询的字段
-     * @param string $where 查询条件
+     * @param array $where 查询条件
      * @param int $limit 查询数量
      * @param int $offset 查询起始位置
      * @param string $orderby 排序字段
      * @param string $direction 排序方向
      * @return array 查询结果
      */
-    protected function select_where($columns = '*', $where = NULL, $limit = NULL, $offset = NULL, $orderby = NULL, $direction = '')
+    protected function select_where($columns = '*', $where = array(), $limit = NULL, $offset = NULL, $orderby = NULL, $direction = '')
     {
         $query = $this->db->select($columns)
             ->from($this->table);
@@ -57,6 +57,29 @@ class MY_Model extends CI_Model
             ->get()
             ->result_array();
     }
+
+
+    /**
+     * 封装多行查询语句
+     *
+     * @param string $columns 查询的字段
+     * @param array $where 查询条件
+     * @param string $orderby 排序字段
+     * @param string $direction 排序方向
+     * @return array 查询结果
+     */
+    protected function select_where1($columns = '*', $where = array(), $orderby = 'id', $direction = 'asc')
+    {
+        $query = $this->db->select($columns)
+            ->from($this->table);
+        if ($where !== NULL) {
+            $query->where($where);
+        }
+        return $query->order_by($orderby, $direction)
+            ->get()
+            ->result_array();
+    }
+
 
 
     /**
