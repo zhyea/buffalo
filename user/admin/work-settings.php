@@ -19,6 +19,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<form method="post" action="<?= $ctx_site ?>/admin/work/update">
 		<div class="row">
+			<div class="form-label col-md-2 col-xs-12">封面</div>
+			<div class="form-input col-md-10 col-xs-12">
+                <?php if (isset($cover)): ?>
+					<div class="form-input col-md-12 col-xs-12">
+						<p><img src="<?= $ctx_upload . $cover ?>" alt="Cover"/></p>
+					</div>
+                <?php endif; ?>
+				<input type="file" class="form-control" accept="image/png, image/jpeg" name="logo"/>
+			</div>
+		</div>
+
+		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">作品名称</div>
 			<div class="form-input col-md-10 col-xs-12">
 				<input type="hidden" name="id" value="<?= $id ?>"/>

@@ -105,7 +105,7 @@ class Meta_Model extends MY_Model
     public function change_sn($id, $sn, $direct = 1)
     {
         $sn = $direct * 1 === 1 ? $sn + 1 : $sn - 1;
-        return $this->update(array('sn' => $sn), $id);
+        return $this->update0(array('sn' => $sn), $id);
     }
 
 

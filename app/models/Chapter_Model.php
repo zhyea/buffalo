@@ -10,12 +10,13 @@ class Chapter_Model extends MY_Model
      * @param int $work_id 作品ID
      * @param string $title 章节标题
      * @param string $content 章节内容
+     * @param int $chapter_id 章节ID
      * @return int 章节ID
      */
-    public function insert($work_id, $title, $content)
+    public function update($work_id, $title, $content, $chapter_id = 0)
     {
-        return $this->insert0(
-            array('work_id' => $work_id, 'name' => $title, 'content' => $content)
+        return $this->insert_or_update(
+            array('work_id' => $work_id, 'name' => $title, 'content' => $content), $chapter_id
         );
     }
 

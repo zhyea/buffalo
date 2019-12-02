@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container main">
 
 	<div class="page-header">
-		<h3><?= $work_name . ': ' . $chapter_name ?> - 编辑</h3>
+		<h3><?= $work_name ?></h3>
 	</div>
 
 	<form method="post" action="<?= $ctx_site ?>/admin/content/update">
@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			       value="<?= $chapter_name ?>" required autofocus/>
 		</div>
 		<div class="row">
-			<textarea name="content" id="buffalo_editor" rows="64" cols="80"><?= $content ?></textarea>
+			<textarea name="content" id="buffalo_editor" ><?= $content ?></textarea>
 			<script> CKEDITOR.replace('buffalo_editor');</script>
 		</div>
 		<div class="row">

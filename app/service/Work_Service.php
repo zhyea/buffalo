@@ -57,7 +57,7 @@ class Work_Service extends MY_Service
                     if (empty($title)) {
                         $title = '引子';
                     }
-                    $this->chapter_model->insert($work_id, $title, $content);
+                    $this->chapter_model->update($work_id, $title, $content);
                     $content = '';
                 }
                 $title = $line;
@@ -67,7 +67,7 @@ class Work_Service extends MY_Service
         }
 
         if (!empty($title) && !empty($content)) {
-            $this->chapter_model->insert($work_id, $title, $content);
+            $this->chapter_model->update($work_id, $title, $content);
         }
     }
 

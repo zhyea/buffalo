@@ -118,7 +118,7 @@ input[type="file"] {
     padding: 2px;
 }
 
-.chapter-unit:hover{
+.chapter-unit:hover {
     background-color: #deefef;
 }
 
@@ -128,13 +128,17 @@ input[type="file"] {
     height: 36px;
     width: 100%;
     line-height: 36px;
-    border: 1px dotted #1b6d85;
+    border: 1px dotted #9a9a9a;
 }
 
-.chapter .del {
+.chapter .remove {
     float: right;
     line-height: 31px;
     margin-right: 3px;
+}
+
+.chapter a {
+    color: #32383e;
 }
 
 /* ----------------- footer ----------------- */

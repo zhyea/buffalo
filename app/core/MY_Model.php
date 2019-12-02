@@ -166,7 +166,7 @@ class MY_Model extends CI_Model
      * @param int $id 要更新的记录ID
      * @return int 操作影响的行数
      */
-    protected function update($data = array(), $id = 0)
+    protected function update0($data = array(), $id = 0)
     {
         if (0 >= $id || 0 === sizeof($data)) {
             return 0;
@@ -190,7 +190,7 @@ class MY_Model extends CI_Model
         if ($id <= 0) {
             return $this->insert0($data);
         } else {
-            return $this->update($data, $id);
+            return $this->update0($data, $id);
         }
     }
 
