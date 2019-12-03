@@ -54,11 +54,11 @@ values ('site_name', 'Buffalo'),
 -- media
 create table if not exists bu_media
 (
-    id       int not null auto_increment primary key,
+    id   int not null auto_increment primary key,
 
-    type     varchar(16),
-    name     varchar(32),
-    position varchar(128)
+    type varchar(16),
+    name varchar(32),
+    path varchar(128)
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;
 

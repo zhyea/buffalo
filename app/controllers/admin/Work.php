@@ -11,6 +11,7 @@ class Work extends MY_Controller
         $this->load->model('author_model');
         $this->load->model('meta_model');
         $this->load->model('chapter_model');
+        $this->load->model('media_model');
         $this->load->service('work_service');
     }
 
@@ -57,16 +58,20 @@ class Work extends MY_Controller
         $cat_id = is_null($work) ? 0 : $work['category_id'];
         $author_id = is_null($work) ? 0 : $work['author_id'];
         $author = $this->author_model->get_by_id($author_id);
+        $pic_id = is_null($work) ? 0 : $work['pic_id'];
+        $cover = $this->media_model->get_media_path($pic_id);
 
         $data['id'] = $id;
         $data['name'] = is_null($work) ? '' : $work['name'];
         $data['brief'] = is_null($work) ? '' : $work['brief'];
+        $data['cover'] = empty($cover) ? '' : $cover;
         $data['author_id'] = $author_id;
         $data['cat_id'] = $cat_id;
         $data['author'] = empty($author) ? '' : $author['name'];
         $data['authorCountry'] = empty($author) ? '' : $author['country'];
         $data['cat'] = empty($cat_id) ? '' : $this->meta_model->get_name($cat_id);;
 
+        $this->load->helper('form');
         $this->admin_page_view('work-settings', $title, $data);
 
     }
@@ -83,11 +88,13 @@ class Work extends MY_Controller
             $author_id = $this->author_model->insert($_POST['author'], $_POST['authorCountry']);
         }
 
+        $pic_id = $this->work_service->update_cover($id, 'cover');
         $data = array(
             'name' => $_POST['name'],
             'brief' => $_POST['brief'],
             'author_id' => $author_id,
-            'category_id' => $_POST['cat_id']
+            'category_id' => $_POST['cat_id'],
+            'pic_id' => $pic_id
         );
         $this->work_model->insert_or_update($data, $id);
 
