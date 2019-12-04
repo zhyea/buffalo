@@ -81,7 +81,8 @@ create table if not exists bu_work
 
     author_id   int,
     category_id int,
-    pic_id      int,
+    cover       varchar(128),
+    file        varchar(128),
 
     name        varchar(64),
     brief       tinytext
@@ -110,7 +111,7 @@ create table if not exists bu_feature
 (
     id        int not null auto_increment primary key,
 
-    pic_id    int,
+    cover     varchar(128),
 
     name      varchar(64),
     key_words varchar(64),
@@ -120,10 +121,11 @@ create table if not exists bu_feature
   DEFAULT CHARSET = utf8mb4;
 
 -- feature-work
-create table if not exists bu_feature_work
+create table if not exists bu_feature_record
 (
     id         int not null auto_increment primary key,
+    type       tinyint default 1,
     feature_id int,
-    work_id    int
+    record_id  int
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;

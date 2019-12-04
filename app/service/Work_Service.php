@@ -16,28 +16,27 @@ class Work_Service extends MY_Service
     /**
      * 更新封面信息
      *
+     * @param array $data 作品信息
      * @param int $work_id 作品ID
-     * @param string $name 封面字段名称
      * @return int 封面记录ID
      */
-    public function update_cover($work_id, $name = NULL)
+    public function update($data, $work_id)
     {
-        $r = $this->upload_img($name);
+        $r = $this->upload_img('cover');
+        $path = '';
         if ($r[0]) {
             $w = $this->work_model->get_by_id($work_id);
-            $pic_id = 0;
             if (!is_null($w)) {
-                $pic_id = empty($w['pic_id']) ? 0 : $w['pic_id'];
-                $old = $this->media_model->get_media_path($pic_id);
+                $old = $w['cover'];
                 $file_path = VIEWPATH . 'uploads/' . $old;
                 if (file_exists($file_path)) {
                     unlink($file_path);
                 }
             }
-            return $this->media_model->update_img(NULL, $r[1], $pic_id);
-        } else {
-            return 0;
+            $path = $r[1];
         }
+        $data['cover'] = $path;
+        return $this->work_model->insert_or_update($data, $work_id);
     }
 
     /**
@@ -52,6 +51,7 @@ class Work_Service extends MY_Service
         if ($r[0]) {
             $f = $r[1];
             $this->read($work_id, $f);
+            $this->work_model->insert_or_update(array('file' => $f), $work_id);
             echo 'success';
         } else {
             echo $r[1];
@@ -72,7 +72,7 @@ class Work_Service extends MY_Service
         $title = '';
         $content = '';
 
-        $all = file($file);
+        $all = file(VIEWPATH . 'uploads/' . $file);
         foreach ($all as $num => $line) {
             $line = $this->mb_trim($line);
             $line = str_replace('　', ' ', $line);

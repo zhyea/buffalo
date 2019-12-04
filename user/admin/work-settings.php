@@ -90,8 +90,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div class="row">
 		<div class="col-md-2 col-xs-12">&nbsp;</div>
-		<div class="form-input col-md-10 col-xs-12">
+		<div class="form-input col-md-5 col-xs-12">
 			<button type="submit" class="btn btn-success">保存作品信息</button>
+		</div>
+		<div class="form-input col-md-5 col-xs-12">
+			<a href="<?= $ctx_site ?>/admin/work/list_page" class="btn btn-success">返回作品列表</a>
 		</div>
 	</div>
     <?= form_close() ?>
