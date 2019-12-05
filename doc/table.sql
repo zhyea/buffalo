@@ -112,13 +112,14 @@ create table if not exists bu_feature
     id        int not null auto_increment primary key,
 
     cover     varchar(128),
-
     name      varchar(64),
+    alias     varchar(16),
     key_words varchar(64),
     brief     tinytext
 
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;
+
 
 -- feature-work
 create table if not exists bu_feature_record

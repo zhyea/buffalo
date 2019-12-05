@@ -46,7 +46,7 @@ class Work extends MY_Controller
     /**
      * 作品信息维护页
      *
-     * @param int $id 当前分类ID
+     * @param int $id 当前作品ID
      */
     public function settings_page($id = 0)
     {
@@ -84,14 +84,18 @@ class Work extends MY_Controller
         if (empty($author_id)) {
             $author_id = $this->author_model->insert($_POST['author'], $_POST['authorCountry']);
         }
-
+        $name = $_POST['name'];
         $data = array(
-            'name' => $_POST['name'],
+            'name' => $name,
             'brief' => $_POST['brief'],
             'author_id' => $author_id,
             'category_id' => $_POST['cat_id']
         );
         $this->work_service->update($data, $id);
+
+        if ($id > 0) {
+            $data['msg'] = '更新 ' . $name . ' 成功';
+        }
 
         redirect('admin/work/settings_page/' . $id);
     }
