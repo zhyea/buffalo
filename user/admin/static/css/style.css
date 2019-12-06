@@ -95,6 +95,7 @@ input[type="file"] {
 }
 
 .main form .form-label {
+    line-height: 240%;
     overflow: hidden;
     padding: 0;
     text-align: right;
@@ -224,6 +225,7 @@ input[readonly], .form-control[readonly] {
     padding: 30px !important;
     background: #FFF;
 }
+
 
 .bootstrap-table .fixed-table-loading {
     right: 0px !important;

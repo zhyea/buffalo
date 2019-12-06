@@ -67,7 +67,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <ul class="dropdown-menu navbar-child">
 	                    <li class="navbar-child-item"><a href="<?= $ctx_site ?>/admin/feature/list_page">专题管理</a></li>
 	                    <li class="navbar-child-item"><a href="<?= $ctx_site ?>/admin/feature/list_page">作者管理</a></li>
-	                    <li class="navbar-child-item"><a href="<?= $ctx_site ?>/admin/work/list_page">文章管理</a></li>
+	                    <li class="navbar-child-item"><a href="<?= $ctx_site ?>/admin/work/list_page">作品管理</a></li>
                         <li class="navbar-child-item"><a href="<?= $ctx_site ?>/admin/category/list_page">分类管理</a></li>
                         <li class="navbar-child-item"><a href="<?= $ctx_site ?>/admin/user/list_page">用户管理</a></li>
                     </ul>

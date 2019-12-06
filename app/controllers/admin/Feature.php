@@ -9,7 +9,7 @@ class Feature extends MY_Controller
     {
         parent::__construct();
         $this->load->model('feature_model');
-        $this->load->service('work_service');
+        $this->load->service('feature_service');
     }
 
 
@@ -43,6 +43,11 @@ class Feature extends MY_Controller
 
         $title = ($id > 0 ? '编辑专题' : '新增专题') . ' - Buffalo';
 
+        if (get_cookie('update_feature')) {
+            $data['msg'] = '更新专题信息成功！';
+            delete_cookie('update_feature');
+        }
+
         $data['id'] = $id;
         $data['cover'] = is_null($f) ? '' : $f['cover'];
         $data['name'] = is_null($f) ? '' : $f['name'];
@@ -52,8 +57,30 @@ class Feature extends MY_Controller
 
         $this->load->helper('form');
         $this->admin_page_view('feature-settings', $title, $data);
-
     }
 
+
+    /**
+     * 更新专题信息
+     */
+    public function update()
+    {
+        $id = $_POST['id'];
+        $data = array(
+            'name' => $_POST['name'],
+            'alias' => $_POST['alias'],
+            'key_words' => $_POST['key_words'],
+            'brief' => $_POST['brief']
+        );
+
+        $tmp = $this->feature_service->update($data, $id);
+        if ($id > 0) {
+            set_cookie('update_feature', true, 60);
+        } else {
+            $id = $tmp;
+        }
+
+        redirect('admin/feature/settings_page/' . $id);
+    }
 
 }

@@ -35,7 +35,9 @@ class Work_Service extends MY_Service
             }
             $path = $r[1];
         }
-        $data['cover'] = $path;
+        if (!empty($path)) {
+            $data['cover'] = $path;
+        }
         return $this->work_model->insert_or_update($data, $work_id);
     }
 

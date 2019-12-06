@@ -58,6 +58,11 @@ class Work extends MY_Controller
         $author_id = is_null($work) ? 0 : $work['author_id'];
         $author = $this->author_model->get_by_id($author_id);
 
+        if (get_cookie('update_work')) {
+            $data['msg'] = '更新作品信息成功！';
+            delete_cookie('update_work');
+        }
+
         $data['id'] = $id;
         $data['name'] = is_null($work) ? '' : $work['name'];
         $data['brief'] = is_null($work) ? '' : $work['brief'];
@@ -84,17 +89,18 @@ class Work extends MY_Controller
         if (empty($author_id)) {
             $author_id = $this->author_model->insert($_POST['author'], $_POST['authorCountry']);
         }
-        $name = $_POST['name'];
         $data = array(
-            'name' => $name,
+            'name' => $_POST['name'],
             'brief' => $_POST['brief'],
             'author_id' => $author_id,
             'category_id' => $_POST['cat_id']
         );
-        $this->work_service->update($data, $id);
+        $tmp = $this->work_service->update($data, $id);
 
         if ($id > 0) {
-            $data['msg'] = '更新 ' . $name . ' 成功';
+            set_cookie('update_work', true, 60);
+        } else {
+            $id = $tmp;
         }
 
         redirect('admin/work/settings_page/' . $id);

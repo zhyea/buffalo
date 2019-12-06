@@ -28,7 +28,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	       data-url="<?= $ctx_site ?>/admin/feature/data"
 	       data-sort-name="id"
 	       data-sort-order="asc"
-	       data-side-pagination='server'
 	       data-pagination=true
 	       data-page-size=30
 	       data-page-list=[15,30,50,All]>
@@ -37,6 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<th data-align="center" data-checkbox="true"></th>
 			<th data-align="left" data-sortable="true" data-field="name" data-formatter="nameFormatter">专题名称</th>
 			<th data-align="left" data-sortable="true" data-field="alias">别名</th>
+			<th data-align="center">操作</th>
 		</tr>
 		</thead>
 	</table>
@@ -68,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     });
 
     function nameFormatter(value, row, index) {
-        return '<a href="<?= $ctx_site ?>/admin/work/settings_page/' + row.id + '" target="_self">' + value + '</a>';
+        return '<a href="<?= $ctx_site ?>/admin/feature/settings_page/' + row.id + '" target="_self">' + value + '</a>';
     }
 
 </script>
