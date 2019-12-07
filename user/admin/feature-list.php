@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 
-	<div id="workTableToolbar">
+	<div id="featureTableToolbar">
 		<div class="btn-group">
 			<a class="btn btn-default" href="<?= $ctx_site ?>/admin/feature/settings_page">
 				<i class="glyphicon glyphicon-plus"></i>新增
@@ -19,12 +19,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</a>
 		</div>
 	</div>
-	<table id="workTable"
+	<table id="featureTable"
 	       data-toggle="table"
 	       data-search="true"
 	       data-classes="table table-hover table-borderless"
 	       data-click-to-select="true"
-	       data-toolbar="#workTableToolbar"
+	       data-toolbar="#featureTableToolbar"
 	       data-url="<?= $ctx_site ?>/admin/feature/data"
 	       data-sort-name="id"
 	       data-sort-order="asc"
@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<th data-align="center" data-checkbox="true"></th>
 			<th data-align="left" data-sortable="true" data-field="name" data-formatter="nameFormatter">专题名称</th>
 			<th data-align="left" data-sortable="true" data-field="alias">别名</th>
-			<th data-align="center">操作</th>
+			<th data-align="center" data-formatter="operateFormatter">操作</th>
 		</tr>
 		</thead>
 	</table>
@@ -48,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     // 删除按钮事件
     $("#btnDelete").on("click", function () {
 
-        let rows = $("#workTable").bootstrapTable('getSelections');// 获得要删除的数据
+        let rows = $("#featureTable").bootstrapTable('getSelections');// 获得要删除的数据
         if (rows.length > 0) {// rows 主要是为了判断是否选中，下面的else内容才是主要
             let ids = [];// 声明一个数组
             $(rows).each(function () {// 通过获得别选中的来进行遍历
@@ -61,7 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 type: 'post',
                 dataType: 'json',
                 success: function (data) {
-                    $('#workTable').bootstrapTable('refresh');
+                    $('#featureTable').bootstrapTable('refresh');
                 }
             });
         }
@@ -69,6 +69,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     function nameFormatter(value, row, index) {
         return '<a href="<?= $ctx_site ?>/admin/feature/settings_page/' + row.id + '" target="_self">' + value + '</a>';
+    }
+
+    function operateFormatter(value, row, index) {
+        return '<a href="<?= $ctx_site ?>/admin/feature/record_page/' + row.id + '" target="_self">记录</a>';
     }
 
 </script>

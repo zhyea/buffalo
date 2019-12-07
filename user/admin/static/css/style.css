@@ -142,6 +142,11 @@ input[type="file"] {
     color: #32383e;
 }
 
+.feature-article{
+    line-height: 240%;
+    border: 1px dashed #9d9d9d;
+}
+
 /* ----------------- footer ----------------- */
 .footer {
     margin: 12px 0 0;

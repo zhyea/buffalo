@@ -10,6 +10,7 @@ class Feature extends MY_Controller
         parent::__construct();
         $this->load->model('feature_model');
         $this->load->service('feature_service');
+        $this->load->model('feature_record_model');
     }
 
 
@@ -81,6 +82,39 @@ class Feature extends MY_Controller
         }
 
         redirect('admin/feature/settings_page/' . $id);
+    }
+
+
+    /**
+     * 进入专题记录页
+     *
+     * @param int $id 专题ID
+     */
+    public function record_page($id = 0)
+    {
+        $f = $this->feature_model->get_by_id($id);
+        if (is_null($f)) {
+            redirect('admin/feature/list_page');
+        }
+
+        $title = $f['name'] . ' - Buffalo';
+
+        $data['id'] = $id;
+        $data['name'] = $f['name'];
+
+        $this->admin_page_view('feature-records', $title, $data);
+    }
+
+
+    /**
+     * 获取专题记录数据
+     *
+     * @param int $feature_id 专题ID
+     */
+    public function records_data($feature_id)
+    {
+        $data = $this->feature_record_model->find_feature_works($feature_id);
+        echo json_encode($data);
     }
 
 }

@@ -66,8 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="form-input col-md-10 col-xs-12">
 			<div class="input-group">
 				<input type="hidden" name="cat_id" id="categoryId" value="<?= $cat_id ?>"/>
-				<input type="text" class="form-control" name="cat" value="<?= $cat ?>" id="categorySelector"
-				       onfocus="this.blur()" required/>
+				<input type="text" class="form-control" name="cat" value="<?= $cat ?>" id="categorySelector" required/>
 				<div class="input-group-btn">
 					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 						<span class="caret"></span>

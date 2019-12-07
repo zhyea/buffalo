@@ -1,0 +1,63 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+
+<div class="container main">
+
+	<div class="page-header">
+		<h3>专题 《<?= $name ?>》 - 列表</h3>
+	</div>
+	
+	
+	<div id="featureRecordTableToolbar">
+		<div class="input-group">
+			<input type="text" class="form-control" id="workSelector" required/>
+			<div class="input-group-btn">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu dropdown-menu-right" role="menu">
+				</ul>
+				<a id="btnDelete" class="btn btn-default">
+					<i class="glyphicon glyphicon-minus"></i> 删除
+				</a>
+			</div>
+		</div>
+	</div>
+	<table id="featureRecordTable"
+	       data-toggle="table"
+	       data-search="true"
+	       data-classes="table table-hover table-borderless"
+	       data-click-to-select="true"
+	       data-toolbar="#featureRecordTableToolbar"
+	       data-url="<?= $ctx_site ?>/admin/feature/records_data/<?= $id ?>"
+	       data-sort-name="id"
+	       data-sort-order="asc"
+	       data-pagination=true
+	       data-page-size=30
+	       data-page-list=[15,30,50,All]>
+		<thead>
+		<tr>
+			<th data-align="center" data-checkbox="true"></th>
+			<th data-align="left" data-sortable="true" data-field="name">作品</th>
+		</tr>
+		</thead>
+	</table>
+</div>
+
+
+<script charset="utf-8" src="<?= $ctx_admin ?>/static/js/jquery.min.js"></script>
+<script charset="utf-8" src="<?= $ctx_admin ?>/static/js/bootstrap-suggest.js"></script>
+<script>
+    $("#workSelector").bsSuggest({
+        clearable: true,
+        url: "<?= $ctx_site ?>/admin/category/data_all",
+        showHeader: false,
+        showBtn: true,     //不显示下拉按钮
+        idField: "id",
+        keyField: "name",
+        effectiveFields: ["id", "name", "slug"]
+    }).on('onSetSelectValue', function (e, keyword, data) {
+        $("#categoryId").val(data.id)
+    });
+</script>

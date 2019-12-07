@@ -89,11 +89,15 @@ class Work extends MY_Controller
         if (empty($author_id)) {
             $author_id = $this->author_model->insert($_POST['author'], $_POST['authorCountry']);
         }
+        $cat_id = $_POST['cat_id'];
+        if (empty($cat_id)) {
+            $cat_id = $this->meta_model->insert_category($_POST['cat']);
+        }
         $data = array(
             'name' => $_POST['name'],
             'brief' => $_POST['brief'],
             'author_id' => $author_id,
-            'category_id' => $_POST['cat_id']
+            'category_id' => $cat_id
         );
         $tmp = $this->work_service->update($data, $id);
 

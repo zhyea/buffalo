@@ -119,4 +119,22 @@ class Meta_Model extends MY_Model
         $r = parent::get_by_id0($id, 'name');
         return is_null($r) ? '' : $r['name'];
     }
+
+
+    /**
+     * 新增分类信息
+     *
+     * @param string $name 分类名称
+     * @return int 分类ID
+     */
+    public function insert_category($name)
+    {
+        $data = array(
+            'parent' => 0,
+            'name' => $name,
+            'slug' => $name,
+            'type' => 'category'
+        );
+        return $this->insert_or_update($data);
+    }
 }
