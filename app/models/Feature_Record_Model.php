@@ -31,15 +31,13 @@ class Feature_Record_Model extends MY_Model
      */
     public function find_feature_works($feature_id)
     {
-        $this->db->select('r.id, r.feature_id, r.record_id, w.name');
-        $this->db->from('feature_record r');
-        $this->db->join('work w', 'r.record_id=w.id', 'left');
-
-        $this->db->where(array('type' => 'work'));
+        $this->db->select('r.id, r.feature_id, r.record_id, w.name')
+            ->from('feature_record r')
+            ->join('work w', 'r.record_id=w.id', 'left')
+            ->where(array('type' => 'work'));
 
         return $this->db->get()->result_array();
     }
-
 
 
 }
