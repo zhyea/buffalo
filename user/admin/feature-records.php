@@ -28,10 +28,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="featureRecordTableToolbar">
 		<div class="btn-group">
-
-			<a class="btn btn-default" data-toggle="modal" data-target="#featureRecordSelect">
-				<i class="glyphicon glyphicon-plus"></i> 新增
-			</a>
 			<a id="btnDelete" class="btn btn-default">
 				<i class="glyphicon glyphicon-minus"></i> 删除
 			</a>
