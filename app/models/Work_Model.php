@@ -49,4 +49,19 @@ class Work_Model extends MY_Model
             return $this->db->get()->result_array();
         }
     }
+
+
+    /**
+     * 根据名称查询作品数据
+     * @param string $name 作品名称
+     * @return array 作品数据
+     */
+    public function find_by_name($name)
+    {
+        return $this->db->select('id, name')
+            ->from('work')
+            ->like('name', $name, 'both')
+            ->limit(12)
+            ->get()->result_array();
+    }
 }

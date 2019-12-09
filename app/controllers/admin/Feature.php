@@ -111,10 +111,32 @@ class Feature extends MY_Controller
      *
      * @param int $feature_id 专题ID
      */
-    public function records_data($feature_id)
+    public function feature_works($feature_id)
     {
         $data = $this->feature_record_model->find_feature_works($feature_id);
         echo json_encode($data);
+    }
+
+
+    /**
+     * 添加专题记录
+     */
+    public function add_work()
+    {
+        $feature_id = $_POST['id'];
+        $work_id = $_POST['work_id'];
+        echo $this->feature_record_model->add_feature_work($feature_id, $work_id);
+    }
+
+
+
+    /**
+     * 删除数据
+     */
+    public function delete_records()
+    {
+        $ids = $_POST['ids'];
+        echo $this->feature_record_model->delete_batch(explode(',', $ids));
     }
 
 }

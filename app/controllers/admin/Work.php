@@ -166,7 +166,16 @@ class Work extends MY_Controller
 
         $title = '编辑-' . $work['name'] . ':' . $chapter['name'] . ' - Buffalo';
         $this->admin_page_view('chapter-edit', $title, $data);
+    }
 
+
+    /**
+     * 根据名称查询作品信息
+     * @param string $name 作品名称
+     */
+    public function find_by_name($name){
+        $arr = $this->work_model->find_by_name(urldecode($name));
+        echo json_encode(array('value' => $arr));
     }
 
 
