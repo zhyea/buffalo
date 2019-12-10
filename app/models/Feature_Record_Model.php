@@ -40,4 +40,23 @@ class Feature_Record_Model extends MY_Model
     }
 
 
+    /**
+     * 根据别名获取专题文章
+     *
+     * @param string $alias 专题别名
+     * @param int $limit 记录数量
+     * @return array 专题文章集合
+     */
+    public function find_works_by_alias($alias, $limit)
+    {
+        return $this->db->select('r.id, w.id, w.name')
+            ->from('feature_record r')
+            ->join('work w', 'r.record_id=w.id', 'left')
+            ->join('feature f', 'r.feature_id=f.id', 'left')
+            ->where(array('r.type' => 'work', 'f.alias' => $alias))
+            ->limit($limit)
+            ->get()->result_array();
+    }
+
+
 }

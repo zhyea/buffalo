@@ -53,6 +53,7 @@ class Work_Model extends MY_Model
 
     /**
      * 根据名称查询作品数据
+     *
      * @param string $name 作品名称
      * @return array 作品数据
      */
@@ -62,6 +63,23 @@ class Work_Model extends MY_Model
             ->from('work')
             ->like('name', $name, 'both')
             ->limit(12)
+            ->get()->result_array();
+    }
+
+
+    /**根据分类ID获取作品信息
+     *
+     * @param int $cat_id 分类ID
+     * @param int $limit 要获取的记录数量
+     * @return array 作品集合
+     */
+    public function find_by_cat($cat_id, $limit)
+    {
+        return $this->db->select('id, name, a.name as author')
+            ->from('work w')
+            ->join('author a', 'w.author_id=a.id', 'left')
+            ->where(array('category_id' => $cat_id))
+            ->limit($limit)
             ->get()->result_array();
     }
 }

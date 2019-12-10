@@ -137,4 +137,16 @@ class Meta_Model extends MY_Model
         );
         return $this->insert_or_update($data);
     }
+
+
+    /**
+     * 根据别名获取分类信息
+     *
+     * @param string $slug 分类别名
+     * @return array 分类信息
+     */
+    public function get_by_slug($slug)
+    {
+        return $this->get_where('id, name', array('slug' => $slug));
+    }
 }
