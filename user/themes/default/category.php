@@ -5,7 +5,11 @@ isset($ctx_theme) OR exit('No base url exists')
 
 
 <div class="container notice">
-	<span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> ： <?= $notice ?>
+	<ol class="breadcrumb">
+		<li><a href="#">首页</a></li>
+		<li><a href="#">语文</a></li>
+		<li class="active">语文吃饭</li>
+	</ol>
 </div>
 
 <div class="container main">

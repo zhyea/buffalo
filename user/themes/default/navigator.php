@@ -42,7 +42,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</nav>
 </div>
 
-
-<div class="container notice">
-	<span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> ： <?= $notice ?>
-</div>
