@@ -54,6 +54,12 @@ body {
     border-bottom: 1px solid #ddd;
 }
 
+.notice .breadcrumb {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+
 
 /* -------------- index -------------- */
 
@@ -107,37 +113,24 @@ body {
 
 /* ------------------------------------ cat ------------------------------------ */
 
-.cat-list div {
-    line-height: 36px;
-    letter-spacing: 0.86px;
-    border-bottom: 1px dotted #ccc;
+.category {
+    padding: 6px 0;
+    height: 180px;
+    border-bottom: 1px solid #ddd;
+
 }
 
-.cat-list > .head-cat, .head-name, .head-author {
-    color: #222;
-    font-size: 12px;
+.category .cover {
+    float: left;
+    width: 120px;
+    border: 1px solid #000;
 }
 
-.cat-list .head-cat {
-    text-indent: 1.5em;
+.category .brief {
+    float: right;
+    border: 1px solid #000;
 }
 
-.cat-list .book-cat {
-    color: #999;
-    text-indent: 1em;
-}
-
-.cat-list .head-name {
-    text-indent: 2em;
-}
-
-.cat-list .book-name {
-    text-indent: 1em;
-}
-
-#paging {
-    text-align: center;
-}
 
 /* ------------------------------------ chapter ------------------------------------ */
 .catalog {
