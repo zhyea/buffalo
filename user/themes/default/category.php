@@ -35,6 +35,7 @@ isset($ctx_theme) OR exit('No base url exists')
 		<h3><span class="glyphicon glyphicon-bookmark"></span> 分类名称</h3>
 	</div>
 	<div class="row category">
+
 		<div class="col-md-6 col-xs-12">
 			<div class="cover">
 				<img src="<?php echo $ctx_theme ?>/static/imgs/tuijian.jpg"/>

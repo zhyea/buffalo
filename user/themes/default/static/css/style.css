@@ -115,19 +115,21 @@ body {
 
 .category {
     padding: 6px 0;
-    height: 180px;
     border-bottom: 1px solid #ddd;
-
+    overflow: hidden;
+    vertical-align: baseline;
 }
 
 .category .cover {
     float: left;
     width: 120px;
+    height: 180px;
     border: 1px solid #000;
 }
 
 .category .brief {
-    float: right;
+    margin-left: 121px;
+    height: 180px;
     border: 1px solid #000;
 }
 
