@@ -114,23 +114,61 @@ body {
 /* ------------------------------------ cat ------------------------------------ */
 
 .category {
-    padding: 6px 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+.category .work {
+    padding: 12px 15px;
     border-bottom: 1px solid #ddd;
     overflow: hidden;
-    vertical-align: baseline;
 }
 
 .category .cover {
     float: left;
-    width: 120px;
-    height: 180px;
-    border: 1px solid #000;
+    width: 124px;
+    height: 172px;
+    overflow: hidden;
 }
 
 .category .brief {
-    margin-left: 121px;
-    height: 180px;
-    border: 1px solid #000;
+    padding: 0 8px;
+    margin-left: 124px;
+    height: 172px;
+    overflow: hidden;
+}
+
+.category .brief .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #129151;
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+.category .brief .title a {
+    color: #129151;
+}
+
+.category .brief .title a:hover {
+    color: #e8434c;
+}
+
+.category .brief .author {
+    line-height: 32px;
+}
+
+.category .brief .author a {
+    color: #a3d046;
+}
+
+.category .brief .author a:hover {
+    color: #999;
+}
+
+.category .brief .intro {
+    line-height: 150%;
+    overflow: hidden;
 }
 
 
