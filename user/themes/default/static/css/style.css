@@ -141,7 +141,7 @@ body {
 .category .brief .title {
     overflow: hidden;
     text-overflow: ellipsis;
-    color: #129151;
+    color: #1d6300;
     font-size: 20px;
     white-space: nowrap;
 }
@@ -169,6 +169,23 @@ body {
 .category .brief .intro {
     line-height: 150%;
     overflow: hidden;
+}
+
+.pagination {
+    padding: 12px 0;
+}
+
+.pagination a {
+    padding: 6px 8px;
+    margin: 2px;
+    line-height: 100%;
+    border: 1px solid #1d6300;
+    color: #1d6300;
+}
+
+.pagination a:hover {
+    text-decoration: none;
+    background-color: #a5cadc;
 }
 
 
