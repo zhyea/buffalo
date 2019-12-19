@@ -31,6 +31,10 @@ body {
     width: 100%;
 }
 
+.clear{
+    clear: both;
+}
+
 /* -------------- head -------------- */
 .header {
     height: 90px;
@@ -190,25 +194,56 @@ body {
 
 
 /* ------------------------------------ chapter ------------------------------------ */
+.work-header{
+    padding: 12px 15px 3px;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.work-header .title{
+    font-weight: bolder;
+    font-size: 27px;
+    color: #1d6300;
+}
+
+.work-header .author{
+    padding-left: 12px;
+}
+
+.work-neck{
+    padding: 9px 15px 6px;
+    border-bottom: 1px solid #e2e2e2;
+    vertical-align: baseline;
+    height: auto;
+}
+
+.work-neck .cover{
+    float: left;
+    width: 124px;
+    height: 172px;
+    overflow: hidden;
+}
+
+.work-neck .intro{
+    padding: 6px 0 0 9px;
+    height: 100%;
+    overflow: hidden;
+    text-align: left;
+    color: #737383;
+    line-height: 180%;
+    text-indent: 2em;
+}
+
+
 .catalog {
     padding: 12px;
     line-height: 210%;
 }
 
 .catalog .name {
-    padding: 12px 12px 6px;
-    font-weight: bolder;
-    font-size: 27px;
-    color: #1d6300;
-    border-bottom: 2px solid #129151;
 }
 
 .catalog .info {
     padding: 6px 12px;
-    text-align: left;
-    color: #737383;
-    line-height: 180%;
-    border-bottom: 1px solid #e2e2e2;
 }
 
 .catalog .outline {
