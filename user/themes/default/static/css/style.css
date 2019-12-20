@@ -31,7 +31,7 @@ body {
     width: 100%;
 }
 
-.clear{
+.clear {
     clear: both;
 }
 
@@ -194,76 +194,80 @@ body {
 
 
 /* ------------------------------------ chapter ------------------------------------ */
-.work-header{
+.work-header {
     padding: 12px 15px 3px;
     border-bottom: 1px solid #e2e2e2;
 }
 
-.work-header .title{
+.work-header .title {
     font-weight: bolder;
     font-size: 27px;
     color: #1d6300;
 }
 
-.work-header .author{
+.work-header .author {
     padding-left: 12px;
 }
 
-.work-neck{
-    padding: 9px 15px 6px;
+.work-neck {
+    margin: 0;
+    padding: 9px 0 6px;
     border-bottom: 1px solid #e2e2e2;
     vertical-align: baseline;
     height: auto;
 }
 
-.work-neck .cover{
-    float: left;
-    width: 124px;
+.work-neck .cover {
     height: 172px;
     overflow: hidden;
 }
 
-.work-neck .intro{
-    padding: 6px 0 0 9px;
-    height: 100%;
+.work-neck .brief {
+    padding: 0;
+}
+
+.work-neck .brief .intro {
+    padding: 6px 0;
     overflow: hidden;
-    text-align: left;
+    height: 148px;
     color: #737383;
     line-height: 180%;
     text-indent: 2em;
 }
 
-
-.catalog {
-    padding: 12px;
-    line-height: 210%;
+.work-neck .brief .relate {
+    height: 24px;
+    padding: 8px 16px 0 0;
+    overflow: hidden;
+    font-size: 12px;
 }
 
-.catalog .name {
+.work-neck .brief .relate a {
+    margin-right: 12px;
+    color: #7d7d7d;
 }
 
-.catalog .info {
-    padding: 6px 12px;
+.work-body {
+    margin-top: 16px;
+    padding: 0 15px;
 }
 
-.catalog .outline {
-    padding: 6px 12px;
-    color: #737383;
-}
 
-.volume .name {
+.work-body .volume {
     padding: 9px 12px 6px;
-    background-color: #fcfcfc;
+    background-color: #ececec;
     text-align: left;
     font: 18px Arial;
-    border-top: 2px solid #129151;
+    color: #1d6300;
     border-bottom: 1px solid #e2e2e2;
+    border-top: 2px solid #129151;
 }
 
-.volume .chapter {
+.work-body .chapter {
     padding: 6px 12px;
     overflow: hidden;
     white-space: nowrap;
+    line-height: 210%;
     border-bottom: 1px dashed #e2e2e2;
 }
 
