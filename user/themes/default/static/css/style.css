@@ -273,38 +273,48 @@ body {
 
 /* ------------------------------------ chapter ------------------------------------ */
 .readerTools {
+    margin: 0;
     border-bottom: 1px solid #ddd;
     font-size: 12px;
 }
 
-.chapterName {
+#contentContainer {
+    margin: 0;
+}
+
+.chapter-name {
+    margin: 0;
     padding: 9px 0 6px;
-    font-size: 12px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 240%;
     color: #129151;
     text-align: center;
     border-bottom: 1px dotted #ddd;
 }
 
-.chapterNav {
+.chapter-nav {
+    margin: 0;
     font-size: 12px;
     line-height: 32px;
     text-align: center;
     border-bottom: 1px dotted #ddd;
 }
 
-.chapterNav a {
+.chapter-nav a {
     margin: 0 10px;
     text-decoration: none;
     color: #129151;
 }
 
-.chapterContent {
+.chapter-content {
+    margin: 0;
     padding: 12px;
     min-height: 90px;
     border-bottom: 1px dotted #ddd;
 }
 
-.chapterContent p {
+.chapter-content p {
     text-indent: 2em;
 }
 
