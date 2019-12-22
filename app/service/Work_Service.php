@@ -8,6 +8,7 @@ class Work_Service extends MY_Service
     {
         parent::__construct();
         $this->load->model('work_model');
+        $this->load->model('meta_model');
         $this->load->model('media_model');
         $this->load->model('chapter_model');
     }
@@ -102,11 +103,27 @@ class Work_Service extends MY_Service
         }
     }
 
-    function mb_trim($str)
+    private function mb_trim($str)
     {
         $str = mb_ereg_replace('^(([ \r\n\t])*(　)*)*', '', $str);
         $str = mb_ereg_replace('(([ \r\n\t])*(　)*)*$', '', $str);
         return $str;
+    }
+
+
+    /**
+     * 获取分类及文章信息
+     */
+    public function find_cat_works()
+    {
+        $cats = $this->meta_model->find_top_cats();
+
+        foreach ($cats as &$c) {
+            $works = $this->work_model->find_by_cat($c['id'], 18);
+            $c['works'] = $works;
+        }
+
+        return $cats;
     }
 
 }

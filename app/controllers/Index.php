@@ -9,75 +9,43 @@ class Index extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->helper('array');
-        $this->load->model('meta_model');
-        $this->load->model('settings_model');
 
         $this->load->helper('url');
+        $this->load->service('feature_service');
+        $this->load->service('work_service');
     }
 
 
     public function index()
     {
-        $cats = $this->meta_model->query_category();
-        $data['categories'] = list_to_tree($cats);
-
-        $data['site_name'] = $this->settings_model->get('site_name');
-        $data['notice'] = $this->settings_model->get('notice');
-
-        self::view_of('header', $data);
-        self::view_of('navigator', $data);
-        self::view_of('content');
-        self::view_of('footer');
+        $data = array();
+        $data['recommend'] = $this->feature_service->find_all_recommend();;
+        $data['cats'] = $this->work_service->find_cat_works();
+        //print_r($data);
+        $this->page_view('home', '首页', $data);
     }
 
 
     public function category()
     {
-        $cats = $this->meta_model->query_category();
-        $data['categories'] = list_to_tree($cats);
-
-        $data['site_name'] = $this->settings_model->get('site_name');
-        $data['notice'] = $this->settings_model->get('notice');
-
-        self::view_of('header', $data);
-        self::view_of('navigator', $data);
-        self::view_of('category');
-        self::view_of('footer');
+        $this->page_view('category');
     }
 
 
     public function work()
     {
-        $cats = $this->meta_model->query_category();
-        $data['categories'] = list_to_tree($cats);
-
-        $data['site_name'] = $this->settings_model->get('site_name');
-        $data['notice'] = $this->settings_model->get('notice');
-
-        self::view_of('header', $data);
-        self::view_of('navigator', $data);
-        self::view_of('work');
-        self::view_of('footer');
+        $this->page_view('work');
     }
 
 
     public function chapter()
     {
-        $cats = $this->meta_model->query_category();
-        $data['categories'] = list_to_tree($cats);
-
-        $data['site_name'] = $this->settings_model->get('site_name');
-        $data['notice'] = $this->settings_model->get('notice');
-
-        self::view_of('header', $data);
-        self::view_of('navigator', $data);
-        self::view_of('chapter');
-        self::view_of('footer');
+        $this->page_view('chapter');
     }
 
 
-    public function a(){
+    public function a()
+    {
         echo '--------------';
     }
 

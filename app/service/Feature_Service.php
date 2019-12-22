@@ -9,10 +9,16 @@ class Feature_Service extends MY_Service
     {
         parent::__construct();
         $this->load->model('feature_model');
+        $this->load->model('feature_record_model');
     }
 
 
-
+    /**
+     * 执行更新 / 删除操作
+     * @param array $data 数据详情
+     * @param int $id 记录ID
+     * @return mixed 执行结果
+     */
     public function update($data, $id)
     {
         $r = $this->upload_img('cover');
@@ -32,5 +38,16 @@ class Feature_Service extends MY_Service
             $data['cover'] = $path;
         }
         return $this->feature_model->insert_or_update($data, $id);
+    }
+
+
+    /**
+     * 查询首页推荐内容
+     *
+     * @return array 推荐内容
+     */
+    public function find_all_recommend()
+    {
+        return $this->feature_record_model->find_works_by_alias('recommend', 6);
     }
 }

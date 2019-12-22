@@ -149,4 +149,15 @@ class Meta_Model extends MY_Model
     {
         return $this->get_where('id, name', array('slug' => $slug));
     }
+
+
+    /**
+     * 查找顶层分类数据
+     *
+     * @return array 顶层分类数据
+     */
+    public function find_top_cats()
+    {
+        return $this->select_where1('id, name', array('parent' => 0, 'type' => 'category'), 'sn');
+    }
 }

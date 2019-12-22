@@ -49,7 +49,7 @@ class Feature_Record_Model extends MY_Model
      */
     public function find_works_by_alias($alias, $limit)
     {
-        return $this->db->select('r.id, w.id, w.name')
+        return $this->db->select('r.id, w.id, w.name, w.cover')
             ->from('feature_record r')
             ->join('work w', 'r.record_id=w.id', 'left')
             ->join('feature f', 'r.feature_id=f.id', 'left')

@@ -75,7 +75,7 @@ class Work_Model extends MY_Model
      */
     public function find_by_cat($cat_id, $limit)
     {
-        return $this->db->select('id, name, a.name as author')
+        return $this->db->select('w.id, w.name, a.name as author')
             ->from('work w')
             ->join('author a', 'w.author_id=a.id', 'left')
             ->where(array('category_id' => $cat_id))

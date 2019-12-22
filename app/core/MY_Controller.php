@@ -10,7 +10,9 @@ class MY_Controller extends CI_Controller
         parent::__construct();
         $this->load->helper('array');
         $this->load->helper('cookie');
+
         $this->load->model('settings_model');
+        $this->load->model('meta_model');
     }
 
 
@@ -53,7 +55,7 @@ class MY_Controller extends CI_Controller
 
 
     /**
-     * 加载内容页
+     * 加载管理后台内容页
      *
      * @param string $page_name 内容页
      * @param array $data 页面数据
@@ -67,6 +69,32 @@ class MY_Controller extends CI_Controller
         self::admin_view_of('common/header', $data);
         self::admin_view_of($page_name, $data);
         self::admin_view_of('common/footer', $data);
+    }
+
+
+    /**
+     * 加载内容页
+     *
+     * @param string $page_name 内容页
+     * @param string $title 页面title
+     * @param array $data 页面数据
+     */
+    protected function page_view($page_name, $title = '', $data = array())
+    {
+        $cats = $this->meta_model->query_category();
+        $data['categories'] = list_to_tree($cats);
+
+        $site_name = $this->settings_model->get('site_name');
+
+        $data['site_name'] = $site_name;
+        $data['notice'] = $this->settings_model->get('notice');
+
+        $data['title'] = $site_name . ' - ' . $title;
+
+        self::view_of('header', $data);
+        self::view_of('navigator', $data);
+        self::view_of($page_name);
+        self::view_of('footer');
     }
 
 }
