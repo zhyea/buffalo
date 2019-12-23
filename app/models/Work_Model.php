@@ -82,4 +82,23 @@ class Work_Model extends MY_Model
             ->limit($limit)
             ->get()->result_array();
     }
+
+
+    /**
+     * 按分类分页获取作品信息
+     * @param int $cat_id 分类ID
+     * @param int $offset 偏移量
+     * @param int $limit 数量
+     * @return array 作品信息
+     */
+    public function find_by_cat_in_page($cat_id, $offset, $limit)
+    {
+
+        return $this->db->select('w.id, w.name, w.brief, w.cover, a.name as author')
+            ->from('work w')
+            ->join('author a', 'w.author_id=a.id', 'left')
+            ->where(array('category_id' => $cat_id))
+            ->limit($limit, $offset)
+            ->get()->result_array();
+    }
 }

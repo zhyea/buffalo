@@ -131,14 +131,14 @@ body {
 .category .cover {
     float: left;
     width: 124px;
-    height: 172px;
+    height: 166px;
     overflow: hidden;
 }
 
 .category .brief {
     padding: 0 8px;
     margin-left: 124px;
-    height: 172px;
+    height: 166px;
     overflow: hidden;
 }
 
@@ -218,7 +218,7 @@ body {
 }
 
 .work-neck .cover {
-    height: 172px;
+    height: 166px;
     overflow: hidden;
 }
 
@@ -229,7 +229,7 @@ body {
 .work-neck .brief .intro {
     padding: 6px 0;
     overflow: hidden;
-    height: 148px;
+    height: 142px;
     color: #737383;
     line-height: 180%;
     text-indent: 2em;

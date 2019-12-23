@@ -116,7 +116,7 @@ class Meta_Model extends MY_Model
      */
     public function get_name($id = 0)
     {
-        $r = parent::get_by_id0($id, 'name');
+        $r = $this->get_by_id0($id, 'name');
         return is_null($r) ? '' : $r['name'];
     }
 

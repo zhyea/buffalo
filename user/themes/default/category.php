@@ -17,28 +17,37 @@ isset($ctx_theme) OR exit('No base url exists')
 		<h3><span class="glyphicon glyphicon-book"></span> 推荐内容</h3>
 	</div>
 	<div class="row recommend">
-        <?php
-        $count = 0;
-        while ($count++ < 6) {
-            ?>
+        <?php foreach ($recommend as $r): ?>
 			<div class="item col-md-2 col-xs-2">
 				<div class="cover">
-					<img src="<?php echo $ctx_theme ?>/static/imgs/tuijian.jpg"/>
+					<img src="<?= $ctx_upload . '/' . $r['cover'] ?>"/>
 				</div>
-				<div class="remark">知否知否，应是绿肥红瘦</div>
+				<div class="remark"><?= $r['name'] ?></div>
 			</div>
-        <?php } ?>
+        <?php endforeach; ?>
 	</div>
 
 
 	<div class="page-header">
-		<h3><span class="glyphicon glyphicon-bookmark"></span> 分类名称</h3>
+		<h3><span class="glyphicon glyphicon-th-list"></span> <?= $cat_name ?></h3>
 	</div>
 	<div class="row category">
 
+        <?php foreach ($works as $w): ?>
+			<div class="col-md-6 col-xs-12 work">
+				<div class="cover">
+					<img src="<?= $ctx_upload . '/' . $w['cover'] ?>" width="120px" height="162px"/>
+				</div>
+				<div class="brief">
+					<div class="title"><a href="#"><?= $w['name'] ?></a></div>
+					<div class="author"><a href><?= $w['author'] ?></a></div>
+					<div class="intro"><?= $w['brief'] ?></div>
+				</div>
+			</div>
+        <?php endforeach; ?>
 		<div class="col-md-6 col-xs-12 work">
 			<div class="cover">
-				<img src="<?php echo $ctx_theme ?>/static/imgs/noimg.jpg" width="120px" height="172px"/>
+				<img src="<?php echo $ctx_theme ?>/static/imgs/noimg.jpg" width="120px" height="162px"/>
 			</div>
 			<div class="brief">
 				<div class="title"><a href="#">望庐山瀑布</a></div>

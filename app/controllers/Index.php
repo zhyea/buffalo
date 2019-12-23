@@ -21,7 +21,6 @@ class Index extends MY_Controller
         $data = array();
         $data['recommend'] = $this->feature_service->find_all_recommend();;
         $data['cats'] = $this->work_service->find_cat_works();
-        //print_r($data);
         $this->page_view('home', '首页', $data);
     }
 
