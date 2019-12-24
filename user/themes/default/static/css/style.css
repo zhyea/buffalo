@@ -192,6 +192,12 @@ body {
     background-color: #a5cadc;
 }
 
+.pagination .active {
+    text-decoration: none;
+    background-color: #63a563;
+}
+
+
 
 /* ------------------------------------ chapter ------------------------------------ */
 .work-header {
@@ -349,6 +355,11 @@ body {
     margin: 0 -15px;
     padding: 0 0 0 12px;
     color: #129151;
+}
+
+.page-header a{
+    color: #129151;
+    text-decoration: none;
 }
 
 

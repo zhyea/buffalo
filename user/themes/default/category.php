@@ -6,9 +6,8 @@ isset($ctx_theme) OR exit('No base url exists')
 
 <div class="container notice">
 	<ol class="breadcrumb">
-		<li><a href="#"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
-		<li><a href="#">语文</a></li>
-		<li class="active">语文吃饭</li>
+		<li><a href="<?= $ctx_site ?>"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+		<li><?= $cat_name ?></li>
 	</ol>
 </div>
 
@@ -120,10 +119,13 @@ isset($ctx_theme) OR exit('No base url exists')
 		</div>
 	</div>
 
+
 	<div class="pagination">
-		<a href="#">1</a>
-		<a href="#">2</a>
-		<a href="#">3</a>
-		<a href="#">4</a>
+        <?php
+        for ($x = 1; $x <= $total + 1; $x++) {
+            $active = $x == $curr ? 'class="active"' : '';
+            echo '<a href="' . $ctx_site . '/fe/cat/' . $cat_id . '/' . $x . '" ' . $active . '>' . $x . '</a>';
+        }
+        ?>
 	</div>
 </div>

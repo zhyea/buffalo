@@ -128,17 +128,39 @@ class Work_Service extends MY_Service
 
 
     /**
+     * 按分类统计作品总数
+     *
+     * @param int $cat_id 分类ID
+     * @return int 分类下的作品总数
+     */
+    public function count_cat($cat_id)
+    {
+        return $this->work_model->count_by_cat($cat_id);
+    }
+
+    /**
      * 分页查询指定分类的作品信息
      *
      * @param int $cat_id 分类ID
      * @param int $page_num 页号
+     * @param int $len 每页记录总数
      * @return array 查询结果
      */
-    public function find_cat_page($cat_id, $page_num = 0)
+    public function find_cat_page($cat_id, $page_num = 0, $len = 12)
     {
-        $len = 12;
         $offset = $len * (isset($page_num) && $page_num > 0 ? $page_num - 1 : 0);
         return $this->work_model->find_by_cat_in_page($cat_id, $offset, $len);
+    }
+
+
+    /**
+     * 根据作品ID查询作品信息
+     * @param int $work_id 作品ID
+     * @return array 作品信息
+     */
+    public function get_by_id($work_id)
+    {
+        return $this->work_model->get_by_id($work_id);
     }
 
 }

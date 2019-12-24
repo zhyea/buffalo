@@ -18,7 +18,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</button>
 
 		<ul class="nav navbar-nav" id="main-nav-items">
-			<li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> 首页 <span class="sr-only">(current)</span></a></li>
+			<li class="active">
+				<a href="<?= $ctx_site ?>">
+					<i class="glyphicon glyphicon-home"></i> 首页 <span class="sr-only">(current)</span>
+				</a>
+			</li>
             <?php foreach ($categories as $cat): ?>
                 <?php if (isset($cat['_child'])): ?>
 					<li class="dropdown">

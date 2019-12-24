@@ -101,4 +101,16 @@ class Work_Model extends MY_Model
             ->limit($limit, $offset)
             ->get()->result_array();
     }
+
+
+    /**
+     * 按分类统计作品总数
+     *
+     * @param int $cat_id 分类ID
+     * @return int 分类下的作品总数
+     */
+    public function count_by_cat($cat_id)
+    {
+        return $this->count_where(array('category_id' => $cat_id));
+    }
 }

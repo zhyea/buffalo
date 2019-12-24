@@ -25,7 +25,9 @@ isset($ctx_theme) OR exit('No base url exists')
 
     <?php foreach ($cats as $c): ?>
 		<div class="page-header">
-			<h3><span class="glyphicon glyphicon-th-list"></span> <?= $c['name'] ?></h3>
+			<h3><a href="<?= $ctx_site . '/fe/cat/' . $c['id'] ?>">
+					<i class="glyphicon glyphicon-th-list"></i> <?= $c['name'] ?>
+				</a></h3>
 		</div>
 		<div class="row popular">
             <?php foreach ($c['works'] as $w): ?>
