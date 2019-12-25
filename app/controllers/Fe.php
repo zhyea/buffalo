@@ -24,6 +24,9 @@ class Fe extends MY_Controller
      */
     public function cat($cat_id, $page_num = 0)
     {
+        if (empty($cat_name)) {
+            show_404();
+        }
         $cat_name = $this->meta_service->get_name($cat_id);
         $total = $this->work_service->count_cat($cat_id);
         $page_size = 12;
@@ -36,13 +39,30 @@ class Fe extends MY_Controller
         $data['total'] = $total / $page_size;
         $data['curr'] = $page_num;
         $this->page_view('category', $cat_name, $data);
+
     }
 
 
-
-
-    public function work($work_id){
+    /**
+     * 进入作品信息页
+     *
+     * @param int $work_id 作品ID
+     */
+    public function work($work_id)
+    {
         $work = $this->work_service->get_by_id($work_id);
+        if (empty($work)) {
+            show_404();
+        }
+        $author_id = $work['author_id'];
+        $dc = $this->work_service->chapters($work_id);
+        $data = array(
+            'work' => $work,
+            'relate' => $this->work_service->find_by_author_id($author_id, $work_id),
+            'depth' => $dc[0],
+            'chapters' => $dc[1]
+        );
+        $this->page_view('work', $work['name'], $data);
     }
 
 }

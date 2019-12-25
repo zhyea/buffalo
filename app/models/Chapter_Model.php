@@ -28,7 +28,7 @@ class Chapter_Model extends MY_Model
      */
     public function chapters($work_id)
     {
-        return $this->select_where1('id, name', array('work_id' => $work_id));
+        return $this->select_where1('id, parent, name', array('work_id' => $work_id));
     }
 
 

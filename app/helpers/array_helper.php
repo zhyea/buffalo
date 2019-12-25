@@ -23,7 +23,10 @@ if (!function_exists('list_to_tree')) {
         if (is_array($list)) {
             // 创建基于主键的数组引用
             $refer = array();
-            foreach ($list as $key => $data) {
+            foreach ($list as $key => &$data) {
+                if (is_null($data[$pid])) {
+                    $data[$pid] = $root;
+                }
                 $refer[$data[$pk]] =& $list[$key];
             }
             foreach ($list as $key => $data) {

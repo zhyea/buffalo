@@ -13,7 +13,12 @@ class Work_Model extends MY_Model
      */
     public function get_by_id($id = 0)
     {
-        return $this->get_by_id0($id, '*');
+        return $this->db->select('w.id, w.name, a.name as author, w.author_id, w.cover, w.brief')
+            ->from('work w')
+            ->join('author a', 'w.author_id=a.id', 'left')
+            ->where(array('w.id' => $id))
+            ->limit(1)
+            ->get()->row_array(0);
     }
 
 
@@ -112,5 +117,17 @@ class Work_Model extends MY_Model
     public function count_by_cat($cat_id)
     {
         return $this->count_where(array('category_id' => $cat_id));
+    }
+
+
+    /**
+     * 根据作者ID查询作品信息
+     *
+     * @param int $author_id 作者ID
+     * @return array 作品信息
+     */
+    public function find_by_author_id($author_id)
+    {
+        return $this->select_where("id, name", array('author_id' => $author_id), 5);
     }
 }

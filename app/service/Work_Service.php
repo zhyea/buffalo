@@ -163,4 +163,47 @@ class Work_Service extends MY_Service
         return $this->work_model->get_by_id($work_id);
     }
 
+
+    /**
+     * 根据作者ID查询作品信息
+     *
+     * @param int $author_id 作者ID
+     * @param int $exclude 要排除的作品ID
+     * @return array 作品信息
+     */
+    public function find_by_author_id($author_id, $exclude = 0)
+    {
+        $works = $this->work_model->find_by_author_id($author_id);
+        foreach ($works as $k => $w) {
+            if ($w['id'] === $exclude) {
+                unset($works[$k]);
+            }
+        }
+        return $works;
+    }
+
+
+    /**
+     * 获取章节信息
+     *
+     * @param int $work_id 作品ID
+     * @return array 章节列表
+     */
+    public function chapters($work_id)
+    {
+        $chapters = $this->chapter_model->chapters($work_id);
+        $depth = 1;
+        foreach ($chapters as $c) {
+            if (!is_null($c['parent']) && $c['parent'] > 0) {
+                $depth++;
+                break;
+            }
+        }
+        if ($depth > 1) {
+            return array($depth, $chapters);
+        } else {
+            return array($depth, list_to_tree($chapters));
+        }
+    }
+
 }
