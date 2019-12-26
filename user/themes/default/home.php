@@ -33,8 +33,10 @@ isset($ctx_theme) OR exit('No base url exists')
 		</div>
 		<div class="row popular">
             <?php foreach ($c['works'] as $w): ?>
-				<div class="item col-md-4 col-xs-4">■ <?= $w['name'] ?><span
-							class="author"><?= '[' . $w['author'] . ']' ?></span></div>
+				<div class="item col-md-4 col-xs-4">
+					■ <a href="<?= $ctx_site . '/fe/work/' . $w['id'] ?>"><?= $w['name'] ?></a>
+					<span class="author"><?= '[' . $w['author'] . ']' ?></span>
+				</div>
             <?php endforeach; ?>
 		</div>
     <?php endforeach; ?>

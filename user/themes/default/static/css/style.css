@@ -110,6 +110,10 @@ body {
     line-height: 160%;
 }
 
+.popular .item a {
+    color: #000;
+}
+
 .popular .item .author {
     float: right;
     color: #129151;
