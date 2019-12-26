@@ -19,9 +19,11 @@ isset($ctx_theme) OR exit('No base url exists')
         <?php foreach ($recommend as $r): ?>
 			<div class="item col-md-2 col-xs-2">
 				<div class="cover">
-					<img src="<?= $ctx_upload . '/' . $r['cover'] ?>"/>
+					<a href="<?= $ctx_site . '/fe/work/' . $r['id'] ?>">
+						<img src="<?php echo $ctx_upload . '/' . $r['cover'] ?>"/>
+					</a>
 				</div>
-				<div class="remark"><?= $r['name'] ?></div>
+				<div class="remark"><a href="<?= $ctx_site . '/fe/work/' . $r['id'] ?>"><?= $r['name'] ?></a></div>
 			</div>
         <?php endforeach; ?>
 	</div>
@@ -35,12 +37,14 @@ isset($ctx_theme) OR exit('No base url exists')
         <?php foreach ($works as $w): ?>
 			<div class="col-md-6 col-xs-12 work">
 				<div class="cover">
-					<img src="<?= $ctx_upload . '/' . $w['cover'] ?>" width="120px" height="162px"/>
+					<a href="<?= $ctx_site . '/fe/work/' . $w['id'] ?>">
+						<img src="<?= $ctx_upload . '/' . $w['cover'] ?>" width="120px" height="162px"/>
+					</a>
 				</div>
 				<div class="brief">
-					<div class="title"><a href="#"><?= $w['name'] ?></a></div>
+					<div class="title"><a href="<?= $ctx_site . '/fe/work/' . $w['id'] ?>"><?= $w['name'] ?></a></div>
 					<div class="author"><a href><?= $w['author'] ?></a></div>
-					<div class="intro"><?= $w['brief'] ?></div>
+					<div class="intro"><?= substr($w['brief'], 0,64) . '...'?></div>
 				</div>
 			</div>
         <?php endforeach; ?>

@@ -95,6 +95,10 @@ body {
     font-size: 13px;
 }
 
+.recommend .item .remark a {
+    color: #000 !important;
+}
+
 .popular {
     padding: 12px 0;
 }
@@ -196,7 +200,6 @@ body {
     text-decoration: none;
     background-color: #63a563;
 }
-
 
 
 /* ------------------------------------ chapter ------------------------------------ */
@@ -357,7 +360,7 @@ body {
     color: #129151;
 }
 
-.page-header a{
+.page-header a {
     color: #129151;
     text-decoration: none;
 }

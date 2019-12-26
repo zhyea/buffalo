@@ -16,9 +16,11 @@ isset($ctx_theme) OR exit('No base url exists')
         <?php foreach ($recommend as $r): ?>
 			<div class="item col-md-2 col-xs-2">
 				<div class="cover">
-					<img src="<?php echo $ctx_upload . '/' . $r['cover'] ?>"/>
+					<a href="<?= $ctx_site . '/fe/work/' . $r['id'] ?>">
+						<img src="<?php echo $ctx_upload . '/' . $r['cover'] ?>"/>
+					</a>
 				</div>
-				<div class="remark"><?= $r['name'] ?></div>
+				<div class="remark"><a href="<?= $ctx_site . '/fe/work/' . $r['id'] ?>"><?= $r['name'] ?></a></div>
 			</div>
         <?php endforeach; ?>
 	</div>

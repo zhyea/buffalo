@@ -200,9 +200,9 @@ class Work_Service extends MY_Service
             }
         }
         if ($depth > 1) {
-            return array($depth, $chapters);
+            return list_to_tree($chapters);
         } else {
-            return array($depth, list_to_tree($chapters));
+            return array(array('id' => 0, 'name' => '正文', '_child' => $chapters));
         }
     }
 

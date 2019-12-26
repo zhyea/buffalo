@@ -24,10 +24,10 @@ class Fe extends MY_Controller
      */
     public function cat($cat_id, $page_num = 0)
     {
+        $cat_name = $this->meta_service->get_name($cat_id);
         if (empty($cat_name)) {
             show_404();
         }
-        $cat_name = $this->meta_service->get_name($cat_id);
         $total = $this->work_service->count_cat($cat_id);
         $page_size = 12;
         $page_num = 0 >= $page_num ? 1 : $page_num;
@@ -54,13 +54,15 @@ class Fe extends MY_Controller
         if (empty($work)) {
             show_404();
         }
+        $cat_id = $work['category_id'];
+        $cat_name = $this->meta_service->get_name($cat_id);
         $author_id = $work['author_id'];
-        $dc = $this->work_service->chapters($work_id);
         $data = array(
+            'cat_id' => $cat_id,
+            'cat_name' => $cat_name,
             'work' => $work,
             'relate' => $this->work_service->find_by_author_id($author_id, $work_id),
-            'depth' => $dc[0],
-            'chapters' => $dc[1]
+            'chapters' => $this->work_service->chapters($work_id)
         );
         $this->page_view('work', $work['name'], $data);
     }
