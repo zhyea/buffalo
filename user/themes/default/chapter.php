@@ -8,9 +8,10 @@ isset($ctx_theme) OR exit('No base url exists')
 
 <div class="container notice">
 	<ol class="breadcrumb">
-		<li><a href="#"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
-		<li><a href="#">语文</a></li>
-		<li class="active">梦游天姥吟留别</li>
+		<li><a href="<?= $ctx_site ?>"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+		<li><a href="<?= $ctx_site . '/fe/cat/' . $cat_id ?>"><?= $cat_name ?></a></li>
+		<li><a href="<?= $ctx_site . '/fe/work/' . $work_id ?>"><?= $work_name ?></a></li>
+		<li class="active"><?=$name?></li>
 	</ol>
 </div>
 
@@ -26,21 +27,17 @@ isset($ctx_theme) OR exit('No base url exists')
 	<div class="row" id="contentContainer">
 
 		<div class="row chapter-name">
-			第一章 把酒问青天
+            <?=$name?>
 		</div>
 
 		<div class="row chapter-nav">
-			<a>上一章</a> ← <a>返回目录</a> → <a>下一章</a>
+			<?php if($last_id>0) ?><a>上一章</a> ← <a href="<?= $ctx_site . '/fe/work/' . $work_id ?>">返回目录</a> → <a>下一章</a>
 		</div>
 
-		<div class="row chapter-content" id="contentText" style="">
-			zzzzzzzzzzzzzzzzzzz
-			zzzzzzzzzzzzzzzzz
-			zzzzzzzzzz
-		</div>
+		<div class="row chapter-content" id="contentText" style=""><?=$content?></div>
 
 		<div class="row chapter-nav">
-			<a>上一章</a> ← <a>返回目录</a> → <a>没有了</a>
+			<a>上一章</a> ← <a href="<?= $ctx_site . '/fe/work/' . $work_id ?>">返回目录</a> → <a>没有了</a>
 		</div>
 	</div>
 

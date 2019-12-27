@@ -54,17 +54,41 @@ class Fe extends MY_Controller
         if (empty($work)) {
             show_404();
         }
-        $cat_id = $work['category_id'];
-        $cat_name = $this->meta_service->get_name($cat_id);
         $author_id = $work['author_id'];
         $data = array(
-            'cat_id' => $cat_id,
-            'cat_name' => $cat_name,
+            'cat_id' => $work['cat_id'],
+            'cat_name' => $work['cat_name'],
             'work' => $work,
             'relate' => $this->work_service->find_by_author_id($author_id, $work_id),
             'chapters' => $this->work_service->chapters($work_id)
         );
         $this->page_view('work', $work['name'], $data);
+    }
+
+
+    public function chapter($work_id, $chapter_id)
+    {
+        $work = $this->work_service->get_by_id($work_id);
+        if (empty($work)) {
+            show_404();
+        }
+        $chapter = $this->work_service->chapter($chapter_id);
+        if (empty($chapter)) {
+            show_404();
+        }
+        $title = $work['name'] . ' - ' . $chapter['name'];
+        $data = array(
+            'work_id' => $work_id,
+            'id' => $chapter_id,
+            'last' => $last_id,
+            'next' => $next_id,
+            'cat_id' => $work['cat_id'],
+            'cat_name' => $work['cat_name'],
+            'work_name' => $work['name'],
+            'name' => $chapter['name'],
+            'content' => $chapter['content']
+        );
+        $this->page_view('chapter', $title, $data);
     }
 
 }

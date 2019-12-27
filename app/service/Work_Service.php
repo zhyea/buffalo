@@ -206,4 +206,23 @@ class Work_Service extends MY_Service
         }
     }
 
+
+    /**
+     * 获取章节内容
+     *
+     * @param int $chapter_id 当前章节ID
+     * @return array 章节内容
+     */
+    public function chapter($chapter_id)
+    {
+
+        $chapter = $this->work_service->chapter($chapter_id);
+        if (empty($chapter)) {
+            return NULL;
+        }
+        return $chapter;
+    }
+
+    public function last_chapter
+
 }

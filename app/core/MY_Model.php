@@ -36,14 +36,14 @@ class MY_Model extends CI_Model
      * 封装多行查询语句
      *
      * @param string $columns 查询的字段
-     * @param array $where 查询条件
+     * @param mixed $where 查询条件
      * @param int $limit 查询数量
      * @param int $offset 查询起始位置
      * @param string $orderBy 排序字段
      * @param string $direction 排序方向
      * @return array 查询结果
      */
-    protected function select_where($columns = '*', $where = array(), $limit = NULL, $offset = NULL, $orderBy = NULL, $direction = '')
+    protected function select_where($columns = '*', $where = NULL, $limit = NULL, $offset = NULL, $orderBy = NULL, $direction = '')
     {
         $query = $this->db->select($columns)
             ->from($this->table);

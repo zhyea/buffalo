@@ -13,9 +13,10 @@ class Work_Model extends MY_Model
      */
     public function get_by_id($id = 0)
     {
-        return $this->db->select('w.id, w.name, a.name as author, w.category_id, w.author_id, w.cover, w.brief')
+        return $this->db->select('w.id, w.name, a.name as author, w.category_id as cat_id, w.author_id, w.cover, w.brief, c.name as cat_name')
             ->from('work w')
             ->join('author a', 'w.author_id=a.id', 'left')
+            ->join('meta c', 'w.category_id=c.id', 'left')
             ->where(array('w.id' => $id))
             ->limit(1)
             ->get()->row_array(0);

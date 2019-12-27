@@ -44,4 +44,44 @@ class Chapter_Model extends MY_Model
     }
 
 
+    /**获取上一章
+     *
+     * @param int $work_id 作品ID
+     * @param int $id 章节ID
+     * @param int $parent 父章节ID
+     * @return array|null 上一章
+     */
+    public function get_last($work_id, $id, $parent)
+    {
+        $r = $this->select_where("id, name, content",
+            "work_id=" . $work_id . " and id<" . $id . " and parent=" . $parent,
+            1, NULL, "id", "desc");
+        if (sizeof($r) > 0) {
+            return $r[0];
+        } else {
+            return NULL;
+        }
+    }
+
+
+    /**获取下一章
+     *
+     * @param int $work_id 作品ID
+     * @param int $id 章节ID
+     * @param int $parent 父章节ID
+     * @return array|null 下一章
+     */
+    public function get_next($work_id, $id, $parent)
+    {
+        $r = $this->select_where("id, name, content",
+            "work_id=" . $work_id . " and id>" . $id . " and parent=" . $parent,
+            1, NULL, "id", "asc");
+        if (sizeof($r) > 0) {
+            return $r[0];
+        } else {
+            return NULL;
+        }
+    }
+
+
 }
