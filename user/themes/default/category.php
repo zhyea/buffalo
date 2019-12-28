@@ -43,8 +43,10 @@ isset($ctx_theme) OR exit('No base url exists')
 				</div>
 				<div class="brief">
 					<div class="title"><a href="<?= $ctx_site . '/fe/work/' . $w['id'] ?>"><?= $w['name'] ?></a></div>
-					<div class="author"><a href><?= $w['author'] ?></a></div>
-					<div class="intro"><?= substr($w['brief'], 0,64) . '...'?></div>
+					<div class="author">
+						<a href="<?= $ctx_site . '/fe/author/' . $w['author_id'] ?>"><?= $w['author'] ?></a>
+					</div>
+					<div class="intro"><?= substr($w['brief'], 0, 64) . '...' ?></div>
 				</div>
 			</div>
         <?php endforeach; ?>

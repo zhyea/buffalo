@@ -99,7 +99,7 @@ class Work_Model extends MY_Model
      */
     public function find_in_page1($where, $offset, $limit)
     {
-        return $this->db->select('w.id, w.name, w.brief, w.cover, a.name as author')
+        return $this->db->select('w.id, w.name, w.brief, w.cover, a.name as author, w.author_id')
             ->from('work w')
             ->join('author a', 'w.author_id=a.id', 'left')
             ->where($where)
