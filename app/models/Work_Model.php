@@ -81,7 +81,7 @@ class Work_Model extends MY_Model
      */
     public function find_by_cat($cat_id, $limit)
     {
-        return $this->db->select('w.id, w.name, a.name as author')
+        return $this->db->select('w.id, w.name, a.name as author, w.author_id')
             ->from('work w')
             ->join('author a', 'w.author_id=a.id', 'left')
             ->where(array('category_id' => $cat_id))
@@ -92,18 +92,17 @@ class Work_Model extends MY_Model
 
     /**
      * 按分类分页获取作品信息
-     * @param int $cat_id 分类ID
+     * @param array $where 查询条件
      * @param int $offset 偏移量
      * @param int $limit 数量
      * @return array 作品信息
      */
-    public function find_by_cat_in_page($cat_id, $offset, $limit)
+    public function find_in_page1($where, $offset, $limit)
     {
-
         return $this->db->select('w.id, w.name, w.brief, w.cover, a.name as author')
             ->from('work w')
             ->join('author a', 'w.author_id=a.id', 'left')
-            ->where(array('category_id' => $cat_id))
+            ->where($where)
             ->limit($limit, $offset)
             ->get()->result_array();
     }
@@ -118,6 +117,17 @@ class Work_Model extends MY_Model
     public function count_by_cat($cat_id)
     {
         return $this->count_where(array('category_id' => $cat_id));
+    }
+
+    /**
+     * 按作者统计作品总数
+     *
+     * @param int $author_id 分类ID
+     * @return int 分类下的作品总数
+     */
+    public function count_by_author($author_id)
+    {
+        return $this->count_where(array('category_id' => $author_id));
     }
 
 

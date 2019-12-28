@@ -89,7 +89,7 @@ class MY_Controller extends CI_Controller
         $data['site_name'] = $site_name;
         $data['notice'] = $this->settings_model->get('notice');
 
-        $data['title'] = $site_name . ' - ' . $title;
+        $data['title'] = $title . ' - ' . $site_name;
 
         self::view_of('header', $data);
         self::view_of('navigator', $data);

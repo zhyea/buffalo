@@ -26,9 +26,9 @@ class Chapter_Model extends MY_Model
      * @param int $work_id 作品ID
      * @return array 作品章节信息
      */
-    public function chapters($work_id)
+    public function find_by_work_id($work_id)
     {
-        return $this->select_where1('id, parent, name', array('work_id' => $work_id));
+        return $this->select_where1('id,  name, volume_id', array('work_id' => $work_id));
     }
 
 
@@ -48,13 +48,12 @@ class Chapter_Model extends MY_Model
      *
      * @param int $work_id 作品ID
      * @param int $id 章节ID
-     * @param int $parent 父章节ID
      * @return array|null 上一章
      */
-    public function get_last($work_id, $id, $parent)
+    public function get_last($work_id, $id)
     {
-        $r = $this->select_where("id, name, content",
-            "work_id=" . $work_id . " and id<" . $id . " and parent=" . $parent,
+        $r = $this->select_where("id, name",
+            "work_id=" . $work_id . " and id<" . $id,
             1, NULL, "id", "desc");
         if (sizeof($r) > 0) {
             return $r[0];
@@ -68,13 +67,12 @@ class Chapter_Model extends MY_Model
      *
      * @param int $work_id 作品ID
      * @param int $id 章节ID
-     * @param int $parent 父章节ID
      * @return array|null 下一章
      */
-    public function get_next($work_id, $id, $parent)
+    public function get_next($work_id, $id)
     {
-        $r = $this->select_where("id, name, content",
-            "work_id=" . $work_id . " and id>" . $id . " and parent=" . $parent,
+        $r = $this->select_where("id, name",
+            "work_id=" . $work_id . " and id>" . $id,
             1, NULL, "id", "asc");
         if (sizeof($r) > 0) {
             return $r[0];

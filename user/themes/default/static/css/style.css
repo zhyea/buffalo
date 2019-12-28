@@ -122,6 +122,10 @@ body {
     overflow: hidden;
 }
 
+.popular .item .author a {
+    color: #129151;
+}
+
 
 /* ------------------------------------ cat ------------------------------------ */
 
@@ -139,14 +143,14 @@ body {
 .category .cover {
     float: left;
     width: 124px;
-    height: 166px;
+    height: 156px;
     overflow: hidden;
 }
 
 .category .brief {
     padding: 0 8px;
     margin-left: 124px;
-    height: 166px;
+    height: 156px;
     overflow: hidden;
 }
 
@@ -171,7 +175,7 @@ body {
 }
 
 .category .brief .author a {
-    color: #a3d046;
+    color: #129151;
 }
 
 .category .brief .author a:hover {
@@ -206,7 +210,7 @@ body {
 }
 
 
-/* ------------------------------------ chapter ------------------------------------ */
+/* ------------------------------------ work ------------------------------------ */
 .work-header {
     padding: 12px 15px 3px;
     border-bottom: 1px solid #e2e2e2;
@@ -231,7 +235,7 @@ body {
 }
 
 .work-neck .cover {
-    height: 166px;
+    height: 156px;
     overflow: hidden;
 }
 
@@ -242,7 +246,7 @@ body {
 .work-neck .brief .intro {
     padding: 6px 0;
     overflow: hidden;
-    height: 142px;
+    height: 132px;
     color: #737383;
     line-height: 180%;
     text-indent: 2em;
@@ -261,12 +265,13 @@ body {
 }
 
 .work-body {
-    margin-top: 16px;
+    margin-top: 6px;
     padding: 0 15px;
 }
 
 
 .work-body .volume {
+    margin-top: 9px;
     padding: 9px 12px 6px;
     background-color: #ececec;
     text-align: left;
@@ -282,6 +287,13 @@ body {
     white-space: nowrap;
     line-height: 210%;
     border-bottom: 1px dashed #e2e2e2;
+}
+
+.work-body .chapter a{
+    color: #000;
+}
+.work-body .chapter a:hover{
+    color: #1d6300;
 }
 
 /* ------------------------------------ chapter ------------------------------------ */
@@ -322,8 +334,9 @@ body {
 
 .chapter-content {
     margin: 0;
-    padding: 12px;
+    padding: 24px 32px;
     min-height: 90px;
+    line-height: 180%;
     border-bottom: 1px dotted #ddd;
 }
 

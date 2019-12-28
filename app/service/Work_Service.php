@@ -10,6 +10,7 @@ class Work_Service extends MY_Service
         $this->load->model('work_model');
         $this->load->model('meta_model');
         $this->load->model('media_model');
+        $this->load->model('volume_model');
         $this->load->model('chapter_model');
     }
 
@@ -138,6 +139,18 @@ class Work_Service extends MY_Service
         return $this->work_model->count_by_cat($cat_id);
     }
 
+
+    /**
+     * 按作者统计作品总数
+     *
+     * @param int $author_id 分类ID
+     * @return int 作者的作品总数
+     */
+    public function count_author($author_id)
+    {
+        return $this->work_model->count_by_author($author_id);
+    }
+
     /**
      * 分页查询指定分类的作品信息
      *
@@ -149,7 +162,21 @@ class Work_Service extends MY_Service
     public function find_cat_page($cat_id, $page_num = 0, $len = 12)
     {
         $offset = $len * (isset($page_num) && $page_num > 0 ? $page_num - 1 : 0);
-        return $this->work_model->find_by_cat_in_page($cat_id, $offset, $len);
+        return $this->work_model->find_in_page1(array('category_id' => $cat_id), $offset, $len);
+    }
+
+    /**
+     * 分页查询指定作者的作品信息
+     *
+     * @param int $author_id 作者ID
+     * @param int $page_num 页号
+     * @param int $len 每页记录总数
+     * @return array 查询结果
+     */
+    public function find_author_page($author_id, $page_num = 0, $len = 12)
+    {
+        $offset = $len * (isset($page_num) && $page_num > 0 ? $page_num - 1 : 0);
+        return $this->work_model->find_in_page1(array('author_id' => $author_id), $offset, $len);
     }
 
 
@@ -189,40 +216,43 @@ class Work_Service extends MY_Service
      * @param int $work_id 作品ID
      * @return array 章节列表
      */
-    public function chapters($work_id)
+    public function chapter_list($work_id)
     {
-        $chapters = $this->chapter_model->chapters($work_id);
-        $depth = 1;
-        foreach ($chapters as $c) {
-            if (!is_null($c['parent']) && $c['parent'] > 0) {
-                $depth++;
-                break;
-            }
-        }
-        if ($depth > 1) {
-            return list_to_tree($chapters);
-        } else {
+        $volumes = $this->volume_model->find_by_work_id($work_id);
+        $chapters = $this->chapter_model->find_by_work_id($work_id);
+        if (empty($volumes) || sizeof($volumes) === 0) {
             return array(array('id' => 0, 'name' => '正文', '_child' => $chapters));
         }
+
+        foreach ($volumes as &$v) {
+            $v['_child'] = array();
+            foreach ($chapters as &$c) {
+                if (!empty($c['volume_id']) && $v['id'] == $c['volume_id']) {
+                    array_push($v['_child'], $c);
+                }
+            }
+        }
+        return $volumes;
     }
 
 
     /**
      * 获取章节内容
      *
+     * @param int $work_id 作品ID
      * @param int $chapter_id 当前章节ID
      * @return array 章节内容
      */
-    public function chapter($chapter_id)
+    public function chapter($work_id, $chapter_id)
     {
-
-        $chapter = $this->work_service->chapter($chapter_id);
+        $chapter = $this->chapter_model->get_by_id($chapter_id);
         if (empty($chapter)) {
             return NULL;
         }
-        return $chapter;
+        $last = $this->chapter_model->get_last($work_id, $chapter_id);
+        $next = $this->chapter_model->get_next($work_id, $chapter_id);
+        return array('curr'=>$chapter, 'last'=>$last, 'next'=>$next);
     }
 
-    public function last_chapter
 
 }

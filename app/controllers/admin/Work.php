@@ -52,9 +52,9 @@ class Work extends MY_Controller
     {
         $work = $id <= 0 ? null : $this->work_model->get_by_id($id);
 
-        $title = ($id > 0 ? '编辑作品' : '新增作品') . ' - Buffalo';
+        $title = ($id > 0 ? $work['name'] : '新增作品') . ' - Buffalo';
 
-        $cat_id = is_null($work) ? 0 : $work['category_id'];
+        $cat_id = is_null($work) ? 0 : $work['cat_id'];
         $author_id = is_null($work) ? 0 : $work['author_id'];
         $author = $this->author_model->get_by_id($author_id);
 
@@ -164,16 +164,18 @@ class Work extends MY_Controller
         $data['work_id'] = $work['id'];
         $data['chapter_id'] = $chapter['id'];
 
-        $title = '编辑-' . $work['name'] . ':' . $chapter['name'] . ' - Buffalo';
+        $title = $work['name'] . ':' . $chapter['name'] . ' - Buffalo';
         $this->admin_page_view('chapter-edit', $title, $data);
     }
 
 
     /**
      * 根据名称查询作品信息
+     *
      * @param string $name 作品名称
      */
-    public function find_by_name($name){
+    public function find_by_name($name)
+    {
         $arr = $this->work_model->find_by_name(urldecode($name));
         echo json_encode(array('value' => $arr));
     }

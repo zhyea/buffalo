@@ -13,6 +13,7 @@ class Fe extends MY_Controller
         $this->load->service('feature_service');
         $this->load->service('work_service');
         $this->load->service('meta_service');
+        $this->load->service('author_service');
     }
 
 
@@ -41,6 +42,30 @@ class Fe extends MY_Controller
         $this->page_view('category', $cat_name, $data);
 
     }
+    /**
+     * 进入作者作品页
+     *
+     * @param int $author_id 作者ID
+     * @param int $page_num 页码
+     */
+    public function author($author_id, $page_num = 0)
+    {
+        $author_name = $this->author_service->get_name($author_id);
+        if (empty($author_name)) {
+            show_404();
+        }
+        $total = $this->work_service->count_author($author_id);
+        $page_size = 12;
+        $page_num = 0 >= $page_num ? 1 : $page_num;
+        $data = array();
+        $data['works'] = $this->work_service->find_author_page($author_id, $page_num, $page_size);
+        $data['name'] = $author_name;
+        $data['author_id'] = $author_id;
+        $data['total'] = $total / $page_size;
+        $data['curr'] = $page_num;
+        $this->page_view('author', $author_name, $data);
+
+    }
 
 
     /**
@@ -60,28 +85,36 @@ class Fe extends MY_Controller
             'cat_name' => $work['cat_name'],
             'work' => $work,
             'relate' => $this->work_service->find_by_author_id($author_id, $work_id),
-            'chapters' => $this->work_service->chapters($work_id)
+            'chapters' => $this->work_service->chapter_list($work_id)
         );
+        //print_r($data);
         $this->page_view('work', $work['name'], $data);
     }
 
 
+    /**
+     * 进入作品章节页
+     *
+     * @param int $work_id 作品ID
+     * @param int $chapter_id 章节ID
+     */
     public function chapter($work_id, $chapter_id)
     {
         $work = $this->work_service->get_by_id($work_id);
         if (empty($work)) {
             show_404();
         }
-        $chapter = $this->work_service->chapter($chapter_id);
-        if (empty($chapter)) {
+        $arr = $this->work_service->chapter($work_id, $chapter_id);
+        $chapter = $arr['curr'];
+        if (empty($arr) || empty($chapter)) {
             show_404();
         }
         $title = $work['name'] . ' - ' . $chapter['name'];
         $data = array(
             'work_id' => $work_id,
             'id' => $chapter_id,
-            'last' => $last_id,
-            'next' => $next_id,
+            'last' => empty($arr['last']) ? 0 : $arr['last']['id'],
+            'next' => empty($arr['next']) ? 0 : $arr['next']['id'],
             'cat_id' => $work['cat_id'],
             'cat_name' => $work['cat_name'],
             'work_name' => $work['name'],

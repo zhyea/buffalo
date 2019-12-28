@@ -90,12 +90,22 @@ create table if not exists bu_work
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;
 
+-- volume
+create table if not exists bu_volume
+(
+    id      int not null auto_increment primary key,
+
+    work_id int,
+    name    varchar(64)
+) ENGINE = MyISAM
+  DEFAULT CHARSET = utf8mb4;
+
 -- chapter
 create table if not exists bu_chapter
 (
     id        int not null auto_increment primary key,
 
-    parent    int default 0,
+    volume_id int default 0,
     work_id   int,
 
     name      varchar(64),

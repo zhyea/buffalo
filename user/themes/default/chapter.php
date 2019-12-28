@@ -11,7 +11,7 @@ isset($ctx_theme) OR exit('No base url exists')
 		<li><a href="<?= $ctx_site ?>"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
 		<li><a href="<?= $ctx_site . '/fe/cat/' . $cat_id ?>"><?= $cat_name ?></a></li>
 		<li><a href="<?= $ctx_site . '/fe/work/' . $work_id ?>"><?= $work_name ?></a></li>
-		<li class="active"><?=$name?></li>
+		<li class="active"><?= $name ?></li>
 	</ol>
 </div>
 
@@ -27,17 +27,25 @@ isset($ctx_theme) OR exit('No base url exists')
 	<div class="row" id="contentContainer">
 
 		<div class="row chapter-name">
-            <?=$name?>
+            <?= $name ?>
 		</div>
 
 		<div class="row chapter-nav">
-			<?php if($last_id>0) ?><a>上一章</a> ← <a href="<?= $ctx_site . '/fe/work/' . $work_id ?>">返回目录</a> → <a>下一章</a>
+            <?php if ($last > 0): ?><a href="<?= $ctx_site . '/fe/chapter/' . $work_id . '/' . $last ?>">
+					上一章</a> <?php else: ?> <a>无</a> <?php endif; ?> ← <a
+					href="<?= $ctx_site . '/fe/work/' . $work_id ?>">返回目录</a> → <?php if ($next > 0): ?><a
+				href="<?= $ctx_site . '/fe/chapter/' . $work_id . '/' . $next ?>">
+					下一章</a> <?php else: ?> <a>没有了</a> <?php endif; ?>
 		</div>
 
-		<div class="row chapter-content" id="contentText" style=""><?=$content?></div>
+		<div class="row chapter-content" id="contentText" style=""><?= $content ?></div>
 
 		<div class="row chapter-nav">
-			<a>上一章</a> ← <a href="<?= $ctx_site . '/fe/work/' . $work_id ?>">返回目录</a> → <a>没有了</a>
+            <?php if ($last > 0): ?><a href="<?= $ctx_site . '/fe/chapter/' . $work_id . '/' . $last ?>">
+					上一章</a> <?php else: ?> <a>无</a> <?php endif; ?> ← <a
+					href="<?= $ctx_site . '/fe/work/' . $work_id ?>">返回目录</a> → <?php if ($next > 0): ?><a
+				href="<?= $ctx_site . '/fe/chapter/' . $work_id . '/' . $next ?>">
+					下一章</a> <?php else: ?> <a>没有了</a> <?php endif; ?>
 		</div>
 	</div>
 
