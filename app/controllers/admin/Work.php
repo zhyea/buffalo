@@ -11,6 +11,7 @@ class Work extends MY_Controller
         $this->load->model('author_model');
         $this->load->model('meta_model');
         $this->load->model('chapter_model');
+        $this->load->model('volume_model');
         $this->load->service('work_service');
     }
 
@@ -27,7 +28,7 @@ class Work extends MY_Controller
 
         $data['id'] = $work_id;
         $data['name'] = $work_name;
-        $data['chapters'] = $this->chapter_model->chapters($work_id);
+        $data['chapters'] = $this->chapter_model->find_by_work_id($work_id);
 
         $this->load->helper('form');
         $this->admin_page_view('work-chapters', $work_name . ' - Buffalo', $data);
@@ -157,15 +158,39 @@ class Work extends MY_Controller
     {
         $work = $this->work_model->get_by_id($work_id);
         $chapter = $this->chapter_model->get_by_id($chapter_id);
+        $volume_name = $this->volume_model->get_name($chapter['volume_id']);
 
         $data['work_name'] = $work['name'];
         $data['chapter_name'] = $chapter['name'];
         $data['content'] = $chapter['content'];
         $data['work_id'] = $work['id'];
         $data['chapter_id'] = $chapter['id'];
+        $data['volume_id'] = $chapter['volume_id'];
+        $data['volume'] = $volume_name;
 
         $title = $work['name'] . ':' . $chapter['name'] . ' - Buffalo';
         $this->admin_page_view('chapter-edit', $title, $data);
+    }
+
+    /**
+     * 更新章节
+     */
+    public function chapter_update()
+    {
+        $id = $_POST['id'];
+        $work_id = $_POST['work_id'];
+        $name = $_POST['name'];
+        $volume_id = $_POST['volume_id'];
+        $volume = $_POST['volume'];
+        $content = $_POST['content'];
+
+        if (!empty($volume)) {
+            $volume_id = empty($volume_id) ? 0 : $volume_id;
+            $volume_id = $this->volume_model->insert($work_id, $volume, $volume_id);
+        }
+        $this->chapter_model->update($work_id, $volume_id, $name, $content, $id);
+
+        redirect('admin/work/chapters/' . $work_id);
     }
 
 
