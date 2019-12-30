@@ -28,10 +28,10 @@ class Work extends MY_Controller
 
         $data['id'] = $work_id;
         $data['name'] = $work_name;
-        $data['chapters'] = $this->chapter_model->find_by_work_id($work_id);
+        $data['volumes'] = $this->work_service->chapter_list($work_id);
 
         $this->load->helper('form');
-        $this->admin_page_view('work-chapters', $work_name . ' - Buffalo', $data);
+        $this->admin_page_view('work-chapters', $work_name, $data);
     }
 
 
@@ -40,7 +40,7 @@ class Work extends MY_Controller
      */
     public function list_page()
     {
-        $this->admin_page_view('work-list', '作品列表 - Buffalo');
+        $this->admin_page_view('work-list', '作品列表');
     }
 
 
@@ -53,7 +53,7 @@ class Work extends MY_Controller
     {
         $work = $id <= 0 ? null : $this->work_model->get_by_id($id);
 
-        $title = ($id > 0 ? $work['name'] : '新增作品') . ' - Buffalo';
+        $title = ($id > 0 ? $work['name'] : '新增作品');
 
         $cat_id = is_null($work) ? 0 : $work['cat_id'];
         $author_id = is_null($work) ? 0 : $work['author_id'];
@@ -133,8 +133,11 @@ class Work extends MY_Controller
      */
     public function delete()
     {
-        $ids = $_POST['ids'];
-        echo $this->work_model->delete_in_batch(explode(',', $ids));
+        $ids = explode(',', $_POST['ids']);
+        $this->work_model->delete_in_batch($ids);
+        $this->volume_model->delete_by_work_id($ids);
+        $this->chapter_model->delete_by_work_id($ids);
+        echo 1;
     }
 
 
@@ -154,21 +157,23 @@ class Work extends MY_Controller
      * @param int $work_id 作品ID
      * @param int $chapter_id 章节ID
      */
-    public function chapter_edit($work_id, $chapter_id)
+    public function chapter_edit($work_id, $chapter_id = 0)
     {
         $work = $this->work_model->get_by_id($work_id);
         $chapter = $this->chapter_model->get_by_id($chapter_id);
         $volume_name = $this->volume_model->get_name($chapter['volume_id']);
 
-        $data['work_name'] = $work['name'];
-        $data['chapter_name'] = $chapter['name'];
-        $data['content'] = $chapter['content'];
-        $data['work_id'] = $work['id'];
-        $data['chapter_id'] = $chapter['id'];
-        $data['volume_id'] = $chapter['volume_id'];
-        $data['volume'] = $volume_name;
+        $chapter_name = is_null($chapter) ? '' : $chapter['name'];
 
-        $title = $work['name'] . ':' . $chapter['name'] . ' - Buffalo';
+        $data['work_name'] = $work['name'];
+        $data['chapter_name'] = $chapter_name;
+        $data['content'] = is_null($chapter) ? '' : $chapter['content'];
+        $data['work_id'] = $work['id'];
+        $data['chapter_id'] = $chapter_id;
+        $data['volume_id'] = is_null($chapter) ? 0 : $chapter['volume_id'];
+        $data['volume'] = empty($volume_name) ? '' : $volume_name;
+
+        $title = $work['name'] . ':' . $chapter_name;
         $this->admin_page_view('chapter-edit', $title, $data);
     }
 

@@ -25,8 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="form-input col-md-12 col-xs-12">
 				<div class="input-group">
 					<input type="hidden" name="cat_id" id="volume_id" value="<?= $volume_id ?>"/>
-					<input type="text" class="form-control" name="volume" value="<?= $volume ?>" id="volumeSelector"
-					       required/>
+					<input type="text" class="form-control" name="volume" value="<?= $volume ?>" id="volumeSelector"/>
 					<div class="input-group-btn">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 							<span class="caret"></span>

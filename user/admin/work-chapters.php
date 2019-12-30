@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<h3><span class="glyphicon glyphicon-book"></span> <?= $name ?></h3>
 	</div>
 
-    <?php if (empty($chapters)): ?>
+    <?php if (empty($volumes)): ?>
         <?= form_open_multipart('admin/work/upload'); ?>
 		<div class="row">
 			<input type="hidden" name="work_id" value="<?= $id ?>">
@@ -24,19 +24,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <?php endif; ?>
 
 	<div class="row chapter-container">
-        <?php foreach ($chapters as $c): ?>
-			<div class="col-md-4 col-xs-12 chapter-unit">
-				<div class="chapter">
-					<a href="<?= $ctx_site ?>/admin/work/chapter_edit/<?= $id ?>/<?= $c['id'] ?>"
-					   target="_self"><?= $c['name'] ?> </a>
-					<a><span class="glyphicon glyphicon-remove remove"></span></a>
-				</div>
+
+        <?php foreach ($volumes as $v): ?>
+			<div class="page-header">
+				<h3><span class="glyphicon glyphicon-book"></span> <?= $v['name'] ?></h3>
+			</div>
+			<div class="row">
+                <?php if ($v['_child']): ?>
+                    <?php foreach ($v['_child'] as $ch): ?>
+						<div class="col-md-4 col-xs-12 chapter-unit">
+							<div class="chapter">
+								<a target="_self"
+								   href="<?= $ctx_site ?>/admin/work/chapter_edit/<?= $id . '/' . $ch['id'] ?>">
+                                    <?= $ch['name'] ?>
+								</a>
+								<a><i class="glyphicon glyphicon-minus operate"></i></a>
+							</div>
+						</div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
 			</div>
         <?php endforeach; ?>
-		<div class="col-md-4 col-xs-12 chapter-unit">
-			<div class="chapter">
-				<a>新增章节...</a>
-				<a><span class="glyphicon glyphicon-plus add"></span></a>
+
+		<div class="row">
+			<div class="col-md-4 col-xs-12 chapter-unit">
+				<div class="chapter">
+					<a href="<?= $ctx_site ?>/admin/work/chapter_edit/<?= $id ?>/0" target="_self">新增章节...</a>
+					<a><i class="glyphicon glyphicon-plus operate"></i></a>
+				</div>
 			</div>
 		</div>
 	</div>

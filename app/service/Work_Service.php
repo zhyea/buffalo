@@ -223,14 +223,19 @@ class Work_Service extends MY_Service
         if (empty($volumes) || sizeof($volumes) === 0) {
             return array(array('id' => 0, 'name' => '正文', '_child' => $chapters));
         }
-
+        $arr = array();
         foreach ($volumes as &$v) {
             $v['_child'] = array();
             foreach ($chapters as &$c) {
                 if (!empty($c['volume_id']) && $v['id'] == $c['volume_id']) {
                     array_push($v['_child'], $c);
+                } else {
+                    array_push($arr, $c);
                 }
             }
+        }
+        if (sizeof($arr) > 0) {
+            array_push($volumes, array('id' => 0, 'name' => '待整理', '_child' => $arr));
         }
         return $volumes;
     }
@@ -251,7 +256,7 @@ class Work_Service extends MY_Service
         }
         $last = $this->chapter_model->get_last($work_id, $chapter_id);
         $next = $this->chapter_model->get_next($work_id, $chapter_id);
-        return array('curr'=>$chapter, 'last'=>$last, 'next'=>$next);
+        return array('curr' => $chapter, 'last' => $last, 'next' => $next);
     }
 
 

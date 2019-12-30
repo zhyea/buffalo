@@ -19,7 +19,7 @@ class Feature extends MY_Controller
      */
     public function list_page()
     {
-        $this->admin_page_view('feature-list', '专题信息 - Buffalo');
+        $this->admin_page_view('feature-list', '专题信息');
     }
 
 
@@ -42,7 +42,7 @@ class Feature extends MY_Controller
     {
         $f = $id <= 0 ? null : $this->feature_model->get_by_id($id);
 
-        $title = ($id > 0 ? '编辑专题' : '新增专题') . ' - Buffalo';
+        $title = ($id > 0 ? '编辑专题' : '新增专题');
 
         if (get_cookie('update_feature')) {
             $data['msg'] = '更新专题信息成功！';
@@ -97,12 +97,10 @@ class Feature extends MY_Controller
             redirect('admin/feature/list_page');
         }
 
-        $title = $f['name'] . ' - Buffalo';
-
         $data['id'] = $id;
         $data['name'] = $f['name'];
 
-        $this->admin_page_view('feature-records', $title, $data);
+        $this->admin_page_view('feature-records',  $f['name'] , $data);
     }
 
 

@@ -24,7 +24,7 @@ class Settings extends MY_Controller
             delete_cookie('update_site');
         }
 
-        self::admin_page_view('settings-site', '网站管理 - Buffalo', $data);
+        self::admin_page_view('settings-site', '网站管理', $data);
     }
 
 
@@ -45,7 +45,7 @@ class Settings extends MY_Controller
         $data['logo'] = $this->settings_model->get('logo');
         $data['bg_img'] = $this->settings_model->get('bg_img');
         $data['notice'] = $this->settings_model->get('notice');
-        self::admin_page_view('settings-info', '信息维护 - Buffalo', $data);
+        self::admin_page_view('settings-info', '信息维护', $data);
     }
 
 

@@ -70,4 +70,18 @@ class Volume_Model extends MY_Model
         return $this->insert_or_update(array('name' => $name, 'work_id' => $work_id), $volume_id);
     }
 
+
+    /**
+     * 根据ID集合批量删除记录
+     *
+     * @param array $ids ID集合
+     * @return int 删除操作影响的记录数量
+     */
+    public function delete_by_work_id($ids = array())
+    {
+        if (0 === sizeof($ids)) {
+            return 0;
+        }
+        return $this->db->where_in('work_id', $ids)->delete($this->table);
+    }
 }

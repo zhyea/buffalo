@@ -22,7 +22,7 @@ class Category extends MY_Controller
         $data['parent'] = is_null($p) ? 0 : $p['id'];
         $data['senior'] = is_null($p) ? -1 : $p['parent'];
         $data['parent_name'] = is_null($p) ? '' : $p['name'];
-        $this->admin_page_view('category-list', '分类信息 - Buffalo', $data);
+        $this->admin_page_view('category-list', '分类信息', $data);
     }
 
 
@@ -36,7 +36,7 @@ class Category extends MY_Controller
     {
         $cat = $this->meta_model->get_by_id($id);
 
-        $title = ($id > 0 ? '编辑分类' : '新增分类') . ' - Buffalo';
+        $title = ($id > 0 ? '编辑分类' : '新增分类');
 
         $data['id'] = $id;
         $data['parent'] = $parent;

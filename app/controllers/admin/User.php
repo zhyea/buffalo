@@ -17,7 +17,7 @@ class User extends MY_Controller
      */
     public function list_page()
     {
-        $this->admin_page_view('user-list', '用户信息 - Buffalo');
+        $this->admin_page_view('user-list', '用户信息');
     }
 
     /**
