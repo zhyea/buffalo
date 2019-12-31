@@ -134,7 +134,7 @@ class Work extends MY_Controller
     public function delete()
     {
         $ids = explode(',', $_POST['ids']);
-        $this->work_model->delete_in_batch($ids);
+        $this->work_model->delete_batch($ids);
         $this->volume_model->delete_by_work_id($ids);
         $this->chapter_model->delete_by_work_id($ids);
         echo 1;
@@ -198,6 +198,18 @@ class Work extends MY_Controller
         redirect('admin/work/chapters/' . $work_id);
     }
 
+
+    /**
+     * 删除章节
+     *
+     * @param int $work_id 作品ID
+     * @param int $chapter_id 章节ID
+     */
+    public function chapter_delete($work_id, $chapter_id = 0)
+    {
+        $this->chapter_model->delete($chapter_id);
+        redirect('admin/work/chapters/' . $work_id);
+    }
 
     /**
      * 根据名称查询作品信息

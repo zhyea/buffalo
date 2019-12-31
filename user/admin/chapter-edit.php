@@ -7,7 +7,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container main">
 
 	<div class="page-header">
-		<h3><?= $work_name ?></h3>
+		<h3>
+            <?= $work_name ?>
+			<span class="tag"><a href="<?= $ctx_site ?>/admin/work/list_page">返回列表</a></span>
+		</h3>
 	</div>
 
 	<form method="post" action="<?= $ctx_site ?>/admin/work/chapter_update">

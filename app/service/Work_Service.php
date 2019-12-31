@@ -226,10 +226,12 @@ class Work_Service extends MY_Service
         $arr = array();
         foreach ($volumes as &$v) {
             $v['_child'] = array();
+            $count = 1;
+            $d = 1;
             foreach ($chapters as &$c) {
                 if (!empty($c['volume_id']) && $v['id'] == $c['volume_id']) {
                     array_push($v['_child'], $c);
-                } else {
+                } else if (empty($c['volume_id'])) {
                     array_push($arr, $c);
                 }
             }
@@ -237,6 +239,7 @@ class Work_Service extends MY_Service
         if (sizeof($arr) > 0) {
             array_push($volumes, array('id' => 0, 'name' => '待整理', '_child' => $arr));
         }
+
         return $volumes;
     }
 

@@ -5,7 +5,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container main">
 
 	<div class="page-header">
-		<h3><span class="glyphicon glyphicon-book"></span> <?= $name ?></h3>
+		<h3>
+			<span class="glyphicon glyphicon-book"></span> <?= $name ?>
+			<span class="tag"><a href="<?= $ctx_site ?>/admin/work/list_page">返回列表</a></span>
+		</h3>
 	</div>
 
     <?php if (empty($volumes)): ?>
@@ -27,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <?php foreach ($volumes as $v): ?>
 			<div class="page-header">
-				<h3><span class="glyphicon glyphicon-book"></span> <?= $v['name'] ?></h3>
+				<h3><span class="glyphicon glyphicon-bookmark"></span> <?= $v['name'] ?></h3>
 			</div>
 			<div class="row">
                 <?php if ($v['_child']): ?>
@@ -38,7 +41,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								   href="<?= $ctx_site ?>/admin/work/chapter_edit/<?= $id . '/' . $ch['id'] ?>">
                                     <?= $ch['name'] ?>
 								</a>
-								<a><i class="glyphicon glyphicon-minus operate"></i></a>
+								<span class="operate">
+									<a target="_self"
+									   href="<?= $ctx_site ?>/admin/work/chapter_delete/<?= $id . '/' . $ch['id'] ?>">
+									<i class="glyphicon glyphicon-minus"></i>
+									</a>
+								</span>
 							</div>
 						</div>
                     <?php endforeach; ?>
@@ -50,7 +58,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="col-md-4 col-xs-12 chapter-unit">
 				<div class="chapter">
 					<a href="<?= $ctx_site ?>/admin/work/chapter_edit/<?= $id ?>/0" target="_self">新增章节...</a>
-					<a><i class="glyphicon glyphicon-plus operate"></i></a>
+					<span class="operate">
+						<a href="<?= $ctx_site ?>/admin/work/chapter_edit/<?= $id ?>/0" target="_self">
+							<i class="glyphicon glyphicon-plus"></i>
+						</a>
+					</span>
 				</div>
 			</div>
 		</div>

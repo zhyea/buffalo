@@ -76,6 +76,16 @@ input[type="file"] {
     text-decoration: none;
 }
 
+.tag {
+    margin-left: 16px;
+    display: inline;
+    font-size: 10px ;
+}
+
+.tag a{
+    font-size: 10px;
+}
+
 /* ----------------- main ----------------- */
 
 .main {
@@ -115,7 +125,7 @@ input[type="file"] {
 
 .chapter-unit {
     margin: 0;
-    padding: 2px;
+    padding: 5px 6px;
 }
 
 .chapter-unit:hover {
@@ -123,6 +133,7 @@ input[type="file"] {
 }
 
 .chapter {
+    overflow: hidden;
     padding-left: 9px;
     text-align: left;
     height: 36px;
@@ -131,14 +142,20 @@ input[type="file"] {
     border: 1px dotted #9a9a9a;
 }
 
-.chapter .operate {
-    float: right;
-    line-height: 31px;
-    margin-right: 3px;
-}
-
 .chapter a {
     color: #32383e;
+}
+
+.chapter .operate {
+    margin: 2px;
+    padding: 0 6px;
+    border: 1px dotted #9a9a9a;
+    float: right;
+    line-height: 28px;
+}
+
+.chapter .operate:hover {
+    background-color: #72b572;
 }
 
 .feature-article {

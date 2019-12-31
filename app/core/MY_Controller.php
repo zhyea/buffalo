@@ -63,8 +63,9 @@ class MY_Controller extends CI_Controller
      */
     protected function admin_page_view($page_name, $title = '', $data = array())
     {
-        $data['title'] = $title.' - Buffalo';
-        $data['site_name'] = $this->settings_model->get('site_name');
+        $site_name = $this->settings_model->get('site_name');
+        $data['title'] = $title . ' - ' . $site_name;
+        $data['site_name'] = $site_name;
 
         self::admin_view_of('common/header', $data);
         self::admin_view_of($page_name, $data);

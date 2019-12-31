@@ -81,7 +81,6 @@ class MY_Model extends CI_Model
     }
 
 
-
     /**
      * 封装单行记录查询语句
      *
@@ -206,6 +205,21 @@ class MY_Model extends CI_Model
             return 0;
         }
         return $this->db->delete($this->table, array('id' => $id));
+    }
+
+
+    /**
+     * 删除记录
+     *
+     * @param array $where 删除条件
+     * @return int 删除的行数
+     */
+    public function delete_by($where = array())
+    {
+        if (is_null($where) || sizeof($where) == 0) {
+            return 0;
+        }
+        return $this->db->delete($this->table, $where);
     }
 
 

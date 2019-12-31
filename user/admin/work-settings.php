@@ -5,7 +5,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container main">
 
 	<div class="page-header">
-		<h3><?= $id === 0 ? '新增作品' : '编辑作品 - ' . $name ?></h3>
+		<h3>
+            <?= $id === 0 ? '新增作品' : '编辑作品 - ' . $name ?>
+			<span class="tag"><a href="<?= $ctx_site ?>/admin/work/list_page">返回列表</a></span>
+		</h3>
 	</div>
 
 
