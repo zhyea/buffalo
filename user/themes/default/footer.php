@@ -13,7 +13,27 @@ isset($ctx_theme) OR exit('No base url exists')
 
 <script charset="utf-8" src="<?= $ctx_theme ?>/static/js/jquery.min.js"></script>
 <script charset="utf-8" src="<?= $ctx_theme ?>/static/js/bootstrap.min.js"></script>
+<script type="javascript">
+    $(document).ready(function () {
+        $(document).off('click.bs.dropdown.data-api');
+    });
 
+    $(document).ready(function () {
+        dropdownOpen();//调用
+    });
+
+    /**
+     * 鼠标划过就展开子菜单，免得需要点击才能展开
+     */
+    function dropdownOpen() {
+        let $dropdownLi = $('li.dropdown');
+        $dropdownLi.mouseover(function () {
+            $(this).addClass('open');
+        }).mouseout(function () {
+            $(this).removeClass('open');
+        });
+    }
+</script>
 </body>
 </html>
 

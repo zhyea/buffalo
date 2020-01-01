@@ -32,12 +32,15 @@ if (!function_exists('list_to_tree')) {
             foreach ($list as $key => $data) {
                 // 判断是否存在parent
                 $parentId = $data[$pid];
+
                 if ($root == $parentId) {
-                    $tree[] =& $list[$key];
+                    $tree[$data[$pk]] = &$list[$key];
                 } else {
                     if (isset($refer[$parentId])) {
-                        $parent =& $refer[$parentId];
-                        $parent[$child][] =& $list[$key];
+                        $parent = &$refer[$parentId];
+                        $parent[$child][$data[$pk]] = &$list[$key];
+
+                        $parent[$child] = array_values($parent[$child]);
                     }
                 }
             }

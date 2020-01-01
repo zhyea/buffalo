@@ -89,6 +89,8 @@ class MY_Controller extends CI_Controller
 
         $data['site_name'] = $site_name;
         $data['notice'] = $this->settings_model->get('notice');
+        $data['logo'] = $this->settings_model->get('logo');
+        $data['bg_img'] = $this->settings_model->get('bg_img');
 
         $data['title'] = $title . ' - ' . $site_name;
 

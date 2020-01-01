@@ -73,11 +73,13 @@ class Settings extends MY_Controller
 
         set_cookie('update_info', true, 60);
 
-        if ($_POST['logo']) {
-            $r = $this->settings_service->update_img_setting('logo');
-            if ($r && $_POST['bg_img']) {
-                $this->settings_service->update_img_setting('bg_img');
-            }
+        if ($_FILES['logo']) {
+            $this->settings_service->update_img_setting('logo');
+            echo 1;
+        }
+        if ($_FILES['bg_img']) {
+            $this->settings_service->update_img_setting('bg_img');
+            echo 2;
         }
         redirect('admin/settings/info');
     }

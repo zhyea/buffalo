@@ -19,6 +19,10 @@ class Feature_Record_Model extends MY_Model
             'feature_id' => $feature_id,
             'record_id' => $work_id
         );
+        $r = $this->get_where('id', $data);
+        if (!is_null($r)) {
+            return 0;
+        }
         return $this->insert0($data);
     }
 

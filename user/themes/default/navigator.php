@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<div class="container header">
+<div class="container header"
+     style="background: url('<?= $ctx_upload . '/' . $logo ?>') no-repeat; background-size: 100% 100%;">
 	&nbsp;
 </div>
 <div class="container navigator">
@@ -34,12 +35,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						   aria-expanded="false"><?= $cat['name'] ?> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
                             <?php foreach ($cat['_child'] as $child): ?>
-								<li><a href="#"><?= $child['name'] ?></a></li>
+								<li><a href="<?= $ctx_site . '/fe/cat/' . $child['id'] ?>"><?= $child['name'] ?></a>
+								</li>
                             <?php endforeach; ?>
 						</ul>
 					</li>
                 <?php else: ?>
-					<li><a href="#"><?= $cat['name'] ?></a></li>
+					<li><a href="<?= $ctx_site . '/fe/cat/' . $cat['id'] ?>"><?= $cat['name'] ?></a></li>
                 <?php endif; ?>
             <?php endforeach; ?>
 		</ul>
