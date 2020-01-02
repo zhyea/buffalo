@@ -27,15 +27,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <?php foreach ($categories as $cat): ?>
                 <?php if (isset($cat['_child'])): ?>
 					<li class="dropdown">
-						<a href="#"
+						<a href="<?= $ctx_site . '/fe/cat/' . $cat['id'] ?>"
 						   class="dropdown-toggle"
 						   data-toggle="dropdown"
 						   role="button"
 						   aria-haspopup="true"
 						   aria-expanded="false"><?= $cat['name'] ?> <span class="caret"></span></a>
 						<ul class="dropdown-menu">
+							<li>
+								<a href="<?= $ctx_site . '/fe/cat/' . $cat['id'] ?>"><?= $cat['name'] ?></a>
+							</li>
                             <?php foreach ($cat['_child'] as $child): ?>
-								<li><a href="<?= $ctx_site . '/fe/cat/' . $child['id'] ?>"><?= $child['name'] ?></a>
+								<li>
+									<a href="<?= $ctx_site . '/fe/cat/' . $child['id'] ?>"><?= $child['name'] ?></a>
 								</li>
                             <?php endforeach; ?>
 						</ul>

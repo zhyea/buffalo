@@ -56,7 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="row">
 		<div class="form-label col-md-2 col-xs-12">概述</div>
 		<div class="form-input col-md-10 col-xs-12">
-			<textarea class="form-control" name="brief"><?= $brief ?></textarea>
+			<textarea class="form-control" name="brief" rows="6"><?= $brief ?></textarea>
 		</div>
 	</div>
 

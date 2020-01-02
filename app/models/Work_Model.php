@@ -84,7 +84,9 @@ class Work_Model extends MY_Model
         return $this->db->select('w.id, w.name, a.name as author, w.author_id')
             ->from('work w')
             ->join('author a', 'w.author_id=a.id', 'left')
-            ->where(array('category_id' => $cat_id))
+            ->join('meta c', 'w.category_id=c.id', 'left')
+            ->where(array('w.category_id' => $cat_id))
+            ->or_where(array('c.parent' => $cat_id))
             ->limit($limit)
             ->get()->result_array();
     }

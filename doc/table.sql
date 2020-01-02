@@ -81,7 +81,7 @@ create table if not exists bu_work
 
     author_id   int,
     category_id int,
-    cover       varchar(128),
+    cover       varchar(128) default 'sys/nocover.png',
     file        varchar(128),
 
     name        varchar(64),
