@@ -9,7 +9,6 @@ class AuthCheck extends MY_Hooks
         parent::__construct();
 
         $this->load->helper('url');
-        $this->load->library('session');
     }
 
 
@@ -21,17 +20,15 @@ class AuthCheck extends MY_Hooks
 
     public function check()
     {
-//        echo uri_string();
-//        $this->CI->load->helper('url');
-//
-//        if (preg_match("/manage.*/i", uri_string())) {
-//            // 需要进行权限检查的URL
-//            this −> CI−>load −> library(′session′);
-//            if (!this->CI->session->userdata('username') ) {
-//                // 用户未登陆
-//                redirect('login');
-//                return;
-//            }        }
+        $this->load->library('session');
+        if (preg_match("/.*admin.*/i", uri_string())) {
+            if (!$this->session->userdata('username') ) {
+                echo 1;
+                // 用户未登陆
+                redirect('admin/console/login');
+                return;
+            }
+        }
     }
 
 }

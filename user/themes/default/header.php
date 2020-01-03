@@ -15,5 +15,10 @@ isset($ctx_theme) OR exit('No base url exists')
 	<link href="<?= $ctx_theme ?>/static/css/style.css" rel="stylesheet" type="text/css" media="all">
 </head>
 
-<body <?php if (!empty($bg_img)): ?> style="background: url('<?= $ctx_upload . '/' . $bg_img ?>') no-repeat fixed top; background-size: 100% 100%;" <?php endif; ?>>
+<body
+    <?php if (!empty($feature_img)): ?>
+		style="background: url('<?= $ctx_upload . '/' . $feature_img ?>') no-repeat fixed top; background-size: 100% 100%;"
+    <?php elseif (!empty($bg_img)): ?>
+		style="background: url('<?= $ctx_upload . '/' . $bg_img ?>') repeat;"
+    <?php endif; ?>>
 <div class="wrapper">
