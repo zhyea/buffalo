@@ -13,6 +13,8 @@ class Work extends MY_Controller
         $this->load->model('chapter_model');
         $this->load->model('volume_model');
         $this->load->service('work_service');
+
+        $this->load->library('session');
     }
 
 

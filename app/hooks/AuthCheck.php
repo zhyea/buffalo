@@ -8,7 +8,11 @@ class AuthCheck extends MY_Hooks
     {
         parent::__construct();
 
+        $this->CI =& get_instance();
+
         $this->load->helper('url');
+        $this->load->library('session');
+
     }
 
 
@@ -20,12 +24,12 @@ class AuthCheck extends MY_Hooks
 
     public function check()
     {
-        $this->load->library('session');
+        $this->CI->session->userdata('USER');
         if (preg_match("/.*admin.*/i", uri_string())) {
-            if (!$this->session->userdata('username') ) {
+            if (!$this->CI->session->userdata('username')) {
                 echo 1;
                 // 用户未登陆
-                redirect('admin/console/login');
+                redirect('console/login');
                 return;
             }
         }
