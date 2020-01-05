@@ -7,6 +7,7 @@ class Console extends MY_Controller
     {
         parent::__construct();
 
+        $this->load->library('session');
     }
 
 
@@ -20,18 +21,6 @@ class Console extends MY_Controller
 
 
     /**
-     * 后台首页
-     */
-    public function index()
-    {
-        self::admin_page_view('home', 'Buffalo Console');
-    }
-
-
-
-
-
-    /**
      * 登录信息校验
      */
     public function login_check()
@@ -39,15 +28,15 @@ class Console extends MY_Controller
         $username = $_POST['username'];
         $password = $_POST['password'];
 
+        $ip = $this->input->ip_address();
+
         echo $username;
         echo $password;
 
-        redirect('admin');
+        echo
+        exit();
+        //redirect('admin');
     }
-
-
-
-
 
 
 }

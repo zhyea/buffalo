@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="container login">
 
-	<form class="form-login" method="post" action="./login_check">
+	<form class="form-login" method="post" action="<?= $ctx_site ?>/console/login_check">
 		<div class="logo"><img src="<?= $ctx_admin ?>static/img/logo.png" width="36%"/></div>
 		<div class="form-item">
 			<span class="form-label">用户名</span>

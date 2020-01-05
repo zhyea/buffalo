@@ -54,4 +54,4 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 /*-------------custom configs*/
-$route['admin'] = 'admin/console';
+$route['admin'] = 'admin/admin';
