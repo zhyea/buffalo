@@ -26,4 +26,16 @@ class User_Model extends MY_Model
         return $this->get_by_id0($id, 'id, username, email, nickname');
     }
 
+
+    /**
+     * 根据用户名获取用户信息
+     * @param string $username 用户名
+     * @param string $password 密码
+     * @return array 用户信息
+     */
+    public function get_by_username($username, $password)
+    {
+        return $this->get_where("id", array('username' => $username, 'password' => $password));
+    }
+
 }

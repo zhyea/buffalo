@@ -19,7 +19,7 @@ class AuthCheck extends MY_Hooks
     public function check()
     {
         if (preg_match("/.*admin.*/i", uri_string())) {
-            if (!$this->CI->session->userdata('username')) {
+            if (!$this->CI->session->userdata('user')) {
                 // 用户未登陆
                 redirect('console/login');
             }
