@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</button>
 
 		<ul class="nav navbar-nav" id="main-nav-items">
-			<li class="active">
+			<li>
 				<a href="<?= $ctx_site ?>">
 					<i class="glyphicon glyphicon-home"></i> <?= $site_name ?> <span class="sr-only">(current)</span>
 				</a>
