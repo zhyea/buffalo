@@ -225,4 +225,15 @@ class Work extends MY_Controller
     }
 
 
+    /**
+     * 远程交互代码
+     */
+    public function upload_code()
+    {
+        $code = uniqid();
+        $this->session->set_userdata('code', $code);
+        echo $code;
+    }
+
+
 }

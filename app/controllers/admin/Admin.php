@@ -7,6 +7,7 @@ class Admin extends MY_Controller
     {
         parent::__construct();
 
+        $this->load->library('session');
     }
 
     /**
@@ -14,7 +15,16 @@ class Admin extends MY_Controller
      */
     public function index()
     {
-        self::admin_page_view('home', 'Buffalo Console');
+        $this->admin_page_view('home', 'Buffalo Console');
+    }
+
+    /**
+     * 退出登录
+     */
+    public function logout()
+    {
+        $this->session->unset_userdata('user');
+        redirect("/");
     }
 
 }

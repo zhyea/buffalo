@@ -30,31 +30,23 @@ class Console extends MY_Controller
         $password = md5('a3D#_%' . $_POST['password']);
 
         $ip = $this->input->ip_address();
+        $count = $this->session->userdata($ip);
+        if (!is_null($count) && $count > 3) {
+            redirect('/');
+        }
+
         $user = $this->user_model->get_by_username($username, $password);
         if (!is_null($user)) {
-            $this->session->set_userdata('user', $username.'@'.$ip);
+            $this->session->set_userdata('user', $username . '@' . $ip);
             redirect("admin");
             return;
         }
 
-
-        $count = $this->session->userdata($ip);
-        $count = is_null($count) ? 0 : $count;
-        if ($count < 3) {
-            $count = $count + 1;
-        } else {
-            show_404();
-        }
+        $count = is_null($count) ? 1 : $count + 1;
 
         $this->session->set_userdata($ip, $count);
 
-        echo $username . '<br>';
-        echo $password . '<br>';
-        echo $count . '<br>';
-
-        echo
-        exit();
-        //redirect('admin');
+        redirect('console/login');
     }
 
 
