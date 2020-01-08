@@ -228,11 +228,25 @@ class Work extends MY_Controller
     /**
      * 远程交互代码
      */
-    public function upload_code()
+    public function remote_code()
     {
         $code = uniqid();
         $this->session->set_userdata('code', $code);
         echo $code;
+    }
+
+
+    /**
+     * 远程写
+     */
+    public function remote_edit()
+    {
+        $work_name = $_POST['work'];
+        $volume_name = $_POST['volume'];
+        $chapter_name = $_POST['chapter'];
+        $content = $_POST['content'];
+
+        echo $this->work_service->remote_write($work_name, $volume_name, $chapter_name, $content);
     }
 
 

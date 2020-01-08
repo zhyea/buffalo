@@ -73,6 +73,18 @@ class Work_Model extends MY_Model
     }
 
 
+    /**
+     * 名称获取记录
+     *
+     * @param string $name 名称
+     * @return array 记录
+     */
+    public function get_by_name($name)
+    {
+        return $this->get_where("id, name", array('name' => $name));
+    }
+
+
     /**根据分类ID获取作品信息
      *
      * @param int $cat_id 分类ID

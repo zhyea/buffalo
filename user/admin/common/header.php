@@ -82,7 +82,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					   aria-expanded="false"><span class="glyphicon glyphicon-pencil"></span> 撰写<span
 								class="caret"></span></a>
 					<ul class="dropdown-menu navbar-child">
-						<li class="navbar-child-item"><a href="<?= $ctx_site ?>/admin/content/edit">新增文章</a></li>
+						<li class="navbar-child-item"><a href="<?= $ctx_site ?>/admin/work/remote_code">远程写</a></li>
 					</ul>
 				</li>
 			</ul>

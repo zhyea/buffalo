@@ -97,4 +97,17 @@ class Chapter_Model extends MY_Model
         return $this->db->where_in('work_id', $ids)->delete($this->table);
     }
 
+
+
+    /**
+     * 名称获取记录
+     *
+     * @param string $name 名称
+     * @return array 记录
+     */
+    public function get_by_name($name)
+    {
+        return $this->get_where("id, name", array('name' => $name));
+    }
+
 }

@@ -263,4 +263,46 @@ class Work_Service extends MY_Service
     }
 
 
+    /**
+     * 远程写
+     *
+     * @param string $work_name 作品名称
+     * @param string $volume_name 分卷名称
+     * @param string $chapter_name 章节名称
+     * @param string $content 章节内容
+     * @return bool 是否执行成功
+     */
+    public function remote_write($work_name, $volume_name, $chapter_name, $content)
+    {
+        if (empty($work_name) || empty($chapter_name) || empty($content)) {
+            echo $work_name . '-' . $chapter_name . '-' . $content;
+            return false;
+        }
+
+        $work = $this->work_model->get_by_name($work_name);
+        if (is_null($work)) {
+            echo 'cannot find work.';
+            return false;
+        }
+        $work_id = $work['id'];
+
+        $volume_id = 0;
+        if (!empty($volume_name)) {
+            $volume = $this->volume_model->get_by_name($volume_name);
+            if (!is_null($volume)) {
+                $volume_id = $volume['id'];
+            } else {
+                $volume_id = $this->volume_model->insert($work_id, $volume_name);
+            }
+        }
+
+        $chapter = $this->chapter_model->get_by_name($chapter_name);
+
+        $chapter_id = is_null($chapter) ? 0 : $chapter['id'];
+        $r = $this->chapter_model->update($work_id, $volume_id, $chapter_name, $content, $chapter_id);
+
+        $chapter_id = (0 === $chapter_id ? $r : $chapter_id);
+
+        return $chapter_id > 0;
+    }
 }

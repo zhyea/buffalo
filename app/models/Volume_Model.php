@@ -58,7 +58,7 @@ class Volume_Model extends MY_Model
      * @param int $volume_id 分卷ID
      * @return int 记录ID
      */
-    public function insert($work_id, $name, $volume_id)
+    public function insert($work_id, $name, $volume_id = 0)
     {
         if (empty($name)) {
             return 0;
@@ -83,5 +83,17 @@ class Volume_Model extends MY_Model
             return 0;
         }
         return $this->db->where_in('work_id', $ids)->delete($this->table);
+    }
+
+
+    /**
+     * 名称获取记录
+     *
+     * @param string $name 名称
+     * @return array 记录
+     */
+    public function get_by_name($name)
+    {
+        return $this->get_where("id, name", array('name' => $name));
     }
 }
