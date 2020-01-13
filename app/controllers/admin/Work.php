@@ -241,6 +241,20 @@ class Work extends MY_Controller
      */
     public function remote_edit()
     {
+        $code = $this->session->userdata('code');
+
+        $headers = $this->input->request_headers();
+        if(!array_key_exists('code', $headers)){
+            return;
+        }
+        $header_code = $headers['code'];
+
+        echo $code . ' ---- ' . $header_code;
+        if ($code != $header_code) {
+            echo 'ERROR';
+            return;
+        }
+
         $work_name = $_POST['work'];
         $volume_name = $_POST['volume'];
         $chapter_name = $_POST['chapter'];

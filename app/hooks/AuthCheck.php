@@ -20,12 +20,15 @@ class AuthCheck extends MY_Hooks
     {
         $url = uri_string();
         $code = $this->CI->session->userdata('code');
-        if (!is_null($code) && strrpos($url, "work/chapter_upload")) {
 
-        } elseif (preg_match("/.*admin.*/i", uri_string())) {
+        if (!is_null($code) && strrpos($url, "work/remote_edit")) {
+            return;
+        }
+
+        if (preg_match("/.*admin.*/i", uri_string())) {
             if (!$this->CI->session->userdata('user')) {
                 // 用户未登陆
-                redirect('console/login');
+                //redirect('console/login');
             }
         }
     }
