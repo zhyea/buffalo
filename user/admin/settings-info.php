@@ -20,24 +20,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="row">
 		<div class="form-label col-md-2 col-xs-12">LOGO</div>
 		<div class="form-input col-md-10 col-xs-12">
+			<input type="file" class="form-control" accept="image/png, image/jpeg" name="logo"/>
             <?php if (isset($logo)): ?>
+				<br/>
 				<div class="form-input col-md-12 col-xs-12">
 					<p style="overflow: hidden"><img src="<?= $ctx_upload . $logo ?>" alt="LOGO"/></p>
 				</div>
+				<br/>
+				<a href="<?= $ctx_site ?>/admin/settings/delete_setting/logo" target="_self">移除LOGO</a>
+				<br/>
             <?php endif; ?>
-			<input type="file" class="form-control" accept="image/png, image/jpeg" name="logo"/>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="form-label col-md-2 col-xs-12">背景图片</div>
 		<div class="form-input col-md-10 col-xs-12">
+			<input type="file" class="form-control" accept="image/png, image/jpeg" name="bg_img"/>
             <?php if (isset($bg_img)): ?>
+				<br/>
 				<div class="form-input col-md-12 col-xs-12">
 					<p style="overflow: hidden"><img src="<?= $ctx_upload . $bg_img ?>" alt="BG_IMG"/></p>
 				</div>
+				<br/>
+				<a href="<?= $ctx_site ?>/admin/settings/delete_setting/bg_img" target="_self">移除背景图</a>
+				<br/>
             <?php endif; ?>
-			<input type="file" class="form-control" accept="image/png, image/jpeg" name="bg_img"/>
 		</div>
 	</div>
 

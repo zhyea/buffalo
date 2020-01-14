@@ -83,4 +83,16 @@ class Settings extends MY_Controller
         }
         redirect('admin/settings/info');
     }
+
+
+    /**
+     * 删除指定的配置项
+     * @param string $key 配置项名称
+     */
+    public function delete_setting($key)
+    {
+        $this->settings_model->delete_by(array('name' => $key));
+
+        redirect('admin/settings/info');
+    }
 }
