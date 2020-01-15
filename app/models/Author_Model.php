@@ -72,16 +72,32 @@ class Author_Model extends MY_Model
      * 新增作者信息
      * @param string $name 作者名称
      * @param string $country 作者国家
+     * @param int $id 作品ID
+     * @param string $bio 作者简介
      * @return int 记录ID
      */
-    public function insert($name, $country = '未知')
+    public function insert($name, $country = '未知', $id = 0, $bio = NULL)
     {
         $author = $this->find_by_name_country($name, $country);
         if (!is_null($author)) {
-            return $author['id'];
+            $id = $author['id'];
         }
-        return $this->insert_or_update(array('name' => $name, 'country' => $country));
+        $tmp = $this->insert_or_update(array('name' => $name, 'country' => $country, 'bio' => $bio), $id);
+        if ($id === 0) {
+            $id = $tmp;
+        }
+        return $id;
     }
 
+
+    /**
+     * 查询全部作者信息
+     *
+     * @return array 全部专题信息
+     */
+    public function all()
+    {
+        return $this->select_where('id, name, country');
+    }
 
 }

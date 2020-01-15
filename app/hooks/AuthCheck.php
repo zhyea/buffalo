@@ -21,9 +21,9 @@ class AuthCheck extends MY_Hooks
         $url = uri_string();
         $code = $this->CI->session->userdata('code');
 
-        if (!is_null($code) && strrpos($url, "work/remote_edit")) {
+/*        if (!is_null($code) && strrpos($url, "work/remote_edit")) {
             return;
-        }
+        }*/
 
         if (preg_match("/.*admin.*/i", uri_string())) {
             if (!$this->CI->session->userdata('user')) {
