@@ -100,7 +100,7 @@ class Feature extends MY_Controller
         $data['id'] = $id;
         $data['name'] = $f['name'];
 
-        $this->admin_page_view('feature-records',  $f['name'] , $data);
+        $this->admin_page_view('feature-records', $f['name'], $data);
     }
 
 
@@ -127,7 +127,6 @@ class Feature extends MY_Controller
     }
 
 
-
     /**
      * 删除数据
      */
@@ -135,6 +134,14 @@ class Feature extends MY_Controller
     {
         $ids = $_POST['ids'];
         echo $this->feature_record_model->delete_batch(explode(',', $ids));
+    }
+
+
+    public function delete($id)
+    {
+        if ($id === 1) {
+            echo 1;
+        }
     }
 
 }
