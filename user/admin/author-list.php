@@ -26,6 +26,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	       data-click-to-select="true"
 	       data-toolbar="#authorTableToolbar"
 	       data-url="<?= $ctx_site ?>/admin/author/data"
+	       data-single-select="true"
+	       data-id-field="id"
 	       data-sort-name="id"
 	       data-sort-order="asc"
 	       data-pagination=true
@@ -72,7 +74,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     function operateFormatter(value, row, index) {
-        return '<a href="<?= $ctx_site ?>/admin/author/record_page/' + row.id + '" target="_self">作品</a>';
+        return '<a href="<?= $ctx_site ?>/admin/author/works_page/' + row.id + '" target="_self">作品</a>';
     }
 
 </script>

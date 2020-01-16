@@ -87,7 +87,6 @@ class Fe extends MY_Controller
             'relate' => $this->work_service->find_by_author_id($author_id, $work_id),
             'chapters' => $this->work_service->chapter_list($work_id)
         );
-        //print_r($data);
         $this->page_view('work', $work['name'], $data);
     }
 

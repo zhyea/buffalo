@@ -5,14 +5,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container main">
 
 	<div class="page-header">
-		<h3>专题 《<?= $name ?>》 - 列表</h3>
+		<h3>作者 《<?= $name ?>》 - 作品列表</h3>
 	</div>
 
 	<form>
 		<div class="row">
 			<div class="form-input col-md-5 col-xs-12">
 				<div class="input-group">
-					<input type="text" class="form-control" id="featureRecordSelectInput" autocomplete="off">
+					<input type="text" class="form-control" id="authorWorkSelectInput" autocomplete="off">
 					<div class="input-group-btn">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="">
 							<span class="caret"></span>
@@ -26,20 +26,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</form>
 
 
-	<div id="featureRecordTableToolbar">
-		<div class="btn-group">
-			<a id="btnDelete" class="btn btn-default">
-				<i class="glyphicon glyphicon-minus"></i> 删除
-			</a>
-		</div>
-	</div>
-	<table id="featureRecordTable"
+	<table id="authorWorkTable"
 	       data-toggle="table"
 	       data-search="true"
+	       data-show-search-clear-button="true"
+	       data-search-align="left"
 	       data-classes="table table-hover table-borderless"
 	       data-click-to-select="true"
-	       data-toolbar="#featureRecordTableToolbar"
-	       data-url="<?= $ctx_site ?>/admin/feature/feature_works/<?= $id ?>"
+	       data-url="<?= $ctx_site ?>/admin/work/author_works/<?= $id ?>"
 	       data-sort-name="id"
 	       data-sort-order="asc"
 	       data-pagination=true
@@ -58,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script charset="utf-8" src="<?= $ctx_admin ?>/static/js/jquery.min.js"></script>
 <script charset="utf-8" src="<?= $ctx_admin ?>/static/js/bootstrap-suggest.js"></script>
 <script>
-    $("#featureRecordSelectInput").bsSuggest({
+    $("#authorWorkSelectInput").bsSuggest({
         clearable: true,
         url: "<?= $ctx_site ?>/admin/work/find_by_name/",
         showHeader: false,
@@ -69,38 +63,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         allowNoKeyword: false,
         getDataMethod: 'url'
     }).on('onSetSelectValue', function (e, keyword, data) {
-        $.post('<?= $ctx_site ?>/admin/feature/add_work',
+        $.post('<?= $ctx_site ?>/admin/work/alter_author',
             {
                 id: '<?=$id?>',
                 work_id: data.id
             }, function (data, status) {
                 if ('success' === status) {
-                    $('#featureRecordTable').bootstrapTable('refresh')
+                    $('#authorWorkTable').bootstrapTable('refresh')
                 }
             });
-    });
-
-
-    // 删除按钮事件
-    $("#btnDelete").on("click", function () {
-        let rows = $("#featureRecordTable").bootstrapTable('getSelections');// 获得要删除的数据
-        if (rows.length > 0) {// rows 主要是为了判断是否选中，下面的else内容才是主要
-            let ids = [];// 声明一个数组
-            $(rows).each(function () {// 通过获得别选中的来进行遍历
-                ids.push(this.id);// cid为获得到的整条数据中的一列
-            });
-
-            $.ajax({
-                url: '<?= $ctx_site ?>/admin/feature/delete_records',
-                data: 'ids=' + ids,
-                type: 'post',
-                dataType: 'json',
-                success: function (data, status) {
-                    if ('success' === status) {
-                        $('#featureRecordTable').bootstrapTable('refresh');
-                    }
-                }
-            });
-        }
     });
 </script>

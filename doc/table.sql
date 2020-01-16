@@ -51,6 +51,7 @@ insert into bu_settings (name, value)
 values ('site_name', 'Buffalo'),
        ('notice', '这里是通知信息，有时间可以翻阅一下');
 
+
 -- media
 create table if not exists bu_media
 (
@@ -61,6 +62,7 @@ create table if not exists bu_media
     path varchar(128)
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;
+
 
 -- authors
 create table if not exists bu_author
@@ -74,12 +76,16 @@ create table if not exists bu_author
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;
 
+insert into bu_author (id, name, country)
+values (1, '未知', '未知');
+
+
 -- works
 create table if not exists bu_work
 (
     id          int not null auto_increment primary key,
 
-    author_id   int,
+    author_id   int          default 1,
     category_id int,
     cover       varchar(128) default 'sys/nocover.png',
     file        varchar(128),
@@ -90,6 +96,7 @@ create table if not exists bu_work
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;
 
+
 -- volume
 create table if not exists bu_volume
 (
@@ -99,6 +106,7 @@ create table if not exists bu_volume
     name    varchar(64)
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;
+
 
 -- chapter
 create table if not exists bu_chapter
@@ -129,6 +137,9 @@ create table if not exists bu_feature
 
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;
+
+insert into bu_feature (id, name, alias, key_words)
+values (1, '推荐', 'recommend', '推荐');
 
 
 -- feature-work

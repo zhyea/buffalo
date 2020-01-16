@@ -88,4 +88,25 @@ class Author extends MY_Controller
 
         redirect('admin/author/settings/' . $id);
     }
+
+
+    /**
+     * 进入专题记录页
+     *
+     * @param int $id 专题ID
+     */
+    public function works_page($id = 0)
+    {
+        $f = $this->author_model->get_by_id($id);
+        if (is_null($f)) {
+            redirect('admin/author/list_page');
+        }
+
+        $data['id'] = $id;
+        $data['name'] = $f['name'];
+
+        $this->admin_page_view('author-works', $f['name'], $data);
+    }
+
+
 }

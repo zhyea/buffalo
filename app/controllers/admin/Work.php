@@ -244,7 +244,7 @@ class Work extends MY_Controller
         $code = $this->session->userdata('code');
 
         $headers = $this->input->request_headers();
-        if(!array_key_exists('code', $headers)){
+        if (!array_key_exists('code', $headers)) {
             return;
         }
         $header_code = $headers['code'];
@@ -263,5 +263,28 @@ class Work extends MY_Controller
         echo $this->work_service->remote_write($work_name, $volume_name, $chapter_name, $content);
     }
 
+
+    /**
+     * 作者作品集合
+     *
+     * @param int $author_id 作者ID
+     */
+    public function author_works($author_id)
+    {
+        $data = $this->work_service->find_by_author_id($author_id);
+        echo json_encode($data);
+    }
+
+
+
+    /**
+     * 调整作品作者
+     */
+    public function alter_author()
+    {
+        $author_id = $_POST['id'];
+        $work_id = $_POST['work_id'];
+        echo $this->work_model->alter_author($work_id, $author_id);
+    }
 
 }

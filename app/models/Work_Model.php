@@ -155,4 +155,20 @@ class Work_Model extends MY_Model
     {
         return $this->select_where("id, name", array('author_id' => $author_id), 5);
     }
+
+
+    /**
+     * 调整作品信息
+     *
+     * @param int $id 作品ID
+     * @param int $author_id 做着记录ID
+     * @return int 修改是否成功
+     */
+    public function alter_author($id, $author_id)
+    {
+        if (is_null($author_id) || $author_id <= 0) {
+            return 0;
+        }
+        return $this->insert_or_update(array('author_id' => $author_id), $id);
+    }
 }

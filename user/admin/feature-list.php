@@ -26,6 +26,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	       data-click-to-select="true"
 	       data-toolbar="#featureTableToolbar"
 	       data-url="<?= $ctx_site ?>/admin/feature/data"
+	       data-single-select="true"
+	       data-id-field="id"
 	       data-sort-name="id"
 	       data-sort-order="asc"
 	       data-pagination=true
