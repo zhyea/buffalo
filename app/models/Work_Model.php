@@ -171,4 +171,17 @@ class Work_Model extends MY_Model
         }
         return $this->insert_or_update(array('author_id' => $author_id), $id);
     }
+
+
+    /**
+     * @param $old_author_id
+     * @return int
+     */
+    public function set_default_author($old_author_id)
+    {
+        if (is_null($old_author_id) || $old_author_id <= 0) {
+            return 0;
+        }
+        return $this->update_by(array('author_id' => 1), array('author_id' => $old_author_id));
+    }
 }

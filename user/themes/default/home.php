@@ -17,7 +17,7 @@ isset($ctx_theme) OR exit('No base url exists')
 			<div class="item col-md-2 col-xs-2">
 				<div class="cover">
 					<a href="<?= $ctx_site . '/fe/work/' . $r['id'] ?>">
-						<img src="<?php echo $ctx_upload . '/' . $r['cover'] ?>"/>
+						<img src="<?php echo $ctx_upload . '/' . $r['cover'] ?>" width="120px" height="156px"/>
 					</a>
 				</div>
 				<div class="remark"><a href="<?= $ctx_site . '/fe/work/' . $r['id'] ?>"><?= $r['name'] ?></a></div>

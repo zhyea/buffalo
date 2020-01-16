@@ -11,10 +11,9 @@ class Author_Service extends MY_Service
         $this->load->model('author_model');
     }
 
-    public function get_name($id)
+    public function get_author($id)
     {
-        $a = $this->author_model->get_by_id($id);
-        return empty($a) ? NULL : $a['name'];
+        return $this->author_model->get_by_id($id);
     }
 
 }

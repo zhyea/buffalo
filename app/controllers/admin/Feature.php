@@ -52,7 +52,7 @@ class Feature extends MY_Controller
         $data['id'] = $id;
         $data['cover'] = is_null($f) ? '' : $f['cover'];
         $data['name'] = is_null($f) ? '' : $f['name'];
-        $data['alias'] = is_null($f) ? '' : $f['brief'];
+        $data['alias'] = is_null($f) ? '' : $f['alias'];
         $data['key_words'] = is_null($f) ? '' : $f['key_words'];
         $data['brief'] = is_null($f) ? '' : $f['brief'];
 
@@ -109,7 +109,7 @@ class Feature extends MY_Controller
      *
      * @param int $feature_id 专题ID
      */
-    public function feature_works($feature_id)
+    public function feature_works($feature_id = 0)
     {
         $data = $this->feature_record_model->find_feature_works($feature_id);
         echo json_encode($data);
@@ -137,11 +137,18 @@ class Feature extends MY_Controller
     }
 
 
+    /**
+     * 删除专题信息
+     *
+     * @param int $id 专题ID
+     */
     public function delete($id)
     {
-        if ($id === 1) {
-            echo 1;
+        if (!empty($id) && $id > 1) {
+            $this->feature_model->delete($id);
+            $this->feature_record_model->delete_by_feature($id);
         }
+        redirect('admin/feature/list_page');
     }
 
 }

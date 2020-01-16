@@ -42,6 +42,7 @@ class Fe extends MY_Controller
         $this->page_view('category', $cat_name, $data);
 
     }
+
     /**
      * 进入作者作品页
      *
@@ -50,7 +51,9 @@ class Fe extends MY_Controller
      */
     public function author($author_id, $page_num = 0)
     {
-        $author_name = $this->author_service->get_name($author_id);
+        $author = $this->author_service->get_author($author_id);
+        $author_name = is_null($author) ? '' : $author['name'];
+        $bio = is_null($author) ? '' : $author['bio'];
         if (empty($author_name)) {
             show_404();
         }
@@ -61,6 +64,7 @@ class Fe extends MY_Controller
         $data['works'] = $this->work_service->find_author_page($author_id, $page_num, $page_size);
         $data['name'] = $author_name;
         $data['author_id'] = $author_id;
+        $data['bio'] = $bio;
         $data['total'] = $total / $page_size;
         $data['curr'] = $page_num;
         $this->page_view('author', $author_name, $data);

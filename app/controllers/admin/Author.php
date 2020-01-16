@@ -8,7 +8,7 @@ class Author extends MY_Controller
     {
         parent::__construct();
         $this->load->model("author_model");
-        $this->load->model('user_model');
+        $this->load->model('work_model');
     }
 
 
@@ -29,7 +29,7 @@ class Author extends MY_Controller
      */
     public function list_page()
     {
-        $this->admin_page_view('author-list', '专题信息');
+        $this->admin_page_view('author-list', '作者信息');
     }
 
 
@@ -91,9 +91,9 @@ class Author extends MY_Controller
 
 
     /**
-     * 进入专题记录页
+     * 进入作者作品记录页
      *
-     * @param int $id 专题ID
+     * @param int $id 作者ID
      */
     public function works_page($id = 0)
     {
@@ -108,5 +108,19 @@ class Author extends MY_Controller
         $this->admin_page_view('author-works', $f['name'], $data);
     }
 
+
+    /**
+     * 删除作者信息
+     *
+     * @param int $id 作者ID
+     */
+    public function delete($id)
+    {
+        if (!empty($id) && $id > 1) {
+            $this->author_model->delete($id);
+            $this->work_model->set_default_author($id);
+        }
+        redirect('admin/author/list_page');
+    }
 
 }

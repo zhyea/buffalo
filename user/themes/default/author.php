@@ -12,11 +12,22 @@ isset($ctx_theme) OR exit('No base url exists')
 </div>
 
 <div class="container main">
+
+
+	<div style="margin:0 -15px;">
+		<div class="work-header">
+			<span class="title"><?= $name ?></span>
+		</div>
+
+		<div class="work-neck row" style="padding: 12px 16px">
+            <?= $bio ?>
+		</div>
+	</div>
+
 	<div class="page-header">
-		<h3><span class="glyphicon glyphicon-th-list"></span> <?= $name ?></h3>
+		<h3><span class="glyphicon glyphicon-th-list"></span> <?= $name ?> 作品列表</h3>
 	</div>
 	<div class="row category">
-
         <?php foreach ($works as $w): ?>
 			<div class="col-md-6 col-xs-12 work">
 				<div class="cover">

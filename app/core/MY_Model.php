@@ -193,6 +193,22 @@ class MY_Model extends CI_Model
         }
     }
 
+
+    /**
+     * 更新记录
+     *
+     * @param array $data 要更新的内容
+     * @param array $where 更新的条件
+     * @return int 操作影响的行数
+     */
+    protected function update_by($data = array(), $where = array())
+    {
+        if (0 === sizeof($data)) {
+            return 0;
+        }
+        return $this->db->update($this->table, $data, $where);
+    }
+
     /**
      * 删除记录
      *

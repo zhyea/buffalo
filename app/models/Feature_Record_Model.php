@@ -38,7 +38,7 @@ class Feature_Record_Model extends MY_Model
         $this->db->select('r.id, r.feature_id, r.record_id, w.name')
             ->from('feature_record r')
             ->join('work w', 'r.record_id=w.id', 'left')
-            ->where(array('type' => 'work'));
+            ->where(array('type' => 'work', 'feature_id' => $feature_id));
 
         return $this->db->get()->result_array();
     }
@@ -60,6 +60,21 @@ class Feature_Record_Model extends MY_Model
             ->where(array('r.type' => 'work', 'f.alias' => $alias))
             ->limit($limit)
             ->get()->result_array();
+    }
+
+
+    /**
+     * 删除专题
+     *
+     * @param int $feature_id 专题ID
+     * @return int 删除的行数
+     */
+    public function delete_by_feature($feature_id)
+    {
+        if (empty($feature_id) || $feature_id < 0) {
+            return 0;
+        }
+        return $this->delete_by(array('feature_id' => $feature_id));
     }
 
 
