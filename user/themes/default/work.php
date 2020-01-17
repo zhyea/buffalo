@@ -15,7 +15,7 @@ isset($ctx_theme) OR exit('No base url exists')
 <div class="main">
 	<div class="work-header">
 		<span class="title"><?= $work['name'] ?></span>
-		<span class="author">作者：<a href="#"><?= $work['author'] ?></a></span>
+		<span class="author">作者：<a href="<?= $ctx_site . '/fe/author/' . $author_id ?>"><?= $work['author'] ?></a></span>
 	</div>
 
 	<div class="work-neck row">

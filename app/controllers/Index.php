@@ -58,6 +58,11 @@ class Index extends MY_Controller
         echo preg_match($regex, "第 一 卷 月落乌啼霜满天") . '<br>';
         echo '<br>--------------------------------------------------';
         echo '<br>--------------------------------------------------';
+        echo '<br>' . date("Y-m-d H:i:s");
+
+        $date = new DateTime();
+        $date->modify("-30 minutes");
+        echo '<br>' . date("Y-m-d H:i:s", $date->getTimestamp());
     }
 
     function mb_trim($str)

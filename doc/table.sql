@@ -151,3 +151,15 @@ create table if not exists bu_feature_record
     record_id  int
 ) ENGINE = MyISAM
   DEFAULT CHARSET = utf8mb4;
+
+
+-- remote code
+create table if not exists bu_remote_code
+(
+    id   int not null auto_increment primary key,
+    user_id int,
+    code varchar(32),
+    time timestamp default current_timestamp
+) ENGINE = MyISAM
+  DEFAULT CHARSET = utf8mb4;
+

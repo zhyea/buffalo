@@ -87,6 +87,7 @@ class Fe extends MY_Controller
         $data = array(
             'cat_id' => $work['cat_id'],
             'cat_name' => $work['cat_name'],
+            'author_id' => $author_id,
             'work' => $work,
             'relate' => $this->work_service->find_by_author_id($author_id, $work_id),
             'chapters' => $this->work_service->chapter_list($work_id)

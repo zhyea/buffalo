@@ -101,7 +101,7 @@ class MY_Model extends CI_Model
      * 封装单行记录查询语句
      *
      * @param string $column 要查询的字段
-     * @param string $where 查询条件
+     * @param array $where 查询条件
      * @return array 查询结果
      */
     protected function get_where($column, $where = NULL)

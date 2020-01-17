@@ -10,7 +10,7 @@ isset($ctx_theme) OR exit('No base url exists')
 
 <div class="container main">
 	<div class="page-header">
-		<h3><span class="glyphicon glyphicon-book"></span> 推荐内容</h3>
+		<h3><span class="glyphicon glyphicon-book"></span>&nbsp;推荐内容</h3>
 	</div>
 	<div class="row recommend">
         <?php foreach ($recommend as $r): ?>
@@ -28,8 +28,9 @@ isset($ctx_theme) OR exit('No base url exists')
     <?php foreach ($cats as $c): ?>
 		<div class="page-header">
 			<h3><a href="<?= $ctx_site . '/fe/cat/' . $c['id'] ?>">
-					<i class="glyphicon glyphicon-th-list"></i> <?= $c['name'] ?>
-				</a></h3>
+					<i class="glyphicon glyphicon-book"></i>&nbsp;<?= $c['name'] ?>
+				</a>
+			</h3>
 		</div>
 		<div class="row popular">
             <?php foreach ($c['works'] as $w): ?>
@@ -42,23 +43,4 @@ isset($ctx_theme) OR exit('No base url exists')
             <?php endforeach; ?>
 		</div>
     <?php endforeach; ?>
-
-
-	<div class="page-header">
-		<h3><span class="glyphicon glyphicon-bookmark"></span> 分类名称</h3>
-	</div>
-	<div class="row popular">
-		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
-		<div class="item col-md-4 col-xs-4">■ 小说名称<span class="author">[作者名称]</span></div>
-	</div>
 </div>

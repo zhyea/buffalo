@@ -12,6 +12,7 @@ class Work extends MY_Controller
         $this->load->model('meta_model');
         $this->load->model('chapter_model');
         $this->load->model('volume_model');
+        $this->load->model('remote_code_model');
         $this->load->service('work_service');
 
         $this->load->library('session');
@@ -230,28 +231,23 @@ class Work extends MY_Controller
      */
     public function remote_code()
     {
-        $code = uniqid();
-        $this->session->set_userdata('code', $code);
-        echo $code;
+        echo $this->remote_code_model->add(1);
     }
 
 
     /**
      * 远程写
+     *
+     * @param string $code 交互code
      */
-    public function remote_edit()
+    public function remote_edit($code)
     {
-        $code = $this->session->userdata('code');
-
-        $headers = $this->input->request_headers();
-        if (!array_key_exists('code', $headers)) {
+        if (empty($code)) {
             return;
         }
-        $header_code = $headers['code'];
 
-        echo $code . ' ---- ' . $header_code;
-        if ($code != $header_code) {
-            echo 'ERROR';
+        $user_id = $this->remote_code_model->check($code);
+        if ($user_id <= 0) {
             return;
         }
 
@@ -274,7 +270,6 @@ class Work extends MY_Controller
         $data = $this->work_service->find_by_author_id($author_id);
         echo json_encode($data);
     }
-
 
 
     /**

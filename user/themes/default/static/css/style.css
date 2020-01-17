@@ -294,6 +294,10 @@ body {
     border-bottom: 1px dashed #e2e2e2;
 }
 
+.work-body .chapter:hover {
+    background-color: #c9e2b3;
+}
+
 .work-body .chapter a {
     color: #000;
 }
