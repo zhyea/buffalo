@@ -250,11 +250,11 @@ class Work extends MY_Controller
         if ($user_id <= 0) {
             return;
         }
-
-        $work_name = $_POST['work'];
-        $volume_name = $_POST['volume'];
-        $chapter_name = $_POST['chapter'];
-        $content = $_POST['content'];
+        print_r($_POST);
+        $work_name = isset($_POST['work']) ? $_POST['work'] : '';
+        $volume_name = isset($_POST['volume']) ? $_POST['volume'] : '';
+        $chapter_name = isset($_POST['chapter']) ? $_POST['chapter'] : '';
+        $content = isset($_POST['content']) ? $_POST['content'] : '';
 
         echo $this->work_service->remote_write($work_name, $volume_name, $chapter_name, $content);
     }

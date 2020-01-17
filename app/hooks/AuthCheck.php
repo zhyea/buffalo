@@ -20,7 +20,7 @@ class AuthCheck extends MY_Hooks
     {
         $url = uri_string();
 
-        if (strpos($url, 'admin/work/remote_edit')) {
+        if (strpos($url, 'admin/work/remote_edit') !== false) {
             return;
         }
 
