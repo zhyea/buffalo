@@ -7,7 +7,7 @@ class Meta_Service extends MY_Service
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('meta_model');
+        $this->load->model('Meta_Model');
     }
 
 

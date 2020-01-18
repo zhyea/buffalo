@@ -8,7 +8,7 @@ class Author_Service extends MY_Service
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('author_model');
+        $this->load->model('Author_Model');
     }
 
     public function get_author($id)

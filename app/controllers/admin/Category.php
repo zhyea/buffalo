@@ -7,7 +7,7 @@ class Category extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('meta_model');
+        $this->load->model('Meta_Model');
     }
 
 

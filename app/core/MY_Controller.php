@@ -11,8 +11,8 @@ class MY_Controller extends CI_Controller
         $this->load->helper('array');
         $this->load->helper('cookie');
 
-        $this->load->model('settings_model');
-        $this->load->model('meta_model');
+        $this->load->model('Settings_Model');
+        $this->load->model('Meta_Model');
     }
 
 

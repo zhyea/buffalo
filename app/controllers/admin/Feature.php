@@ -8,9 +8,9 @@ class Feature extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('feature_model');
-        $this->load->service('feature_service');
-        $this->load->model('feature_record_model');
+        $this->load->model('Feature_Model');
+        $this->load->service('Feature_Service');
+        $this->load->model('Feature_Record_Model');
     }
 
 

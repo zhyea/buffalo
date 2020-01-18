@@ -10,10 +10,10 @@ class Fe extends MY_Controller
         parent::__construct();
 
         $this->load->helper('url');
-        $this->load->service('feature_service');
-        $this->load->service('work_service');
-        $this->load->service('meta_service');
-        $this->load->service('author_service');
+        $this->load->service('Feature_Service');
+        $this->load->service('Work_Service');
+        $this->load->service('Meta_Service');
+        $this->load->service('Author_Service');
     }
 
 

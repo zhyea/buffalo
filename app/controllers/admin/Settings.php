@@ -7,8 +7,8 @@ class Settings extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('settings_model');
-        $this->load->service('settings_service');
+        $this->load->model('Settings_Model');
+        $this->load->service('Settings_Service');
     }
 
     /**

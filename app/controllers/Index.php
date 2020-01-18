@@ -11,8 +11,8 @@ class Index extends MY_Controller
         parent::__construct();
 
         $this->load->helper('url');
-        $this->load->service('feature_service');
-        $this->load->service('work_service');
+        $this->load->service('Feature_Service');
+        $this->load->service('Work_Service');
     }
 
 

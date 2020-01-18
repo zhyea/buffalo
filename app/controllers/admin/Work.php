@@ -7,13 +7,13 @@ class Work extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('work_model');
-        $this->load->model('author_model');
-        $this->load->model('meta_model');
-        $this->load->model('chapter_model');
-        $this->load->model('volume_model');
-        $this->load->model('remote_code_model');
-        $this->load->service('work_service');
+        $this->load->model('Work_Model');
+        $this->load->model('Author_Model');
+        $this->load->model('Meta_Model');
+        $this->load->model('Chapter_Model');
+        $this->load->model('Volume_Model');
+        $this->load->model('Remote_Code_Model');
+        $this->load->service('Work_Service');
 
         $this->load->library('session');
     }

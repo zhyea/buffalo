@@ -7,7 +7,7 @@ class Console extends MY_Controller
     {
         parent::__construct();
 
-        $this->load->model('user_model');
+        $this->load->model('User_Model');
         $this->load->library('session');
     }
 

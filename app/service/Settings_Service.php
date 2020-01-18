@@ -7,7 +7,7 @@ class Settings_Service extends MY_Service
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('settings_model');
+        $this->load->model('Settings_Model');
     }
 
 

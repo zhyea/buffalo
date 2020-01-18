@@ -7,11 +7,11 @@ class Work_Service extends MY_Service
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('work_model');
-        $this->load->model('meta_model');
-        $this->load->model('media_model');
-        $this->load->model('volume_model');
-        $this->load->model('chapter_model');
+        $this->load->model('Work_Model');
+        $this->load->model('Meta_Model');
+        $this->load->model('Media_Model');
+        $this->load->model('Volume_Model');
+        $this->load->model('Chapter_Model');
     }
 
 

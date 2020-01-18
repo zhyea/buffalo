@@ -7,7 +7,7 @@ class Volume extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("volume_model");
+        $this->load->model("Volume_Model");
     }
 
 

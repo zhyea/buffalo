@@ -8,8 +8,8 @@ class Feature_Service extends MY_Service
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('feature_model');
-        $this->load->model('feature_record_model');
+        $this->load->model('Feature_Model');
+        $this->load->model('Feature_Record_Model');
     }
 
 
