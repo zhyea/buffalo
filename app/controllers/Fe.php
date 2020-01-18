@@ -25,16 +25,16 @@ class Fe extends MY_Controller
      */
     public function cat($cat_id, $page_num = 0)
     {
-        $cat_name = $this->meta_service->get_name($cat_id);
+        $cat_name = $this->Meta_Service->get_name($cat_id);
         if (empty($cat_name)) {
             show_404();
         }
-        $total = $this->work_service->count_cat($cat_id);
+        $total = $this->Work_Service->count_cat($cat_id);
         $page_size = 12;
         $page_num = 0 >= $page_num ? 1 : $page_num;
         $data = array();
-        $data['recommend'] = $this->feature_service->find_all_recommend();
-        $data['works'] = $this->work_service->find_cat_page($cat_id, $page_num, $page_size);
+        $data['recommend'] = $this->Feature_Service->find_all_recommend();
+        $data['works'] = $this->Work_Service->find_cat_page($cat_id, $page_num, $page_size);
         $data['cat_name'] = $cat_name;
         $data['cat_id'] = $cat_id;
         $data['total'] = $total / $page_size;
@@ -51,17 +51,17 @@ class Fe extends MY_Controller
      */
     public function author($author_id, $page_num = 0)
     {
-        $author = $this->author_service->get_author($author_id);
+        $author = $this->Author_Service->get_author($author_id);
         $author_name = is_null($author) ? '' : $author['name'];
         $bio = is_null($author) ? '' : $author['bio'];
         if (empty($author_name)) {
             show_404();
         }
-        $total = $this->work_service->count_author($author_id);
+        $total = $this->Work_Service->count_author($author_id);
         $page_size = 12;
         $page_num = 0 >= $page_num ? 1 : $page_num;
         $data = array();
-        $data['works'] = $this->work_service->find_author_page($author_id, $page_num, $page_size);
+        $data['works'] = $this->Work_Service->find_author_page($author_id, $page_num, $page_size);
         $data['name'] = $author_name;
         $data['author_id'] = $author_id;
         $data['bio'] = $bio;
@@ -79,7 +79,7 @@ class Fe extends MY_Controller
      */
     public function work($work_id)
     {
-        $work = $this->work_service->get_by_id($work_id);
+        $work = $this->Work_Service->get_by_id($work_id);
         if (empty($work)) {
             show_404();
         }
@@ -89,8 +89,8 @@ class Fe extends MY_Controller
             'cat_name' => $work['cat_name'],
             'author_id' => $author_id,
             'work' => $work,
-            'relate' => $this->work_service->find_by_author_id($author_id, $work_id),
-            'chapters' => $this->work_service->chapter_list($work_id)
+            'relate' => $this->Work_Service->find_by_author_id($author_id, $work_id),
+            'chapters' => $this->Work_Service->chapter_list($work_id)
         );
         $this->page_view('work', $work['name'], $data);
     }
@@ -104,11 +104,11 @@ class Fe extends MY_Controller
      */
     public function chapter($work_id, $chapter_id)
     {
-        $work = $this->work_service->get_by_id($work_id);
+        $work = $this->Work_Service->get_by_id($work_id);
         if (empty($work)) {
             show_404();
         }
-        $arr = $this->work_service->chapter($work_id, $chapter_id);
+        $arr = $this->Work_Service->chapter($work_id, $chapter_id);
         $chapter = $arr['curr'];
         if (empty($arr) || empty($chapter)) {
             show_404();

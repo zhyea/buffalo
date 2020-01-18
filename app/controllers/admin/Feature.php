@@ -28,7 +28,7 @@ class Feature extends MY_Controller
      */
     public function data()
     {
-        $data = $this->feature_model->all();
+        $data = $this->Feature_Model->all();
         echo json_encode($data);
     }
 
@@ -40,7 +40,7 @@ class Feature extends MY_Controller
      */
     public function settings_page($id = 0)
     {
-        $f = $id <= 0 ? null : $this->feature_model->get_by_id($id);
+        $f = $id <= 0 ? null : $this->Feature_Model->get_by_id($id);
 
         $title = ($id > 0 ? '编辑专题' : '新增专题');
 
@@ -74,7 +74,7 @@ class Feature extends MY_Controller
             'brief' => $_POST['brief']
         );
 
-        $tmp = $this->feature_service->update($data, $id);
+        $tmp = $this->Feature_Service->update($data, $id);
         if ($id > 0) {
             set_cookie('update_feature', true, 60);
         } else {
@@ -92,7 +92,7 @@ class Feature extends MY_Controller
      */
     public function record_page($id = 0)
     {
-        $f = $this->feature_model->get_by_id($id);
+        $f = $this->Feature_Model->get_by_id($id);
         if (is_null($f)) {
             redirect('admin/feature/list_page');
         }
@@ -111,7 +111,7 @@ class Feature extends MY_Controller
      */
     public function feature_works($feature_id = 0)
     {
-        $data = $this->feature_record_model->find_feature_works($feature_id);
+        $data = $this->Feature_Record_Model->find_feature_works($feature_id);
         echo json_encode($data);
     }
 
@@ -123,7 +123,7 @@ class Feature extends MY_Controller
     {
         $feature_id = $_POST['id'];
         $work_id = $_POST['work_id'];
-        echo $this->feature_record_model->add_feature_work($feature_id, $work_id);
+        echo $this->Feature_Record_Model->add_feature_work($feature_id, $work_id);
     }
 
 
@@ -133,7 +133,7 @@ class Feature extends MY_Controller
     public function delete_records()
     {
         $ids = $_POST['ids'];
-        echo $this->feature_record_model->delete_batch(explode(',', $ids));
+        echo $this->Feature_Record_Model->delete_batch(explode(',', $ids));
     }
 
 
@@ -145,8 +145,8 @@ class Feature extends MY_Controller
     public function delete($id)
     {
         if (!empty($id) && $id > 1) {
-            $this->feature_model->delete($id);
-            $this->feature_record_model->delete_by_feature($id);
+            $this->Feature_Model->delete($id);
+            $this->Feature_Record_Model->delete_by_feature($id);
         }
         redirect('admin/feature/list_page');
     }

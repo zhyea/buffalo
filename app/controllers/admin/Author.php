@@ -20,7 +20,7 @@ class Author extends MY_Controller
      */
     public function find_by_name($name = NULL)
     {
-        $result = $this->author_model->find_by_name(urldecode($name));
+        $result = $this->Author_Model->find_by_name(urldecode($name));
         echo json_encode(array('value' => $result));
     }
 
@@ -38,7 +38,7 @@ class Author extends MY_Controller
      */
     public function data()
     {
-        $data = $this->author_model->all();
+        $data = $this->Author_Model->all();
         echo json_encode($data);
     }
 
@@ -50,7 +50,7 @@ class Author extends MY_Controller
      */
     public function settings($id = 0)
     {
-        $a = $id <= 0 ? null : $this->author_model->get_by_id($id);
+        $a = $id <= 0 ? null : $this->Author_Model->get_by_id($id);
 
         $title = ($id > 0 ? '编辑作者信息' : '新增作者信息');
 
@@ -79,7 +79,7 @@ class Author extends MY_Controller
         $country = $_POST['country'];
         $bio = $_POST['bio'];
 
-        $tmp = $this->author_model->insert($name, $country, $id, $bio);
+        $tmp = $this->Author_Model->insert($name, $country, $id, $bio);
         if ($id > 0) {
             set_cookie('update_author', true, 60);
         } else {
@@ -97,7 +97,7 @@ class Author extends MY_Controller
      */
     public function works_page($id = 0)
     {
-        $f = $this->author_model->get_by_id($id);
+        $f = $this->Author_Model->get_by_id($id);
         if (is_null($f)) {
             redirect('admin/author/list_page');
         }
@@ -117,8 +117,8 @@ class Author extends MY_Controller
     public function delete($id)
     {
         if (!empty($id) && $id > 1) {
-            $this->author_model->delete($id);
-            $this->work_model->set_default_author($id);
+            $this->Author_Model->delete($id);
+            $this->Work_Model->set_default_author($id);
         }
         redirect('admin/author/list_page');
     }

@@ -35,7 +35,7 @@ class Console extends MY_Controller
             redirect('/');
         }
 
-        $user = $this->user_model->get_by_username($username, $password);
+        $user = $this->User_Model->get_by_username($username, $password);
         if (!is_null($user)) {
             $this->session->set_userdata('user', $username . '@' . $ip);
             redirect("admin");

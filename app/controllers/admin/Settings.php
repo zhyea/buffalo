@@ -16,8 +16,8 @@ class Settings extends MY_Controller
      */
     public function site()
     {
-        $data['site_keywords'] = $this->settings_model->get('site_keywords');
-        $data['site_description'] = $this->settings_model->get('site_description');
+        $data['site_keywords'] = $this->Settings_Model->get('site_keywords');
+        $data['site_description'] = $this->Settings_Model->get('site_description');
 
         if (get_cookie('update_site')) {
             $data['msg'] = '更新网站设置成功！';
@@ -42,9 +42,9 @@ class Settings extends MY_Controller
         }
         delete_cookie('update_info');
 
-        $data['logo'] = $this->settings_model->get('logo');
-        $data['bg_img'] = $this->settings_model->get('bg_img');
-        $data['notice'] = $this->settings_model->get('notice');
+        $data['logo'] = $this->Settings_Model->get('logo');
+        $data['bg_img'] = $this->Settings_Model->get('bg_img');
+        $data['notice'] = $this->Settings_Model->get('notice');
         self::admin_page_view('settings-info', '信息维护', $data);
     }
 
@@ -54,9 +54,9 @@ class Settings extends MY_Controller
      */
     public function update_site()
     {
-        $this->settings_model->replace('site_name', $_POST['site_name']);
-        $this->settings_model->replace('site_keywords', $_POST['site_keywords']);
-        $this->settings_model->replace('site_description', $_POST['site_description']);
+        $this->Settings_Model->replace('site_name', $_POST['site_name']);
+        $this->Settings_Model->replace('site_keywords', $_POST['site_keywords']);
+        $this->Settings_Model->replace('site_description', $_POST['site_description']);
 
         set_cookie('update_site', true, 60);
 
@@ -69,16 +69,16 @@ class Settings extends MY_Controller
      */
     public function update_info()
     {
-        $this->settings_model->replace('notice', $_POST['notice']);
+        $this->Settings_Model->replace('notice', $_POST['notice']);
 
         set_cookie('update_info', true, 60);
 
         if ($_FILES['logo']) {
-            $this->settings_service->update_img_setting('logo');
+            $this->Settings_Service->update_img_setting('logo');
             echo 1;
         }
         if ($_FILES['bg_img']) {
-            $this->settings_service->update_img_setting('bg_img');
+            $this->Settings_Service->update_img_setting('bg_img');
             echo 2;
         }
         redirect('admin/settings/info');
@@ -91,7 +91,7 @@ class Settings extends MY_Controller
      */
     public function delete_setting($key)
     {
-        $this->settings_model->delete_by(array('name' => $key));
+        $this->Settings_Model->delete_by(array('name' => $key));
 
         redirect('admin/settings/info');
     }

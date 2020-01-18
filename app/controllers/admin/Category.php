@@ -18,7 +18,7 @@ class Category extends MY_Controller
      */
     public function list_page($parent = 0)
     {
-        $p = $this->meta_model->get_by_id($parent);
+        $p = $this->Meta_Model->get_by_id($parent);
         $data['parent'] = is_null($p) ? 0 : $p['id'];
         $data['senior'] = is_null($p) ? -1 : $p['parent'];
         $data['parent_name'] = is_null($p) ? '' : $p['name'];
@@ -34,7 +34,7 @@ class Category extends MY_Controller
      */
     public function settings_page($id = 0, $parent = 0)
     {
-        $cat = $this->meta_model->get_by_id($id);
+        $cat = $this->Meta_Model->get_by_id($id);
 
         $title = ($id > 0 ? '编辑分类' : '新增分类');
 
@@ -62,7 +62,7 @@ class Category extends MY_Controller
             'remark' => $_POST['remark'],
             'type' => 'category'
         );
-        $this->meta_model->insert_or_update($data, $id);
+        $this->Meta_Model->insert_or_update($data, $id);
 
         redirect('admin/category/list_page/' . $parent);
     }
@@ -75,9 +75,9 @@ class Category extends MY_Controller
      */
     public function data($parent = 0)
     {
-        $arr = $this->meta_model->query_category_by_parent($parent);
+        $arr = $this->Meta_Model->query_category_by_parent($parent);
         foreach ($arr as $key => &$v) {
-            $child_num = $this->meta_model->count_by_parent($v['id']);
+            $child_num = $this->Meta_Model->count_by_parent($v['id']);
             $v['child_num'] = $child_num;
         }
 
@@ -89,7 +89,7 @@ class Category extends MY_Controller
      */
     public function data_all()
     {
-        $arr = $this->meta_model->query_category();
+        $arr = $this->Meta_Model->query_category();
         echo json_encode(array('value' => $arr));
     }
 
@@ -99,7 +99,7 @@ class Category extends MY_Controller
     public function delete()
     {
         $ids = $_POST['ids'];
-        echo $this->meta_model->delete_in_batch(explode(',', $ids));
+        echo $this->Meta_Model->delete_in_batch(explode(',', $ids));
     }
 
     /**
@@ -111,7 +111,7 @@ class Category extends MY_Controller
      */
     public function change_order($id, $sn, $direct = 1)
     {
-        echo $this->meta_model->change_sn($id, $sn, $direct);
+        echo $this->Meta_Model->change_sn($id, $sn, $direct);
     }
 
 }

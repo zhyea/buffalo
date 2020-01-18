@@ -63,7 +63,7 @@ class MY_Controller extends CI_Controller
      */
     protected function admin_page_view($page_name, $title = '', $data = array())
     {
-        $site_name = $this->settings_model->get('site_name');
+        $site_name = $this->Settings_Model->get('site_name');
         $data['title'] = $title . ' - Buffalo';
         $data['site_name'] = $site_name;
 
@@ -82,15 +82,15 @@ class MY_Controller extends CI_Controller
      */
     protected function page_view($page_name, $title = '', $data = array())
     {
-        $cats = $this->meta_model->query_category();
+        $cats = $this->Meta_Model->query_category();
         $data['categories'] = list_to_tree($cats);
 
-        $site_name = $this->settings_model->get('site_name');
+        $site_name = $this->Settings_Model->get('site_name');
 
         $data['site_name'] = $site_name;
-        $data['notice'] = $this->settings_model->get('notice');
-        $data['logo'] = $this->settings_model->get('logo');
-        $data['bg_img'] = $this->settings_model->get('bg_img');
+        $data['notice'] = $this->Settings_Model->get('notice');
+        $data['logo'] = $this->Settings_Model->get('logo');
+        $data['bg_img'] = $this->Settings_Model->get('bg_img');
 
         $data['title'] = $title . ' - ' . $site_name;
 

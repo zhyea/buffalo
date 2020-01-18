@@ -19,8 +19,8 @@ class Index extends MY_Controller
     public function index()
     {
         $data = array();
-        $data['recommend'] = $this->feature_service->find_all_recommend();;
-        $data['cats'] = $this->work_service->find_cat_works();
+        $data['recommend'] = $this->Feature_Service->find_all_recommend();;
+        $data['cats'] = $this->Work_Service->find_cat_works();
         $this->page_view('home', '首页', $data);
     }
 

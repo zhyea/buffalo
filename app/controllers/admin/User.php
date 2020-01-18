@@ -27,7 +27,7 @@ class User extends MY_Controller
      */
     public function settings_page($id = 0)
     {
-        $user = $this->user_model->get_by_id($id);
+        $user = $this->User_Model->get_by_id($id);
 
         $title = ($id === 0 ? '新增用户' : '编辑用户') . ' - Buffalo';
 
@@ -44,7 +44,7 @@ class User extends MY_Controller
      */
     public function data()
     {
-        $data = $this->user_model->all_users();
+        $data = $this->User_Model->all_users();
         echo json_encode($data);
     }
 
@@ -61,7 +61,7 @@ class User extends MY_Controller
             'password' => md5('a3D#_%' . $_POST['password']),
             'email' => $_POST['email'],
         );
-        $this->user_model->insert_or_update($data, $id);
+        $this->User_Model->insert_or_update($data, $id);
 
         redirect('admin/user/list_page');
     }
@@ -72,7 +72,7 @@ class User extends MY_Controller
     public function delete()
     {
         $ids = $_POST['ids'];
-        $this->user_model->delete_batch(explode(',', $ids));
+        $this->User_Model->delete_batch(explode(',', $ids));
         echo $ids;
     }
 

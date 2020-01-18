@@ -26,12 +26,12 @@ class Work extends MY_Controller
      */
     public function chapters($work_id = 0)
     {
-        $w = $this->work_model->get_by_id($work_id);
+        $w = $this->Work_Model->get_by_id($work_id);
         $work_name = $w['name'];
 
         $data['id'] = $work_id;
         $data['name'] = $work_name;
-        $data['volumes'] = $this->work_service->chapter_list($work_id);
+        $data['volumes'] = $this->Work_Service->chapter_list($work_id);
 
         $this->load->helper('form');
         $this->admin_page_view('work-chapters', $work_name, $data);
@@ -54,13 +54,13 @@ class Work extends MY_Controller
      */
     public function settings_page($id = 0)
     {
-        $work = $id <= 0 ? null : $this->work_model->get_by_id($id);
+        $work = $id <= 0 ? null : $this->Work_Model->get_by_id($id);
 
         $title = ($id > 0 ? $work['name'] : '新增作品');
 
         $cat_id = is_null($work) ? 0 : $work['cat_id'];
         $author_id = is_null($work) ? 0 : $work['author_id'];
-        $author = $this->author_model->get_by_id($author_id);
+        $author = $this->Author_Model->get_by_id($author_id);
 
         if (get_cookie('update_work')) {
             $data['msg'] = '更新作品信息成功！';
@@ -75,7 +75,7 @@ class Work extends MY_Controller
         $data['cat_id'] = $cat_id;
         $data['author'] = empty($author) ? '' : $author['name'];
         $data['authorCountry'] = empty($author) ? '' : $author['country'];
-        $data['cat'] = empty($cat_id) ? '' : $this->meta_model->get_name($cat_id);;
+        $data['cat'] = empty($cat_id) ? '' : $this->Meta_Model->get_name($cat_id);;
 
         $this->load->helper('form');
         $this->admin_page_view('work-settings', $title, $data);
@@ -91,11 +91,11 @@ class Work extends MY_Controller
         $id = $_POST['id'];
         $author_id = $_POST['author_id'];
         if (empty($author_id)) {
-            $author_id = $this->author_model->insert($_POST['author'], $_POST['authorCountry']);
+            $author_id = $this->Author_Model->insert($_POST['author'], $_POST['authorCountry']);
         }
         $cat_id = $_POST['cat_id'];
         if (empty($cat_id)) {
-            $cat_id = $this->meta_model->insert_category($_POST['cat']);
+            $cat_id = $this->Meta_Model->insert_category($_POST['cat']);
         }
         $data = array(
             'name' => $_POST['name'],
@@ -103,7 +103,7 @@ class Work extends MY_Controller
             'author_id' => $author_id,
             'category_id' => $cat_id
         );
-        $tmp = $this->work_service->update($data, $id);
+        $tmp = $this->Work_Service->update($data, $id);
 
         if ($id > 0) {
             set_cookie('update_work', true, 60);
@@ -125,8 +125,8 @@ class Work extends MY_Controller
         $order = $_GET['order'];
         $offset = $_GET['offset'];
         $limit = $_GET['limit'];
-        $arr = $this->work_model->query_in_page(false, $search, $sort, $order, $offset, $limit);
-        $total = $this->work_model->query_in_page(true);
+        $arr = $this->Work_Model->query_in_page(false, $search, $sort, $order, $offset, $limit);
+        $total = $this->Work_Model->query_in_page(true);
         echo json_encode(Array('total' => $total, 'rows' => $arr));
     }
 
@@ -137,9 +137,9 @@ class Work extends MY_Controller
     public function delete()
     {
         $ids = explode(',', $_POST['ids']);
-        $this->work_model->delete_batch($ids);
-        $this->volume_model->delete_by_work_id($ids);
-        $this->chapter_model->delete_by_work_id($ids);
+        $this->Work_Model->delete_batch($ids);
+        $this->Volume_Model->delete_by_work_id($ids);
+        $this->Chapter_Model->delete_by_work_id($ids);
         echo 1;
     }
 
@@ -150,7 +150,7 @@ class Work extends MY_Controller
     public function upload()
     {
         $work_id = $_POST['work_id'];
-        $this->work_service->upload_and_read($work_id, 'myTxt');
+        $this->Work_Service->upload_and_read($work_id, 'myTxt');
     }
 
 
@@ -162,9 +162,9 @@ class Work extends MY_Controller
      */
     public function chapter_edit($work_id, $chapter_id = 0)
     {
-        $work = $this->work_model->get_by_id($work_id);
-        $chapter = $this->chapter_model->get_by_id($chapter_id);
-        $volume_name = $this->volume_model->get_name($chapter['volume_id']);
+        $work = $this->Work_Model->get_by_id($work_id);
+        $chapter = $this->Chapter_Model->get_by_id($chapter_id);
+        $volume_name = $this->Volume_Model->get_name($chapter['volume_id']);
 
         $chapter_name = is_null($chapter) ? '' : $chapter['name'];
 
@@ -194,9 +194,9 @@ class Work extends MY_Controller
 
         if (!empty($volume)) {
             $volume_id = empty($volume_id) ? 0 : $volume_id;
-            $volume_id = $this->volume_model->insert($work_id, $volume, $volume_id);
+            $volume_id = $this->Volume_Model->insert($work_id, $volume, $volume_id);
         }
-        $this->chapter_model->update($work_id, $volume_id, $name, $content, $id);
+        $this->Chapter_Model->update($work_id, $volume_id, $name, $content, $id);
 
         redirect('admin/work/chapters/' . $work_id);
     }
@@ -210,7 +210,7 @@ class Work extends MY_Controller
      */
     public function chapter_delete($work_id, $chapter_id = 0)
     {
-        $this->chapter_model->delete($chapter_id);
+        $this->Chapter_Model->delete($chapter_id);
         redirect('admin/work/chapters/' . $work_id);
     }
 
@@ -221,7 +221,7 @@ class Work extends MY_Controller
      */
     public function find_by_name($name)
     {
-        $arr = $this->work_model->find_by_name(urldecode($name));
+        $arr = $this->Work_Model->find_by_name(urldecode($name));
         echo json_encode(array('value' => $arr));
     }
 
@@ -231,7 +231,7 @@ class Work extends MY_Controller
      */
     public function remote_code()
     {
-        echo $this->remote_code_model->add(1);
+        echo $this->Remote_Code_Model->add(1);
     }
 
 
@@ -246,7 +246,7 @@ class Work extends MY_Controller
             return;
         }
 
-        $user_id = $this->remote_code_model->check($code);
+        $user_id = $this->Remote_Code_Model->check($code);
         if ($user_id <= 0) {
             return;
         }
@@ -256,7 +256,7 @@ class Work extends MY_Controller
         $chapter_name = isset($_POST['chapter']) ? $_POST['chapter'] : '';
         $content = isset($_POST['content']) ? $_POST['content'] : '';
 
-        echo $this->work_service->remote_write($work_name, $volume_name, $chapter_name, $content);
+        echo $this->Work_Service->remote_write($work_name, $volume_name, $chapter_name, $content);
     }
 
 
@@ -267,7 +267,7 @@ class Work extends MY_Controller
      */
     public function author_works($author_id)
     {
-        $data = $this->work_service->find_by_author_id($author_id);
+        $data = $this->Work_Service->find_by_author_id($author_id);
         echo json_encode($data);
     }
 
@@ -279,7 +279,7 @@ class Work extends MY_Controller
     {
         $author_id = $_POST['id'];
         $work_id = $_POST['work_id'];
-        echo $this->work_model->alter_author($work_id, $author_id);
+        echo $this->Work_Model->alter_author($work_id, $author_id);
     }
 
 }

@@ -22,7 +22,7 @@ class MY_Loader extends CI_Loader
         $theme = get_instance()->config->item('theme');
         $vars['ctx_theme'] = VIEW_CONTEXT . 'themes/' . $theme;
         $vars['ctx_upload'] = VIEW_CONTEXT . 'uploads/';
-        $vars['ctx_site'] = self::site_context();
+        $vars['ctx_site'] = $this->site_context();
         $view = 'themes/' . $theme . '/' . $view;
         return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_prepare_view_vars($vars), '_ci_return' => $return));
     }
@@ -43,7 +43,7 @@ class MY_Loader extends CI_Loader
         }
         $vars['ctx_admin'] = VIEW_CONTEXT . 'admin/';
         $vars['ctx_upload'] = VIEW_CONTEXT . 'uploads/';
-        $vars['ctx_site'] = self::site_context();
+        $vars['ctx_site'] = $this->site_context();
         $view = 'admin/' . $view;
         return $this->_ci_load(array('_ci_view' => $view, '_ci_vars' => $this->_ci_prepare_view_vars($vars), '_ci_return' => $return));
     }

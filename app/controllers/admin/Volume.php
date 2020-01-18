@@ -19,7 +19,7 @@ class Volume extends MY_Controller
      */
     public function find_by_name($work_id, $name = NULL)
     {
-        $result = $this->volume_model->find_by_name($work_id, urldecode($name));
+        $result = $this->Volume_Model->find_by_name($work_id, urldecode($name));
         echo json_encode(array('value' => $result));
     }
 
