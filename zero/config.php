@@ -1,2 +1,2 @@
 <?php
-defined('_ROOT_DIR_') OR exit('You shall not pass!');
+defined('_ZERO_PATH_') OR exit('You shall not pass!');
