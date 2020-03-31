@@ -40,7 +40,6 @@ if (!function_exists('append_child_path')) {
 }
 
 
-
 if (!function_exists('println')) {
     /**
      * print string in line
@@ -53,3 +52,32 @@ if (!function_exists('println')) {
     }
 }
 
+
+if (!function_exists('str_start_with')) {
+    /**
+     * Check is str1 start with str2
+     *
+     * @param $str1 string target string
+     * @param $str2 string compare string
+     * @return bool
+     */
+    function str_start_with($str1, $str2)
+    {
+        return strpos($str1, $str2) === 0;
+    }
+}
+
+
+if (!function_exists('str_end_with')) {
+    /**
+     * Check is str1 end with str2
+     *
+     * @param $str1 string target string
+     * @param $str2 string compare string
+     * @return bool
+     */
+    function str_end_with($str1, $str2)
+    {
+        return strrchr($str1, $str2) === $str2;
+    }
+}

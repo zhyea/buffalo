@@ -10,4 +10,9 @@ class Router
         return '';
     }
 
+
+    public function parse(){
+
+    }
+
 }

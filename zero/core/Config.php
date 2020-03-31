@@ -93,7 +93,9 @@ if (!function_exists('app_path')) {
         } else {
             error_503();
         }
-
+        if (str_end_with($app_folder, DIRECTORY_SEPARATOR)) {
+            return $app_folder;
+        }
         return $app_folder . DIRECTORY_SEPARATOR;
     }
 }
@@ -108,7 +110,6 @@ if (!function_exists('view_path')) {
      */
     function view_path($view_folder)
     {
-
         // The path to the "views" directory
         if (!isset($view_folder[0]) && is_dir(_APP_PATH_ . 'views' . DIRECTORY_SEPARATOR)) {
             $view_folder = _APP_PATH_ . 'views';
@@ -120,9 +121,17 @@ if (!function_exists('view_path')) {
             error_503();
         }
 
+        if (str_end_with($view_folder, DIRECTORY_SEPARATOR)) {
+            return $view_folder;
+        }
         return $view_folder . DIRECTORY_SEPARATOR;
     }
 }
+
+/**
+ * define site url
+ */
+define('_SITE_URL_', site_url());
 
 
 /**
@@ -139,4 +148,11 @@ $view_folder = view_path($view_folder);
 
 define('_VIEW_PATH_', $view_folder);
 
+/**
+ * define router
+ */
+
+require_once _APP_PATH_ . '/config/routes.php';
+
+define('_R_', $route);
 
