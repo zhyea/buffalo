@@ -133,13 +133,14 @@ if (!function_exists('view_path')) {
  */
 define('_SITE_URL_', site_url());
 
-
 /**
- * define app path
+ * define app path and controller path
  */
 $app_folder = app_path($app_folder);
 
 define('_APP_PATH_', $app_folder);
+
+define('_CONTROLLER_PATH_', $app_folder . '/controller/');
 
 /**
  * define view path
@@ -154,5 +155,5 @@ define('_VIEW_PATH_', $view_folder);
 
 require_once _APP_PATH_ . '/config/routes.php';
 
-define('_R_', $route);
+define('_R_', $routes);
 

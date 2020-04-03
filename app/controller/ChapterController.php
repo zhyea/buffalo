@@ -1,9 +1,8 @@
 <?php
 
 
-class ChapterController
+class ChapterController extends Z_Controller
 {
-
 
 
     public function index()
