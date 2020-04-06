@@ -1,4 +1,7 @@
 <?php
+defined('_ZERO_PATH_') OR exit('You shall not pass!');
+
+
 if (!function_exists('real_path')) {
     /**
      * return absolute path

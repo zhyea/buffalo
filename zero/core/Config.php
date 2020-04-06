@@ -1,4 +1,5 @@
 <?php
+defined('_ZERO_PATH_') OR exit('You shall not pass!');
 
 
 if (!function_exists('is_https')) {
@@ -128,6 +129,20 @@ if (!function_exists('view_path')) {
     }
 }
 
+
+if (!function_exists('require_model')) {
+    /**
+     * add model class page
+     *
+     * @param $model_class string model class page
+     */
+    function require_model($model_class)
+    {
+        require_once _APP_PATH_ . '/model/' . $model_class . '.php';
+    }
+}
+
+
 /**
  * define site url
  */
@@ -152,8 +167,14 @@ define('_VIEW_PATH_', $view_folder);
 /**
  * define router
  */
-
 require_once _APP_PATH_ . '/config/routes.php';
 
 define('_R_', $routes);
 
+
+/**
+ * define db config
+ */
+require_once _APP_PATH_ . '/config/database.php';
+
+define('_DB_', $db[$active_group]);
