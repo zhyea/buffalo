@@ -69,7 +69,6 @@ class Router
             $str = $arr[$i];
             $class = ucwords(strtolower($str)) . 'Controller';
             if (file_exists(_CONTROLLER_PATH_ . $tmp . $class . '.php')) {
-                require_once _CONTROLLER_PATH_ . $tmp . $class . '.php';
                 $m = ($i + 1) < $size ? $arr[$i + 1] : 'index';
                 $param = ($i + 2) < $size ? array_slice($arr, $i + 2) : array();
                 return array(

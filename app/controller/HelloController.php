@@ -5,7 +5,7 @@ defined('_APP_PATH_') OR exit('You shall not pass!');
 require_model('HelloModel');
 
 
-class HelloController extends Z_Controller
+class HelloController extends AbstractController
 {
 
 
@@ -19,7 +19,7 @@ class HelloController extends Z_Controller
 
     public function index()
     {
-        $this->render_view('welcome', array('hi' => 'Hello World'));
+        $this->theme_view('welcome', array('hi' => 'Hello World'), "北京欢迎你");
     }
 
 

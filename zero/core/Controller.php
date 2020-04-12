@@ -5,9 +5,6 @@ defined('_ZERO_PATH_') OR exit('You shall not pass!');
 class Z_Controller
 {
 
-
-
-
     /**
      * 展示页面
      *

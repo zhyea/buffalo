@@ -8,7 +8,7 @@ $app_folder = 'app';
 /**
  * App Frontend Folder
  */
-$view_folder = 'templates/sunny';
+$view_folder = 'templates';
 
 
 /**

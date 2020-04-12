@@ -84,3 +84,35 @@ if (!function_exists('str_end_with')) {
         return strrchr($str1, $str2) === $str2;
     }
 }
+
+
+if (!function_exists('get_files')) {
+
+    /**
+     * get files from certain path
+     *
+     * @param $path string the path
+     * @param $recursive boolean  read recursively
+     * @return array the files;
+     */
+    function get_files($path, $recursive = false)
+    {
+        $result = array();
+
+        if (is_dir($path)) {
+            $files = scandir($path);
+            foreach ($files as $f) {
+                $sub_path = $path . '/' . $f;
+                if ($f == '.' || $f == '..') {
+                    continue;
+                } else if (is_dir($sub_path) && $recursive) {
+                    $sub_files = get_files($sub_path, $recursive);
+                    array_merge($result, $sub_files);
+                } else {
+                    array_push($result, $sub_path);
+                }
+            }
+        }
+        return $result;
+    }
+}

@@ -11,5 +11,13 @@ require_once 'Controller.php';
 require_once 'Model.php';
 
 
+$files = get_files(_CONTROLLER_PATH_);
+foreach ($files as $f) {
+    if (str_end_with($f, ".php")) {
+        require_once $f;
+    }
+}
+
+
 $router = new Router();
 $router->dispatch();

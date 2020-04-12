@@ -130,6 +130,19 @@ if (!function_exists('view_path')) {
 }
 
 
+if (!function_exists('require_app_file')) {
+    /**
+     * add app file
+     *
+     * @param $app_file string app file
+     */
+    function require_app_file($app_file)
+    {
+        require_once _APP_PATH_ . $app_file . '.php';
+    }
+}
+
+
 if (!function_exists('require_model')) {
     /**
      * add model class page
@@ -138,7 +151,20 @@ if (!function_exists('require_model')) {
      */
     function require_model($model_class)
     {
-        require_once _APP_PATH_ . '/model/' . $model_class . '.php';
+        require_app_file('model/' . $model_class);
+    }
+}
+
+
+if (!function_exists('require_service')) {
+    /**
+     * add service class page
+     *
+     * @param $service_class string service class page
+     */
+    function require_service($service_class)
+    {
+        require_app_file('service/' . $service_class);
     }
 }
 
@@ -157,6 +183,7 @@ define('_APP_PATH_', $app_folder);
 
 define('_CONTROLLER_PATH_', $app_folder . '/controller/');
 
+
 /**
  * define view path
  */
@@ -167,14 +194,19 @@ define('_VIEW_PATH_', $view_folder);
 /**
  * define router
  */
-require_once _APP_PATH_ . '/config/routes.php';
-
+require_once _APP_PATH_ . 'config' . DIRECTORY_SEPARATOR . 'routes' . '.php';
 define('_R_', $routes);
 
 
 /**
  * define db config
  */
-require_once _APP_PATH_ . '/config/database.php';
-
+require_once _APP_PATH_ . 'config' . DIRECTORY_SEPARATOR . 'database' . '.php';
 define('_DB_', $db[$active_group]);
+
+
+/**
+ * define common config
+ */
+require_once _APP_PATH_ . 'config' . DIRECTORY_SEPARATOR . 'config' . '.php';
+define('_CFG_', $config);
