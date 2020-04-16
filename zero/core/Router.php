@@ -18,6 +18,9 @@ class Router
     public function __construct()
     {
         $path = array_key_exists('PATH_INFO', $_SERVER) ? $_SERVER['PATH_INFO'] : '/';
+        if (_CFG_['suffix'] && str_end_with($path, _CFG_['suffix'])) {
+            $path = substr($path, 0, strpos($path, _CFG_['suffix']));
+        }
         $this->controller_config = $this->_parse_controller($path);
     }
 

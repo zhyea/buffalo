@@ -12,14 +12,19 @@ class HelloController extends AbstractController
     private $model;
 
 
+    /**
+     * constructor.
+     */
     public function __construct()
     {
+        parent::__construct();
         $this->model = new HelloModel();
     }
 
+
     public function index()
     {
-        $this->theme_view('welcome', array('hi' => 'Hello World'), "北京欢迎你");
+        $this->admin_view('index', array('hi' => 'Hello World'), "北京欢迎你");
     }
 
 
@@ -27,6 +32,12 @@ class HelloController extends AbstractController
     {
         $r = $this->model->get(1);
         $this->render_json($r);
+    }
+
+
+    public function login()
+    {
+
     }
 
 }

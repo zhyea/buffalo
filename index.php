@@ -1,4 +1,8 @@
 <?php
+/**
+ * App Context
+ */
+$context = 'buffalo';
 
 /**
  * App Backend Folder
@@ -8,7 +12,7 @@ $app_folder = 'app';
 /**
  * App Frontend Folder
  */
-$view_folder = 'templates';
+$view_folder = 'view';
 
 
 /**
@@ -57,6 +61,10 @@ $zero_path = real_path($zero_path);
 
 define('_ZERO_PATH_', $zero_path);
 
+/**
+ * define view context
+ */
+define('_VIEW_CONTEXT_', '/' . $context . '/' . $view_folder);
 
 /**
  * 加载zero框架
