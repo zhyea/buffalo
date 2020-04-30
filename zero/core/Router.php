@@ -21,7 +21,9 @@ class Router
         if (_CFG_['suffix'] && str_end_with($path, _CFG_['suffix'])) {
             $path = substr($path, 0, strpos($path, _CFG_['suffix']));
         }
-        $this->controller_config = $this->_parse_controller($path);
+        if (empty($this->controller_config)) {
+            $this->controller_config = $this->_parse_controller($path);
+        }
     }
 
 

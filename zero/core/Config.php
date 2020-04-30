@@ -191,10 +191,12 @@ $view_folder = view_path($view_folder);
 
 define('_VIEW_PATH_', $view_folder);
 
+
 /**
  * define router
  */
 require_once _APP_PATH_ . 'config' . DIRECTORY_SEPARATOR . 'routes' . '.php';
+uksort($routes, 'str_len_cmp');
 define('_R_', $routes);
 
 

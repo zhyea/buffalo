@@ -28,6 +28,7 @@ class AbstractController extends Z_Controller
     protected function admin_view($page, $params, $title)
     {
         $params['ctx_admin'] = _ADMIN_CONTEXT_;
+        $params['ctx_theme'] = _THEME_CONTEXT_;
         $this->_render_view(_CFG_['admin'], $page, $params, $title);
     }
 

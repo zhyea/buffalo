@@ -6,15 +6,14 @@ require_once 'Common.php';
 require_once 'Config.php';
 require_once 'Router.php';
 
-
 require_once 'Controller.php';
 require_once 'Model.php';
 
 
-$files = get_files(_CONTROLLER_PATH_);
+$files = get_files(_CONTROLLER_PATH_, true);
 foreach ($files as $f) {
     if (str_end_with($f, ".php")) {
-        require_once $f;
+        require $f;
     }
 }
 

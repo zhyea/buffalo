@@ -2,7 +2,7 @@
 defined('_APP_PATH_') OR exit('You shall not pass!');
 
 
-class HelloModel extends Z_Model
+class UserModel extends Z_Model
 {
 
 

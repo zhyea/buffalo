@@ -71,6 +71,21 @@ if (!function_exists('str_start_with')) {
 }
 
 
+if (!function_exists('str_len_cmp')) {
+    /**
+     * Compare str1 and str2 with length
+     *
+     * @param $str1 string target string
+     * @param $str2 string compare string
+     * @return bool
+     */
+    function str_len_cmp($str1, $str2)
+    {
+        return strlen($str2) - strlen($str1);
+    }
+}
+
+
 if (!function_exists('str_end_with')) {
     /**
      * Check is str1 end with str2
@@ -102,12 +117,14 @@ if (!function_exists('get_files')) {
         if (is_dir($path)) {
             $files = scandir($path);
             foreach ($files as $f) {
-                $sub_path = $path . '/' . $f;
+                $sub_path = (str_end_with($path, '/') ? $path : $path . '/') . $f;
                 if ($f == '.' || $f == '..') {
                     continue;
                 } else if (is_dir($sub_path) && $recursive) {
                     $sub_files = get_files($sub_path, $recursive);
-                    array_merge($result, $sub_files);
+                    if (sizeof($sub_files) > 0) {
+                        array_push($result, ...$sub_files);
+                    }
                 } else {
                     array_push($result, $sub_path);
                 }

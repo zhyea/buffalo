@@ -5,6 +5,31 @@ defined('_ZERO_PATH_') OR exit('You shall not pass!');
 class Z_Model
 {
 
+
+    protected $table;
+
+    /**
+     * Z_Model constructor.
+     *
+     * @param $table string table name
+     */
+    public function __construct($table = '')
+    {
+        if (!empty($table)) {
+            $this->table = $table;
+        } else {
+            $this->table = strtolower(str_ireplace('model', '', get_called_class()));
+        }
+    }
+
+
+    public function get_by_id($id)
+    {
+        $sql = "select * from " . $this->table . " where id=?";
+        return $this->_get($sql, array($id));
+    }
+
+
     /**
      * 查询获取一行记录
      *

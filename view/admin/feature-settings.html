@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="admin.header::header"></div>
+<body>
+
+<div class="wrapper">
+    <div th:replace="admin.nav::nav"></div>
+
+    <div class="container main">
+        <div class="page-header">
+            <h3><i class="glyphicon glyphicon-folder-open"></i> [[${f.id>0?'编辑-'+f.name : '新增专题'}]]</h3>
+        </div>
+
+        <div th:replace="admin.alert::alert"></div>
+
+        <form method="post" action="/admin/feature/settings" enctype="multipart/form-data" th:object="${f}">
+
+            <div class="row">
+                <div class="form-label col-md-2 col-xs-12">专题名称</div>
+                <div class="form-input col-md-10 col-xs-12">
+                    <input type="hidden" name="id" th:value="*{id}"/>
+                    <input type="text" class="form-control" name="name" th:value="*{name}" required autofocus/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-label col-md-2 col-xs-12">专题别名</div>
+                <div class="form-input col-md-10 col-xs-12">
+                    <input type="text" class="form-control" name="alias" th:value="*{alias}" required autofocus/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-label col-md-2 col-xs-12">关键字</div>
+                <div class="form-input col-md-10 col-xs-12">
+                    <input type="text" class="form-control" name="keywords" th:value="*{keywords}" required
+                           autofocus/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-label col-md-2 col-xs-12">概述</div>
+                <div class="form-input col-md-10 col-xs-12">
+                    <textarea class="form-control" name="brief" rows="6" th:text="*{brief}"></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-label col-md-2 col-xs-12">封面</div>
+                <div class="form-input col-md-10 col-xs-12">
+                    <input type="file" class="form-control" accept="image/png, image/jpeg" name="cover"/>
+                    <div class="form-input col-md-12 col-xs-12" th:if="${null!=f.cover}">
+                        <p class="lmt"><img th:src="@{*{cover}}" th:alt="${null==f.name ? 'Cover' : f.name}"/></p>
+                        <a th:href="|/admin/feature/delete/cover/*{id}|" target="_self">移除封面</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-label col-md-2 col-xs-12">背景</div>
+                <div class="form-input col-md-10 col-xs-12">
+                    <input type="file" class="form-control" accept="image/png, image/jpeg" name="background"/>
+                    <div class="form-input col-md-12 col-xs-12" th:if="${null!=f.background}">
+                        <p class="lmt"><img th:src="@{*{background}}" th:alt="${null==f.name ? 'Cover' : f.name}"/></p>
+                        <a th:href="|/admin/feature/delete/bg/*{id}|" target="_self">移除背景</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-label col-md-2 col-xs-12">背景重复</div>
+                <div class="form-input col-md-10 col-xs-12" style="padding-top:6px;">
+                    <label class="radio-inline">
+                        <input type="radio" name="bgRepeat" value="1"
+                               th:checked="${null==f.bgRepeat || f.bgRepeat == 1}"> 重复
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="bgRepeat" value="2" th:checked="${f.bgRepeat == 2}"> 不重复
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="btn-left col-md-6 col-xs-12">
+                    <a href="/admin/feature/list" class="btn btn-info">返回专题列表</a>
+                </div>
+                <div class="btn-right col-md-6 col-xs-12">
+                    <button type="submit" class="btn btn-success">保存专题信息</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <div th:replace="admin.footer::footer"></div>
+</div>
+
+</body>

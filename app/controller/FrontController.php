@@ -5,7 +5,7 @@ defined('_APP_PATH_') OR exit('You shall not pass!');
 require_model('UserModel');
 
 
-class HelloController extends AbstractController
+class FrontController extends AbstractController
 {
 
 
@@ -24,13 +24,14 @@ class HelloController extends AbstractController
 
     public function index()
     {
-        $this->admin_view('index', array('hi' => 'Hello World'), "北京欢迎你");
+
+        $this->theme_view('welcome', array('hi' => 'Hello World'), "北京欢迎你");
     }
 
 
     public function user()
     {
-        $r = $this->model->get(1);
+        $r = $this->model->get_by_id(1);;
         $this->render_json($r);
     }
 
