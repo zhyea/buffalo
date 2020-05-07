@@ -13,7 +13,7 @@ include_once 'common/navigator.php';
 
     <?php include_once 'common/alert.php'; ?>
 
-	<form method="post" action="<?= $ctx_admin ?>/settings" enctype="multipart/form-data">
+	<form method="post" action="<?= $ctx ?>admin/settings/maintain" enctype="multipart/form-data">
 		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">站点名称</div>
 			<div class="form-input col-md-10 col-xs-12">
@@ -51,7 +51,7 @@ include_once 'common/navigator.php';
 				<div class="form-input col-md-12 col-xs-12">
 					<br/>
 					<p class="lmt"><img src="<?= $logo ?>" alt="LOGO"/></p>
-					<a href="<?= $ctx_admin ?>/settings/delete/logo" target="_self">移除LOGO</a>
+					<a href="<?= $ctx ?>/settings/delete/logo" target="_self">移除LOGO</a>
 					<br/>
 				</div>
                 <?php } ?>
@@ -67,7 +67,7 @@ include_once 'common/navigator.php';
 				<div class="form-input col-md-12 col-xs-12">
 					<br/>
 					<p class="lmt"><img src="<?= $background_img ?>" alt="BG_IMG"/></p>
-					<a href="<?= $ctx_admin ?>/settings/delete/backgroundImg" target="_self">移除背景图</a>
+					<a href="<?= $ctx ?>/settings/delete/backgroundImg" target="_self">移除背景图</a>
 					<br/>
 				</div>
                 <?php } ?>

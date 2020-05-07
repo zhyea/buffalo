@@ -12,3 +12,5 @@ $routes['/login'] = 'admin/admin/login';
 $routes['/admin'] = 'admin/admin/index';
 // Settings
 $routes['/admin/settings'] = 'admin/settings/index';
+// Settings
+$routes['/admin/settings/maintain'] = 'admin/settings/maintain';

@@ -40,6 +40,9 @@ class Router
             if (!method_exists($c, $method)) {
                 $this->error_404();
             }
+
+            extract($_REQUEST);
+
             $c->$method($args);
         }
     }

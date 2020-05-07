@@ -212,3 +212,8 @@ define('_DB_', $db[$active_group]);
  */
 require_once _APP_PATH_ . 'config' . DIRECTORY_SEPARATOR . 'config' . '.php';
 define('_CFG_', $config);
+
+/**
+ * define upload path
+ */
+define('_UPLOAD_PATH_', $app_folder . (empty(_CFG_['upload']) ? '/upload' : _CFG_['upload']));

@@ -29,6 +29,7 @@ class AbstractController extends Z_Controller
     {
         $params['ctx_admin'] = _ADMIN_CONTEXT_;
         $params['ctx_theme'] = _THEME_CONTEXT_;
+        $params['ctx'] = _APP_CONTEXT_ . 'index.php/';
         $this->_render_view(_CFG_['admin'], $page, $params, $title);
     }
 

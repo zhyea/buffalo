@@ -28,7 +28,7 @@
 					   aria-expanded="false"><i class="glyphicon glyphicon-dashboard"></i> 控制台<span
 								class="caret"></span></a>
 					<ul class="dropdown-menu navbar-child">
-						<li class="navbar-child-item"><a href="<?= $ctx_admin ?>/settings">网站设置</a></li>
+						<li class="navbar-child-item"><a href="<?= $ctx ?>admin/settings">网站设置</a></li>
 						<li class="navbar-child-item"><a href="<?= $ctx_admin ?>/spt/list">脚本设置</a></li>
 						<li class="navbar-child-item"><a href="<?= $ctx_admin ?>/nav/list">导航设置</a></li>
 					</ul>
