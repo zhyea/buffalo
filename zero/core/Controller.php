@@ -106,17 +106,18 @@ class Z_Controller
             return array(false, 'The size of file is too large.');
         }
 
+        $sub_path = empty($sub_path) || str_end_with($sub_path, '/') ? $sub_path : $sub_path . '/';
         $save_name = str_end_with($save_name, $ext) ? $save_name : $save_name . '.' . $ext;
-        $save_path = _UPLOAD_PATH_ . '/' . (empty($sub_path) ? '' : $sub_path);
 
-        $save_path = str_end_with($save_path, '/') ? $save_path : $save_path . '/';
+        $save_path = _UPLOAD_PATH_ . '/' . (empty($sub_path) ? '' : $sub_path);
 
         if (!is_dir($save_path)) {
             mkdir($save_path, 0777, true);
         }
 
         move_uploaded_file($_FILES[$name]['tmp_name'], $save_path . $save_name);
-        return array(true, 'upload succeed');
+
+        return array(true, $sub_path . $save_name);
     }
 
 

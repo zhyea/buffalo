@@ -69,6 +69,12 @@ class AbstractController extends Z_Controller
     }
 
 
+    /**
+     * 上传文件，文件将按日期保存，并提供随机ID作为名称
+     *
+     * @param $name string 文件表单名
+     * @return array 文件是否上传成功 / 失败原因 / 保存位置
+     */
     protected function upload_file($name)
     {
         $save_name = uniqid();
