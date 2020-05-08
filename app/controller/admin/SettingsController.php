@@ -44,8 +44,7 @@ class SettingsController extends AbstractController
 
     public function maintain()
     {
-        println('hello');
-        $this->upload('logo', 'aaaaa');
+        $this->upload_file('logo');
     }
 
 

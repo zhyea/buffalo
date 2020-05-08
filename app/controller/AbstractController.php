@@ -69,4 +69,12 @@ class AbstractController extends Z_Controller
     }
 
 
+    protected function upload_file($name)
+    {
+        $save_name = uniqid();
+        $sub_path = date('Y/m/d');
+        return parent::upload($name, $save_name, $sub_path);
+    }
+
+
 }

@@ -216,4 +216,8 @@ define('_CFG_', $config);
 /**
  * define upload path
  */
-define('_UPLOAD_PATH_', $app_folder . (empty(_CFG_['upload']) ? '/upload' : _CFG_['upload']));
+define('_UPLOAD_PATH_', _ROOT_DIR__ . (empty(_CFG_['upload']) ? '/upload' : _CFG_['upload']));
+
+if (!is_dir(_UPLOAD_PATH_)) {
+    mkdir(_UPLOAD_PATH_, 0777, true);
+}
