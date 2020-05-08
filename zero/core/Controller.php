@@ -89,13 +89,14 @@ class Z_Controller
      * 完成文件上传
      *
      * @param $name string 表单名
-     * @param $file_name string 文件保存名称
+     * @param $save_name string 文件保存名称
      * @param array $allowed_ext 允许的扩展名
      * @return array
      */
-    protected function upload($name, $file_name, $allowed_ext = array())
+    protected function upload($name, $save_name, $allowed_ext = array())
     {
-        $ext = end(explode('.', $_FILES[$name]['name']));
+        $arr = explode('.', $_FILES[$name]['name']);
+        $ext = end($arr);
         if (!empty($allowed_ext) && !in_array($ext, $allowed_ext)) {
             return array(false, 'The ext of file is not allowed.');
         }
@@ -103,13 +104,14 @@ class Z_Controller
         if (!empty(_CFG_['max_file_zie']) && $size > _CFG_['max_file_zie']) {
             return array(false, 'The size of file is too large.');
         }
-        $file_name = str_end_with($file_name, $ext) ? $file_name : $file_name . '.' . $ext;
-        move_uploaded_file($_FILES[$name]['tmp_name'], _UPLOAD_PATH_ . $file_name);
+        $save_name = str_end_with($save_name, $ext) ? $save_name : $save_name . '.' . $ext;
+        move_uploaded_file($_FILES[$name]['tmp_name'], _UPLOAD_PATH_ . $save_name);
         return array(true, 'upload succeed');
     }
 
 
-    protected function post(){
+    protected function post()
+    {
 
     }
 

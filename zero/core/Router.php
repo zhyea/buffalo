@@ -41,8 +41,6 @@ class Router
                 $this->error_404();
             }
 
-            extract($_REQUEST);
-
             $c->$method($args);
         }
     }
