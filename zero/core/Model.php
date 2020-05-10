@@ -40,7 +40,7 @@ class Z_Model
     protected function _get($sql, $params)
     {
 
-        $dbh = $this->conn();
+        $dbh = $this->_conn();
         $stmt = $dbh->prepare($sql);
         $result = array();
         if ($stmt->execute($params)) {
@@ -59,9 +59,9 @@ class Z_Model
      * @param $params array 查询参数
      * @return array 查询结果
      */
-    protected function _query($sql, $params)
+    protected function _find($sql, $params)
     {
-        $dbh = $this->conn();
+        $dbh = $this->_conn();
         $stmt = $dbh->prepare($sql);
         $result = array();
         if ($stmt->execute($params)) {
@@ -75,6 +75,45 @@ class Z_Model
 
 
     /**
+     * 执行replace操作
+     *
+     * @param $params array 字段名和字段值的键值对
+     * @return bool 是否执行成功
+     */
+    public function replace($params)
+    {
+        $keys = array_keys($params);
+        $values = array_values($params);
+        $place_holder = array_fill(0, sizeof($values), '?');
+        $sql = 'replace into ' . $this->table . ' (' . implode(',', $keys) . ') values (' . implode(',', $place_holder) . ')';
+        return $this->_execute($sql, $values);
+    }
+
+
+    /**
+     * 执行delete操作
+     *
+     * @param $params array 字段名和字段值的键值对
+     * @return bool 是否执行成功
+     */
+    protected function delete($params)
+    {
+        $sql = 'delete from ' . $this->table . ' where ';
+        $first = true;
+        foreach ($params as $k => $v) {
+            if (!$first) {
+                $sql = $sql . 'and ';
+            } else {
+                $first = false;
+            }
+            $sql = $sql . $k . '=? ';
+        }
+        $values = array_values($params);
+        return $this->_execute($sql, $values);
+    }
+
+
+    /**
      * 执行sql语句
      *
      * @param $sql string SQL语句
@@ -83,7 +122,7 @@ class Z_Model
      */
     protected function _execute($sql, $params)
     {
-        $dbh = $this->conn();
+        $dbh = $this->_conn();
         $stmt = $dbh->prepare($sql);
         $r = $stmt->execute($params);
         $dbh = null;
@@ -96,7 +135,7 @@ class Z_Model
      *
      * @return PDO PDO对象
      */
-    private function conn()
+    private function _conn()
     {
         extract(_DB_);
         $dsn = "$dbsystem:host=$hostname;dbname=$database";

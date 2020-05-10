@@ -46,7 +46,7 @@ if (!function_exists('real_path')) {
 /**
  * App root dir
  */
-define('_ROOT_DIR__', dirname(__FILE__));
+define('_ROOT_DIR_', dirname(__FILE__));
 
 /**
  * The name of this file

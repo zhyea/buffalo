@@ -4,7 +4,7 @@ defined('_APP_PATH_') OR exit('You shall not pass!');
 <div class="container footer">
 	<div class="col-md-12 col-xs-12 logo">
 		<a href="http://calf.chobit.org">
-			<img alt="Calf" src="<?= $ctx_admin ?>/static/img/logo.png" height="100%">
+			<img alt="Calf" src="<?= $uri_admin ?>/static/img/logo.png" height="100%">
 		</a>
 	</div>
 	<div class="col-md-12 col-xs-12 copyright">
@@ -12,9 +12,9 @@ defined('_APP_PATH_') OR exit('You shall not pass!');
 	</div>
 </div>
 
-<script src="<?= $ctx_admin ?>/static/js/bootstrap.min.js"></script>
-<script src="<?= $ctx_admin ?>/static/js/bootstrap-table.min.js"></script>
-<script src="<?= $ctx_admin ?>/static/js/bootstrap-table-zh-CN.min.js"></script>
+<script src="<?= $uri_admin ?>/static/js/bootstrap.min.js"></script>
+<script src="<?= $uri_admin ?>/static/js/bootstrap-table.min.js"></script>
+<script src="<?= $uri_admin ?>/static/js/bootstrap-table-zh-CN.min.js"></script>
 </div>
 </body>
 </html>

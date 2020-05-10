@@ -54,7 +54,7 @@ class Z_Controller
      * @param int $code HTTP Response status code
      * @return    void
      */
-    protected function redirect($uri = '', $method = 'auto', $code = NULL)
+    protected function _redirect($uri = '', $method = 'auto', $code = NULL)
     {
         if (!preg_match('#^(\w+:)?//#i', $uri)) {
             $uri = site_url($uri);
@@ -94,7 +94,7 @@ class Z_Controller
      * @param array $allowed_ext 允许的扩展名
      * @return array
      */
-    protected function upload($name, $save_name, $sub_path = '', $allowed_ext = array())
+    protected function _upload($name, $save_name, $sub_path = '', $allowed_ext = array())
     {
         $arr = explode('.', $_FILES[$name]['name']);
         $ext = end($arr);

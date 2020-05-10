@@ -11,15 +11,15 @@ defined('_APP_PATH_') OR exit('You shall not pass!');
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
 	<meta content="width=device-width, initial-scale=1" name="viewport"/>
 	
-	<link rel="icon" href="<?= $ctx_admin ?>/static/img/favicon.ico">
+	<link rel="icon" href="<?= $uri_admin ?>/static/img/favicon.ico">
 	
-	<link rel="stylesheet" type="text/css" href="<?= $ctx_admin ?>/static/css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="<?= $ctx_admin ?>/static/css/font-awesome.min.css"/>
-	<link rel="stylesheet" type="text/css" href="<?= $ctx_admin ?>/static/css/bootstrap-table.min.css"/>
-	<link rel="stylesheet" type="text/css" href="<?= $ctx_admin ?>/static/css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="<?= $uri_admin ?>/static/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?= $uri_admin ?>/static/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?= $uri_admin ?>/static/css/bootstrap-table.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?= $uri_admin ?>/static/css/style.css"/>
 	
-	<script src="<?= $ctx_admin ?>/static/js/jquery.min.js"></script>
-	<script src="<?= $ctx_admin ?>/static/js/custom-script.js"></script>
+	<script src="<?= $uri_admin ?>/static/js/jquery.min.js"></script>
+	<script src="<?= $uri_admin ?>/static/js/custom-script.js"></script>
 	
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>

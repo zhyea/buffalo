@@ -3,7 +3,7 @@ defined('_APP_PATH_') OR exit('You shall not pass!');
 ?>
 
 <?php if (!empty($alert)) { ?>
-	<div role="alert" class="lert <?= $alert['type'] ?> alert-dismissible fade in">
+	<div role="alert" class="alert <?= $alert['type'] ?> alert-dismissible fade in">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>

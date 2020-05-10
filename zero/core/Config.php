@@ -89,8 +89,8 @@ if (!function_exists('app_path')) {
     {
         if (is_dir($app_folder)) {
             $app_folder = real_path($app_folder);
-        } elseif (is_dir(_ROOT_DIR__ . $app_folder . DIRECTORY_SEPARATOR)) {
-            $app_folder = append_child_path(_ROOT_DIR__, $app_folder);
+        } elseif (is_dir(_ROOT_DIR_ . $app_folder . DIRECTORY_SEPARATOR)) {
+            $app_folder = append_child_path(_ROOT_DIR_, $app_folder);
         } else {
             error_503();
         }
@@ -216,7 +216,7 @@ define('_CFG_', $config);
 /**
  * define upload path
  */
-define('_UPLOAD_PATH_', _ROOT_DIR__ . (empty(_CFG_['upload']) ? '/upload' : _CFG_['upload']));
+define('_UPLOAD_PATH_', _VIEW_PATH_ . '/upload');
 
 if (!is_dir(_UPLOAD_PATH_)) {
     mkdir(_UPLOAD_PATH_, 0777, true);

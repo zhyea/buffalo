@@ -14,8 +14,7 @@ class UserModel extends Z_Model
      */
     public function get($id)
     {
-        $sql = "select * from user where id=?";
-        return parent::_get($sql, array(1));
+        return parent::get_by_id($id);
     }
 
 

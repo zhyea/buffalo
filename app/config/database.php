@@ -9,5 +9,5 @@ $db['default'] = array('dbsystem' => 'mysql'
 , 'username' => 'root'
 , 'password' => 'root'
 , 'database' => 'calf'
-, 'options' => array(PDO::ATTR_PERSISTENT => true)
+, 'options' => array(PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING)
 );

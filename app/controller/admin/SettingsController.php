@@ -2,7 +2,7 @@
 defined('_APP_PATH_') OR exit('You shall not pass!');
 
 
-require_model('SettingsModel');
+require_model('SettingModel');
 
 class SettingsController extends AbstractController
 {
@@ -15,36 +15,57 @@ class SettingsController extends AbstractController
     public function __construct()
     {
         parent::__construct();
-        $this->model = new SettingsModel();
+        $this->model = new SettingModel();
     }
 
 
     public function index()
     {
         $name = $this->model->get_by_key('name');
-        $notice = $this->model->get_by_key('notice');
-        $site_name = $this->model->get_by_key('site_name');
         $desc = $this->model->get_by_key('description');
+        $notice = $this->model->get_by_key('notice');
         $keywords = $this->model->get_by_key('keywords');
         $bg_repeat = $this->model->get_by_key('bgRepeat', 1);
         $logo = $this->model->get_by_key('logo', '');
-        $background_img = $this->model->get_by_key('background_img', '');
+        $background = $this->model->get_by_key('background', '');
 
         $this->admin_view('settings',
             array('name' => $name,
                 'notice' => $notice,
-                'site_name' => $site_name,
                 'description' => $desc,
                 'keywords' => $keywords,
                 'bg_repeat' => $bg_repeat,
                 'logo' => $logo,
-                'background_img' => $background_img), "网站配置");
+                'background' => $background), "网站配置");
     }
 
 
     public function maintain()
     {
-        $this->upload_file('logo');
+        $name = $_POST['name'];
+        $desc = $_POST['description'];
+        $keywords = $_POST['keywords'];
+        $notice = $_POST['notice'];
+        $logo = $this->upload('logo');
+        $background = $this->upload('background');
+
+        $this->model->change('name', $name);
+        $this->model->change('description', $desc);
+        $this->model->change('keywords', $keywords);
+        $this->model->change('notice', $notice);
+        if ($logo[0]) {
+            $this->model->change('logo', $logo[1]);
+        }
+        if ($background[0]) {
+            $this->model->change('background', $background[1]);
+        }
+
+        $this->redirect('admin/settings');
+    }
+
+
+    public function delete($item){
+
     }
 
 
