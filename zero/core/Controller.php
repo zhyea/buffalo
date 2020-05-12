@@ -81,7 +81,7 @@ class Z_Controller
                 header('Location: ' . $uri, TRUE, $code);
                 break;
         }
-        exit;
+        //exit;
     }
 
 
@@ -96,12 +96,19 @@ class Z_Controller
      */
     protected function _upload($name, $save_name, $sub_path = '', $allowed_ext = array())
     {
+        $file_name = $_FILES[$name]['name'];
+        if (empty($file_name)) {
+            return array(false, 'No file is uploaded.');
+        }
         $arr = explode('.', $_FILES[$name]['name']);
         $ext = end($arr);
         if (!empty($allowed_ext) && !in_array($ext, $allowed_ext)) {
             return array(false, 'The ext of file is not allowed.');
         }
         $size = $_FILES[$name]['size'];
+        if ($size <= 0) {
+            return array(false, 'The size of file is zero.');
+        }
         if (!empty(_CFG_['max_file_zie']) && $size > _CFG_['max_file_zie']) {
             return array(false, 'The size of file is too large.');
         }

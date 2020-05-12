@@ -35,8 +35,9 @@ class AbstractController extends Z_Controller
         $params['uri_upload'] = _UPLOAD_URI_;
         $params['ctx'] = _APP_CONTEXT_ . 'index.php/';
 
-        if (!empty($_COOKIE['alert'])) {
-            $params['alert'] = $_COOKIE['alert'];
+        if (isset($_SESSION['alert'])) {
+            $params['alert'] = $_SESSION['alert'];
+            unset($_SESSION['alert']);
         }
 
         $this->_render_view('/admin', $page, $params, $title);
@@ -105,20 +106,14 @@ class AbstractController extends Z_Controller
 
 
     /**
-     * 新增管理后台Cookie键值对
+     * 添加提示信息
      *
-     * @param $items  array Cookie键值对
+     * @param $msg string 提示内容
+     * @param $type string 提示类型，对应bootstrap alert类
      */
-    public function admin_cookie($items)
+    protected function add_alert($msg, $type)
     {
-        foreach ($items as $key => $value) {
-            setcookie($key, $value, time() + 5, '/admin');
-        }
-    }
-
-
-    public function add_alert(){
-
+        $_SESSION['alert'] = array('type' => $type, 'msg' => $msg);
     }
 
 }

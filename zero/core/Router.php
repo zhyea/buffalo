@@ -29,6 +29,8 @@ class Router
 
     public function dispatch()
     {
+        session_start();
+
         if (null == $this->controller_config) {
             $this->error_404();
         } else {

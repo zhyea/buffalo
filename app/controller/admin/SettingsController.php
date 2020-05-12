@@ -60,11 +60,14 @@ class SettingsController extends AbstractController
             $this->model->change('background', $background[1]);
         }
 
+        $this->add_alert('更新网站设置成功', 'success');
+
         $this->redirect('admin/settings');
     }
 
 
-    public function delete($item){
+    public function delete($item)
+    {
 
     }
 
