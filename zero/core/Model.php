@@ -1,5 +1,5 @@
 <?php
-defined('_ZERO_PATH_') OR exit('You shall not pass!');
+defined('_ZERO_PATH_') or exit('You shall not pass!');
 
 
 class Z_Model
@@ -18,11 +18,17 @@ class Z_Model
         if (!empty($table)) {
             $this->table = $table;
         } else {
-            $this->table = strtolower(str_ireplace('model', '', get_called_class()));
+            $tmp = str_ireplace('model', '', get_called_class());
+            $this->table = strtolower(preg_replace('/(?<=[a-z])([A-Z])/', '_$1', $tmp));
         }
     }
 
 
+    /**
+     * 根据ID获取记录
+     * @param $id int 记录ID
+     * @return array 对应ID的记录
+     */
     public function get_by_id($id)
     {
         $sql = "select * from " . $this->table . " where id=?";

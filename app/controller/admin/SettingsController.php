@@ -55,9 +55,11 @@ class SettingsController extends AbstractController
         $this->model->change('keywords', $keywords);
         $this->model->change('notice', $notice);
         if ($logo[0]) {
+            $this->_delete('logo', '');
             $this->model->change('logo', $logo[1]);
         }
         if ($background[0]) {
+            $this->_delete('background', '');
             $this->model->change('background', $background[1]);
         }
         $this->model->change('bg_repeat', $bg_repeat);

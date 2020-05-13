@@ -6,15 +6,17 @@ $routes['404_override'] = '';
 $routes['translate_uri_dashes'] = FALSE;
 
 
-// Login Page
+// 登录页
 $routes['/login'] = 'admin/admin/login';
-// Admin
+// 后台首页
 $routes['/admin'] = 'admin/admin/index';
-// Settings
+// 配置页
 $routes['/admin/settings'] = 'admin/settings/index';
-// Settings
+// 配置提交接口
 $routes['/admin/settings/maintain'] = 'admin/settings/maintain';
-// Settings
+// 配置删除Logo
 $routes['/admin/settings/delete/logo'] = 'admin/settings/delete_logo';
-// Settings
+// 配置删除背景
 $routes['/admin/settings/delete/background'] = 'admin/settings/delete_bg';
+// 打开远程交互
+$routes['/admin/remote/gen'] = 'admin/remote/gen';
