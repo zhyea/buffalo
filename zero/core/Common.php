@@ -1,5 +1,5 @@
 <?php
-defined('_ZERO_PATH_') OR exit('You shall not pass!');
+defined('_ZERO_PATH_') or exit('You shall not pass!');
 
 
 if (!function_exists('real_path')) {
@@ -131,6 +131,53 @@ if (!function_exists('get_files')) {
             }
         }
         return $result;
+    }
+}
+
+
+if (!function_exists('del_file')) {
+
+    /**
+     * delete file
+     *
+     * @param $path string path of file
+     */
+    function del_file($path)
+    {
+        if (file_exists($path)) {
+            unlink($path);
+        }
+    }
+}
+
+
+if (!function_exists('del_dir')) {
+    /**
+     * delete dir
+     * @param $dir string path of dir
+     * @return bool
+     */
+    function del_dir($dir)
+    {
+        $dh = opendir($dir);
+        while ($file = readdir($dh)) {
+            if ($file != "." && $file != "..") {
+                $full_path = $dir . DIRECTORY_SEPARATOR . $file;
+                if (!is_dir($full_path)) {
+                    unlink($full_path);
+                } else {
+                    del_dir($full_path);
+                }
+            }
+        }
+
+        closedir($dh);
+
+        if (rmdir($dir)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

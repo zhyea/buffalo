@@ -1,5 +1,5 @@
 <?php
-defined('_APP_PATH_') OR exit('You shall not pass!');
+defined('_APP_PATH_') or exit('You shall not pass!');
 
 include_once 'common/header.php';
 include_once 'common/navigator.php';
@@ -76,10 +76,10 @@ include_once 'common/navigator.php';
 			<div class="form-label col-md-2 col-xs-12">背景重复</div>
 			<div class="form-input col-md-10 col-xs-12" style="padding-top:6px;">
 				<label class="radio-inline">
-					<input type="radio" name="bgRepeat" value="1" checked="<?= ($bg_repeat == 1) ?>"> 重复
+					<input type="radio" name="bg_repeat" value="1" <?= $bg_repeat == "1" ? 'checked' : '' ?> > 重复
 				</label>
 				<label class="radio-inline">
-					<input type="radio" name="bgRepeat" value="2" checked="<?= ($bg_repeat == 2) ?>"> 不重复
+					<input type="radio" name="bg_repeat" value="2" <?= $bg_repeat == "2" ? 'checked' : '' ?>> 不重复
 				</label>
 			</div>
 		</div>

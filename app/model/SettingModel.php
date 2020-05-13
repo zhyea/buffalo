@@ -1,5 +1,5 @@
 <?php
-defined('_APP_PATH_') OR exit('You shall not pass!');
+defined('_APP_PATH_') or exit('You shall not pass!');
 
 
 class SettingModel extends Z_Model
@@ -18,6 +18,17 @@ class SettingModel extends Z_Model
         $sql = "select * from " . $this->table . " where name=?";
         $r = parent::_get($sql, array($key));
         return empty($r) || empty($r['value']) ? $defaultValue : $r['value'];
+    }
+
+
+    /**
+     * 根据Key删除配置信息
+     *
+     * @param $key string the name of config
+     */
+    public function delete_by_key($key)
+    {
+        parent::delete(array('name' => $key));
     }
 
 

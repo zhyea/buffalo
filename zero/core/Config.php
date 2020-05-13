@@ -1,5 +1,5 @@
 <?php
-defined('_ZERO_PATH_') OR exit('You shall not pass!');
+defined('_ZERO_PATH_') or exit('You shall not pass!');
 
 
 if (!function_exists('is_https')) {
@@ -169,6 +169,23 @@ if (!function_exists('require_service')) {
 }
 
 
+if (!function_exists('require_by_dir')) {
+    /**
+     * add all php files in target dir
+     *
+     * @param $dir string target directory
+     */
+    function require_by_dir($dir)
+    {
+        $files = get_files($dir, true);
+        foreach ($files as $f) {
+            if (str_end_with($f, ".php")) {
+                require $f;
+            }
+        }
+    }
+}
+
 /**
  * define site url
  */
@@ -216,8 +233,9 @@ define('_CFG_', $config);
 /**
  * define upload path
  */
-define('_UPLOAD_PATH_', _VIEW_PATH_ . '/upload');
+define('_UPLOAD_PATH_', _VIEW_PATH_ . DIRECTORY_SEPARATOR . 'upload');
 
 if (!is_dir(_UPLOAD_PATH_)) {
     mkdir(_UPLOAD_PATH_, 0777, true);
 }
+

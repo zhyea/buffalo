@@ -1,5 +1,5 @@
 <?php
-defined('_APP_PATH_') OR exit('You shall not pass!');
+defined('_APP_PATH_') or exit('You shall not pass!');
 
 
 require_model('SettingModel');
@@ -25,7 +25,7 @@ class SettingsController extends AbstractController
         $desc = $this->model->get_by_key('description');
         $notice = $this->model->get_by_key('notice');
         $keywords = $this->model->get_by_key('keywords');
-        $bg_repeat = $this->model->get_by_key('bgRepeat', 1);
+        $bg_repeat = $this->model->get_by_key('bg_repeat', 1);
         $logo = $this->model->get_by_key('logo', '');
         $background = $this->model->get_by_key('background', '');
 
@@ -48,6 +48,7 @@ class SettingsController extends AbstractController
         $notice = $_POST['notice'];
         $logo = $this->upload('logo');
         $background = $this->upload('background');
+        $bg_repeat = $_POST['bg_repeat'];
 
         $this->model->change('name', $name);
         $this->model->change('description', $desc);
@@ -59,6 +60,7 @@ class SettingsController extends AbstractController
         if ($background[0]) {
             $this->model->change('background', $background[1]);
         }
+        $this->model->change('bg_repeat', $bg_repeat);
 
         $this->add_alert('更新网站设置成功', 'success');
 
@@ -66,9 +68,27 @@ class SettingsController extends AbstractController
     }
 
 
-    public function delete($item)
+    /**
+     * 删除Logo
+     */
+    public function delete_logo()
     {
+        $logo = $this->model->get_by_key('logo');
+        del_upload_file($logo);
+        $this->model->delete_by_key('logo');
+        $this->add_alert('删除LOGO成功', 'success');
+        $this->redirect('admin/settings');
+    }
 
+    /**
+     * 删除背景图
+     */
+    public function delete_bg()
+    {
+        $background = $this->model->get_by_key('background');
+        del_upload_file($background);
+        $this->add_alert('删除背景图成功', 'success');
+        $this->redirect('admin/settings');
     }
 
 
