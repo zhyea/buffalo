@@ -73,11 +73,7 @@ class SettingsController extends AbstractController
      */
     public function delete_logo()
     {
-        $logo = $this->model->get_by_key('logo');
-        del_upload_file($logo);
-        $this->model->delete_by_key('logo');
-        $this->add_alert('删除LOGO成功', 'success');
-        $this->redirect('admin/settings');
+        $this->_delete('logo', 'LOGO');
     }
 
     /**
@@ -85,9 +81,21 @@ class SettingsController extends AbstractController
      */
     public function delete_bg()
     {
-        $background = $this->model->get_by_key('background');
-        del_upload_file($background);
-        $this->add_alert('删除背景图成功', 'success');
+        $this->_delete('background', '背景图');
+    }
+
+    /**
+     * 执行删除及跳转操作
+     *
+     * @param $key string 文件配置项
+     * @param $name string 配置项名称
+     */
+    private function _delete($key, $name)
+    {
+        $v = $this->model->get_by_key($key);
+        del_upload_file($v);
+        $this->model->delete_by_key($key);
+        $this->add_alert('删除' . $name . '成功', 'success');
         $this->redirect('admin/settings');
     }
 
