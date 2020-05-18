@@ -20,3 +20,11 @@ $routes['/admin/settings/delete/logo'] = 'admin/settings/delete_logo';
 $routes['/admin/settings/delete/background'] = 'admin/settings/delete_bg';
 // 打开远程交互
 $routes['/admin/remote/gen'] = 'admin/remote/gen';
+// 打开用户信息编辑页
+$routes['/admin/user/settings'] = 'admin/user/settings';
+// 用户信息维护
+$routes['/admin/user/maintain'] = 'admin/user/maintain';
+// 打开用户列表
+$routes['/admin/user/list'] = 'admin/user/list';
+// 获取用户数据
+$routes['/admin/user/data'] = 'admin/user/data';

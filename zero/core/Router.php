@@ -1,5 +1,5 @@
 <?php
-defined('_ZERO_PATH_') OR exit('You shall not pass!');
+defined('_ZERO_PATH_') or exit('You shall not pass!');
 
 
 class Router
@@ -38,12 +38,18 @@ class Router
             $method = $this->controller_config[2];
             $args = $this->controller_config[3];
 
-            $c = new $class();
-            if (!method_exists($c, $method)) {
-                $this->error_404();
-            }
+            try {
+                $c = new ReflectionClass($class);
+                if (!$c->hasMethod($method)) {
+                    $this->error_404();
+                }
 
-            $c->$method($args);
+                $i = $c->newInstanceArgs();
+                $m = $c->getmethod($method);
+                $m->invokeArgs($i, $args);
+            } catch (ReflectionException $e) {
+                $this->error_500();
+            }
         }
     }
 
@@ -54,10 +60,10 @@ class Router
             if (str_start_with($path, $key)) {
                 $cfg = $this->_parse_controller0($value);
                 if (null != $cfg) {
-                    $sub = rtrim($path, $key);
+                    $sub = ltrim($path, $key);
                     if (!empty($sub)) {
                         $params = explode('/', $sub);
-                        array_merge($cfg[3], $params);
+                        $cfg[3] = array_merge($cfg[3], $params);
                     }
                     return $cfg;
                 }
@@ -94,6 +100,14 @@ class Router
     private function error_404()
     {
         println('404 Error');
+        exit();
+    }
+
+
+    private function error_500()
+    {
+        println('500 Error');
+        exit();
     }
 
 }

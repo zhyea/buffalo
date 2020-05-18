@@ -26,11 +26,15 @@ class Z_Model
 
     /**
      * 根据ID获取记录
+     *
      * @param $id int 记录ID
      * @return array 对应ID的记录
      */
     public function get_by_id($id)
     {
+        if ($id <= 0) {
+            return array();
+        }
         $sql = "select * from " . $this->table . " where id=?";
         return $this->_get($sql, array($id));
     }
@@ -93,6 +97,63 @@ class Z_Model
         $place_holder = array_fill(0, sizeof($values), '?');
         $sql = 'replace into ' . $this->table . ' (' . implode(',', $keys) . ') values (' . implode(',', $place_holder) . ')';
         return $this->_execute($sql, $values);
+    }
+
+
+    /**
+     * 执行insert操作
+     *
+     * @param $params array 字段名和字段值的键值对
+     * @return bool 是否执行成功
+     */
+    public function insert($params)
+    {
+        $keys = array_keys($params);
+        $values = array_values($params);
+        $place_holder = array_fill(0, sizeof($values), '?');
+        $sql = 'insert into ' . $this->table . ' (' . implode(',', $keys) . ') values (' . implode(',', $place_holder) . ')';
+        return $this->_execute($sql, $values);
+    }
+
+    /**
+     * 执行update操作
+     *
+     * @param $params
+     * @return bool
+     */
+    public function update($params)
+    {
+        $id = array_key_exists('id', $params) ? 0 : $params['id'];
+        if ($id > 0) {
+            unset($params['id']);
+        }
+        $values = array_values($params);
+        $sql = 'update ' . $this->table . ' set ';
+        $count = 0;
+        foreach ($params as $key => $value) {
+            if ($count++ > 0) {
+                $sql = $sql . ',';
+            }
+            $sql = $sql . ' ' . $key . '=?';
+        }
+        return $this->_execute($sql, $values);
+    }
+
+
+    /**
+     * 新增或更新数据
+     *
+     * @param $params array 表字段及值
+     * @return bool 是否新增或更新成功
+     */
+    public function insert_or_update($params)
+    {
+        $id = array_key_exists('id', $params) ? 0 : $params['id'];
+        if ($id > 0) {
+            return $this->update($params);
+        } else {
+            return $this->insert($params);
+        }
     }
 
 

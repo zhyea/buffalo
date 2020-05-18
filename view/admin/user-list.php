@@ -46,12 +46,12 @@ include_once 'common/navigator.php';
                 ids.push(this.id);// cid为获得到的整条数据中的一列
             });
 
-            sendBootstrapTableRequest($("#userTable"), 'post', '/api/user/delete', ids);
+            sendBootstrapTableRequest($("#userTable"), 'post', '<?= $ctx ?>admin/user/delete', ids);
         }
     });
 
     function nameFormatter(value, row, index) {
-        return '<a href="/admin/user/settings/' + row.id + '" target="_self">' + value + '</a>';
+        return '<a href="<?= $ctx ?>admin/user/settings/' + row.id + '" target="_self">' + value + '</a>';
     }
 </script>
 
