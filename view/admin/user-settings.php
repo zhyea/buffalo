@@ -17,7 +17,7 @@ include_once 'common/navigator.php';
 			<div class="row">
 				<div class="form-label col-md-2 col-xs-12">用户名</div>
 				<div class="form-input col-md-10 col-xs-12">
-					<input type="hidden" name="id" value=""/>
+					<input type="hidden" name="id" value="<?= empty($id) ? '' : $id ?>"/>
 					<input type="text" class="form-control" name="username"
 					       value="<?= empty($username) ? '' : $username ?>" required
 					       autofocus autocomplete="off"/>

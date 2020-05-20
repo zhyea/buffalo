@@ -172,24 +172,24 @@ class Z_Model
     /**
      * 执行update操作
      *
-     * @param $params
-     * @return bool
+     * @param $params array 参数列表
+     * @return bool 是否更新成功
      */
     public function update($params)
     {
-        $id = array_key_exists('id', $params) ? 0 : $params['id'];
-        if ($id > 0) {
-            unset($params['id']);
-        }
+        $id = $params['id'];
+        $params = array_key_rm('id', $params);
         $values = array_values($params);
         $sql = 'update ' . $this->table . ' set ';
         $count = 0;
-        foreach ($params as $key => $value) {
+        foreach ($params as $k => $v) {
             if ($count++ > 0) {
                 $sql = $sql . ',';
             }
-            $sql = $sql . ' ' . $key . '=?';
+            $sql = $sql . ' ' . $k . '=?';
         }
+        $sql = $sql . ' where id=?';
+        array_push($values, $id);
         return $this->_execute($sql, $values);
     }
 
@@ -202,7 +202,7 @@ class Z_Model
      */
     public function insert_or_update($params)
     {
-        $id = array_key_exists('id', $params) ? 0 : $params['id'];
+        $id = empty($params['id']) ? 0 : $params['id'];
         if ($id > 0) {
             return $this->update($params);
         } else {

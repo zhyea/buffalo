@@ -45,13 +45,9 @@ class UserController extends AbstractController
      */
     public function maintain()
     {
-        $id = $_POST['id'];
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $nickname = $_POST['nickname'];
-        $password = $_POST['password'];
+        $arr = $this->_post();
 
-        $this->model->insert_or_update(array('id' => $id, 'username' => $username, 'email' => $email, 'nickname' => $nickname, 'password' => $password));
+        $this->model->insert_or_update($arr);
 
         $this->redirect('admin/user/list');
     }
