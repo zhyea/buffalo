@@ -42,6 +42,7 @@ class UserController extends AbstractController
 
     /**
      * 用户信息维护
+     * TODO 新增时需要完成对密码的MD5加密
      */
     public function maintain()
     {

@@ -2,7 +2,7 @@
 defined('_ZERO_PATH_') or exit('You shall not pass!');
 
 
-class Z_Model
+abstract class Z_Model
 {
 
 
@@ -23,6 +23,14 @@ class Z_Model
         }
     }
 
+    /**
+     * 返回当前表的主键
+     * @return string
+     */
+    protected function primaryKey()
+    {
+        return 'id';
+    }
 
     /**
      * 根据ID获取记录
@@ -35,7 +43,7 @@ class Z_Model
         if ($id <= 0) {
             return array();
         }
-        $sql = "select * from " . $this->table . " where id=?";
+        $sql = "select * from " . $this->table . " where " . $this->primaryKey() . "=?";
         return $this->_get($sql, array($id));
     }
 
@@ -177,8 +185,9 @@ class Z_Model
      */
     public function update($params)
     {
-        $id = $params['id'];
-        $params = array_key_rm('id', $params);
+        $pm_key = $this->primaryKey();
+        $id = $params[$pm_key];
+        $params = array_key_rm($pm_key, $params);
         $values = array_values($params);
         $sql = 'update ' . $this->table . ' set ';
         $count = 0;
@@ -188,7 +197,7 @@ class Z_Model
             }
             $sql = $sql . ' ' . $k . '=?';
         }
-        $sql = $sql . ' where id=?';
+        $sql = $sql . ' where ' . $pm_key . '=?';
         array_push($values, $id);
         return $this->_execute($sql, $values);
     }
@@ -202,11 +211,12 @@ class Z_Model
      */
     public function insert_or_update($params)
     {
-        $id = empty($params['id']) ? 0 : $params['id'];
-        if ($id > 0) {
+        $pm_key = $this->primaryKey();
+        $id = empty($params[$pm_key]) ? 0 : $params[$pm_key];
+        if (!empty($id)) {
             return $this->update($params);
         } else {
-            $params = array_key_rm('id', $params);
+            $params = array_key_rm($pm_key, $params);
             return $this->insert($params);
         }
     }
@@ -258,7 +268,8 @@ class Z_Model
      */
     public function delete_by_ids($ids)
     {
-        return $this->_delete_in('id', $ids);
+        $pm_key = $this->primaryKey();
+        return $this->_delete_in($pm_key, $ids);
     }
 
 
