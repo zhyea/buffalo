@@ -1,5 +1,5 @@
 <?php
-defined('_ZERO_PATH_') OR exit('You shall not pass!');
+defined('_ZERO_PATH_') or exit('You shall not pass!');
 
 
 class Z_Controller
@@ -63,7 +63,7 @@ class Z_Controller
         // IIS environment likely? Use 'refresh' for better compatibility
         if ($method === 'auto' && isset($_SERVER['SERVER_SOFTWARE']) && strpos($_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS') !== FALSE) {
             $method = 'refresh';
-        } elseif ($method !== 'refresh' && (empty($code) OR !is_numeric($code))) {
+        } elseif ($method !== 'refresh' && (empty($code) or !is_numeric($code))) {
             if (isset($_SERVER['SERVER_PROTOCOL'], $_SERVER['REQUEST_METHOD']) && $_SERVER['SERVER_PROTOCOL'] === 'HTTP/1.1') {
                 $code = ($_SERVER['REQUEST_METHOD'] !== 'GET')
                     ? 303
@@ -125,6 +125,37 @@ class Z_Controller
         move_uploaded_file($_FILES[$name]['tmp_name'], $save_path . $save_name);
 
         return array(true, $sub_path . $save_name);
+    }
+
+
+    /**
+     * 获取POST请求
+     * @param $key string key
+     * @return mixed 请求值
+     */
+    protected function _post($key)
+    {
+        return $_POST[$key];
+    }
+
+
+    /**
+     * 获取GET请求
+     * @param $key string key
+     * @return mixed 请求值
+     */
+    protected function _get($key)
+    {
+        return $_GET[$key];
+    }
+
+    /**
+     * 获取请求体
+     * @return false|string
+     */
+    protected function _post_body()
+    {
+        return file_get_contents("php://input");
     }
 
 

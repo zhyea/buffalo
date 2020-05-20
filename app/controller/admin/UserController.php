@@ -31,6 +31,16 @@ class UserController extends AbstractController
 
 
     /**
+     * 根据ID删除记录
+     * @param $id int 用户ID
+     */
+    public function delete($id = 0)
+    {
+        echo $this->model->delete_by_id($id);
+    }
+
+
+    /**
      * 用户信息维护
      */
     public function maintain()
@@ -41,7 +51,7 @@ class UserController extends AbstractController
         $nickname = $_POST['nickname'];
         $password = $_POST['password'];
 
-        $this->model->insert(array('id' => $id, 'username' => $username, 'email' => $email, 'nickname' => $nickname, 'password' => $password));
+        $this->model->insert_or_update(array('id' => $id, 'username' => $username, 'email' => $email, 'nickname' => $nickname, 'password' => $password));
 
         $this->redirect('admin/user/list');
     }

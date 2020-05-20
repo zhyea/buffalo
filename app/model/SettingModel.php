@@ -28,7 +28,7 @@ class SettingModel extends Z_Model
      */
     public function delete_by_key($key)
     {
-        parent::delete(array('name' => $key));
+        parent::_delete(array('name' => $key));
     }
 
 
@@ -53,6 +53,6 @@ class SettingModel extends Z_Model
      */
     public function delete_setting($setting_name)
     {
-        return parent::delete(array('name' => $setting_name));
+        return parent::_delete(array('name' => $setting_name));
     }
 }

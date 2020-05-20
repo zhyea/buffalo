@@ -85,6 +85,43 @@ class Z_Model
 
 
     /**
+     *  执行查询
+     * @param $params array 查询参数，键值对
+     * @param $order string 排序字段
+     * @param $direct string 排序方向
+     * @return array  查询结果
+     */
+    protected function _find_by($params, $order = 'id', $direct = 'desc')
+    {
+        $sql = 'select * from ' . $this->table . ' where ';
+        $first = true;
+        foreach ($params as $k => $v) {
+            if (!$first) {
+                $sql = $sql . 'and ';
+            } else {
+                $first = false;
+            }
+            $sql = $sql . $k . '=? ';
+        }
+        $sql = $sql . ' order by ' . $order . ' ' . $direct;
+        $values = array_values($params);
+        return $this->_find($sql, $values);
+    }
+
+    /**
+     * 查询全部
+     * @param $order string 排序字段
+     * @param $direct string 排序方向
+     * @return array 查询结果
+     */
+    public function find_all($order = 'id', $direct = 'desc')
+    {
+        $sql = 'select * from ' . $this->table . ' order by ' . $order . ' ' . $direct;
+        return $this->_find($sql, array());
+    }
+
+
+    /**
      * 执行replace操作
      *
      * @param $params array 字段名和字段值的键值对
@@ -152,6 +189,7 @@ class Z_Model
         if ($id > 0) {
             return $this->update($params);
         } else {
+            $params = array_key_rm('id', $params);
             return $this->insert($params);
         }
     }
@@ -163,7 +201,7 @@ class Z_Model
      * @param $params array 字段名和字段值的键值对
      * @return bool 是否执行成功
      */
-    protected function delete($params)
+    protected function _delete($params)
     {
         $sql = 'delete from ' . $this->table . ' where ';
         $first = true;
@@ -177,6 +215,17 @@ class Z_Model
         }
         $values = array_values($params);
         return $this->_execute($sql, $values);
+    }
+
+
+    /**
+     * 根据ID删除记录
+     * @param $id int 记录ID
+     * @return bool 是否删除成功
+     */
+    public function delete_by_id($id)
+    {
+        return $this->_delete(array('id' => $id));
     }
 
 

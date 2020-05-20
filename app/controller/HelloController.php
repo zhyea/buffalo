@@ -30,7 +30,7 @@ class HelloController extends AbstractController
 
     public function user()
     {
-        $r = $this->model->get(0);
+        $r = $this->model->get_by_id(0);
         $this->render_json($r);
     }
 

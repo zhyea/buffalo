@@ -17,7 +17,8 @@ include_once 'common/navigator.php';
 			<a id="btnDelete" class="btn btn-default"><i class="glyphicon glyphicon-minus"></i>删除</a>
 		</div>
 	</div>
-	<table id="userTable" data-toggle="table"
+	<table id="userTable"
+	       data-toggle="table"
 	       data-search="true"
 	       data-classes="table table-hover table-borderless"
 	       data-click-to-select="true"
@@ -25,7 +26,7 @@ include_once 'common/navigator.php';
 	       data-url="<?= $ctx ?>admin/user/data">
 		<thead>
 		<tr>
-			<th data-align="center" data-checkbox="true"></th>
+			<th data-align="center" data-field="" data-checkbox="true"></th>
 			<th data-align="left" data-field="username" data-formatter="nameFormatter">用户名</th>
 			<th data-align="left" data-field="nickname">昵称</th>
 			<th data-align="left" data-field="email">电子邮件</th>

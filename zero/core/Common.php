@@ -181,3 +181,26 @@ if (!function_exists('del_dir')) {
     }
 }
 
+
+if (!function_exists('array_key_rm')) {
+    /**
+     * return a new array which doesn't exists the target key
+     *
+     * @param $key mixed target key
+     * @param $arr array src array
+     * @return array new array which doesn't exists the target key
+     */
+    function array_key_rm($key, $arr)
+    {
+        if (!array_key_exists($key, $arr)) {
+            return $arr;
+        }
+        $keys = array_keys($arr);
+        $index = array_search($key, $keys);
+        if ($index !== FALSE) {
+            array_splice($arr, $index, 1);
+        }
+        return $arr;
+    }
+}
+

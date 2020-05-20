@@ -22,6 +22,8 @@ $routes['/admin/settings/delete/background'] = 'admin/settings/delete_bg';
 $routes['/admin/remote/gen'] = 'admin/remote/gen';
 // 打开用户信息编辑页
 $routes['/admin/user/settings'] = 'admin/user/settings';
+// 删除用户信息
+$routes['/admin/user/delete'] = 'admin/user/delete';
 // 用户信息维护
 $routes['/admin/user/maintain'] = 'admin/user/maintain';
 // 打开用户列表
