@@ -204,3 +204,26 @@ if (!function_exists('array_key_rm')) {
     }
 }
 
+
+if (!function_exists('array_copy')) {
+    /**
+     * copy the element of a array to another one
+     * @param $array array source array
+     * @return array new array with all elements from the source
+     */
+    function array_copy($array)
+    {
+        $result = array();
+        foreach ($array as $key => $val) {
+            if (is_array($val)) {
+                $result[$key] = array_copy($val);
+            } elseif (is_object($val)) {
+                $result[$key] = clone $val;
+            } else {
+                $result[$key] = $val;
+            }
+        }
+        return $result;
+    }
+}
+

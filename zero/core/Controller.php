@@ -129,24 +129,22 @@ class Z_Controller
 
 
     /**
-     * 获取POST请求
-     * @param $key string key
-     * @return mixed 请求值
+     * 获取POST请求中的全部内容
+     * @return mixed 请求中的全部内容
      */
-    protected function _post($key)
+    protected function _post()
     {
-        return $_POST[$key];
+        return array_copy($_POST);
     }
 
 
     /**
-     * 获取GET请求
-     * @param $key string key
-     * @return mixed 请求值
+     * 获取GET请求中的全部元素
+     * @return mixed 请求中的全部内容
      */
-    protected function _get($key)
+    protected function _get()
     {
-        return $_GET[$key];
+        return array_copy($_GET);
     }
 
     /**
@@ -156,6 +154,17 @@ class Z_Controller
     protected function _post_body()
     {
         return file_get_contents("php://input");
+    }
+
+    /**
+     * 获取请求体,将请求体以数组形式返回
+     *
+     * @return array 请求体反序列化后的数组
+     */
+    protected function _post_array()
+    {
+        $json = $this->_post_body();
+        return json_decode($json, true);
     }
 
 

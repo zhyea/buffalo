@@ -85,6 +85,23 @@ class Z_Model
 
 
     /**
+     * 执行in条件查询
+     * @param $key string 查询字段
+     * @param $params array in 条件值
+     * @return array 查询结果
+     */
+    protected function _find_in($key, $params)
+    {
+        if (empty($params)) {
+            return array();
+        }
+        $place_holder = array_fill(0, sizeof($params), '?');
+        $sql = 'select * from ' . $this->table . ' where ' . $key . ' in (' . implode(',', $place_holder) . ')';
+        return $this->_find($sql, $params);
+    }
+
+
+    /**
      *  执行查询
      * @param $params array 查询参数，键值对
      * @param $order string 排序字段
@@ -219,13 +236,29 @@ class Z_Model
 
 
     /**
+     * 执行in条件删除
+     * @param $key string 查询字段
+     * @param $params array in 条件值
+     * @return bool
+     */
+    protected function _delete_in($key, $params)
+    {
+        if (empty($params)) {
+            return false;
+        }
+        $place_holder = array_fill(0, sizeof($params), '?');
+        $sql = 'delete from ' . $this->table . ' where ' . $key . ' in (' . implode(',', $place_holder) . ')';
+        return $this->_execute($sql, $params);
+    }
+
+    /**
      * 根据ID删除记录
-     * @param $id int 记录ID
+     * @param $ids array 记录ID集合
      * @return bool 是否删除成功
      */
-    public function delete_by_id($id)
+    public function delete_by_ids($ids)
     {
-        return $this->_delete(array('id' => $id));
+        return $this->_delete_in('id', $ids);
     }
 
 

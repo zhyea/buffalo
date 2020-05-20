@@ -32,11 +32,11 @@ class UserController extends AbstractController
 
     /**
      * 根据ID删除记录
-     * @param $id int 用户ID
      */
-    public function delete($id = 0)
+    public function delete()
     {
-        echo $this->model->delete_by_id($id);
+        $ids = $this->_post_array();
+        echo $this->model->delete_by_ids($ids);
     }
 
 
