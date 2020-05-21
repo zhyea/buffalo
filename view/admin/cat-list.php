@@ -20,7 +20,7 @@ include_once 'common/navigator.php';
 			<a id="btnDelete" class="btn btn-default"><i class="glyphicon glyphicon-minus"></i> 删除</a>
             <?php if ($id > 0) { ?>
 				<a class="btn btn-default" href="<?= $ctx ?>admin/category/list/<?= $parent ?>">
-					<i class="glyphicon glyphicon-chevron-left"></i> 返回上一级
+					<i class="glyphicon glyphicon-chevron-left"></i> 上一级
 				</a>
             <?php } ?>
 		</div>
@@ -33,7 +33,7 @@ include_once 'common/navigator.php';
 	       data-toolbar="#categoryTableToolbar">
 		<thead>
 		<tr>
-			<th data-align="center" data-checkbox="true" data-formatter="checkFormatter"></th>
+			<th data-align="center" data-checkbox="true" data-field="" data-formatter="checkFormatter"></th>
 			<th data-halign="left" data-align="left" data-field="name" data-formatter="nameFormatter">分类名</th>
 			<th data-halign="left" data-align="left" data-field="slug">缩略名</th>
 			<th data-halign="center" data-align="center" data-field="subCount" data-formatter="childFormatter">子分类
@@ -43,6 +43,8 @@ include_once 'common/navigator.php';
 		</thead>
 	</table>
 </div>
+
+<?php include_once 'common/footer.php'; ?>
 
 
 <script>
@@ -81,8 +83,8 @@ include_once 'common/navigator.php';
     }
 
     function childFormatter(value, row, index) {
-        let arr = ['<span class="badge">' + row.subCount + '</span>'];
-        if (row.subCount > 0) {
+        let arr = ['<span class="badge">' + row.sub_count + '</span>'];
+        if (row.sub_count > 0) {
             arr.push('<a href="<?= $ctx?>admin/category/list/' + row.id + '" target="_self">查看</a>');
         } else {
             arr.push('<a href="<?= $ctx?>admin/category/settings/' + row.id + '" target="_self">新增</a>');
@@ -103,7 +105,5 @@ include_once 'common/navigator.php';
         sendBootstrapTableRequest($table, 'post', '<?= $ctx?>admin/category/change-order/' + id, step);
     }
 </script>
-
-<?php include_once 'common/footer.php'; ?>
 
 

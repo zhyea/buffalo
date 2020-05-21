@@ -30,3 +30,7 @@ $routes['/admin/user/maintain'] = 'admin/user/maintain';
 $routes['/admin/user/list'] = 'admin/user/list';
 // 获取用户数据
 $routes['/admin/user/data'] = 'admin/user/data';
+// 打开分类列表
+$routes['/admin/category/list'] = 'admin/category/list';
+// 获取分类数据
+$routes['/admin/category/data'] = 'admin/category/data';
