@@ -133,6 +133,33 @@ abstract class Z_Model
         return $this->_find($sql, $values);
     }
 
+
+    /**
+     * 执行统计
+     *
+     * @param $params array 条件参数，键值对
+     * @return int 统计结果
+     */
+    protected function _count_by($params)
+    {
+        $sql = 'select count(id) as cnt from ' . $this->table . ' where ';
+        $first = true;
+        foreach ($params as $k => $v) {
+            if (!$first) {
+                $sql = $sql . 'and ';
+            } else {
+                $first = false;
+            }
+            $sql = $sql . $k . '=? ';
+        }
+        $values = array_values($params);
+        $r = $this->_get($sql, $values);
+        if (!empty($r)) {
+            return $r['cnt'];
+        }
+        return 0;
+    }
+
     /**
      * 查询全部
      * @param $order string 排序字段

@@ -15,4 +15,15 @@ class CategoryModel extends Z_Model
         return $this->_find_by(array('parent' => $parent));
     }
 
+
+    /**
+     * 根据父ID执行统计
+     * @param $parent int 父ID
+     * @return int 统计结果
+     */
+    public function count_by_parent($parent)
+    {
+        return $this->_count_by(array('parent' => $parent));
+    }
+
 }

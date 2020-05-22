@@ -18,7 +18,7 @@ include_once 'common/navigator.php';
 			<a class="btn btn-default" href="<?= $ctx ?>admin/category/settings/<?= $id ?>">
 				<i class="glyphicon glyphicon-plus"></i>新增</a>
 			<a id="btnDelete" class="btn btn-default"><i class="glyphicon glyphicon-minus"></i> 删除</a>
-            <?php if ($id > 0) { ?>
+            <?php if ($parent > 0) { ?>
 				<a class="btn btn-default" href="<?= $ctx ?>admin/category/list/<?= $parent ?>">
 					<i class="glyphicon glyphicon-chevron-left"></i> 上一级
 				</a>
