@@ -2,9 +2,8 @@
 defined('_APP_PATH_') or exit('You shall not pass!');
 
 
-class CategoryModel extends Z_Model
+class NavigatorModel extends Z_Model
 {
-
 
     /**
      * 根据父ID获取数据

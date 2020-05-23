@@ -149,7 +149,7 @@ class Z_Controller
 
     /**
      * 获取请求体
-     * @return false|string
+     * @return mixed 请求体
      */
     protected function _post_body()
     {

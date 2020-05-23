@@ -2,12 +2,14 @@
 defined('_APP_PATH_') or exit('You shall not pass!');
 
 require_model('CategoryModel');
+require_service('CategoryService');
 
 class CategoryController extends AbstractController
 {
 
-
     private $model;
+
+    private $service;
 
     /**
      * constructor.
@@ -16,6 +18,7 @@ class CategoryController extends AbstractController
     {
         parent::__construct();
         $this->model = new CategoryModel();
+        $this->service = new CategoryService();
     }
 
 
@@ -26,10 +29,11 @@ class CategoryController extends AbstractController
      */
     public function list($id = 0, $parent = 0)
     {
-        $p = $this->model->get_by_id($parent);
+        $cat = $this->model->get_by_id($id);
         $title = '分类列表';
-        if (!empty($p)) {
-            $title = $title . '-' . $p['name'];
+        if (!empty($cat)) {
+            $title = $title . '-' . $cat['name'];
+            $parent = $cat['parent'];
         }
         $this->admin_view('cat-list', array('id' => $id, 'parent' => $parent, 'header_title' => $title), $title);
     }
@@ -41,7 +45,60 @@ class CategoryController extends AbstractController
      */
     public function data($parent = 0)
     {
-        $data = $this->model->find_by_parent($parent);
+        $data = $this->service->list_data($parent);
         $this->render_json($data);
+    }
+
+
+    /**
+     * 进入分类编辑页
+     * @param $id int 分类ID
+     * @param $parent int 分类父ID
+     */
+    public function settings($id = 0, $parent = 0)
+    {
+        $cat = $this->model->get_by_id($id);
+        $parent = empty($cat) ? $parent : $cat['parent'];
+        $cat = empty($cat) ? array() : $cat;
+        $candidates = $this->service->candidates($id, $parent);
+        $cat['candidates'] = $candidates;
+        $cat['id'] = $id;
+        $cat['parent'] = $parent;
+        $this->admin_view('cat-settings', $cat, empty($cat) ? '新增分类' : '编辑分类');
+    }
+
+
+    /**
+     * 分类信息维护
+     */
+    public function maintain()
+    {
+        $cat = $this->_post();
+
+        $this->model->insert_or_update($cat);
+
+        $this->redirect('admin/category/list');
+    }
+
+
+    /**
+     * 根据ID删除记录
+     * // TODO执行迭代删除，保留ID为1的记录
+     */
+    public function delete()
+    {
+        $ids = $this->_post_array();
+        echo $this->model->delete_by_ids($ids);
+    }
+
+
+    /**
+     * 调整排序
+     * @param $id int 记录ID
+     */
+    public function change_order($id)
+    {
+        $step = $this->_post_body();
+        echo $this->model->change_order($id, $step);
     }
 }

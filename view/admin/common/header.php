@@ -6,12 +6,12 @@ defined('_APP_PATH_') OR exit('You shall not pass!');
 <body>
 <header>
 
-	<title><?= empty($title) ? 'Calf' : $title ?></title>
+	<title><?= empty($title) ? 'Buffalo' : $title ?></title>
 	
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
 	<meta content="width=device-width, initial-scale=1" name="viewport"/>
 	
-	<link rel="icon" href="<?= $uri_admin ?>/static/img/favicon.ico">
+	<link rel="shortcut" type="image/x-icon" href="<?= $uri_admin ?>/static/img/favicon.ico">
 	
 	<link rel="stylesheet" type="text/css" href="<?= $uri_admin ?>/static/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="<?= $uri_admin ?>/static/css/font-awesome.min.css"/>
@@ -27,6 +27,5 @@ defined('_APP_PATH_') OR exit('You shall not pass!');
 	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
 </header>
-<body>
 
 <div class="wrapper">

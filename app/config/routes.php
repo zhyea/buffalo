@@ -34,3 +34,24 @@ $routes['/admin/user/data'] = 'admin/user/data';
 $routes['/admin/category/list'] = 'admin/category/list';
 // 获取分类数据
 $routes['/admin/category/data'] = 'admin/category/data';
+// 新增或编辑分类
+$routes['/admin/category/settings'] = 'admin/category/settings';
+// 分类信息维护
+$routes['/admin/category/maintain'] = 'admin/category/maintain';
+// 分类信息删除
+$routes['/admin/category/delete'] = 'admin/category/delete';
+// 分类排序调整
+$routes['/admin/category/change-order'] = 'admin/category/change_order';
+// 打开导航列表
+$routes['/admin/nav/list'] = 'admin/navigator/list';
+// 获取导航数据
+$routes['/admin/nav/data'] = 'admin/navigator/data';
+// 新增或编辑导航
+$routes['/admin/nav/settings'] = 'admin/navigator/settings';
+// 新增或编辑导航
+$routes['/admin/nav/candidates'] = 'admin/navigator/candidates';
+// 导航信息维护
+$routes['/admin/nav/maintain'] = 'admin/navigator/maintain';
+// 导航信息删除
+$routes['/admin/nav/delete'] = 'admin/navigator/delete';
+

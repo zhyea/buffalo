@@ -227,3 +227,49 @@ if (!function_exists('array_copy')) {
     }
 }
 
+
+if (!function_exists('build_tree')) {
+
+    function add_children($array, &$root, $id_key = 'id', $parent_key = 'parent', $children_key = 'children')
+    {
+        if (empty($root) || empty($array)) {
+            return;
+        }
+        $id = $root[$id_key];
+        foreach ($array as $ele) {
+            $p = empty($ele[$parent_key]) ? 0 : $ele[$parent_key];
+            if (empty($root[$children_key])) {
+                $root[$children_key] = array();
+            }
+            if ($id == $p) {
+                add_children($array, $ele, $id_key, $parent_key, $children_key);
+                array_push($root[$children_key], $ele);
+            }
+            if (empty($root[$children_key])) {
+                unset($root[$children_key]);
+            }
+        }
+    }
+
+    /**
+     * build tree from array
+     * @param $array array src array
+     * @param $root array root node of tree
+     * @param $default_id_value mixed default root node id key value
+     * @param $id_key string id key of tree node
+     * @param $parent_key string parent key of tree node
+     * @param $children_key string children key of tree node
+     * @return array tree
+     */
+    function build_tree($array, $root = array(), $id_key = 'id', $parent_key = 'parent', $children_key = 'children', $default_id_value = 0)
+    {
+        $root = empty($root) ? array() : $root;
+        if (empty($root[$id_key])) {
+            $root[$id_key] = $default_id_value;
+        }
+        add_children($array, $root, $id_key, $parent_key, $children_key);
+        return $root;
+    }
+
+}
+
