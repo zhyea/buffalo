@@ -39,4 +39,16 @@ class NavigatorModel extends Z_Model
         return $this->_execute($sql, array($step, $id));
     }
 
+
+    /**
+     * 执行递归删除
+     * @param $root_id int 根ID
+     * @return bool 是否删除成功
+     */
+    public function delete_recursively($root_id)
+    {
+        $ids = $this->offspring_ids($root_id);
+        return $this->delete_by_ids($ids);
+    }
+
 }

@@ -54,4 +54,14 @@ $routes['/admin/nav/candidates'] = 'admin/navigator/candidates';
 $routes['/admin/nav/maintain'] = 'admin/navigator/maintain';
 // 导航信息删除
 $routes['/admin/nav/delete'] = 'admin/navigator/delete';
+// 打开脚本列表
+$routes['/admin/spt/list'] = 'admin/script/list';
+// 获取脚本数据
+$routes['/admin/spt/data'] = 'admin/script/data';
+// 打开脚本编辑页
+$routes['/admin/spt/edit'] = 'admin/script/edit';
+// 脚本信息提交
+$routes['/admin/spt/maintain'] = 'admin/script/maintain';
+// 脚本删除
+$routes['/admin/spt/delete'] = 'admin/script/delete';
 

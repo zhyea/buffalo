@@ -83,12 +83,14 @@ class CategoryController extends AbstractController
 
     /**
      * 根据ID删除记录
-     * // TODO执行迭代删除，保留ID为1的记录
      */
     public function delete()
     {
         $ids = $this->_post_array();
-        echo $this->model->delete_by_ids($ids);
+        foreach ($ids as $id) {
+            $this->service->delete_recursively($id);
+        }
+        echo true;
     }
 
 

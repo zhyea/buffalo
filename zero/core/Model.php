@@ -301,6 +301,41 @@ abstract class Z_Model
 
 
     /**
+     * 执行删除操作
+     * @param $id mixed 记录ID
+     * @return bool 是否删除成功
+     */
+    public function delete_by_id($id)
+    {
+        $sql = 'delete from ' . $this->table . ' where ' . $this->primaryKey() . '=?';
+        return $this->_execute($sql, array($id));
+    }
+
+    /**
+     * 获取后代ID集合
+     * @param $root_id mixed 根ID值
+     * @param $parent_col string 父ID字段
+     * @return array 后代ID集合
+     */
+    public function offspring_ids($root_id, $parent_col = 'parent')
+    {
+        $result = array($root_id);
+        $sql = 'select ' . $this->primaryKey() . ' from ' . $this->table . ' where ' . $parent_col . '=?';
+        $r = $this->_find($sql, array($root_id));
+        foreach ($r as $i) {
+            $id = $i[$this->primaryKey()];
+            array_push($result, $id);
+            $children_ids = $this->offspring_ids($id, $parent_col);
+            if (empty($children_ids)) {
+                continue;
+            }
+            $result = array_merge($result, $children_ids);
+        }
+        return $result;
+    }
+
+
+    /**
      * 执行sql语句
      *
      * @param $sql string SQL语句

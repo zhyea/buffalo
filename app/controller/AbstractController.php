@@ -76,6 +76,7 @@ class AbstractController extends Z_Controller
         }
         $page = $dir . DIRECTORY_SEPARATOR . $page;
         parent::render_view($page, $params);
+        exit();
     }
 
 

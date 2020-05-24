@@ -89,7 +89,10 @@ class NavigatorController extends AbstractController
     public function delete()
     {
         $ids = $this->_post_array();
-        echo $this->model->delete_by_ids($ids);
+        foreach ($ids as $id) {
+            $this->model->delete_recursively($id);
+        }
+        echo true;
     }
 
 
