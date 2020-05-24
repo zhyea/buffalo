@@ -4,6 +4,8 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 include_once 'common/header.php';
 include_once 'common/navigator.php';
 ?>
+
+
 <div class="container main">
 	<div class="page-header">
 		<h3><i class="glyphicon glyphicon-pencil"></i> 作者列表</h3>

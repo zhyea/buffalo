@@ -64,4 +64,14 @@ $routes['/admin/spt/edit'] = 'admin/script/edit';
 $routes['/admin/spt/maintain'] = 'admin/script/maintain';
 // 脚本删除
 $routes['/admin/spt/delete'] = 'admin/script/delete';
+// 打开作者列表
+$routes['/admin/author/list'] = 'admin/author/list';
+// 获取作者数据
+$routes['/admin/author/data'] = 'admin/author/data';
+// 打开作者信息编辑页
+$routes['/admin/author/settings'] = 'admin/author/settings';
+// 作者信息提交
+$routes['/admin/author/maintain'] = 'admin/author/maintain';
+// 作者删除
+$routes['/admin/author/delete'] = 'admin/author/delete';
 
