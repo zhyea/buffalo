@@ -37,7 +37,7 @@
 
             <div class="row">
                 <div class="btn-left col-md-6 col-xs-12">&nbsp;
-                    <a class="btn btn-info" th:href="|/admin/author/list|">返回列表</a>
+                    <a class="btn btn-info" href="<?=$ctx?>admin/author/list">返回列表</a>
                 </div>
                 <div class="btn-right col-md-6 col-xs-12">
                     <button type="submit" class="btn btn-success">保存作者信息</button>
