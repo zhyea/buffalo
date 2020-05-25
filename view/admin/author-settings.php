@@ -13,7 +13,7 @@ include_once 'common/navigator.php';
 
     <?php include_once 'common/alert.php'; ?>
 
-	<form method="post" action="<?= $ctx ?>admin/author/settings">
+	<form method="post" action="<?= $ctx ?>admin/author/maintain">
 		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">姓名</div>
 			<div class="form-input col-md-10 col-xs-12">

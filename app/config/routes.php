@@ -74,4 +74,14 @@ $routes['/admin/author/settings'] = 'admin/author/settings';
 $routes['/admin/author/maintain'] = 'admin/author/maintain';
 // 作者删除
 $routes['/admin/author/delete'] = 'admin/author/delete';
+// 打开专题列表
+$routes['/admin/feature/list'] = 'admin/feature/list';
+// 获取专题数据
+$routes['/admin/feature/data'] = 'admin/feature/data';
+// 打开专题信息编辑页
+$routes['/admin/feature/settings'] = 'admin/feature/settings';
+// 专题信息提交
+$routes['/admin/feature/maintain'] = 'admin/feature/maintain';
+// 专题删除
+$routes['/admin/feature/delete'] = 'admin/feature/delete';
 

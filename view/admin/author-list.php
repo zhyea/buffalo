@@ -31,7 +31,7 @@ include_once 'common/navigator.php';
 	       data-sort-name="id"
 	       data-sort-order="desc"
 	       data-method="post"
-	       data-side-pagination='server'
+	       data-side-pagination='client'
 	       data-pagination=true
 	       data-page-size=30
 	       data-page-list=[15,30,50,All]>
