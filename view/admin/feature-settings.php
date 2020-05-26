@@ -50,6 +50,7 @@ include_once 'common/navigator.php';
 		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">封面</div>
 			<div class="form-input col-md-10 col-xs-12">
+				<input type="hidden" name="former_cover" value="<?= (empty($cover) ? '' : $cover) ?>"/>
 				<input type="file" class="form-control" accept="image/png, image/jpeg" name="logo"/>
                 <?php if (!empty($cover)) { ?>
 					<div class="form-input col-md-12 col-xs-12">
@@ -65,6 +66,7 @@ include_once 'common/navigator.php';
 		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">背景图片</div>
 			<div class="form-input col-md-10 col-xs-12">
+				<input type="hidden" name="former_background" value="<?= (empty($background) ? '' : $background) ?>"/>
 				<input type="file" class="form-control" accept="image/png, image/jpeg" name="background"/>
                 <?php if (!empty($background)) { ?>
 					<div class="form-input col-md-12 col-xs-12">
@@ -81,10 +83,12 @@ include_once 'common/navigator.php';
 			<div class="form-label col-md-2 col-xs-12">背景重复</div>
 			<div class="form-input col-md-10 col-xs-12" style="padding-top:6px;">
 				<label class="radio-inline">
-					<input type="radio" name="bg_repeat" value="1" <?= $bg_repeat == "1" ? 'checked' : '' ?> > 重复
+					<input type="radio" name="bg_repeat"
+					       value="1" <?= (!empty($bg_repeat) && $bg_repeat == "1" ? 'checked' : '') ?> > 重复
 				</label>
 				<label class="radio-inline">
-					<input type="radio" name="bg_repeat" value="2" <?= $bg_repeat == "2" ? 'checked' : '' ?>> 不重复
+					<input type="radio" name="bg_repeat"
+					       value="2" <?= (!empty($bg_repeat) && $bg_repeat == "2" ? 'checked' : '') ?>> 不重复
 				</label>
 			</div>
 		</div>

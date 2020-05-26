@@ -84,4 +84,8 @@ $routes['/admin/feature/settings'] = 'admin/feature/settings';
 $routes['/admin/feature/maintain'] = 'admin/feature/maintain';
 // 专题删除
 $routes['/admin/feature/delete'] = 'admin/feature/delete';
+// 删除专题封面
+$routes['/admin/feature/delete/cover'] = 'admin/feature/delete_cover';
+// 删除专题背景图
+$routes['/admin/feature/delete/bg'] = 'admin/feature/delete_bg';
 

@@ -64,7 +64,7 @@ class SettingsController extends AbstractController
         }
         $this->model->change('bg_repeat', $bg_repeat);
 
-        $this->add_alert('更新网站设置成功', 'success');
+        $this->alert_success('更新网站设置成功');
 
         $this->redirect('admin/settings');
     }
@@ -97,7 +97,7 @@ class SettingsController extends AbstractController
         $v = $this->model->get_by_key($key);
         del_upload_file($v);
         $this->model->delete_by_key($key);
-        $this->add_alert('删除' . $name . '成功', 'success');
+        $this->alert_success('删除' . $name . '成功');
         $this->redirect('admin/settings');
     }
 

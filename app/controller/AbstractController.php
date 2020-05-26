@@ -117,4 +117,14 @@ class AbstractController extends Z_Controller
         $_SESSION['alert'] = array('type' => $type, 'msg' => $msg);
     }
 
+
+    /**
+     * 提示成功信息
+     * @param $msg string 提示信息
+     */
+    protected function alert_success($msg)
+    {
+        $this->add_alert($msg, 'success');
+    }
+
 }
