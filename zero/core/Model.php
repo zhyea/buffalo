@@ -347,6 +347,9 @@ abstract class Z_Model
         $dbh = $this->_conn();
         $stmt = $dbh->prepare($sql);
         $r = $stmt->execute($params);
+        if (!$r) {
+            echo $stmt->errorCode() . ':' . $stmt->errorInfo();
+        }
         $dbh = null;
         return $r;
     }

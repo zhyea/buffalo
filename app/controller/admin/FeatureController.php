@@ -68,21 +68,24 @@ class FeatureController extends AbstractController
     public function maintain()
     {
         $data = $this->_post();
-        $this->_delete($data, 'cover');
-        $this->_delete($data, 'background');
 
         $cover = $this->upload('cover');
-        if ($cover[0] && !empty($data['former_cover'])) {
-            del_upload_file($data['former_cover']);
-            array_key_rm('former_cover', $data);
+        if ($cover[0]) {
+            if (!empty($data['former_cover'])) {
+                del_upload_file($data['former_cover']);
+            }
             $data['cover'] = $cover[1];
         }
+        $data = array_key_rm('former_cover', $data);
+
         $background = $this->upload('background');
-        if ($background[0] && !empty($data['former_background'])) {
-            del_upload_file($data['former_background']);
-            array_key_rm('former_background', $data);
+        if ($background[0]) {
+            if (!empty($data['former_background'])) {
+                del_upload_file($data['former_background']);
+            }
             $data['background'] = $background[1];
         }
+        $data = array_key_rm('former_background', $data);
 
         $this->model->insert_or_update($data);
         $this->alert_success('维护专题信息成功');

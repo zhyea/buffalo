@@ -12,7 +12,7 @@ include_once 'common/navigator.php';
 
     <?php include_once 'common/alert.php'; ?>
 	
-	<form method="post" action="<?= $ctx ?>admin/feature/settings" enctype="multipart/form-data">
+	<form method="post" action="<?= $ctx ?>admin/feature/maintain" enctype="multipart/form-data">
 		
 		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">专题名称</div>
@@ -51,7 +51,7 @@ include_once 'common/navigator.php';
 			<div class="form-label col-md-2 col-xs-12">封面</div>
 			<div class="form-input col-md-10 col-xs-12">
 				<input type="hidden" name="former_cover" value="<?= (empty($cover) ? '' : $cover) ?>"/>
-				<input type="file" class="form-control" accept="image/png, image/jpeg" name="logo"/>
+				<input type="file" class="form-control" accept="image/png, image/jpeg" name="cover"/>
                 <?php if (!empty($cover)) { ?>
 					<div class="form-input col-md-12 col-xs-12">
 						<br/>
