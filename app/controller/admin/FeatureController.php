@@ -41,7 +41,7 @@ class FeatureController extends AbstractController
      */
     public function delete($id)
     {
-        if ($id > 6) {
+        if ($id > 1) {
             $this->model->delete_by_id($id);
         }
         $this->redirect('admin/feature/list');

@@ -56,21 +56,36 @@ class Router
 
     private function _parse_controller($path)
     {
-        foreach (_R_ as $key => $value) {
-            if (str_start_with($path, $key)) {
-                $cfg = $this->_parse_controller0($value);
-                if (null != $cfg) {
-                    $sub = ltrim($path, $key);
+        $cfg = NULL;
+        // 1. 用户配置路径优先级最高，执行严格匹配
+        if (array_key_exists($path, _R_)) {
+            $p = _R_[$path];
+            $cfg = $this->_parse_controller0($p);
+        }
+        if (NULL != $cfg) {
+            return $cfg;
+        }
+        // 2. 默认路径次优先级
+        $cfg = $this->_parse_controller0($path);
+
+        // 3. 模糊匹配用户配置路径
+        if (NULL == $cfg) {
+            foreach (_R_ as $key => $value) {
+                if (str_start_with($path, $key)) {
+                    $p = $value;
+                    $sub = substr($path, strlen($key));
                     if (!empty($sub)) {
-                        $params = explode('/', $sub);
-                        $cfg[3] = array_merge($cfg[3], $params);
+                        if (str_start_with($sub, '/') && strlen($sub) > 1) {
+                            $sub = substr($sub, 1);
+                            $p = (str_end_with($value, '/') ? $value : $value . '/') . $sub;
+                        }
                     }
+                    $cfg = $this->_parse_controller0($p);
                     return $cfg;
                 }
-                break;
             }
         }
-        return $this->_parse_controller0($path);
+        return $cfg;
     }
 
 
@@ -83,7 +98,7 @@ class Router
             $str = $arr[$i];
             $class = ucwords(strtolower($str)) . 'Controller';
             if (file_exists(_CONTROLLER_PATH_ . $tmp . $class . '.php')) {
-                $m = ($i + 1) < $size ? $arr[$i + 1] : 'index';
+                $m = ($i + 1) < $size && !empty($arr[$i + 1]) ? $arr[$i + 1] : 'index';
                 $param = ($i + 2) < $size ? array_slice($arr, $i + 2) : array();
                 return array(
                     1 => $class,

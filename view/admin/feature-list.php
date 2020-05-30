@@ -12,6 +12,8 @@ include_once 'common/navigator.php';
 		<h3><i class="glyphicon glyphicon-road"></i> 专题列表</h3>
 	</div>
 
+    <?php include_once 'common/alert.php'; ?>
+
 	<div id="featureTableToolbar">
 		<div class="btn-group">
 			<a class="btn btn-default" href="<?= $ctx ?>admin/feature/settings">
