@@ -103,4 +103,15 @@ class CategoryController extends AbstractController
         $step = $this->_post_body();
         echo $this->model->change_order($id, $step);
     }
+
+    /**
+     * 查询推荐的分类信息
+     */
+    public function suggest()
+    {
+        $keywords = $_GET['key'];
+        $keywords = empty($keywords) ? '' : $keywords;
+        $data = $this->model->suggest($keywords);
+        $this->render_json(array('key' => $keywords, 'value' => $data));
+    }
 }

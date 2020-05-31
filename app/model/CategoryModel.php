@@ -40,4 +40,17 @@ class CategoryModel extends Z_Model
         return $this->_execute($sql, array($step, $id));
     }
 
+
+    /**
+     * 查询推荐的分类信息
+     * @param $keywords string 分类关键字
+     * @return array 查询结果
+     */
+    public function suggest($keywords)
+    {
+        $keywords = '%' . $keywords . '%';
+        $sql = 'select id, name, slug from category where name like ? or slug like ? order by id desc limit 9';
+        return $this->_find($sql, array($keywords, $keywords));
+    }
+
 }

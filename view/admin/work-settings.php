@@ -12,13 +12,15 @@ include_once 'common/navigator.php';
 
     <?php include_once 'common/alert.php'; ?>
 
-	<form method="post" action="<?= $ctx ?>admin/work/settings" enctype="multipart/form-data">
+	<form method="post" action="<?= $ctx ?>admin/work/maintain" enctype="multipart/form-data">
 		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">封面</div>
 			<div class="form-input col-md-10 col-xs-12">
+				<input type="hidden" name="former_cover" value="<?= (empty($cover) ? '' : $cover) ?>"/>
                 <?php if (!empty($cover)) { ?>
 					<div class="form-input col-md-12 col-xs-12">
-						<p class="lmt"><img src="<?= $cover ?>" alt="<?= (empty($name) ? 'COVER' : $name) ?>"/></p>
+						<p class="lmt"><img src="<?= $uri_upload . '/' . $cover ?>"
+						                    alt="<?= (empty($name) ? 'COVER' : $name) ?>"/></p>
 						<a href="<?= $ctx ?>admin/work/delete/cover/<?= $id ?>" target="_self">移除封面</a>
 					</div>
                 <?php } ?>
@@ -39,7 +41,7 @@ include_once 'common/navigator.php';
 			<div class="form-label col-md-2 col-xs-12">作者</div>
 			<div class="form-input col-md-7 col-xs-8">
 				<div class="input-group">
-					<input type="hidden" name="authorId" id="authorId"
+					<input type="hidden" name="author_id" id="authorId"
 					       value="<?= (empty($author_id) ? '' : $author_id) ?>"/>
 					<input type="text" class="form-control" name="author" value="<?= (empty($author) ? '' : $author) ?>"
 					       id="authorSelector" required/>
@@ -63,8 +65,10 @@ include_once 'common/navigator.php';
 			<div class="form-label col-md-2 col-xs-12">分类</div>
 			<div class="form-input col-md-10 col-xs-12">
 				<div class="input-group">
-					<input type="hidden" name="catId" id="categoryId" value="<?=(empty($cat_id)?0:$cat_id)?>"/>
-					<input type="text" name="cat" id="categorySelector" class="form-control" value="<?=(empty($cat)?'':$cat)?>"
+					<input type="hidden" name="category_id" id="categoryId"
+					       value="<?= (empty($category_id) ? 0 : $category_id) ?>"/>
+					<input type="text" name="cat" id="categorySelector" class="form-control"
+					       value="<?= (empty($cat) ? '' : $cat) ?>"
 					       required/>
 					<div class="input-group-btn">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -80,7 +84,7 @@ include_once 'common/navigator.php';
 		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">概述</div>
 			<div class="form-input col-md-10 col-xs-12">
-				<textarea class="form-control" name="brief" rows="8"><?=(empty($brief)?'':$brief)?></textarea>
+				<textarea class="form-control" name="brief" rows="8"><?= (empty($brief) ? '' : $brief) ?></textarea>
 			</div>
 		</div>
 
@@ -98,7 +102,7 @@ include_once 'common/navigator.php';
 
 <?php include_once 'common/footer.php'; ?>
 
-<script charset="utf-8" :src="<?= $ctx ?>admin/static/js/bootstrap-suggest.js"></script>
+<script charset="utf-8" src="<?= $uri_admin ?>/static/js/bootstrap-suggest.js"></script>
 <script>
     $("#authorSelector").bsSuggest({
         allowNoKeyword: true,

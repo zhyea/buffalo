@@ -3,7 +3,7 @@
 <body>
 <head th:fragment="header">
 
-	<title th:text="${title}">A Calf Site!</title>
+	<title th:text="${title}">A Buffalo Site!</title>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>

@@ -23,7 +23,11 @@ include_once 'common/navigator.php';
 	       data-classes="table table-hover table-borderless"
 	       data-click-to-select="true"
 	       data-toolbar="#userTableToolbar"
-	       data-url="<?= $ctx ?>admin/user/data">
+	       data-url="<?= $ctx ?>admin/user/data"
+	       data-side-pagination='client'
+	       data-pagination=true
+	       data-page-size=30
+	       data-page-list=[15,30,50,All]>
 		<thead>
 		<tr>
 			<th data-align="center" data-field="" data-checkbox="true"></th>

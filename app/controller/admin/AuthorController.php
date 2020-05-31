@@ -74,4 +74,15 @@ class AuthorController extends AbstractController
     }
 
 
+    /**
+     * 查询推荐的作者信息
+     */
+    public function suggest()
+    {
+        $keywords = $_GET['key'];
+        $keywords = empty($keywords) ? '' : $keywords;
+        $data = $this->model->suggest($keywords);
+        $this->render_json(array('key' => $keywords, 'value' => $data));
+    }
+
 }

@@ -53,16 +53,17 @@ abstract class Z_Model
      *
      * @param $sql string SQL语句
      * @param $params array 查询参数
+     * @param int $mode 查询模式
      * @return array 查询结果
      */
-    protected function _get($sql, $params)
+    protected function _get($sql, $params, $mode = PDO::FETCH_ASSOC)
     {
 
         $dbh = $this->_conn();
         $stmt = $dbh->prepare($sql);
         $result = array();
         if ($stmt->execute($params)) {
-            if ($row = $stmt->fetch()) {
+            if ($row = $stmt->fetch($mode)) {
                 $result = $row;
             }
         }
@@ -135,6 +136,19 @@ abstract class Z_Model
 
 
     /**
+     * 查询全部
+     * @param $order string 排序字段
+     * @param $direct string 排序方向
+     * @return array 查询结果
+     */
+    public function find_all($order = 'id', $direct = 'desc')
+    {
+        $sql = 'select * from ' . $this->table . ' order by ' . $order . ' ' . $direct;
+        return $this->_find($sql, array());
+    }
+
+
+    /**
      * 执行统计
      *
      * @param $params array 条件参数，键值对
@@ -153,23 +167,24 @@ abstract class Z_Model
             $sql = $sql . $k . '=? ';
         }
         $values = array_values($params);
-        $r = $this->_get($sql, $values);
-        if (!empty($r)) {
-            return $r['cnt'];
-        }
-        return 0;
+        return $this->_count($sql, $values);
     }
 
+
     /**
-     * 查询全部
-     * @param $order string 排序字段
-     * @param $direct string 排序方向
-     * @return array 查询结果
+     * 执行统计
+     *
+     * @param $sql string 统计语句
+     * @param $params array 条件参数
+     * @return int 统计结果
      */
-    public function find_all($order = 'id', $direct = 'desc')
+    protected function _count($sql, $params)
     {
-        $sql = 'select * from ' . $this->table . ' order by ' . $order . ' ' . $direct;
-        return $this->_find($sql, array());
+        $r = $this->_get($sql, $params, PDO::FETCH_NUM);
+        if (!empty($r)) {
+            return $r[0];
+        }
+        return 0;
     }
 
 

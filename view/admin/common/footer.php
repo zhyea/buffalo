@@ -1,5 +1,5 @@
 <?php
-defined('_APP_PATH_') OR exit('You shall not pass!');
+defined('_APP_PATH_') or exit('You shall not pass!');
 ?>
 <div class="container footer">
 	<div class="col-md-12 col-xs-12 logo">
@@ -8,7 +8,7 @@ defined('_APP_PATH_') OR exit('You shall not pass!');
 		</a>
 	</div>
 	<div class="col-md-12 col-xs-12 copyright">
-		2019 © <a href="http://calf.chobit.org">Calf</a>
+		2019 © <a href="http://calf.chobit.org">Buffalo</a>
 	</div>
 </div>
 
