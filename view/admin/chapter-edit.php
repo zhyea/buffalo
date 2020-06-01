@@ -6,19 +6,19 @@ include_once 'common/navigator.php';
 ?>
 
 
-<script charset="utf-8" src="@{/admin/static/ckeditor/ckeditor.js}"></script>
+<script charset="utf-8" src="<?= $uri_admin ?>/static/ckeditor/ckeditor.js"></script>
 
 
 <div class="container main">
 	<div class="page-header">
 		<h3>
-			<i class="glyphicon glyphicon-book"></i> <?=$work['name']?>
+			<i class="glyphicon glyphicon-book"></i> <?= $work['name'] ?>
 			<span class="tag"><a href="<?= $ctx ?>admin/chapter/all/<?= $work['id'] ?>">返回列表</a></span>
 		</h3>
-		
+
         <?php include_once 'common/alert.php'; ?>
 		
-		<form method="post" action="<?= $ctx ?>admin/chapter/edit">
+		<form method="post" action="<?= $ctx ?>admin/chapter/maintain">
 			<input type="hidden" name="id" value="<?= (empty($name) ? '' : $name) ?>">
 			<input type="hidden" name="work_id" value="<?= (empty($work['id']) ? 0 : $work['id']) ?>">
 			<div class="row">
@@ -32,7 +32,7 @@ include_once 'common/navigator.php';
 						<input type="hidden" name="volumeId" id="volume_id"
 						       value="<?= (empty($volume_id) ? 0 : $volume_id) ?>"/>
 						<input type="text" class="form-control" name="volume"
-						       value="<?= (empty($volume) ? '' : $volume)?>"
+						       value="<?= (empty($volume) ? '' : $volume) ?>"
 						       id="volumeSelector"/>
 						<div class="input-group-btn">
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -70,7 +70,7 @@ include_once 'common/navigator.php';
 
 <?php include_once 'common/footer.php'; ?>
 
-<script charset="utf-8" src="<?= $ctx ?>admin/static/js/bootstrap-suggest.js"></script>
+<script charset="utf-8" src="<?= $uri_admin ?>/static/js/bootstrap-suggest.js"></script>
 <script>
     $("#volumeSelector").bsSuggest({
         clearable: true,
