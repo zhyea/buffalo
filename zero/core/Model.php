@@ -71,6 +71,30 @@ abstract class Z_Model
         return $result;
     }
 
+
+    /**
+     * 根据条件获取最新的记录
+     * @param $params array 参数，kv对
+     * @param int $mode 查询模式
+     * @return array 查询结果
+     */
+    protected function _get_by($params, $mode = PDO::FETCH_ASSOC)
+    {
+        $first = true;
+        $sql = 'select * from ' . $this->table . ' where ';
+        foreach ($params as $k => $v) {
+            if (!$first) {
+                $sql = $sql . 'and ';
+            } else {
+                $first = false;
+            }
+            $sql = $sql . $k . '=? ';
+        }
+        $sql = $sql . ' order by ' . $this->primaryKey() . ' desc limit 1';
+        $values = array_values($params);
+        return $this->_get($sql, $values, $mode);
+    }
+
     /**
      * 查询获取多行记录
      *
@@ -363,7 +387,7 @@ abstract class Z_Model
         $stmt = $dbh->prepare($sql);
         $r = $stmt->execute($params);
         if (!$r) {
-            echo $stmt->errorCode() . ':' . $stmt->errorInfo();
+            echo $stmt->errorCode() . ':' .  $stmt->errorInfo();
         }
         $dbh = null;
         return $r;

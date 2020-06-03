@@ -104,6 +104,7 @@ class CategoryController extends AbstractController
         echo $this->model->change_order($id, $step);
     }
 
+    
     /**
      * 查询推荐的分类信息
      */

@@ -19,7 +19,7 @@ include_once 'common/navigator.php';
         <?php include_once 'common/alert.php'; ?>
 		
 		<form method="post" action="<?= $ctx ?>admin/chapter/maintain">
-			<input type="hidden" name="id" value="<?= (empty($name) ? '' : $name) ?>">
+			<input type="hidden" name="id" value="<?= (empty($id) ? 0 : $id) ?>">
 			<input type="hidden" name="work_id" value="<?= (empty($work['id']) ? 0 : $work['id']) ?>">
 			<div class="row">
 				<input type="text" class="form-control" placeholder="标题"
@@ -29,7 +29,7 @@ include_once 'common/navigator.php';
 			<div class="row">
 				<div class="form-input col-md-12 col-xs-12">
 					<div class="input-group">
-						<input type="hidden" name="volumeId" id="volume_id"
+						<input type="hidden" name="volume_id" id="volume_id"
 						       value="<?= (empty($volume_id) ? 0 : $volume_id) ?>"/>
 						<input type="text" class="form-control" name="volume"
 						       value="<?= (empty($volume) ? '' : $volume) ?>"
@@ -46,7 +46,7 @@ include_once 'common/navigator.php';
 			</div>
 			
 			<div class="row">
-				<input type="text" name="newVolume" class="form-control" placeholder="新建分卷，如无必要可留空"/>
+				<input type="text" name="new_volume" class="form-control" placeholder="新建分卷，如无必要可留空"/>
 			</div>
 			<div class="row">
 					<textarea name="content"

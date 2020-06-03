@@ -42,7 +42,7 @@ include_once 'common/navigator.php';
                     ?>
 					<div class="col-md-4 col-xs-12 chapter-unit">
 						<div class="chapter">
-							<a href="<?= $ctx ?>admin/chapter/edit/<?= $chp['id'] ?>"><?= $chp['name'] ?></a>
+							<a href="<?= $ctx ?>admin/chapter/edit/<?= $work['id'] ?>/<?= $chp['id'] ?>"><?= $chp['name'] ?></a>
 							<span class="operate">
                             <a href="<?= $ctx ?>admin/chapter/delete/<?= $work['id'] ?>/<?= $vol['id'] ?>/<?= $chp['id'] ?>">
                                 <i class="glyphicon glyphicon-minus"></i>
@@ -59,7 +59,7 @@ include_once 'common/navigator.php';
 		<div class="row chapter-container">
 			<div class="col-md-4 col-xs-12 chapter-unit">
 				<div class="chapter" style="background-color: #5FB878">
-					<a href="<?= $ctx ?>admin/chapter/<?= $work['id'] ?>">新增章节...</a>
+					<a href="<?= $ctx ?>admin/chapter/edit/<?= $work['id'] ?>">新增章节...</a>
 					<span class="operate">
                             <a href="<?= $ctx ?>admin/chapter/<?= $work['id'] ?>"><i
 			                            class="glyphicon glyphicon-plus"></i></a>

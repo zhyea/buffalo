@@ -78,11 +78,50 @@ class ChapterService
         if (empty($chapter)) {
             return array();
         }
-        $work = $this->workModel->get_by_id($chapter['work_id']);
         $vol = $this->volumeModel->get_by_id($chapter['volume_id']);
-        $chapter['work'] = $work;
         $chapter['volume'] = empty($vol) ? '' : $vol['name'];
         return $chapter;
     }
 
+
+    /**
+     * 获取分卷ID
+     * @param $work_id int 作品ID
+     * @param $vol_name string 分卷名称
+     * @return int 分卷ID
+     */
+    public function get_volume_id($work_id, $vol_name)
+    {
+        $vol = $this->volumeModel->get_by_work_and_name($work_id, $vol_name);
+        if (!empty($vol)) {
+            return $vol['id'];
+        }
+        $vol = array('work_id' => $work_id, 'name' => $vol_name);
+        $this->volumeModel->insert($vol);
+        $vol = $this->volumeModel->get_by_work_and_name($work_id, $vol_name);
+        return $vol['id'];
+    }
+
+
+    /**
+     * 维护章节信息
+     * @param $data array 章节信息
+     */
+    public function maintain($data)
+    {
+        $work_id = $data['work_id'];
+        $vol_id = empty($data['volume_id']) ? 0 : $data['volume_id'];
+        if (!empty($data['new_volume'])) {
+            $vol_id = $this->get_volume_id($work_id, $data['new_volume']);
+            $data['volume_id'] = $vol_id;
+        }
+        if (0 == $vol_id && !empty($data['volume'])) {
+            $vol_id = $this->get_volume_id($work_id, $data['volume']);
+            $data['volume_id'] = $vol_id;
+        }
+
+        $data = array_key_rm('volume', $data);
+        $data = array_key_rm('new_volume', $data);
+        $this->chapterModel->insert_or_update($data);
+    }
 }

@@ -33,4 +33,15 @@ class VolumeModel extends Z_Model
         return $this->_find($sql, array($work_id, $keywords));
     }
 
+
+    /**
+     * 根据作品ID和分卷名查询记录
+     * @param $work_id int 作品ID
+     * @param $name string 分卷名称
+     * @return array 查询记录
+     */
+    public function get_by_work_and_name($work_id, $name)
+    {
+        return $this->_get_by(array('work_id' => $work_id, 'name' => $name));
+    }
 }

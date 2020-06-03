@@ -130,7 +130,7 @@ class Z_Controller
 
     /**
      * 获取POST请求中的全部内容
-     * @return mixed 请求中的全部内容
+     * @return array 请求中的全部内容
      */
     protected function _post()
     {
