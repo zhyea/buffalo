@@ -2,17 +2,21 @@
 defined('_APP_PATH_') or exit('You shall not pass!');
 
 require_model('FeatureModel');
+require_model('FeatureRecordModel');
 
 
 class FeatureController extends AbstractController
 {
 
-    private $model;
+    private $featureModel;
+
+    private $recordModel;
 
     public function __construct()
     {
         parent::__construct();
-        $this->model = new FeatureModel();
+        $this->featureModel = new FeatureModel();
+        $this->recordModel = new FeatureRecordModel();
     }
 
 
@@ -30,7 +34,11 @@ class FeatureController extends AbstractController
      */
     public function data()
     {
-        $all = $this->model->find_all();
+        $all = $this->featureModel->find_all();
+        foreach ($all as &$f) {
+            $cnt = $this->recordModel->count_with_feature($f['id']);
+            $f['count'] = $cnt;
+        }
         $this->render_json($all);
     }
 
@@ -42,7 +50,7 @@ class FeatureController extends AbstractController
     public function delete($id)
     {
         if ($id > 1) {
-            $this->model->delete_by_id($id);
+            $this->featureModel->delete_by_id($id);
         }
         $this->redirect('admin/feature/list');
     }
@@ -56,7 +64,7 @@ class FeatureController extends AbstractController
     {
         $s = array('id' => $id);
         if ($id > 0) {
-            $s = $this->model->get_by_id($id);
+            $s = $this->featureModel->get_by_id($id);
         }
         $this->admin_view('feature-settings', $s, empty($s) ? '新增专题' : '编辑专题');
     }
@@ -87,7 +95,7 @@ class FeatureController extends AbstractController
         }
         $data = array_key_rm('former_background', $data);
 
-        $this->model->insert_or_update($data);
+        $this->featureModel->insert_or_update($data);
         $this->alert_success('维护专题信息成功');
         if (empty($data['id'])) {
             $this->redirect('admin/feature/list');
@@ -103,9 +111,9 @@ class FeatureController extends AbstractController
      */
     public function delete_cover($id)
     {
-        $f = $this->model->get_by_id($id);
+        $f = $this->featureModel->get_by_id($id);
         $this->_delete($f, 'cover');
-        $this->model->update($f);
+        $this->featureModel->update($f);
         $this->alert_success('删除封面成功');
         $this->redirect('admin/feature/settings/' . $id);
     }
@@ -117,9 +125,9 @@ class FeatureController extends AbstractController
      */
     public function delete_bg($id)
     {
-        $f = $this->model->get_by_id($id);
+        $f = $this->featureModel->get_by_id($id);
         $this->_delete($f, 'background');
-        $this->model->update($f);
+        $this->featureModel->update($f);
         $this->alert_success('删除背景图成功');
         $this->redirect('admin/feature/settings/' . $id);
     }
@@ -136,6 +144,21 @@ class FeatureController extends AbstractController
             $path = $f[$target];
             del_upload_file($path);
             $f[$target] = '';
+        }
+    }
+
+
+    /**
+     * 专题作品列表页
+     * @param $feature_id int 专题ID
+     */
+    public function records($feature_id)
+    {
+        $f = $this->featureModel->get_by_id($feature_id);
+        if (empty($f)) {
+            $this->redirect('admin/feature/list');
+        } else {
+            $this->admin_view('feature-records', $f, $f['name'] . '作品列表');
         }
     }
 

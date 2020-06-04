@@ -79,6 +79,23 @@ class WorkController extends AbstractController
 
 
     /**
+     * 根据ID删除记录
+     * //TODO 删除分类，执行迭代删除
+     */
+    public function delete()
+    {
+        $ids = $this->_post_array();
+        foreach ($ids as $id) {
+            $data = $this->workModel->get_by_id($id);
+            if (!empty($data['cover'])) {
+                del_upload_file($data['cover']);
+            }
+            $this->workModel->delete_by_id($id);
+        }
+        echo true;
+    }
+
+    /**
      * 作品数据维护
      */
     public function maintain()
@@ -104,5 +121,28 @@ class WorkController extends AbstractController
         } else {
             $this->redirect('admin/work/settings/' . $data['id']);
         }
+    }
+
+
+    /**
+     * 获取作者作品信息
+     * @param $author_id int 作者ID
+     */
+    public function author($author_id)
+    {
+        $params = $this->_post_array();
+        $works = $this->workService->find_with_author($author_id, $params);
+        $this->render_json($works);
+    }
+
+    /**
+     * 获专题作品信息
+     * @param $feature_alias string 专题别名
+     */
+    public function feature($feature_alias)
+    {
+        $params = $this->_post_array();
+        $works = $this->workService->find_with_feature($feature_alias, $params);
+        $this->render_json($works);
     }
 }

@@ -67,8 +67,8 @@ class WorkModel extends Z_Model
     {
 
         $sql = 'select w.id, w.name, w.cover, w.brief, a.name as author, a.id as author_id, m.name as cat ';
-        $sql = $sql . 'from work w left join author a on w.author_id=a.id left join meta m on w.category_id=m.id';
-        $sql = $sql . 'where w.author_id=?';
+        $sql = $sql . 'from work w left join author a on w.author_id=a.id left join meta m on w.category_id=m.id ';
+        $sql = $sql . 'where w.author_id=? ';
         $sql = $sql . 'order by ' . $sort . ' ' . $order . ' limit ' . $offset . ',' . $limit;
         return $this->_find($sql, array($author_id));
     }
@@ -96,11 +96,11 @@ class WorkModel extends Z_Model
      * @return array 专题作品列表
      * @return array 专题作品列表
      */
-    public function find_with_features($alias, $sort, $order, $offset, $limit)
+    public function find_with_feature($alias, $sort, $order, $offset, $limit)
     {
         $sql = 'select w.id, w.name, w.cover, w.brief, a.name as author, a.id as author_id ';
-        $sql = $sql . 'from work w left join author a on w.author_id=a.id right join feature_record r on r.work_id=w.id left join feature f on r.feature_id=f.id';
-        $sql = $sql . 'where f.alias=?';
+        $sql = $sql . 'from work w left join author a on w.author_id=a.id right join feature_record r on r.work_id=w.id left join feature f on r.feature_id=f.id ';
+        $sql = $sql . 'where f.alias=? ';
         $sql = $sql . 'order by ' . $sort . ' ' . $order . ' limit ' . $offset . ',' . $limit;
         return $this->_find($sql, array($alias));
     }

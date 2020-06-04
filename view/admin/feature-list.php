@@ -41,7 +41,7 @@ include_once 'common/navigator.php';
 			<th data-align="left" data-sortable="true" data-field="name" data-formatter="nameFormatter">专题名称</th>
 			<th data-align="left" data-sortable="true" data-field="alias">别名</th>
 			<th data-align="left" data-sortable="true" data-field="keywords">关键字</th>
-			<th data-align="center" data-field="recordsCount" data-formatter="recordsFormatter">作品</th>
+			<th data-align="center" data-field="count" data-formatter="recordsFormatter">作品</th>
 			<th data-align="center" data-formatter="operateFormatter">操作</th>
 		</tr>
 		</thead>

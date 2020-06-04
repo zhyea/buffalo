@@ -4,6 +4,7 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 require_model('WorkModel');
 require_model('CategoryModel');
 require_model('AuthorModel');
+require_model('FeatureRecordModel');
 
 class WorkService
 {
@@ -14,6 +15,8 @@ class WorkService
 
     private $catModel;
 
+    private $recordModel;
+
     /**
      * 构造器
      */
@@ -22,6 +25,7 @@ class WorkService
         $this->workModel = new WorkModel();
         $this->authorModel = new AuthorModel();
         $this->catModel = new CategoryModel();
+        $this->recordModel = new FeatureRecordModel();
     }
 
 
@@ -67,6 +71,42 @@ class WorkService
             $work['cat'] = $cat['name'];
         }
         return $work;
+    }
+
+
+    /**
+     * 分页获取作者作品信息
+     * @param $author_id int 作者ID
+     * @param $con array 条件集合
+     * @return array 作者作品信息
+     */
+    public function find_with_author($author_id, $con)
+    {
+        $sort = $con['sort'];
+        $order = $con['order'];
+        $offset = $con['offset'];
+        $limit = $con['limit'];
+        $rows = $this->workModel->find_with_author($author_id, $sort, $order, $offset, $limit);
+        $total = $this->workModel->count_works($author_id);
+        return array('total' => $total, 'rows' => $rows);
+    }
+
+
+    /**
+     * 分页获取专题作品信息
+     * @param $feature_alias string 专题别名
+     * @param $con array 条件集合
+     * @return array 作者作品信息
+     */
+    public function find_with_feature($feature_alias, $con)
+    {
+        $sort = $con['sort'];
+        $order = $con['order'];
+        $offset = $con['offset'];
+        $limit = $con['limit'];
+        $rows = $this->workModel->find_with_feature($feature_alias, $sort, $order, $offset, $limit);
+        $total = $this->recordModel->count_with_alias($feature_alias);
+        return array('total' => $total, 'rows' => $rows);
     }
 
 }

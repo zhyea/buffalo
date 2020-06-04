@@ -54,7 +54,7 @@ include_once 'common/navigator.php';
     }
 
     function worksFormatter(value, row, index) {
-        return '<a href="<?=$ctx?>admin/author/works/' + row.id + '" target="_self"><span class="badge">' + row.workcount + '</span></a>';
+        return '<a href="<?=$ctx?>admin/author/works/' + row.id + '" target="_self"><span class="badge">' + row.work_count + '</span></a>';
     }
 
     function operateFormatter(value, row, index) {
