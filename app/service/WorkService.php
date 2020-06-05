@@ -109,4 +109,11 @@ class WorkService
         return array('total' => $total, 'rows' => $rows);
     }
 
+
+
+    public function find_with_keywords($keywords){
+        $keywords = empty($keywords) ? '' : $keywords;
+        return $this->workModel->find_with_keywords($keywords);
+    }
+
 }

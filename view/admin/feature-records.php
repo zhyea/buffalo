@@ -12,7 +12,7 @@ include_once 'common/navigator.php';
 			<span class="tag"><a href="<?= $ctx ?>admin/feature/list">返回专题列表</a></span>
 		</h3>
 	</div>
-
+	
 	<div class="row">
 		<div class="form-input col-md-5 col-xs-12">
 			<div class="input-group">
@@ -27,7 +27,7 @@ include_once 'common/navigator.php';
 			</div>
 		</div>
 	</div>
-
+	
 	<div id="featureRecordTableToolbar">
 		<div class="btn-group">
 			<a id="btnDelete" class="btn btn-default">
@@ -64,6 +64,9 @@ include_once 'common/navigator.php';
 
 <script charset="utf-8" src="<?= $uri_admin ?>/static/js/bootstrap-suggest.js"></script>
 <script>
+    let $table = $('#featureRecordTable');
+
+    
     $("#featureRecordSelectInput").bsSuggest({
         clearable: true,
         url: "<?=$ctx?>admin/work/suggest?key=",
@@ -72,10 +75,10 @@ include_once 'common/navigator.php';
         idField: "id",
         keyField: "name",
         effectiveFields: ["id", "name", "author"],
-        allowNoKeyword: false,
+        allowNoKeyword: true,
         getDataMethod: 'url'
     }).on('onSetSelectValue', function (e, keyword, data) {
-        $.post('<?=$ctx?>admin/feature/records/add/<?=$id?>/' + data.id,
+        $.post('<?=$ctx?>admin/feature/record/add/<?=$id?>/' + data.id,
             function (data, status) {
                 if ('success' === status) {
                     $table.bootstrapTable('refresh')
@@ -84,13 +87,14 @@ include_once 'common/navigator.php';
     });
 
 
+
     // 删除按钮事件
     $("#btnDelete").on("click", function () {
         let rows = $table.bootstrapTable('getSelections');// 获得要删除的数据
         if (rows.length > 0) {// rows 主要是为了判断是否选中，下面的else内容才是主要
             let ids = [];// 声明一个数组
             $(rows).each(function () {// 通过获得别选中的来进行遍历
-                ids.push(this.id);// cid为获得到的整条数据中的一列
+                ids.push(this.record_id);// cid为获得到的整条数据中的一列
             });
 
             sendBootstrapTableRequest($table, 'post', '<?=$ctx?>admin/feature/records/delete', ids);

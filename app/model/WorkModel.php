@@ -98,10 +98,25 @@ class WorkModel extends Z_Model
      */
     public function find_with_feature($alias, $sort, $order, $offset, $limit)
     {
-        $sql = 'select w.id, w.name, w.cover, w.brief, a.name as author, a.id as author_id ';
+        $sql = 'select w.id, w.name, w.cover, w.brief, a.name as author, a.id as author_id, r.id as record_id ';
         $sql = $sql . 'from work w left join author a on w.author_id=a.id right join feature_record r on r.work_id=w.id left join feature f on r.feature_id=f.id ';
         $sql = $sql . 'where f.alias=? ';
         $sql = $sql . 'order by ' . $sort . ' ' . $order . ' limit ' . $offset . ',' . $limit;
         return $this->_find($sql, array($alias));
+    }
+
+
+    /**
+     * 根据关键字执行搜索
+     * @param $keywords string 关键字
+     * @return array 查询结果
+     */
+    public function find_with_keywords($keywords)
+    {
+        $keywords = '%' . $keywords . '%';
+        $sql = 'select w.id, w.name, a.name as author, m.name as cat  ';
+        $sql = $sql . 'from work w left join author a on w.author_id=a.id left join meta m on w.category_id=m.id ';
+        $sql = $sql . 'where w.name like ? or brief like ? or a.name like ? or m.name like ? order by w.id desc limit 9 ';
+        return $this->_find($sql, array($keywords, $keywords, $keywords, $keywords));
     }
 }

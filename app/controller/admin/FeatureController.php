@@ -112,7 +112,7 @@ class FeatureController extends AbstractController
     public function delete_cover($id)
     {
         $f = $this->featureModel->get_by_id($id);
-        $this->_delete($f, 'cover');
+        $this->_delete_file($f, 'cover');
         $this->featureModel->update($f);
         $this->alert_success('删除封面成功');
         $this->redirect('admin/feature/settings/' . $id);
@@ -126,7 +126,7 @@ class FeatureController extends AbstractController
     public function delete_bg($id)
     {
         $f = $this->featureModel->get_by_id($id);
-        $this->_delete($f, 'background');
+        $this->_delete_file($f, 'background');
         $this->featureModel->update($f);
         $this->alert_success('删除背景图成功');
         $this->redirect('admin/feature/settings/' . $id);
@@ -138,7 +138,7 @@ class FeatureController extends AbstractController
      * @param $f array 记录数组
      * @param $target string 上传文件字段
      */
-    private function _delete(&$f, $target)
+    private function _delete_file(&$f, $target)
     {
         if (!empty($f) && !empty($f[$target])) {
             $path = $f[$target];
@@ -161,5 +161,28 @@ class FeatureController extends AbstractController
             $this->admin_view('feature-records', $f, $f['name'] . '作品列表');
         }
     }
+
+
+    /**
+     * 新增专题记录
+     * @param $feature_id int 专题ID
+     * @param $work_id int 作品ID
+     */
+    public function add_record($feature_id, $work_id)
+    {
+        $this->recordModel->insert(array('type' => 1, 'feature_id' => $feature_id, 'work_id' => $work_id));
+    }
+
+
+    /**
+     * 删除专题记录
+     */
+    public function delete_records()
+    {
+        $ids = $this->_post_array();
+        $this->recordModel->delete_by_ids($ids);
+        echo true;
+    }
+
 
 }

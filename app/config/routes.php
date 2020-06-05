@@ -26,4 +26,8 @@ $routes['/admin/feature/delete/cover/{id}'] = 'admin/feature/delete_cover';
 $routes['/admin/feature/delete/bg/{id}'] = 'admin/feature/delete_bg';
 // 删除作品封面图
 $routes['/admin/work/delete/cover/{id}'] = 'admin/work/delete_cover';
+// 删除专题作品
+$routes['/admin/feature/records/delete'] = 'admin/feature/delete_records';
+// 删除专题作品
+$routes['/admin/feature/record/add/{feature_id}/{work_id}'] = 'admin/feature/add_record';
 

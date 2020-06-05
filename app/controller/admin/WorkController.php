@@ -80,7 +80,6 @@ class WorkController extends AbstractController
 
     /**
      * 根据ID删除记录
-     * //TODO 删除分类，执行迭代删除
      */
     public function delete()
     {
@@ -135,6 +134,7 @@ class WorkController extends AbstractController
         $this->render_json($works);
     }
 
+
     /**
      * 获专题作品信息
      * @param $feature_alias string 专题别名
@@ -144,5 +144,16 @@ class WorkController extends AbstractController
         $params = $this->_post_array();
         $works = $this->workService->find_with_feature($feature_alias, $params);
         $this->render_json($works);
+    }
+
+    /**
+     * 查询推荐的作品信息
+     */
+    public function suggest()
+    {
+        $keywords = $_GET['key'];
+        $keywords = empty($keywords) ? '' : $keywords;
+        $data = $this->workService->find_with_keywords($keywords);
+        $this->render_json(array('key' => $keywords, 'value' => $data));
     }
 }
