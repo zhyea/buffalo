@@ -100,7 +100,7 @@ class WorkController extends AbstractController
     public function maintain()
     {
         $data = $this->_post();
-        $cover = $this->upload('cover');
+        $cover = $this->_upload('cover');
         if ($cover[0]) {
             if (!empty($data['former_cover'])) {
                 del_upload_file($data['former_cover']);

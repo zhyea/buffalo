@@ -77,7 +77,7 @@ class FeatureController extends AbstractController
     {
         $data = $this->_post();
 
-        $cover = $this->upload('cover');
+        $cover = $this->_upload('cover');
         if ($cover[0]) {
             if (!empty($data['former_cover'])) {
                 del_upload_file($data['former_cover']);
@@ -86,7 +86,7 @@ class FeatureController extends AbstractController
         }
         $data = array_key_rm('former_cover', $data);
 
-        $background = $this->upload('background');
+        $background = $this->_upload('background');
         if ($background[0]) {
             if (!empty($data['former_background'])) {
                 del_upload_file($data['former_background']);

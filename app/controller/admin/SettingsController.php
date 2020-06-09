@@ -46,8 +46,8 @@ class SettingsController extends AbstractController
         $desc = $_POST['description'];
         $keywords = $_POST['keywords'];
         $notice = $_POST['notice'];
-        $logo = $this->upload('logo');
-        $background = $this->upload('background');
+        $logo = $this->_upload('logo');
+        $background = $this->_upload('background');
         $bg_repeat = $_POST['bg_repeat'];
 
         $this->model->change('name', $name);

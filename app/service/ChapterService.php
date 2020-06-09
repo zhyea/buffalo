@@ -124,4 +124,80 @@ class ChapterService
         $data = array_key_rm('new_volume', $data);
         $this->chapterModel->insert_or_update($data);
     }
+
+
+    /**
+     * 新增章节
+     * @param $work_id int 作品ID
+     * @param $vol_name string 分卷名称
+     * @param $chapter_name string 章节名称
+     * @param $content string 章节内容
+     */
+    private function add_chapter($work_id, $vol_name, $chapter_name, $content)
+    {
+        $vol = array();
+        if (empty($vol_name) || $vol_name == $chapter_name) {
+            $vol = $this->volumeModel->get_latest_by_work_id($work_id);
+            if (empty($vol)) {
+                $vol_name = '正文';
+            }
+        }
+
+        if (empty($chapter_name)) {
+            $chapter_name = '引子';
+            $vol_name = '引子';
+        }
+        if (empty($vol)) {
+            $vol = $this->volumeModel->get_by_work_and_name($work_id, $vol_name);
+        }
+        if (empty($vol)) {
+            $this->volumeModel->add($work_id, $vol_name);
+            $vol = $this->volumeModel->get_by_work_and_name($work_id, $vol_name);
+        }
+        $this->chapterModel->add($work_id, $vol['id'], $chapter_name, $content);
+
+    }
+
+
+    /**
+     * 上传作品
+     * @param $work_id int 作品ID
+     * @param $file string 上传的文件地址
+     */
+    public function upload($work_id, $file)
+    {
+        $pattern = '^第?[\s]{0,9}[\d〇零一二三四五六七八九十百千万上中下０１２３４５６７８９ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ　\s]{1,6}[\s]{0,9}[、，．\.]?[章回节卷部篇讲集分]{0,2}([\s]{1,9}.{0,32})?$';
+        $arr = array("楔子", "引子", "引言", "前言", "序章", "序言", "序曲", "尾声", "终章", "后记", "序", "序幕", "跋", "附", "附言");
+        $f = file(_UPLOAD_PATH_ . '/' . $file);
+        $chapter_name = '';
+        $vol_name = '';
+        $content = '';
+        foreach ($f as $num => $line) {
+            $line = mb_trim($line);
+            $line = str_replace('　', ' ', $line);
+
+            if (empty($line)) {
+                continue;
+            }
+
+            if (in_array($line, $arr) || preg_match($pattern, $line)) {
+                if (empty($content) && !empty($chapter_name)) {
+                    //处理存在两级章节的情形
+                    $chapter_name = $line;
+                } elseif (!empty($content)) {
+                    $this->add_chapter($work_id, $vol_name, $chapter_name, $content);
+                    $content = '';
+                    $vol_name = $line;
+                    $chapter_name = $line;
+                } else {
+                    $vol_name = $line;
+                    $chapter_name = $line;
+                }
+            } else {
+                $line = str_replace(' ', '', $line);
+                $content = $content . '<p>' . $line . '</p>';
+            }
+        }
+        $this->add_chapter($work_id, $vol_name, $chapter_name, $content);
+    }
 }

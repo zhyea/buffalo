@@ -270,6 +270,19 @@ if (!function_exists('build_tree')) {
         add_children($array, $root, $id_key, $parent_key, $children_key);
         return $root;
     }
-
 }
 
+
+if (!function_exists('mb_trim')) {
+    /**
+     * remove the non character flags from str
+     * @param $str string src str
+     * @return false|string result
+     */
+    function mb_trim($str)
+    {
+        $str = mb_ereg_replace('^(([ \r\n\t])*(　)*)*', '', $str);
+        $str = mb_ereg_replace('(([ \r\n\t])*(　)*)*$', '', $str);
+        return $str;
+    }
+}

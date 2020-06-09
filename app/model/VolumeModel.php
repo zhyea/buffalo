@@ -44,4 +44,26 @@ class VolumeModel extends Z_Model
     {
         return $this->_get_by(array('work_id' => $work_id, 'name' => $name));
     }
+
+
+    /**
+     * 根据作品ID获取最新分卷名称
+     * @param $work_id int 作品id
+     * @return array 查询结果
+     */
+    public function get_latest_by_work_id($work_id)
+    {
+        return $this->_get_by(array('work_id' => $work_id));
+    }
+
+
+    /**
+     * 新增分卷
+     * @param $work_id int 作品ID
+     * @param $name string 分卷名称
+     */
+    public function add($work_id, $name)
+    {
+        $this->insert(array('work_id' => $work_id, 'name' => $name));
+    }
 }

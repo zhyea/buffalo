@@ -18,4 +18,19 @@ class ChapterModel extends Z_Model
         return $this->_find_by(array('work_id' => $work_id), 'id', 'asc');
     }
 
+
+    /**
+     * @param $work_id int 作品ID
+     * @param $vol_id int 分卷ID
+     * @param $chapter_name string 章节名称
+     * @param $content string 章节内容
+     */
+    public function add($work_id, $vol_id, $chapter_name, $content)
+    {
+        $this->insert(array('work_id' => $work_id,
+            'volume_id' => $vol_id,
+            'name' => $chapter_name,
+            'content' => $content));
+    }
+
 }

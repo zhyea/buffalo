@@ -57,6 +57,7 @@ class ChapterController extends AbstractController
         $this->admin_view('chapter-edit', $chapter, $title);
     }
 
+
     /**
      * 维护章节数据
      */
@@ -74,6 +75,20 @@ class ChapterController extends AbstractController
             $this->redirect('admin/chapter/all/' . $work_id);
         } else {
             $this->redirect('admin/chapter/all/' . $work_id . '/' . $id);
+        }
+    }
+
+
+    /**
+     * 上传作品
+     */
+    public function upload()
+    {
+        $work_id = $_POST['work_id'];
+        $r = $this->_upload('myTxt');
+        if ($r[0]) {
+            $file = $r[1];
+            $this->chapterService->upload($work_id, $file);
         }
     }
 

@@ -94,7 +94,7 @@ class Z_Controller
      * @param array $allowed_ext 允许的扩展名
      * @return array
      */
-    protected function _upload($name, $save_name, $sub_path = '', $allowed_ext = array())
+    protected function _do_upload($name, $save_name, $sub_path = '', $allowed_ext = array())
     {
         $file_name = $_FILES[$name]['name'];
         if (empty($file_name)) {

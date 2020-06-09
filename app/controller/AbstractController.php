@@ -86,11 +86,11 @@ class AbstractController extends Z_Controller
      * @param $name string 文件表单名
      * @return array 文件是否上传成功 / 失败原因 / 保存位置
      */
-    protected function upload($name)
+    protected function _upload($name)
     {
         $save_name = uniqid();
         $sub_path = date('Y/m/d');
-        return parent::_upload($name, $save_name, $sub_path);
+        return parent::_do_upload($name, $save_name, $sub_path);
     }
 
 
