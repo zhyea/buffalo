@@ -33,4 +33,36 @@ class ChapterModel extends Z_Model
             'content' => $content));
     }
 
+
+    /**
+     * 根据分卷ID执行删除
+     * @param $vol_id int 分卷ID
+     */
+    public function delete_by_vol($vol_id)
+    {
+        $this->_delete(array('volume_id' => $vol_id));
+    }
+
+
+    /**
+     * 根据分卷统计章节
+     * @param $vol_id int 分卷ID
+     * @return int 统计结果
+     */
+    public function count_by_vol($vol_id)
+    {
+        return $this->_count_by(array('volume_id' => $vol_id));
+    }
+
+
+    /**
+     * 根据作品ID执行删除
+     * @param $work_id int 作品ID
+     */
+    public function delete_by_work($work_id)
+    {
+        $this->_delete(array('work_id' => $work_id));
+    }
+
+
 }

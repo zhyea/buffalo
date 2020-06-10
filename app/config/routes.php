@@ -30,4 +30,8 @@ $routes['/admin/work/delete/cover/{id}'] = 'admin/work/delete_cover';
 $routes['/admin/feature/records/delete'] = 'admin/feature/delete_records';
 // 删除专题作品
 $routes['/admin/feature/record/add/{feature_id}/{work_id}'] = 'admin/feature/add_record';
+// 删除作品分卷
+$routes['/admin/chapter/delete-vol/{work_id}/{vol_id}'] = 'admin/chapter/delete_vol';
+// 删除作品全部章节及分卷
+$routes['/admin/chapter/delete-all/{work_id}'] = 'admin/chapter/delete_all';
 

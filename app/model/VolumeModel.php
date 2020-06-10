@@ -66,4 +66,14 @@ class VolumeModel extends Z_Model
     {
         $this->insert(array('work_id' => $work_id, 'name' => $name));
     }
+
+
+    /**
+     * 根据作品ID执行删除
+     * @param $work_id int 作品ID
+     */
+    public function delete_by_work($work_id)
+    {
+        $this->_delete(array('work_id' => $work_id));
+    }
 }

@@ -166,7 +166,7 @@ class ChapterService
      */
     public function upload($work_id, $file)
     {
-        $pattern = '^第?[\s]{0,9}[\d〇零一二三四五六七八九十百千万上中下０１２３４５６７８９ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ　\s]{1,6}[\s]{0,9}[、，．\.]?[章回节卷部篇讲集分]{0,2}([\s]{1,9}.{0,32})?$';
+        $pattern = '/^第?[\s]{0,9}[\d〇零一二三四五六七八九十百千万上中下０１２３４５６７８９ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ　\s]{1,6}[\s]{0,9}[、，．\.]?[章回节卷部篇讲集分]{0,2}([\s]{1,9}.{0,32})?$/i';
         $arr = array("楔子", "引子", "引言", "前言", "序章", "序言", "序曲", "尾声", "终章", "后记", "序", "序幕", "跋", "附", "附言");
         $f = file(_UPLOAD_PATH_ . '/' . $file);
         $chapter_name = '';
@@ -199,5 +199,42 @@ class ChapterService
             }
         }
         $this->add_chapter($work_id, $vol_name, $chapter_name, $content);
+    }
+
+
+    /**
+     * 删除分卷信息
+     * @param $vol_id int 分卷ID
+     */
+    public function delete_vol($vol_id)
+    {
+        $this->volumeModel->delete_by_id($vol_id);
+        $this->chapterModel->delete_by_vol($vol_id);
+    }
+
+
+    /**
+     * 删除章节
+     * @param $vol_id int 分卷ID
+     * @param $chapter_id int 章节ID
+     */
+    public function delete_chapter($vol_id, $chapter_id)
+    {
+        $this->chapterModel->delete_by_id($chapter_id);
+        $count = $this->chapterModel->count_by_vol($vol_id);
+        if ($count <= 0) {
+            $this->volumeModel->delete_by_id($vol_id);
+        }
+    }
+
+
+    /**
+     * 删除作品下的全部分卷及章节信息
+     * @param $work_id int 作品ID
+     */
+    public function delete_all($work_id)
+    {
+        $this->volumeModel->delete_by_work($work_id);
+        $this->chapterModel->delete_by_work($work_id);
     }
 }

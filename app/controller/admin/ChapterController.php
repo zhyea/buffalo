@@ -88,8 +88,53 @@ class ChapterController extends AbstractController
         $r = $this->_upload('myTxt');
         if ($r[0]) {
             $file = $r[1];
-            $this->chapterService->upload($work_id, $file);
+            try {
+                $this->chapterService->upload($work_id, $file);
+                $this->alert_success("上传成功");
+            } catch (Exception $e) {
+                $this->alert_error('上传异常' . $e->getMessage());
+            }
         }
+        $this->redirect('admin/chapter/all/' . $work_id);
+    }
+
+
+    /**
+     * 删除分卷及章节
+     * @param $work_id int 作品ID
+     * @param $vol_id int 分卷ID
+     */
+    public function delete_vol($work_id, $vol_id)
+    {
+        $this->chapterService->delete_vol($vol_id);
+        $this->alert_success('删除成功');
+        $this->redirect('admin/chapter/all/' . $work_id);
+    }
+
+
+    /**
+     * 删除章节
+     * @param $work_id int 作品ID
+     * @param $vol_id int 分卷ID
+     * @param $chapter_id int 章节ID
+     */
+    public function delete($work_id, $vol_id, $chapter_id)
+    {
+        $this->chapterService->delete_chapter($vol_id, $chapter_id);
+        $this->alert_success('删除成功');
+        $this->redirect('admin/chapter/all/' . $work_id);
+    }
+
+
+    /**
+     * 删除作品下的全部分卷及章节信息
+     * @param $work_id int 作品ID
+     */
+    public function delete_all($work_id)
+    {
+        $this->chapterService->delete_all($work_id);
+        $this->alert_success('删除成功');
+        $this->redirect('admin/chapter/all/' . $work_id);
     }
 
 

@@ -127,4 +127,14 @@ class AbstractController extends Z_Controller
         $this->add_alert($msg, 'success');
     }
 
+
+    /**
+     * 提示错误信息
+     * @param $msg string 提示信息
+     */
+    protected function alert_error($msg)
+    {
+        $this->add_alert($msg, 'error');
+    }
+
 }
