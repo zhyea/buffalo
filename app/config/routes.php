@@ -8,6 +8,8 @@ $routes['translate_uri_dashes'] = FALSE;
 
 // 登录页
 $routes['/login'] = 'admin/admin/login';
+// 登录页
+$routes['/login/check'] = 'admin/admin/login_check';
 // 后台首页
 $routes['/admin'] = 'admin/admin/index';
 // 配置删除Logo
