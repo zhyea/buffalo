@@ -47,10 +47,15 @@ class UserController extends AbstractController
     public function maintain()
     {
         $arr = $this->_post();
-
-        $this->model->insert_or_update($arr);
-
-        $this->redirect('admin/user/list');
+        $username = $arr['username'];
+        $user = $this->model->get_by_username($username);
+        if (!empty($user)) {
+            $this->alert_error('用户名已存在');
+            $this->redirect('admin/user/settings');
+        } else {
+            $this->model->insert_or_update($arr);
+            $this->redirect('admin/user/list');
+        }
     }
 
 
