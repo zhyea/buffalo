@@ -101,8 +101,7 @@ class AbstractController extends Z_Controller
      */
     protected function redirect($uri)
     {
-        $uri = _APP_CONTEXT_ . (str_start_with($uri, '/') ? 'index.php' : 'index.php/') . $uri;
-        parent::_redirect($uri);
+        redirect_in_site($uri);
     }
 
 
@@ -132,9 +131,10 @@ class AbstractController extends Z_Controller
      * 提示错误信息
      * @param $msg string 提示信息
      */
-    protected function alert_error($msg)
+    protected function alert_danger($msg)
     {
-        $this->add_alert($msg, 'error');
+        $this->add_alert($msg, 'danger');
     }
+
 
 }

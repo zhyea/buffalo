@@ -92,7 +92,7 @@ class ChapterController extends AbstractController
                 $this->chapterService->upload($work_id, $file);
                 $this->alert_success("上传成功");
             } catch (Exception $e) {
-                $this->alert_error('上传异常' . $e->getMessage());
+                $this->alert_danger('上传异常' . $e->getMessage());
             }
         }
         $this->redirect('admin/chapter/all/' . $work_id);

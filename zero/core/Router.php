@@ -12,25 +12,35 @@ class Router
      */
     private $controller_config;
 
+
     /**
      * Router constructor.
      */
     public function __construct()
     {
-        $path = array_key_exists('PATH_INFO', $_SERVER) ? $_SERVER['PATH_INFO'] : '/';
-        if (_CFG_['suffix'] && str_end_with($path, _CFG_['suffix'])) {
-            $path = substr($path, 0, strpos($path, _CFG_['suffix']));
+        session_start();
+
+        $p = array_key_exists('PATH_INFO', $_SERVER) ? $_SERVER['PATH_INFO'] : '/';
+
+        if (array_key_exists('preHandle', _CFG_['hooks'])) {
+            $hooks = _CFG_['hooks']['preHandle'];
+            foreach ($hooks as $h) {
+                $hook = new $h;
+                $hook->execute($p);
+            }
+        }
+
+        if (_CFG_['suffix'] && str_end_with($p, _CFG_['suffix'])) {
+            $p = substr($p, 0, strpos($p, _CFG_['suffix']));
         }
         if (empty($this->controller_config)) {
-            $this->controller_config = $this->_parse_controller($path);
+            $this->controller_config = $this->_parse_controller($p);
         }
     }
 
 
     public function dispatch()
     {
-        session_start();
-
         if (null == $this->controller_config) {
             $this->error_404();
         } else {
@@ -153,14 +163,22 @@ class Router
 
     private function error_404()
     {
-        println('404 Error');
+        if (array_key_exists('404', _R_) && !empty(_R_['404'])) {
+            redirect(_R_['404']);
+        } else {
+            println('404 Error');
+        }
         exit();
     }
 
 
     private function error_500()
     {
-        println('500 Error');
+        if (array_key_exists('500', _R_) && !empty(_R_['500'])) {
+            redirect(_R_['500']);
+        } else {
+            println('500 Error');
+        }
         exit();
     }
 

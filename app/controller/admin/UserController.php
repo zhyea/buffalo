@@ -50,10 +50,12 @@ class UserController extends AbstractController
         $username = $arr['username'];
         $user = $this->model->get_by_username($username);
         if (!empty($user)) {
-            $this->alert_error('用户名已存在');
+            $this->alert_danger('用户名已存在');
             $this->redirect('admin/user/settings');
         } else {
+            $arr['password'] = md5($arr['password'] . '#_淦x7');
             $this->model->insert_or_update($arr);
+            $this->alert_success('新增用户成功');
             $this->redirect('admin/user/list');
         }
     }

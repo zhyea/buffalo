@@ -1,6 +1,7 @@
 <?php
 defined('_APP_PATH_') or exit('You shall not pass!');
 
+
 require_model('UserModel');
 
 class UserService
@@ -8,17 +9,24 @@ class UserService
 
     private $userModel;
 
+    private $salt = '#_淦x7';
+
     public function __construct()
     {
         $this->userModel = new UserModel();
     }
 
 
-
-
-    public function checkLogin($username, $password)
+    /**
+     * 检查登录信息
+     * @param $username string 用户名
+     * @param $password string 密码
+     * @return array 用户信息
+     */
+    public function check_login($username, $password)
     {
-
+        $password = md5($password . $this->salt);
+        return $this->userModel->check_and_get($username, $password);
     }
 
 
@@ -40,4 +48,7 @@ class UserService
         }
         return $ip;
     }
+
+
+
 }

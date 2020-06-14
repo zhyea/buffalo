@@ -71,8 +71,12 @@ if (!function_exists('error_503')) {
      */
     function error_503()
     {
-        header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
-        echo 'Your view folder path does not appear to be set correctly. Please open the following file and correct this: ' . SELF;
+        if (array_key_exists('503', _R_) && !empty(_R_['503'])) {
+            redirect_in_site(_R_['503']);
+        } else {
+            header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+            echo 'Your view folder path does not appear to be set correctly. Please open the following file and correct this: ' . SELF;
+        }
         exit(3); // EXIT_CONFIG
     }
 }
@@ -179,8 +183,26 @@ if (!function_exists('require_by_dir')) {
     {
         $files = get_files($dir, true);
         foreach ($files as $f) {
-            if (str_end_with($f, ".php")) {
+            if (str_end_with($f, '.php')) {
                 require $f;
+            }
+        }
+    }
+}
+
+
+if (!function_exists('require_once_by_dir')) {
+    /**
+     * add all php files in target dir
+     *
+     * @param $dir string target directory
+     */
+    function require_once_by_dir($dir)
+    {
+        $files = get_files($dir, true);
+        foreach ($files as $f) {
+            if (str_end_with($f, '.php')) {
+                require_once $f;
             }
         }
     }
@@ -227,7 +249,10 @@ define('_DB_', $db[$active_group]);
 /**
  * define common config
  */
+require_once _ZERO_PATH_ . 'config' . DIRECTORY_SEPARATOR . 'config' . '.php';
+require_once _ZERO_PATH_ . 'config' . DIRECTORY_SEPARATOR . 'hooks' . '.php';
 require_once _APP_PATH_ . 'config' . DIRECTORY_SEPARATOR . 'config' . '.php';
+require_once _APP_PATH_ . 'config' . DIRECTORY_SEPARATOR . 'hooks' . '.php';
 define('_CFG_', $config);
 
 /**

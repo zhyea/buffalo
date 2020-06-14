@@ -12,7 +12,7 @@ class UserModel extends Z_Model
      * @param $password string 密码
      * @return array 用户信息
      */
-    public function get_and_check($username, $password)
+    public function check_and_get($username, $password)
     {
         return $this->_get_by(array('username' => $username, 'password' => $password));
     }

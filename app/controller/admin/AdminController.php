@@ -1,9 +1,21 @@
 <?php
 defined('_APP_PATH_') or exit('You shall not pass!');
 
+require_service('UserService');
 
 class AdminController extends AbstractController
 {
+
+    private $userService;
+
+    /**
+     * AdminController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->userService = new UserService();
+    }
 
 
     public function login()
@@ -14,8 +26,35 @@ class AdminController extends AbstractController
 
     public function login_check()
     {
+        $first_login_time = session_of('first_log', 0);
+        if (0 === $first_login_time) {
+            $_SESSION['first_log'] = time();
+        }
+        $count = session_of('log_count', 0);
+        $_SESSION['log_count'] = ($count + 1);
+
+        $diff = (time() - $first_login_time) / 60;
+
+        if ($diff < 5 && $count >= 5) {
+            $this->alert_danger('您在短时间内多次尝试登录，请稍后再试');
+            $this->redirect('/');
+            return;
+        } elseif ($diff > 5) {
+            $_SESSION['first_log'] = time();
+            $_SESSION['log_count'] = 0;
+        }
+
         $username = $_POST['username'];
         $password = $_POST['password'];
+
+        $user = $this->userService->check_login($username, $password);
+        if (!empty($user)) {
+            $_SESSION['user'] = $user;
+            $this->redirect('/admin');
+        } else {
+            $this->alert_danger('用户名或密码错误');
+            $this->redirect('/login');
+        }
     }
 
 

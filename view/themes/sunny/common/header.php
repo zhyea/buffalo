@@ -1,21 +1,23 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<body>
-<head th:fragment="header">
+<?php
+defined('_APP_PATH_') or exit('You shall not pass!');
+?>
 
-	<title th:text="${title}">A Buffalo Site!</title>
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title><?= empty($title) ? 'A Buffalo Site!' : $title ?> </title>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<meta name="keywords" th:content="${keywords}"  />
-	<meta name="description" th:content="${description}" />
+	<meta name="keywords" content="<?= empty($keywords) ? '' : $keywords ?>"/>
+	<meta name="description" content="<?= empty($description) ? '' : $description ?>"/>
 
-	<link rel="icon" th:href="@{/static/imgs/favicon.ico}" >
+	<link rel="icon" href="<?= $uri_theme ?>/static/imgs/favicon.ico">
 
-	<link rel="stylesheet" type="text/css" th:href="@{/static/css/bootstrap.min.css}"/>
-	<link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}"/>
+	<link rel="stylesheet" type="text/css" href="<?= $uri_theme ?>/static/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?= $uri_theme ?>/static/css/style.css"/>
 
-	<script th:src="@{/static/js/jquery.min.js}"></script>
+	<script src="<?= $uri_theme ?>/static/js/jquery.min.js"></script>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -25,12 +27,13 @@
 
 	<style>
 		body {
-			background: #f5f5f5 [[${null!=background ? 'url('+background+')' : ''}]] [[${null!=background&&bgRepeat==1 ? 'repeat' : 'no-repeat'}]];
-			[[${null!=background&&bgRepeat==2 ? 'background-position: center; background-size: 100% auto; background-attachment: fixed;' : ''}]]
+			background: #f5f5f5<?=(empty($background) ? '' : 'url('.$uri_upload . '/'.$background.')')?> <?=(!empty($background) && !empty($bg_repeat) && 1==$bg_repeat ? 'repeat' : 'no-repeat')?>;
+		<?=(!empty($background) && !empty($bg_repeat) && 2==$bg_repeat ? 'background-position: center; background-size: 100% auto; background-attachment: fixed;' : '')?>;
 		}
-		.header{
+
+		.header {
 		}
 	</style>
 </head>
-</body>
-</html>
+<body>
+<div class="wrapper">
