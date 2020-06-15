@@ -13,7 +13,6 @@ include_once 'common/navigator.php';
 
     <?php include_once 'common/recommend.php'; ?>
 
-
     <?php foreach ($all as $cat) { ?>
 		<div class="page-header">
 			<h3><a href="/c/<?=$cat['slug']?>.html"><i class="glyphicon glyphicon-book"></i> <?=$cat['name']?></a></h3>

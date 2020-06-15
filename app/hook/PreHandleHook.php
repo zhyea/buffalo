@@ -11,7 +11,15 @@ class PreHandleHook extends Z_RequestHook
             $user = session_of('user', NULL);
             if (empty($user)) {
                 redirect_in_site('login');
+                exit();
             }
+
+            $first_log = session_of('first_log', 0);
+            $diff = (time() - $first_log) / 60 / 60;
+            if ($diff > 2) {
+                unset($_SESSION['user']);
+            }
+
         }
     }
 }
