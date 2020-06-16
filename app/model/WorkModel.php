@@ -27,7 +27,7 @@ class WorkModel extends Z_Model
      * @param $limit int 步长
      * @return array 专题作品列表
      */
-    public function find_works($search, $sort, $order, $offset, $limit)
+    public function find_works($search, $sort = 'w.id', $order = 'desc', $offset = 0, $limit = 18)
     {
         $arr = array($search, $search, $search, $search);
         $sql = 'select w.id, w.name, a.name as author, a.id as author_id, m.name as cat ';
@@ -63,7 +63,7 @@ class WorkModel extends Z_Model
      * @param $limit int 步长
      * @return array 专题作品列表
      */
-    public function find_with_author($author_id, $sort, $order, $offset, $limit)
+    public function find_with_author($author_id, $sort = 'w.id', $order = 'desc', $offset = 0, $limit = 18)
     {
 
         $sql = 'select w.id, w.name, w.cover, w.brief, a.name as author, a.id as author_id, m.name as cat ';
@@ -96,13 +96,31 @@ class WorkModel extends Z_Model
      * @return array 专题作品列表
      * @return array 专题作品列表
      */
-    public function find_with_feature($alias, $sort, $order, $offset, $limit)
+    public function find_with_feature($alias, $sort = 'w.id', $order = 'desc', $offset = 0, $limit = 18)
     {
         $sql = 'select w.id, w.name, w.cover, w.brief, a.name as author, a.id as author_id, r.id as record_id ';
         $sql = $sql . 'from work w left join author a on w.author_id=a.id right join feature_record r on r.work_id=w.id left join feature f on r.feature_id=f.id ';
         $sql = $sql . 'where f.alias=? ';
         $sql = $sql . 'order by ' . $sort . ' ' . $order . ' limit ' . $offset . ',' . $limit;
         return $this->_find($sql, array($alias));
+    }
+
+    /**
+     * 查询作品分类信息
+     * @param $cat_id int 分类ID
+     * @param $sort string 排序字段
+     * @param $order string 排序方向
+     * @param $offset int 偏移量
+     * @param $limit int 步长
+     * @return array 专题作品列表
+     */
+    public function find_with_cat($cat_id, $sort = 'w.id', $order = 'desc', $offset = 0, $limit = 18)
+    {
+        $sql = 'select w.id, w.name, w.cover, w.brief, a.name as author, a.id as author_id, m.name as cat ';
+        $sql = $sql . 'from work w left join author a on w.author_id=a.id left join meta m on w.category_id=m.id ';
+        $sql = $sql . 'where w.category_id=? ';
+        $sql = $sql . 'order by w.sn desc, ' . $sort . ' ' . $order . ' limit ' . $offset . ', ' . $limit;
+        return $this->_find($sql, array($cat_id));
     }
 
 

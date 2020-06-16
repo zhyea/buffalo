@@ -30,6 +30,25 @@ class WorkService
 
 
     /**
+     * 首页作品列表
+     */
+    public function home_works()
+    {
+        $all = array();
+        $cats = $this->catModel->find_all('id', 'asc');
+        foreach ($cats as $c) {
+            $works = $this->workModel->find_with_cat($c['id'], 'id', 'desc', 0, 18);
+            if (!empty($works)) {
+                $c['works'] = $works;
+                array_push($all, $c);
+            }
+        }
+        $recommend = $this->workModel->find_with_feature('recommend');
+        return array('all' => $all, 'recommend' => $recommend);
+    }
+
+
+    /**
      * 分页查询作品信息
      * @param $con array 查询条件
      * @return array 查询结果
@@ -110,8 +129,8 @@ class WorkService
     }
 
 
-
-    public function find_with_keywords($keywords){
+    public function find_with_keywords($keywords)
+    {
         $keywords = empty($keywords) ? '' : $keywords;
         return $this->workModel->find_with_keywords($keywords);
     }

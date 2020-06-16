@@ -6,6 +6,9 @@ $routes['404_override'] = '';
 $routes['translate_uri_dashes'] = FALSE;
 
 
+// 首页
+$routes[''] = 'front/index';
+$routes['/'] = 'front/index';
 // 登录页
 $routes['/login'] = 'admin/admin/login';
 // 登录页

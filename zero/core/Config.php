@@ -220,7 +220,7 @@ $app_folder = app_path($app_folder);
 
 define('_APP_PATH_', $app_folder);
 
-define('_CONTROLLER_PATH_', $app_folder . '/controller/');
+define('_CONTROLLER_PATH_', $app_folder . 'controller' . DIRECTORY_SEPARATOR);
 
 
 /**

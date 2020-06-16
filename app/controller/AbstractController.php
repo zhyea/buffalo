@@ -40,7 +40,7 @@ class AbstractController extends Z_Controller
             unset($_SESSION['alert']);
         }
 
-        $this->_render_view('/admin', $page, $params, $title);
+        $this->_render_view('admin', $page, $params, $title);
     }
 
 
@@ -54,7 +54,7 @@ class AbstractController extends Z_Controller
     protected function theme_view($page, $params, $title)
     {
         $params['uri_theme'] = _THEME_URI_;
-        $this->_render_view(_CFG_['theme'], $page, $params, $title);
+        $this->_render_view('themes' . DIRECTORY_SEPARATOR . _CFG_['theme'], $page, $params, $title);
     }
 
 

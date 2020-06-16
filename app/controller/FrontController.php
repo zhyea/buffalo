@@ -1,15 +1,14 @@
 <?php
-defined('_APP_PATH_') OR exit('You shall not pass!');
+defined('_APP_PATH_') or exit('You shall not pass!');
 
 
-require_model('UserModel');
-
+require_service('WorkService');
 
 class FrontController extends AbstractController
 {
 
 
-    private $model;
+    private $workService;
 
 
     /**
@@ -18,21 +17,14 @@ class FrontController extends AbstractController
     public function __construct()
     {
         parent::__construct();
-        $this->model = new UserModel();
+        $this->workService = new WorkService();
     }
 
 
     public function index()
     {
-
-        $this->theme_view('welcome', array('hi' => 'Hello World'), "北京欢迎你");
-    }
-
-
-    public function user()
-    {
-        $r = $this->model->get_by_id(1);;
-        $this->render_json($r);
+        $data = $this->workService->home_works();
+        $this->theme_view('index', $data, "首页");
     }
 
 
