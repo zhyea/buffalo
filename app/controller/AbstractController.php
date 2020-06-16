@@ -1,8 +1,16 @@
 <?php
+defined('_APP_PATH_') or exit('You shall not pass!');
 
+require_service('SettingService');
 
 class AbstractController extends Z_Controller
 {
+
+
+    private $settingService;
+
+    private $siteCfg = array();
+
     /**
      * constructor.
      */
@@ -18,6 +26,8 @@ class AbstractController extends Z_Controller
         if (!defined('_UPLOAD_URI_')) {
             define('_UPLOAD_URI_', _VIEW_CONTEXT_ . '/upload');
         }
+        $this->settingService = new SettingService();
+        $this->siteCfg = $this->settingService->findAll();
     }
 
 
@@ -40,6 +50,8 @@ class AbstractController extends Z_Controller
             unset($_SESSION['alert']);
         }
 
+        $params = array_merge($params, $this->siteCfg);
+
         $this->_render_view('admin', $page, $params, $title);
     }
 
@@ -54,6 +66,8 @@ class AbstractController extends Z_Controller
     protected function theme_view($page, $params, $title)
     {
         $params['uri_theme'] = _THEME_URI_;
+        $params['uri_upload'] = _UPLOAD_URI_;
+        $params = array_merge($params, $this->siteCfg);
         $this->_render_view('themes' . DIRECTORY_SEPARATOR . _CFG_['theme'], $page, $params, $title);
     }
 

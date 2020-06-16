@@ -25,7 +25,7 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="/">
-				<i class="glyphicon glyphicon-home"></i> [[${siteName}]]
+				<i class="glyphicon glyphicon-home"></i>  <?=$site_name?>
 				<span class="sr-only">(current)</span>
 			</a>
 		</div>

@@ -21,7 +21,7 @@ class SettingsController extends AbstractController
 
     public function index()
     {
-        $name = $this->model->get_by_key('name');
+        $name = $this->model->get_by_key('site_name');
         $desc = $this->model->get_by_key('description');
         $notice = $this->model->get_by_key('notice');
         $keywords = $this->model->get_by_key('keywords');
@@ -30,7 +30,7 @@ class SettingsController extends AbstractController
         $background = $this->model->get_by_key('background', '');
 
         $this->admin_view('settings',
-            array('name' => $name,
+            array('site_name' => $name,
                 'notice' => $notice,
                 'description' => $desc,
                 'keywords' => $keywords,
@@ -42,7 +42,7 @@ class SettingsController extends AbstractController
 
     public function maintain()
     {
-        $name = $_POST['name'];
+        $name = $_POST['site_name'];
         $desc = $_POST['description'];
         $keywords = $_POST['keywords'];
         $notice = $_POST['notice'];
@@ -50,7 +50,7 @@ class SettingsController extends AbstractController
         $background = $this->_upload('background');
         $bg_repeat = $_POST['bg_repeat'];
 
-        $this->model->change('name', $name);
+        $this->model->change('site_name', $name);
         $this->model->change('description', $desc);
         $this->model->change('keywords', $keywords);
         $this->model->change('notice', $notice);

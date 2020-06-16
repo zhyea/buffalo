@@ -28,7 +28,7 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 	<style>
 		body {
 			background: #f5f5f5<?=(empty($background) ? '' : 'url('.$uri_upload . '/'.$background.')')?> <?=(!empty($background) && !empty($bg_repeat) && 1==$bg_repeat ? 'repeat' : 'no-repeat')?>;
-		<?=(!empty($background) && !empty($bg_repeat) && 2==$bg_repeat ? 'background-position: center; background-size: 100% auto; background-attachment: fixed;' : '')?>;
+		<?=(!empty($background) && !empty($bg_repeat) && 2==$bg_repeat ? 'background-position: center; background-size: 100% auto; background-attachment: fixed;' : '')?>
 		}
 
 		.header {
