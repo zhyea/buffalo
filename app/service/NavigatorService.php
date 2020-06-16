@@ -123,4 +123,16 @@ class NavigatorService
         return $root;
     }
 
+
+    /**
+     * @return array 导航树
+     */
+    public function navigator()
+    {
+        $nav = array('id' => 0, 'children' => array());
+        $all = $this->navModel->find_all();
+        return build_tree($all, $nav);
+    }
+
+
 }

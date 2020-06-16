@@ -10,8 +10,8 @@ defined('_APP_PATH_') OR exit('You shall not pass!');
 	
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
 	<meta content="width=device-width, initial-scale=1" name="viewport"/>
-	
-	<link rel="shortcut" type="image/x-icon" href="<?= $uri_admin ?>/static/img/favicon.ico">
+
+	<link rel="icon" href="<?= $uri_admin ?>/static/img/favicon.ico">
 	
 	<link rel="stylesheet" type="text/css" href="<?= $uri_admin ?>/static/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="<?= $uri_admin ?>/static/css/font-awesome.min.css"/>

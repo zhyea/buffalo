@@ -9,7 +9,9 @@ class AbstractController extends Z_Controller
 
     private $settingService;
 
-    private $siteCfg = array();
+    private $navService;
+
+    private $siteCfg;
 
     /**
      * constructor.
@@ -28,6 +30,7 @@ class AbstractController extends Z_Controller
         }
         $this->settingService = new SettingService();
         $this->siteCfg = $this->settingService->findAll();
+        $this->navService = new NavigatorService();
     }
 
 
@@ -68,6 +71,11 @@ class AbstractController extends Z_Controller
         $params['uri_theme'] = _THEME_URI_;
         $params['uri_upload'] = _UPLOAD_URI_;
         $params = array_merge($params, $this->siteCfg);
+
+        $nav = $this->navService->navigator();
+        $params['navigator'] = $nav['children'];
+
+        $title = $this->siteCfg['site_name'] . '-' . $title;
         $this->_render_view('themes' . DIRECTORY_SEPARATOR . _CFG_['theme'], $page, $params, $title);
     }
 

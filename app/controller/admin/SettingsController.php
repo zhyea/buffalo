@@ -55,11 +55,11 @@ class SettingsController extends AbstractController
         $this->model->change('keywords', $keywords);
         $this->model->change('notice', $notice);
         if ($logo[0]) {
-            $this->_delete('logo', '');
+            $this->_delete('logo');
             $this->model->change('logo', $logo[1]);
         }
         if ($background[0]) {
-            $this->_delete('background', '');
+            $this->_delete('background');
             $this->model->change('background', $background[1]);
         }
         $this->model->change('bg_repeat', $bg_repeat);
@@ -75,7 +75,9 @@ class SettingsController extends AbstractController
      */
     public function delete_logo()
     {
-        $this->_delete('logo', 'LOGO');
+        $this->_delete('logo');
+        $this->alert_success('删除LOGO成功');
+        $this->redirect('admin/settings');
     }
 
     /**
@@ -83,7 +85,9 @@ class SettingsController extends AbstractController
      */
     public function delete_bg()
     {
-        $this->_delete('background', '背景图');
+        $this->_delete('background');
+        $this->alert_success('删除背景图成功');
+        $this->redirect('admin/settings');
     }
 
     /**
@@ -92,13 +96,11 @@ class SettingsController extends AbstractController
      * @param $key string 文件配置项
      * @param $name string 配置项名称
      */
-    private function _delete($key, $name)
+    private function _delete($key)
     {
         $v = $this->model->get_by_key($key);
         del_upload_file($v);
         $this->model->delete_by_key($key);
-        $this->alert_success('删除' . $name . '成功');
-        $this->redirect('admin/settings');
     }
 
 
