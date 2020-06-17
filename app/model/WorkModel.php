@@ -117,10 +117,23 @@ class WorkModel extends Z_Model
     public function find_with_cat($cat_id, $sort = 'w.id', $order = 'desc', $offset = 0, $limit = 18)
     {
         $sql = 'select w.id, w.name, w.cover, w.brief, a.name as author, a.id as author_id, m.name as cat ';
-        $sql = $sql . 'from work w left join author a on w.author_id=a.id left join meta m on w.category_id=m.id ';
+        $sql = $sql . 'from work w left join author a on w.author_id=a.id left join category m on w.category_id=m.id ';
         $sql = $sql . 'where w.category_id=? ';
         $sql = $sql . 'order by w.sn desc, ' . $sort . ' ' . $order . ' limit ' . $offset . ', ' . $limit;
         return $this->_find($sql, array($cat_id));
+    }
+
+
+
+    /**
+     * 根据分类ID执行统计
+     * @param $cat_id int 分类ID
+     * @return int 统计结果
+     */
+    public function count_with_cat($cat_id)
+    {
+        $sql = "select count(id) from work where category_id=?";
+        return $this->_count($sql, array($cat_id));
     }
 
 

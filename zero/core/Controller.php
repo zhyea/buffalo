@@ -8,16 +8,16 @@ abstract class Z_Controller
     /**
      * 展示页面
      *
-     * @param $page string 页面地址
+     * @param $_page string 页面地址
      * @param $params array 页面变量
      */
-    protected function render_view($page, $params = array())
+    protected function render_view($_page, $params = array())
     {
-        if (!file_exists(_VIEW_PATH_ . $page . '.php')) {
+        if (!file_exists(_VIEW_PATH_ . $_page . '.php')) {
             $this->error_404();
         } else {
             extract($params);
-            include_once _VIEW_PATH_ . $page . '.php';
+            include_once _VIEW_PATH_ . $_page . '.php';
         }
     }
 
@@ -36,9 +36,10 @@ abstract class Z_Controller
     /**
      * 跳转404
      */
-    private function error_404()
+    protected function error_404()
     {
         println('404 Error');
+        die();
     }
 
 

@@ -53,4 +53,15 @@ class CategoryModel extends Z_Model
         return $this->_find($sql, array($keywords, $keywords));
     }
 
+
+    /**
+     * 根据缩略名获取分类
+     * @param $slug string 缩略名
+     * @return array 结果
+     */
+    public function get_by_slug($slug)
+    {
+        return $this->_get_by(array('slug' => $slug));
+    }
+
 }

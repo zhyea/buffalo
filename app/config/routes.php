@@ -9,6 +9,10 @@ $routes['translate_uri_dashes'] = FALSE;
 // 首页
 $routes[''] = 'front/index';
 $routes['/'] = 'front/index';
+// 分类页
+$routes['/c/{slug}'] = 'front/category';
+$routes['/c/{slug}/{page}'] = 'front/category';
+
 // 登录页
 $routes['/login'] = 'admin/admin/login';
 // 登录页

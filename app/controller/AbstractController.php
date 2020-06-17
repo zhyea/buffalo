@@ -53,7 +53,7 @@ class AbstractController extends Z_Controller
             unset($_SESSION['alert']);
         }
 
-        $params = array_merge($params, $this->siteCfg);
+        $params = $params + $this->siteCfg;
 
         $this->_render_view('admin', $page, $params, $title);
     }
@@ -70,7 +70,8 @@ class AbstractController extends Z_Controller
     {
         $params['uri_theme'] = _THEME_URI_;
         $params['uri_upload'] = _UPLOAD_URI_;
-        $params = array_merge($params, $this->siteCfg);
+        $params['ctx'] = _APP_CONTEXT_ . 'index.php';
+        $params = $params + $this->siteCfg;
 
         $nav = $this->navService->navigator();
         $params['navigator'] = $nav['children'];
@@ -84,11 +85,11 @@ class AbstractController extends Z_Controller
      * 渲染视图
      *
      * @param $dir string 主题目录
-     * @param $page string 页面地址
+     * @param $_page string 页面地址
      * @param $params array 页面变量
      * @param $title string 页面title
      */
-    private function _render_view($dir, $page, $params, $title)
+    private function _render_view($dir, $_page, $params, $title)
     {
         if (NULL == $params) {
             $params = array();
@@ -96,8 +97,8 @@ class AbstractController extends Z_Controller
         if (!array_key_exists('title', $params)) {
             $params['title'] = $title;
         }
-        $page = $dir . DIRECTORY_SEPARATOR . $page;
-        parent::render_view($page, $params);
+        $_page = $dir . DIRECTORY_SEPARATOR . $_page;
+        parent::render_view($_page, $params);
         exit();
     }
 

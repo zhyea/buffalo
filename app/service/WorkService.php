@@ -94,6 +94,29 @@ class WorkService
 
 
     /**
+     * 获取分类作品信息
+     * @param $cat_slug string 分类缩略名
+     * @param $page int 页码
+     * @return array 结果
+     */
+    public function find_with_cat($cat_slug, $page)
+    {
+        $cat = $this->catModel->get_by_slug($cat_slug);
+        if (empty($cat)) {
+            return array();
+        }
+        $sort = 'id';
+        $order = 'desc';
+        $length = 18;
+        $offset = $length * ($page - 1);
+        $works = $this->workModel->find_with_cat($cat['id'], $sort, $order, $offset, $length);
+        $total = $this->workModel->count_with_cat($cat['id']);
+        $total = ceil($total / $length);
+        return array('cat' => $cat, 'works' => $works, 'page' => $page, 'total' => $total, 'title' => $cat['name']);
+    }
+
+
+    /**
      * 分页获取作者作品信息
      * @param $author_id int 作者ID
      * @param $con array 条件集合

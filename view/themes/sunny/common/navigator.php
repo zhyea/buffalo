@@ -25,7 +25,7 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="/">
-				<i class="glyphicon glyphicon-home"></i>  <?=$site_name?>
+				<i class="glyphicon glyphicon-home"></i> <?= $site_name ?>
 				<span class="sr-only">(current)</span>
 			</a>
 		</div>
@@ -43,10 +43,13 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 								   aria-haspopup="true"
 								   aria-expanded="false"><?= $n['name'] ?><span class="caret"></span></a>
 								<ul class="dropdown-menu">
+									<li>
+										<a href="<?= $ctx . $n['url'] ?>"><?= $n['name'] ?></a>
+									</li>
                                     <?php $children = $n['children'];
                                     foreach ($children as $c) { ?>
 										<li>
-											<a href="<?= $c['url'] ?>"><?= $c['name'] ?></a>
+											<a href="<?= $ctx . $c['url'] ?>"><?= $c['name'] ?></a>
 										</li>
                                     <?php } ?>
 								</ul>
@@ -55,7 +58,7 @@ defined('_APP_PATH_') or exit('You shall not pass!');
                         } else {
                             ?>
 							<li>
-								<a href="<?= $n['url'] ?>"><?= $n['name'] ?></a>
+								<a href="<?= $ctx . $n['url'] ?>"><?= $n['name'] ?></a>
 							</li>
                         <?php }
                     }

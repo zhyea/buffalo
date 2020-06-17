@@ -28,9 +28,13 @@ class FrontController extends AbstractController
     }
 
 
-    public function login()
+    public function category($alias, $page = 1)
     {
-
+        $data = $this->workService->find_with_cat($alias, $page);
+        if (empty($data)) {
+            $this->error_404();
+        }
+        $this->theme_view('category', $data, $data['title']);
     }
 
 }
