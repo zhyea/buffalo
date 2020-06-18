@@ -34,7 +34,17 @@ class FrontController extends AbstractController
         if (empty($data)) {
             $this->error_404();
         }
-        $this->theme_view('category', $data, $data['title']);
+        $this->theme_view('category', $data, $data['_title']);
+    }
+
+
+    public function feature($alias, $page = 1)
+    {
+        $data = $this->workService->find_with_feature($alias, $page);
+        if (empty($data)) {
+            $this->error_404();
+        }
+        $this->theme_view('feature', $data, $data['_title']);
     }
 
 }

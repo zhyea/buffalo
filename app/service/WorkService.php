@@ -17,6 +17,8 @@ class WorkService
 
     private $recordModel;
 
+    private $featureModel;
+
     /**
      * 构造器
      */
@@ -26,6 +28,7 @@ class WorkService
         $this->authorModel = new AuthorModel();
         $this->catModel = new CategoryModel();
         $this->recordModel = new FeatureRecordModel();
+        $this->featureModel = new FeatureModel();
     }
 
 
@@ -112,7 +115,30 @@ class WorkService
         $works = $this->workModel->find_with_cat($cat['id'], $sort, $order, $offset, $length);
         $total = $this->workModel->count_with_cat($cat['id']);
         $total = ceil($total / $length);
-        return array('cat' => $cat, 'works' => $works, 'page' => $page, 'total' => $total, 'title' => $cat['name']);
+        return array('cat' => $cat, 'works' => $works, 'page' => $page, 'total' => $total, '_title' => $cat['name']);
+    }
+
+
+    /**
+     * 分页获取专题作品信息
+     * @param $feature_alias string 专题别名
+     * @param $page int 条件集合
+     * @return array 作者作品信息
+     */
+    public function find_with_feature($feature_alias, $page)
+    {
+        $f = $this->featureModel->get_by_alias($feature_alias);
+        if (empty($f)) {
+            return array();
+        }
+        $sort = 'id';
+        $order = 'desc';
+        $length = 18;
+        $offset = $length * ($page - 1);
+        $rows = $this->workModel->find_with_feature($feature_alias, $sort, $order, $offset, $length);
+        $total = $this->recordModel->count_with_alias($feature_alias);
+        $total = ceil($total / $length);
+        return array('feature' => $f, 'works' => $rows, 'page' => $page, 'total' => $total, '_title' => $f['name']);
     }
 
 
@@ -130,24 +156,6 @@ class WorkService
         $limit = $con['limit'];
         $rows = $this->workModel->find_with_author($author_id, $sort, $order, $offset, $limit);
         $total = $this->workModel->count_works($author_id);
-        return array('total' => $total, 'rows' => $rows);
-    }
-
-
-    /**
-     * 分页获取专题作品信息
-     * @param $feature_alias string 专题别名
-     * @param $con array 条件集合
-     * @return array 作者作品信息
-     */
-    public function find_with_feature($feature_alias, $con)
-    {
-        $sort = $con['sort'];
-        $order = $con['order'];
-        $offset = $con['offset'];
-        $limit = $con['limit'];
-        $rows = $this->workModel->find_with_feature($feature_alias, $sort, $order, $offset, $limit);
-        $total = $this->recordModel->count_with_alias($feature_alias);
         return array('total' => $total, 'rows' => $rows);
     }
 

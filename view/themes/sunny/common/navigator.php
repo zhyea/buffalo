@@ -7,7 +7,8 @@ defined('_APP_PATH_') or exit('You shall not pass!');
     <?php if (empty($logo)) { ?>
 		<a>&nbsp;</a>
     <?php } else { ?>
-		<a href="/"><img src="<?= $uri_upload . '/' . $logo ?>" width="100%" height="100%"/></a>
+		<a href="<?= $ctx ?>/">
+			<img src="<?= $uri_upload . '/' . $logo ?>" width="100%" height="100%"/></a>
     <?php } ?>
 </div>
 <div class="container navigator">
@@ -24,7 +25,7 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/">
+			<a class="navbar-brand" href="<?= $ctx ?>/">
 				<i class="glyphicon glyphicon-home"></i> <?= $site_name ?>
 				<span class="sr-only">(current)</span>
 			</a>

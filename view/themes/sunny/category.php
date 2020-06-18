@@ -4,21 +4,22 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 include_once 'common/header.php';
 include_once 'common/navigator.php';
 ?>
-
-
+	
+	
 	<div class="container notice">
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
+			<li><a href="<?= $ctx ?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
 			<li><?= empty($cat) ? '不存在' : $cat['name'] ?></li>
 		</ol>
 	</div>
-
+	
 	<div class="container main">
 
         <?php include_once 'common/recommend.php'; ?>
         <?php if (!empty($cat)) { ?>
 			<div class="page-header">
-				<h3><a href="/c/<?= $cat['slug'] ?>.html"><i class="glyphicon glyphicon-book"></i> <?= $cat['name'] ?>
+				<h3><a href="<?= $ctx ?>/c/<?= $cat['slug'] ?>.html">
+						<i class="glyphicon glyphicon-book"></i> <?= $cat['name'] ?>
 					</a>
 				</h3>
 			</div>

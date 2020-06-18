@@ -15,7 +15,8 @@ include_once 'common/navigator.php';
 
     <?php foreach ($all as $cat) { ?>
 		<div class="page-header">
-			<h3><a href="/c/<?= $cat['slug'] ?>.html"><i class="glyphicon glyphicon-book"></i> <?= $cat['name'] ?></a>
+			<h3><a href="<?= $ctx ?>/c/<?= $cat['slug'] ?>.html">
+					<i class="glyphicon glyphicon-book"></i> <?= $cat['name'] ?></a>
 			</h3>
 		</div>
 		<div class="row popular">

@@ -76,7 +76,7 @@ class AbstractController extends Z_Controller
         $nav = $this->navService->navigator();
         $params['navigator'] = $nav['children'];
 
-        $title = $this->siteCfg['site_name'] . '-' . $title;
+        $title = $title . '-' . $this->siteCfg['site_name'];
         $this->_render_view('themes' . DIRECTORY_SEPARATOR . _CFG_['theme'], $page, $params, $title);
     }
 

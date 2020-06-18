@@ -12,7 +12,7 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 				<div class="item col-md-2 col-xs-2">
 					<div class="cover">
 						<a href="/work/<?= $r['id'] ?>.html">
-							<img src="<?= $r['cover'] ?>" width="120px" height="172px"/>
+							<img src="<?= $uri_upload . '/' .$r['cover'] ?>" width="120px" height="172px"/>
 						</a>
 						<div class="remark"><a href="/work/<?= $r['id'] ?>.html"><?= $r['name'] ?></a></div>
 						<div class="shade"><a href="/work/<?= $r['id'] ?>.html"><?= $r['name'] ?></a></div>

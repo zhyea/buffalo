@@ -12,6 +12,9 @@ $routes['/'] = 'front/index';
 // 分类页
 $routes['/c/{slug}'] = 'front/category';
 $routes['/c/{slug}/{page}'] = 'front/category';
+// 专题页
+$routes['/f/{alias}'] = 'front/feature';
+$routes['/f/{alias}/{page}'] = 'front/feature';
 
 // 登录页
 $routes['/login'] = 'admin/admin/login';
