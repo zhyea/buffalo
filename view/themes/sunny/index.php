@@ -22,9 +22,9 @@ include_once 'common/navigator.php';
 		<div class="row popular">
             <?php foreach ($cat['works'] as $w) { ?>
 				<div class="item col-md-4 col-xs-12">
-					■ <a href="/work/<?= $w['id'] ?>.html|" title="<?= $w['name'] ?>"><?= $w['name'] ?></a>
+					■ <a href="<?= $ctx ?>/work/<?= $w['id'] ?>.html" title="<?= $w['name'] ?>"><?= $w['name'] ?></a>
 					<span class="author">
-                        <a href="/author/<?= $w['author_id'] ?>.html|"
+                        <a href="<?= $ctx ?>/author/<?= $w['author_id'] ?>.html"
                            title="<?= $w['author'] ?>"><?= $w['author'] ?></a>
                     </span>
 				</div>

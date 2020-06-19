@@ -15,6 +15,9 @@ $routes['/c/{slug}/{page}'] = 'front/category';
 // 专题页
 $routes['/f/{alias}'] = 'front/feature';
 $routes['/f/{alias}/{page}'] = 'front/feature';
+// 作家页
+$routes['/author/{id}'] = 'front/author';
+$routes['/author/{id}/{page}'] = 'front/author';
 
 // 登录页
 $routes['/login'] = 'admin/admin/login';

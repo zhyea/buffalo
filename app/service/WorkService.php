@@ -122,7 +122,7 @@ class WorkService
     /**
      * 分页获取专题作品信息
      * @param $feature_alias string 专题别名
-     * @param $page int 条件集合
+     * @param $page int 页数
      * @return array 作者作品信息
      */
     public function find_with_feature($feature_alias, $page)
@@ -145,18 +145,23 @@ class WorkService
     /**
      * 分页获取作者作品信息
      * @param $author_id int 作者ID
-     * @param $con array 条件集合
+     * @param $page int 页数
      * @return array 作者作品信息
      */
-    public function find_with_author($author_id, $con)
+    public function find_with_author($author_id, $page)
     {
-        $sort = $con['sort'];
-        $order = $con['order'];
-        $offset = $con['offset'];
-        $limit = $con['limit'];
-        $rows = $this->workModel->find_with_author($author_id, $sort, $order, $offset, $limit);
-        $total = $this->workModel->count_works($author_id);
-        return array('total' => $total, 'rows' => $rows);
+        $author = $this->authorModel->get_by_id($author_id);
+        if (empty($author)) {
+            return array();
+        }
+        $sort = 'id';
+        $order = 'desc';
+        $length = 18;
+        $offset = $length * ($page - 1);
+        $rows = $this->workModel->find_with_author($author_id, $sort, $order, $offset, $length);
+        $total = $this->workModel->count_with_author($author_id);
+        $total = ceil($total / $length);
+        return array('author' => $author, 'works' => $rows, 'page' => $page, 'total' => $total, '_title' => $author['name']);
     }
 
 
