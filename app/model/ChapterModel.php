@@ -56,12 +56,49 @@ class ChapterModel extends Z_Model
 
 
     /**
+     * 根据ID获取章节记录
+     * @param $id int 章节ID
+     * @return array 章节信息
+     */
+    public function get($id)
+    {
+        $sql = 'select c.*, v.name as volume_name from chapter c left join volume v on c.volume_id=v.id where c.id=?';
+        return $this->_get($sql, array($id));
+    }
+
+    /**
      * 根据作品ID执行删除
      * @param $work_id int 作品ID
      */
     public function delete_by_work($work_id)
     {
         $this->_delete(array('work_id' => $work_id));
+    }
+
+
+    /**
+     * 获取上一节
+     * @param $work_id int 作品ID
+     * @param $chapter_id int 章节ID
+     * @return array 章节信息
+     */
+    public function get_last($work_id, $chapter_id)
+    {
+        $sql = 'select id from chapter where work_id=? and id<? order by id desc limit 1';
+        return $this->_get($sql, array($work_id, $chapter_id));
+    }
+
+
+    /**
+     * 获取下一节
+     * @param $work_id int 作品ID
+     * @param $chapter_id int 章节ID
+     * @return array 章节信息
+     */
+    public function get_next($work_id, $chapter_id)
+    {
+        $sql = 'select id from chapter where work_id=? and id>? order by id asc limit 1';
+        return $this->_get($sql, array($work_id, $chapter_id));
     }
 
 

@@ -16,6 +16,7 @@ include_once 'common/navigator.php';
 	<div class="container main">
 
         <?php include_once 'common/recommend.php'; ?>
+
         <?php if (!empty($cat)) { ?>
 			<div class="page-header">
 				<h3><a href="<?= $ctx ?>/c/<?= $cat['slug'] ?>.html">

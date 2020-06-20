@@ -10,6 +10,8 @@ class FrontController extends AbstractController
 
     private $workService;
 
+    private $chapterService;
+
 
     /**
      * constructor.
@@ -18,6 +20,7 @@ class FrontController extends AbstractController
     {
         parent::__construct();
         $this->workService = new WorkService();
+        $this->chapterService = new ChapterService();
     }
 
 
@@ -75,4 +78,33 @@ class FrontController extends AbstractController
         $this->theme_view('author', $data, $data['_title']);
     }
 
+
+    /**
+     * 获取作品信息
+     * @param $work_id int 作品ID
+     */
+    public function work($work_id)
+    {
+        $work = $this->workService->get_work($work_id);
+        if (empty($work)) {
+            $this->error_404();
+        }
+        $vols = $this->chapterService->volumes($work_id);
+        $relates = $this->workService->relate($work_id, $work['author_id']);
+        $this->theme_view('work', array('w' => $work, 'vols' => $vols, 'relates' => $relates), $work['name']);
+    }
+
+
+    /**
+     * 获取章节信息
+     * @param $chapter_id int 章节ID
+     */
+    public function chapter($chapter_id)
+    {
+        $chapter = $this->chapterService->get_chapter($chapter_id);
+        if (empty($chapter)) {
+            $this->error_404();
+        }
+        $this->theme_view('chapter', $chapter, $chapter['_title']);
+    }
 }

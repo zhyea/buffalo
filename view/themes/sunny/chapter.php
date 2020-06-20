@@ -7,13 +7,14 @@ include_once 'common/navigator.php';
 
 <div class="container notice">
 	<ol class="breadcrumb">
-		<li><a href="/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
-		<li><a href="/c/<?=$w['cat_slug']?>.html"><?=$w['cat']?></a></li>
-		<li><a href="/work/<?=$w['id']?>.html#vol_$<?=$c['volume_id']?>"><?=$w['name']?></a></li>
-		<?php if(!empty($c['volume_id']) &&$c['volume_id'] >0 ){?>
-		<li><a href="/work/<?=$w['id']?>.html#vol_<?=$c['volume_id']?>"><?=$c['volume_name']?></a></li>
-		<?php } ?>
-		<li class="active"><?=$c['name']?></li>
+		<li><a href="<?= $ctx ?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
+		<li><a href="<?= $ctx ?>/c/<?= $w['cat_slug'] ?>.html"><?= $w['cat'] ?></a></li>
+		<li><a href="<?= $ctx ?>/work/<?= $w['id'] ?>.html#vol_$<?= $chp['volume_id'] ?>"><?= $w['name'] ?></a></li>
+        <?php if (!empty($chp['volume_id']) && $chp['volume_id'] > 0) { ?>
+			<li><a href="<?= $ctx ?>/work/<?= $w['id'] ?>.html#vol_<?= $chp['volume_id'] ?>"><?= $chp['volume_name'] ?></a>
+			</li>
+        <?php } ?>
+		<li class="active"><?= $chp['name'] ?></li>
 	</ol>
 </div>
 
@@ -28,48 +29,49 @@ include_once 'common/navigator.php';
 
 	<div class="row" id="contentContainer">
 
-		<div class="row chapter-name">[[*{name}]]</div>
+		<div class="row chapter-name"><?= $chp['name'] ?></div>
 
 		<div class="row chapter-nav">
-			<?php if(!empty($last)){?>
-				<a href="/chapter/<?=$last?>.html">上一章</a>
-            <?php }else{?>
+            <?php if (!empty($last)) { ?>
+				<a href="<?= $ctx ?>/chapter/<?= $last ?>.html">上一章</a>
+            <?php } else { ?>
 				<a>无</a>
-            <?php} ?>
+            <?php } ?>
 			←
-			<a href="/work/<?=$w['id']?>".html#vol_<?=$c['volume_id']?>">返回目录</a>
+			<a href="<?= $ctx ?>/work/<?= $w['id'] ?>" .html#vol_<?= $chp['volume_id'] ?>">返回目录</a>
 			→
 
-            <?php if(!empty($next)){?>
-				<a href="/chapter/<?=$next?>.html">下一章</a>
-            <?php }else{?>
+            <?php if (!empty($next)) { ?>
+				<a href="<?= $ctx ?>/chapter/<?= $next ?>.html">下一章</a>
+            <?php } else { ?>
 				<a>没有了</a>
-            <?php} ?>
+            <?php } ?>
 
-			<span class="chapter-author">作者：<a href="/author/<?=$w['author_id']?>.html" ><?=$w['author']?></a></span>
+			<span class="chapter-author">作者：<a
+						href="<?= $ctx ?>/author/<?= $w['author_id'] ?>.html"><?= $w['author'] ?></a></span>
 		</div>
 
-		<div class="row chapter-content" id="contentText" style=""><?=$c['content']?></div>
+		<div class="row chapter-content" id="contentText" style=""><?= $chp['content'] ?></div>
 
 		<div class="row chapter-nav">
-            <?php if(!empty($last)){?>
-				<a href="/chapter/<?=$last?>.html">上一章</a>
-            <?php }else{?>
+            <?php if (!empty($last)) { ?>
+				<a href="<?= $ctx ?>/chapter/<?= $last ?>.html">上一章</a>
+            <?php } else { ?>
 				<a>无</a>
-            <?php} ?>
+            <?php } ?>
 			←
-			<a href="/work/<?=$w['id']?>".html#vol_<?=$c['volume_id']?>">返回目录</a>
+			<a href="<?= $ctx ?>/work/<?= $w['id'] ?>" .html#vol_<?= $chp['volume_id'] ?>">返回目录</a>
 			→
 
-            <?php if(!empty($next)){?>
-				<a href="/chapter/<?=$next?>.html">下一章</a>
-            <?php }else{?>
+            <?php if (!empty($next)) { ?>
+				<a href="<?= $ctx ?>/chapter/<?= $next ?>.html">下一章</a>
+            <?php } else { ?>
 				<a>没有了</a>
-            <?php} ?>
+            <?php } ?>
 		</div>
-		<?php if(!empty($chapter_bottom_ad)){?>
-		<div><?=$chapter_bottom_ad?></div>
-		<?php } ?>
+        <?php if (!empty($chapter_bottom_ad)) { ?>
+			<div><?= $chapter_bottom_ad ?></div>
+        <?php } ?>
 	</div>
 
 </div>
@@ -81,8 +83,8 @@ include_once 'common/navigator.php';
 <script type="text/javascript">
     window.addEventListener('load', LoadReadSet, false);
 
-    let last_page = "/chapter/[[${last}]].html";
-    let next_page = "/chapter/[[${next}]].html";
+    let last_page = "<?=$ctx?>/chapter/<?=$last?>.html";
+    let next_page = "<?=$ctx?>/chapter/<?=$next?>.html";
     document.onkeydown = function (evt) {
         let e = window.event || evt;
         if (e.keyCode == 37) location.href = last_page;

@@ -85,6 +85,30 @@ class ChapterService
 
 
     /**
+     * 获取章节信息
+     * @param $chapter_id int 章节信息
+     * @return array 章节信息
+     */
+    public function get_chapter($chapter_id)
+    {
+        $chapter = $this->chapterModel->get($chapter_id);
+        if (empty($chapter)) {
+            return array();
+        }
+        $work_id = $chapter['work_id'];
+        $work = $this->workModel->get_work($work_id);
+
+        $last = $this->chapterModel->get_last($work_id, $chapter_id);
+        $last = empty($last) ? null : $last['id'];
+        $next = $this->chapterModel->get_next($work_id, $chapter_id);
+        $next = empty($next) ? null : $next['id'];
+
+        $title = $work['name'] . '-' . $chapter['name'];
+        return array('w' => $work, 'chp' => $chapter, 'last' => $last, 'next' => $next, '_title' => $title);
+    }
+
+
+    /**
      * 获取分卷ID
      * @param $work_id int 作品ID
      * @param $vol_name string 分卷名称

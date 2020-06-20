@@ -18,6 +18,10 @@ $routes['/f/{alias}/{page}'] = 'front/feature';
 // 作家页
 $routes['/author/{id}'] = 'front/author';
 $routes['/author/{id}/{page}'] = 'front/author';
+// 作品页
+$routes['/work/{id}'] = 'front/work';
+// 章节页
+$routes['/chapter/{id}'] = 'front/chapter';
 
 // 登录页
 $routes['/login'] = 'admin/admin/login';

@@ -19,6 +19,20 @@ class WorkModel extends Z_Model
 
 
     /**
+     * 获取作品信息
+     * @param $id int 作品ID
+     * @return array 作品信息
+     */
+    public function get_work($id)
+    {
+        $sql = 'select w.id, w.name, w.cover, w.brief, a.name as author, a.id as author_id, m.name as cat, m.slug as cat_slug ';
+        $sql = $sql . 'from work w left join author a on w.author_id=a.id left join category m on w.category_id=m.id ';
+        $sql = $sql . 'where w.id=? ';
+        return $this->_get($sql, array($id));
+    }
+
+
+    /**
      * 查询作品信息
      * @param $search string 查询值
      * @param $sort string 排序字段
@@ -67,7 +81,7 @@ class WorkModel extends Z_Model
     {
 
         $sql = 'select w.id, w.name, w.cover, w.brief, a.name as author, a.id as author_id, m.name as cat ';
-        $sql = $sql . 'from work w left join author a on w.author_id=a.id left join meta m on w.category_id=m.id ';
+        $sql = $sql . 'from work w left join author a on w.author_id=a.id left join category m on w.category_id=m.id ';
         $sql = $sql . 'where w.author_id=? ';
         $sql = $sql . 'order by ' . $sort . ' ' . $order . ' limit ' . $offset . ',' . $limit;
         return $this->_find($sql, array($author_id));
@@ -124,7 +138,6 @@ class WorkModel extends Z_Model
     }
 
 
-
     /**
      * 根据分类ID执行统计
      * @param $cat_id int 分类ID
@@ -146,7 +159,7 @@ class WorkModel extends Z_Model
     {
         $keywords = '%' . $keywords . '%';
         $sql = 'select w.id, w.name, a.name as author, m.name as cat  ';
-        $sql = $sql . 'from work w left join author a on w.author_id=a.id left join meta m on w.category_id=m.id ';
+        $sql = $sql . 'from work w left join author a on w.author_id=a.id left join category m on w.category_id=m.id ';
         $sql = $sql . 'where w.name like ? or brief like ? or a.name like ? or m.name like ? order by w.id desc limit 9 ';
         return $this->_find($sql, array($keywords, $keywords, $keywords, $keywords));
     }

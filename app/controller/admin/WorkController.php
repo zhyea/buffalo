@@ -130,7 +130,7 @@ class WorkController extends AbstractController
     public function author($author_id)
     {
         $params = $this->_post_array();
-        $works = $this->workService->find_with_author($author_id, $params);
+        $works = $this->workService->find_with_author_con($author_id, $params);
         $this->render_json($works);
     }
 
@@ -142,7 +142,7 @@ class WorkController extends AbstractController
     public function feature($feature_alias)
     {
         $params = $this->_post_array();
-        $works = $this->workService->find_with_feature($feature_alias, $params);
+        $works = $this->workService->find_with_feature_con($feature_alias, $params);
         $this->render_json($works);
     }
 
@@ -156,4 +156,7 @@ class WorkController extends AbstractController
         $data = $this->workService->find_with_keywords($keywords);
         $this->render_json(array('key' => $keywords, 'value' => $data));
     }
+
+
+
 }
