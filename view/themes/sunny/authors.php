@@ -8,7 +8,7 @@ include_once 'common/navigator.php';
 
 <div class="container notice">
 	<ol class="breadcrumb">
-		<li><a href="/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
+		<li><a href="<?=$ctx?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
 		<li class="active">全部作者</li>
 	</ol>
 </div>
@@ -22,7 +22,7 @@ include_once 'common/navigator.php';
 				</div>
                 <?php foreach ($value as $author) { ?>
 					<div class="col-md-3 col-xs-12 chapter">
-						<a href="|/author/<?= $author['id'] ?>.html|"><?= $author['name'] ?></a>
+						<a href="<?=$ctx?>/author/<?= $author['id'] ?>.html"><?= $author['name'] ?></a>
 					</div>
                 <?php } ?>
 			</div>

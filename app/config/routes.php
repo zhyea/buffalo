@@ -22,9 +22,13 @@ $routes['/author/{id}/{page}'] = 'front/author';
 $routes['/work/{id}'] = 'front/work';
 // 章节页
 $routes['/chapter/{id}'] = 'front/chapter';
+// 作家集合页
+$routes['/authors'] = 'front/authors';
 
 // 登录页
 $routes['/login'] = 'admin/admin/login';
+// 登录页
+$routes['/logout'] = 'admin/admin/logout';
 // 登录页
 $routes['/login/check'] = 'admin/admin/login_check';
 // 后台首页

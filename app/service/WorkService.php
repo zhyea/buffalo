@@ -150,7 +150,17 @@ class WorkService
         $rows = $this->workModel->find_with_feature($feature_alias, $sort, $order, $offset, $length);
         $total = $this->recordModel->count_with_alias($feature_alias);
         $total = ceil($total / $length);
-        return array('feature' => $f, 'works' => $rows, 'page' => $page, 'total' => $total, '_title' => $f['name']);
+        $data = array('feature' => $f, 'works' => $rows, 'page' => $page, 'total' => $total, '_title' => $f['name']);
+        if (!empty($f['background'])) {
+            $data['background'] = $f['background'];
+        }
+        if (!empty($f['bg_repeat'])) {
+            $data['bg_repeat'] = $f['bg_repeat'];
+        }
+        if (!empty($f['cover'])) {
+            $data['logo'] = $f['cover'];
+        }
+        return $data;
     }
 
 

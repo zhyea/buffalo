@@ -5,13 +5,17 @@ include_once 'common/header.php';
 include_once 'common/navigator.php';
 ?>
 
+
+<script charset="utf-8" src="<?= $uri_theme ?>/static/js/reader.js" type="text/javascript"></script>
+
 <div class="container notice">
 	<ol class="breadcrumb">
 		<li><a href="<?= $ctx ?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
 		<li><a href="<?= $ctx ?>/c/<?= $w['cat_slug'] ?>.html"><?= $w['cat'] ?></a></li>
 		<li><a href="<?= $ctx ?>/work/<?= $w['id'] ?>.html#vol_$<?= $chp['volume_id'] ?>"><?= $w['name'] ?></a></li>
         <?php if (!empty($chp['volume_id']) && $chp['volume_id'] > 0) { ?>
-			<li><a href="<?= $ctx ?>/work/<?= $w['id'] ?>.html#vol_<?= $chp['volume_id'] ?>"><?= $chp['volume_name'] ?></a>
+			<li>
+				<a href="<?= $ctx ?>/work/<?= $w['id'] ?>.html#vol_<?= $chp['volume_id'] ?>"><?= $chp['volume_name'] ?></a>
 			</li>
         <?php } ?>
 		<li class="active"><?= $chp['name'] ?></li>
@@ -71,6 +75,9 @@ include_once 'common/navigator.php';
 		</div>
         <?php if (!empty($chapter_bottom_ad)) { ?>
 			<div><?= $chapter_bottom_ad ?></div>
+        <?php } ?>
+        <?php if (!empty($third_party_comments)) { ?>
+			<div><?= $third_party_comments ?></div>
         <?php } ?>
 	</div>
 

@@ -3,6 +3,8 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 
 
 require_service('WorkService');
+require_service('ChapterService');
+require_service('AuthorService');
 
 class FrontController extends AbstractController
 {
@@ -11,6 +13,8 @@ class FrontController extends AbstractController
     private $workService;
 
     private $chapterService;
+
+    private $authorService;
 
 
     /**
@@ -21,6 +25,7 @@ class FrontController extends AbstractController
         parent::__construct();
         $this->workService = new WorkService();
         $this->chapterService = new ChapterService();
+        $this->authorService = new AuthorService();
     }
 
 
@@ -106,5 +111,15 @@ class FrontController extends AbstractController
             $this->error_404();
         }
         $this->theme_view('chapter', $chapter, $chapter['_title']);
+    }
+
+
+    /**
+     * 获取作家集合页
+     */
+    public function authors()
+    {
+        $authors = $this->authorService->all();
+        $this->theme_view('authors', array('all' => $authors), '作家');
     }
 }

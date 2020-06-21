@@ -58,6 +58,13 @@ class AdminController extends AbstractController
     }
 
 
+    public function logout()
+    {
+        unset($_SESSION['user']);
+        $this->redirect('/login');
+    }
+
+
     public function index()
     {
         $this->admin_view('index', array(), '后台首页');

@@ -501,7 +501,7 @@ body {
     #floatPanel .ctrlPanel {
         width: 36px;
         height: 62px;
-        background: #fff url(/static/imgs/float-panel-bg.png) no-repeat left top;
+        background: #fff url(../imgs/float-panel-bg.png) no-repeat left top;
         border: solid 1px #ddd;
         margin-left: 435px;
         position: fixed;
