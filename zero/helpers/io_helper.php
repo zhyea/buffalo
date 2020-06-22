@@ -60,7 +60,7 @@ RewriteRule . /{ctx}/index.php [L]
 
         $content = str_replace('{ctx}', $context, $content);
 
-        $path = _ROOT_DIR_ . '.htaccess';
+        $path = _ROOT_DIR_ . DIRECTORY_SEPARATOR . '.htaccess';
         if (!file_exists($path)) {
             file_put_contents($path, $content);
         }

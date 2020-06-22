@@ -20,6 +20,7 @@ require_by_dir(_CONTROLLER_PATH_);
 
 require_by_dir(_APP_PATH_ . 'hook');
 
+gen_htaccess($context);
 
 $router = new Router();
 $router->dispatch();
