@@ -67,7 +67,7 @@
 
 
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="<?= $uri_theme ?>">
+				<li><a href="<?= $ctx ?>">
 						<i class="glyphicon glyphicon-home"></i> <?= empty($site_name) ? 'Test' : $site_name ?></a>
 				</li>
 				<li><a href="<?= $ctx ?>logout"><span class="glyphicon glyphicon-off"></span> 登出</a>

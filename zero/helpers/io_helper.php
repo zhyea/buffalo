@@ -33,3 +33,36 @@ if (!function_exists('del_upload_file')) {
         }
     }
 }
+
+
+if (!function_exists('gen_htaccess')) {
+    /**
+     * 生成.htaccess文件
+     * @param $context string 上下文
+     */
+    function gen_htaccess($context)
+    {
+        $content =
+            '
+# BEGIN Buffalo
+Options +FollowSymLinks +SymLinksIfOwnerMatch
+AddDefaultCharset utf-8
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /{ctx}/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /{ctx}/index.php [L]
+</IfModule>
+# END Buffalo';
+
+        $content = str_replace('{ctx}', $context, $content);
+
+        $path = _ROOT_DIR_ . '.htaccess';
+        if (!file_exists($path)) {
+            file_put_contents($path, $content);
+        }
+    }
+}

@@ -2,6 +2,7 @@
 # BEGIN Buffalo
 Options +FollowSymLinks +SymLinksIfOwnerMatch
 AddDefaultCharset utf-8
+
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /buffalo/

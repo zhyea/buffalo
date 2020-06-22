@@ -46,7 +46,7 @@ class AbstractController extends Z_Controller
         $params['uri_admin'] = _ADMIN_URI_;
         $params['uri_theme'] = _THEME_URI_;
         $params['uri_upload'] = _UPLOAD_URI_;
-        $params['ctx'] = _APP_CONTEXT_ . 'index.php/';
+        $params['ctx'] = _APP_CONTEXT_ . '/';
 
         if (isset($_SESSION['alert'])) {
             $params['alert'] = $_SESSION['alert'];
@@ -70,7 +70,7 @@ class AbstractController extends Z_Controller
     {
         $params['uri_theme'] = _THEME_URI_;
         $params['uri_upload'] = _UPLOAD_URI_;
-        $params['ctx'] = _APP_CONTEXT_ . 'index.php';
+        $params['ctx'] = _APP_CONTEXT_;
         $params = $params + $this->siteCfg;
 
         $nav = $this->navService->navigator();

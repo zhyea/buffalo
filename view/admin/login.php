@@ -22,7 +22,7 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 
 <div class="container login">
 
-	<form class="form-login" method="post" action="<?= $ctx ?>/login/check">
+	<form class="form-login" method="post" action="<?= $ctx ?>login/check">
 		<div class="logo"><img src="<?= $uri_admin ?>/static/img/logo.png" width="36%"/></div>
 		<div class="form-item">
 			<span class="form-label">用户名</span>

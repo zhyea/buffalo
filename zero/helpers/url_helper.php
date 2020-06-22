@@ -66,3 +66,37 @@ if (!function_exists('session_of')) {
         return empty($v) ? $default : $v;
     }
 }
+
+
+if (!function_exists('error_404')) {
+
+    /**
+     * 404 错误处理
+     */
+    function error_404()
+    {
+        if (array_key_exists('404', _R_) && !empty(_R_['404'])) {
+            redirect(_R_['404']);
+        } else {
+            println('404 Error');
+        }
+        exit();
+    }
+}
+
+
+if (!function_exists('error_500')) {
+    /**
+     * 500 错误处理
+     */
+    function error_500()
+    {
+        if (array_key_exists('500', _R_) && !empty(_R_['500'])) {
+            redirect(_R_['500']);
+        } else {
+            println('500 Error');
+        }
+        exit();
+    }
+}
+

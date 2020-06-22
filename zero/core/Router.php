@@ -20,7 +20,7 @@ class Router
     {
         session_start();
 
-        $p = array_key_exists('PATH_INFO', $_SERVER) ? $_SERVER['PATH_INFO'] : '/';
+        $p = $this->obtain_path();
 
         if (array_key_exists('preHandle', _CFG_['hooks'])) {
             $hooks = _CFG_['hooks']['preHandle'];
@@ -39,10 +39,13 @@ class Router
     }
 
 
+    /**
+     * 执行路由
+     */
     public function dispatch()
     {
         if (null == $this->controller_config) {
-            $this->error_404();
+            error_404();
         } else {
             $class = $this->controller_config[1];
             $method = $this->controller_config[2];
@@ -51,19 +54,48 @@ class Router
             try {
                 $c = new ReflectionClass($class);
                 if (!$c->hasMethod($method)) {
-                    $this->error_404();
+                    error_404();
                 }
 
                 $i = $c->newInstanceArgs();
                 $m = $c->getmethod($method);
                 $m->invokeArgs($i, $args);
             } catch (ReflectionException $e) {
-                $this->error_500();
+                error_500();
             }
         }
     }
 
 
+    /**
+     * 获取请求路径信息
+     */
+    private function obtain_path()
+    {
+        $path = $this->request_uri();
+        $idx = strpos($path, '?');
+        if ($idx > 0) {
+            $path = substr($path, 0, $idx);
+        }
+
+        if (str_start_with($path, _APP_CONTEXT_)) {
+            $path = substr($path, strlen(_APP_CONTEXT_));
+        }
+        if (str_start_with($path, '/index.php')) {
+            $path = substr($path, strlen('/index.php'));
+        }
+        if (str_start_with($path, 'index.php') && str_len_cmp('index.php', $path)) {
+            $path = substr($path, strlen('index.php'));
+        }
+        return $path;
+    }
+
+
+    /**
+     * 解析获取Controller信息
+     * @param $path string 请求路径
+     * @return array|null 路径对应Controller信息
+     */
     private function _parse_controller($path)
     {
         $cfg = NULL;
@@ -96,6 +128,11 @@ class Router
     }
 
 
+    /**
+     * 处理rest路径
+     * @param $path string 请求路径
+     * @return array|null  路径对应Controller信息
+     */
     private function _parse_rest_path($path)
     {
         //1. 先全名验证
@@ -138,6 +175,11 @@ class Router
     }
 
 
+    /**
+     * 解析获取Controller信息
+     * @param $path string 请求路径
+     * @return array|null 路径对应Controller信息
+     */
     private function _parse_controller0($path)
     {
         $arr = explode('/', $path);
@@ -161,25 +203,26 @@ class Router
     }
 
 
-    private function error_404()
+    /**
+     * 获取请求路径
+     * @return mixed|string
+     */
+    private function request_uri()
     {
-        if (array_key_exists('404', _R_) && !empty(_R_['404'])) {
-            redirect(_R_['404']);
-        } else {
-            println('404 Error');
+        $uri = '';
+        if (isset($_SERVER['HTTP_X_REWRITE_URL'])) {
+            // check this first so IIS will catch
+            $uri = $_SERVER['HTTP_X_REWRITE_URL'];
+        } elseif (isset($_SERVER['REDIRECT_URL'])) {
+            // Check if using mod_rewrite
+            $uri = $_SERVER['REDIRECT_URL'];
+        } elseif (isset($_SERVER['REQUEST_URI'])) {
+            $uri = $_SERVER['REQUEST_URI'];
+        } elseif (isset($_SERVER['ORIG_PATH_INFO'])) {
+            // IIS 5.0, PHP as CGI
+            $uri = $_SERVER['ORIG_PATH_INFO'];
         }
-        exit();
-    }
-
-
-    private function error_500()
-    {
-        if (array_key_exists('500', _R_) && !empty(_R_['500'])) {
-            redirect(_R_['500']);
-        } else {
-            println('500 Error');
-        }
-        exit();
+        return $uri;
     }
 
 }

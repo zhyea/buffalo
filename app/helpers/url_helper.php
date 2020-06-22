@@ -6,9 +6,9 @@ if (!function_exists('redirect_in_site')) {
     function redirect_in_site($path)
     {
         if (str_start_with($path, '/') && strlen($path) > 1) {
-            $uri = _APP_CONTEXT_ . 'index.php' . $path;
+            $uri = _APP_CONTEXT_ . $path;
         } elseif (!str_start_with($path, '/')) {
-            $uri = _APP_CONTEXT_ . 'index.php/' . $path;
+            $uri = _APP_CONTEXT_ . '/' . $path;
         } else {
             $uri = _APP_CONTEXT_;
         }
