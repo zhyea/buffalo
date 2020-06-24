@@ -264,3 +264,7 @@ if (!is_dir(_UPLOAD_PATH_)) {
     mkdir(_UPLOAD_PATH_, 0777, true);
 }
 
+
+if (!empty(_CFG_['time_zone'])) {
+    date_default_timezone_set('Asia/Shanghai');
+}

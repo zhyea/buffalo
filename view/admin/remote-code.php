@@ -11,7 +11,7 @@ include_once 'common/navigator.php';
 		</div>
 
 		<p>交互码为：<strong><?= $code ?></strong></p>
-		<p>交互码过期时间为：<strong><?= $expire_date ?></strong></p>
+		<p>交互码过期时间为：<strong><?= $expire_time ?></strong></p>
 	</div>
 
 <?php include_once 'common/footer.php'; ?>

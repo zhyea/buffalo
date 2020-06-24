@@ -49,6 +49,7 @@ class AdminController extends AbstractController
 
         $user = $this->userService->check_login($username, $password);
         if (!empty($user)) {
+            $_SESSION['last_log'] = time();
             $_SESSION['user'] = $user;
             $this->redirect('/admin');
         } else {

@@ -14,12 +14,12 @@ class PreHandleHook extends Z_RequestHook
                 exit();
             }
 
-            $first_log = session_of('first_log', 0);
-            $diff = (time() - $first_log) / 60 / 60;
-            if ($diff > 2) {
+            $last_log = session_of('last_log', 0);
+            $diff = (time() - $last_log) / 60 / 60;
+            if ($diff > 1) {
                 unset($_SESSION['user']);
             }
-
+            $_SESSION['last_log'] = time();
         }
     }
 }
