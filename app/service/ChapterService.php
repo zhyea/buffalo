@@ -157,7 +157,7 @@ class ChapterService
      * @param $chapter_name string 章节名称
      * @param $content string 章节内容
      */
-    private function add_chapter($work_id, $vol_name, $chapter_name, $content)
+    public function add_chapter($work_id, $vol_name, $chapter_name, $content)
     {
         $vol = array();
         if (empty($vol_name) || $vol_name == $chapter_name) {

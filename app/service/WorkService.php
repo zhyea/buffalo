@@ -252,4 +252,18 @@ class WorkService
         }
         return $result;
     }
+
+
+    /**
+     * 根据作品名称获取作品信息
+     * @param $name string 作品名称
+     * @return array|null 作品信息
+     */
+    public function get_by_name($name)
+    {
+        if (empty($name)) {
+            return null;
+        }
+        return $this->workModel->get_by_name($name);
+    }
 }

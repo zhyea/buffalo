@@ -26,11 +26,11 @@ class AdminController extends AbstractController
 
     public function login_check()
     {
-        $first_login_time = session_of('first_log', 0);
+        $first_login_time = from_session('first_log', 0);
         if (0 === $first_login_time) {
             $_SESSION['first_log'] = time();
         }
-        $count = session_of('log_count', 0);
+        $count = from_session('log_count', 0);
         $_SESSION['log_count'] = ($count + 1);
 
         $diff = (time() - $first_login_time) / 60;

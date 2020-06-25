@@ -95,8 +95,7 @@ class WorkModel extends Z_Model
      */
     public function count_with_author($author_id)
     {
-        $sql = "select count(id) from work where author_id=?";
-        return $this->_count($sql, array($author_id));
+        return $this->_count_by(array('author_id' => $author_id));
     }
 
 
@@ -145,8 +144,7 @@ class WorkModel extends Z_Model
      */
     public function count_with_cat($cat_id)
     {
-        $sql = "select count(id) from work where category_id=?";
-        return $this->_count($sql, array($cat_id));
+        return $this->_count_by(array('category_id' => $cat_id));
     }
 
 
@@ -162,5 +160,15 @@ class WorkModel extends Z_Model
         $sql = $sql . 'from work w left join author a on w.author_id=a.id left join category m on w.category_id=m.id ';
         $sql = $sql . 'where w.name like ? or brief like ? or a.name like ? or m.name like ? order by w.id desc limit 9 ';
         return $this->_find($sql, array($keywords, $keywords, $keywords, $keywords));
+    }
+
+
+    /**
+     * 根据作品名称获取作品信息
+     * @param $name string 作品名称
+     * @return array 作品记录
+     */
+    public function get_by_name($name){
+        return $this->_get_by(array('name'=>$name));
     }
 }
