@@ -107,6 +107,9 @@ class WorkController extends AbstractController
             }
             $data['cover'] = $cover[1];
         }
+        if (!isset($data['cover'])) {
+            $data['cover'] = 'nocover.png';
+        }
         $data = array_key_rm('cat', $data);
         $data = array_key_rm('author', $data);
         $data = array_key_rm('country', $data);
@@ -156,7 +159,6 @@ class WorkController extends AbstractController
         $data = $this->workService->find_with_keywords($keywords);
         $this->render_json(array('key' => $keywords, 'value' => $data));
     }
-
 
 
 }
