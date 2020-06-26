@@ -11,12 +11,13 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 		2019 © <a href="http://calf.chobit.org">Buffalo</a>
 	</div>
 </div>
-
-<script src="<?= $uri_admin ?>/static/js/bootstrap.min.js"></script>
-<script src="<?= $uri_admin ?>/static/js/bootstrap-table.min.js"></script>
-<script src="<?= $uri_admin ?>/static/js/bootstrap-table-zh-CN.min.js"></script>
 </div>
 </body>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-table/1.16.0/bootstrap-table.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-table/1.16.0/locale/bootstrap-table-zh-CN.min.js"></script>
+
 </html>
 
 

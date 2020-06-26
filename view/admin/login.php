@@ -10,11 +10,14 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	<link rel="shortcut" type="image/x-icon" href="<?= $uri_admin ?>/static/img/favicon.ico">
+	<link rel="icon" href="<?= $uri_admin ?>/static/img/favicon.ico">
 
-	<link rel="stylesheet" type="text/css" href="<?= $uri_admin ?>/static/css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="<?= $uri_admin ?>/static/css/font-awesome.min.css"/>
-	<link rel="stylesheet" type="text/css" href="<?= $uri_admin ?>/static/css/bootstrap-table.min.css"/>
+	<link rel="stylesheet" type="text/css"
+	      href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css"
+	      href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.0/css/fontawesome.min.css"/>
+	<link rel="stylesheet" type="text/css"
+	      href="https://cdn.bootcdn.net/ajax/libs/bootstrap-table/1.16.0/bootstrap-table.min.css"/>
 	<link rel="stylesheet" type="text/css" href="<?= $uri_admin ?>/static/css/style.css"/>
 </head>
 
@@ -44,11 +47,11 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 
 </div> <!-- /container -->
 
-<script src="<?= $uri_admin ?>/static/js/jquery.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="<?= $uri_admin ?>/static/js/custom-script.js"></script>
-<script src="<?= $uri_admin ?>/static/js/bootstrap.min.js"></script>
-<script src="<?= $uri_admin ?>/static/js/bootstrap-table.min.js"></script>
-<script src="<?= $uri_admin ?>/static/js/bootstrap-table-zh-CN.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-table/1.16.0/bootstrap-table.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-table/1.16.0/locale/bootstrap-table-zh-CN.min.js"></script>
 </body>
 </html>
 

@@ -6,7 +6,7 @@ include_once 'common/navigator.php';
 ?>
 
 
-<script charset="utf-8" src="<?= $uri_admin ?>/static/ckeditor/ckeditor.js"></script>
+<script charset="utf-8" src="https://cdn.ckeditor.com/4.14.1/basic/ckeditor.js"></script>
 
 
 <div class="container main">
