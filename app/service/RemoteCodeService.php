@@ -23,7 +23,7 @@ class RemoteCodeService
             return;
         }
         $rc = $this->rcModel->get_by_user($user['id']);
-        $time = time();
+        $time = 0;
         if (empty($rc)) {
             $rc = array();
             $rc['user_id'] = $user['id'];
