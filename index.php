@@ -64,12 +64,12 @@ define('_ZERO_PATH_', $zero_path);
 /**
  * define view context
  */
-define('_APP_CONTEXT_', '/' . $context);
+define('_APP_CONTEXT_', (empty($context) ? '' : '/' . $context));
 
 /**
  * define view context
  */
-define('_VIEW_CONTEXT_', '/' . $context . '/' . $view_folder);
+define('_VIEW_CONTEXT_', _APP_CONTEXT_ . '/' . $view_folder);
 
 /**
  * 加载zero框架

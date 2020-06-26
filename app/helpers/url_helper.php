@@ -1,5 +1,7 @@
 <?php
 
+defined('_APP_PATH_') or exit('You shall not pass!');
+
 
 if (!function_exists('redirect_in_site')) {
 
