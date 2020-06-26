@@ -58,13 +58,12 @@ class NavigatorController extends AbstractController
     public function settings($parent = 0, $id = 0)
     {
         $nav = $this->model->get_by_id($id);
-        $nav = empty($nav) ? array() : $nav;
-        $parent = empty($nav) ? $parent : $nav['parent'];
+        $parent = array_value_of('parent', $nav, $parent);
         $candidates = $this->service->candidate_parent($id, $parent);
         $nav['candidates'] = $candidates;
         $nav['id'] = $id;
         $nav['parent'] = $parent;
-        $nav['type'] = '';
+        $nav['type'] = array_value_of('type', $nav, '');
         $this->admin_view('nav-settings', $nav, $id <= 0 ? '新增导航' : '编辑导航');
     }
 
@@ -78,7 +77,7 @@ class NavigatorController extends AbstractController
 
         $this->model->insert_or_update($cat);
 
-        $this->redirect('admin/category/list');
+        $this->redirect('admin/nav/list');
     }
 
 

@@ -46,15 +46,15 @@ class UserController extends AbstractController
      */
     public function maintain()
     {
-        $arr = $this->_post();
-        $username = $arr['username'];
+        $data = $this->_post();
+        $username = $data['username'];
         $user = $this->model->get_by_username($username);
-        if (!empty($user)) {
+        if (!empty($data['id']) && !empty($user) && ($data['id'] != $user['id'])) {
             $this->alert_danger('用户名已存在');
             $this->redirect('admin/user/settings');
         } else {
-            $arr['password'] = md5($arr['password'] . '#_淦x7');
-            $this->model->insert_or_update($arr);
+            $data['password'] = md5($data['password'] . '#_淦x7');
+            $this->model->insert_or_update($data);
             $this->alert_success('新增用户成功');
             $this->redirect('admin/user/list');
         }

@@ -12,7 +12,7 @@ include_once 'common/navigator.php';
 
     <?php include_once 'common/alert.php'; ?>
 
-	<form method="post" action="<? $ctx ?>admin/nav/settings">
+	<form method="post" action="<?= $ctx ?>admin/nav/maintain">
 
 		<div class="row">
 			<input type="hidden" name="id" value="<?= (empty($id) ? 0 : $id) ?>"/>
@@ -36,7 +36,7 @@ include_once 'common/navigator.php';
 					<div class="form-label col-md-2 col-xs-12">名称</div>
 					<div class="form-input col-md-10 col-xs-12">
 						<input id="navName" type="text" class="form-control" name="name"
-						       value="<?= (empty($name) ? '' : $name) ?>" <?= ($type != 'url' ? 'readonly' : '') ?>
+						       value="<?= (empty($name) ? '' : $name) ?>" <?= ($type != 'custom' ? 'readonly' : '') ?>
 						       required/>
 					</div>
 				</div>
@@ -44,7 +44,7 @@ include_once 'common/navigator.php';
 					<div class="form-label col-md-2 col-xs-12">URL</div>
 					<div class="form-input col-md-10 col-xs-12">
 						<input id="navUrl" type="text" class="form-control" name="url"
-						       value="<?= (empty($url) ? '' : $url) ?>" <?= ($type != 'url' ? 'readonly' : '') ?>
+						       value="<?= (empty($url) ? '' : $url) ?>" <?= ($type != 'custom' ? 'readonly' : '') ?>
 						       required/>
 					</div>
 				</div>
@@ -80,7 +80,7 @@ include_once 'common/navigator.php';
                         levels: 1,
                         data: result,
                         onNodeSelected: function (event, node) {
-                            if (node.id === 0 && node.ext2 === 'url') {
+                            if (node.id === 0 && node.ext2 === 'custom') {
                                 $("#navName").attr('readonly', false);
                                 $("#navUrl").attr('readonly', false);
 

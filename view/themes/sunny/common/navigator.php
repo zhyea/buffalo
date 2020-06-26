@@ -1,5 +1,14 @@
 <?php
 defined('_APP_PATH_') or exit('You shall not pass!');
+
+function nav_of($item, $ctx)
+{
+    if ('custom' == $item['type']) {
+        return $item['url'];
+    }
+    return $ctx . $item['url'];
+}
+
 ?>
 
 
@@ -45,12 +54,12 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 								   aria-expanded="false"><?= $n['name'] ?><span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li>
-										<a href="<?= $ctx . $n['url'] ?>"><?= $n['name'] ?></a>
+										<a href="<?= nav_of($n, $ctx) ?>"><?= $n['name'] ?></a>
 									</li>
                                     <?php $children = $n['children'];
                                     foreach ($children as $c) { ?>
 										<li>
-											<a href="<?= $ctx . $c['url'] ?>"><?= $c['name'] ?></a>
+											<a href="<?= nav_of($c, $ctx) ?>"><?= $c['name'] ?></a>
 										</li>
                                     <?php } ?>
 								</ul>
@@ -59,7 +68,7 @@ defined('_APP_PATH_') or exit('You shall not pass!');
                         } else {
                             ?>
 							<li>
-								<a href="<?= $ctx . $n['url'] ?>"><?= $n['name'] ?></a>
+								<a href="<?= nav_of($n, $ctx) ?>"><?= $n['name'] ?></a>
 							</li>
                         <?php }
                     }
