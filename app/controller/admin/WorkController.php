@@ -68,7 +68,9 @@ class WorkController extends AbstractController
 
         if (!empty($w) && !empty($w['cover'])) {
             $path = $w['cover'];
-            del_upload_file($path);
+            if (!empty($path) && !('nocover.png' == $path)) {
+                del_upload_file($path);
+            }
             $w['cover'] = '';
         }
 

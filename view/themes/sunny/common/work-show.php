@@ -22,8 +22,8 @@ defined('_APP_PATH_') or exit('You shall not pass!');
                         <?php
                         if (!empty($w['brief'])) {
                             $txt = $w['brief'];
-                            if (strlen($txt) > 120) {
-                                $txt = substr($txt, 0, 120);
+                            if (strlen($txt) > 240) {
+                                $txt = substr($txt, 0, 240);
                             }
                             echo $txt . '...';
                         }

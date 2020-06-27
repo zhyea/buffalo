@@ -67,8 +67,9 @@ class RemoteCodeService
             return null;
         }
         $time = strtotime($rc['op_time']);
-        $diff = (time() - $time) / 60 - 60;
-        if ($diff <= 0) {
+        $diff = ($time - time()) / 60 + 60;
+
+        if ($diff < 0) {
             return null;
         }
         return $rc;
