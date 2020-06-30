@@ -53,9 +53,6 @@ function nav_of($item, $ctx)
 								   aria-haspopup="true"
 								   aria-expanded="false"><?= $n['name'] ?><span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li>
-										<a href="<?= nav_of($n, $ctx) ?>"><?= $n['name'] ?></a>
-									</li>
                                     <?php $children = $n['children'];
                                     foreach ($children as $c) { ?>
 										<li>

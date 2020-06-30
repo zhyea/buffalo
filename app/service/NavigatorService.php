@@ -130,7 +130,7 @@ class NavigatorService
     public function navigator()
     {
         $nav = array('id' => 0, 'children' => array());
-        $all = $this->navModel->find_all();
+        $all = $this->navModel->all();
         return build_tree($all, $nav);
     }
 

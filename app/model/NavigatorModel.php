@@ -51,4 +51,10 @@ class NavigatorModel extends Z_Model
         return $this->delete_by_ids($ids);
     }
 
+
+    public function all()
+    {
+        $sql = 'select * from navigator order by sn desc, id asc';
+        return $this->_find($sql);
+    }
 }
