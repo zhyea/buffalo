@@ -168,7 +168,19 @@ class WorkModel extends Z_Model
      * @param $name string 作品名称
      * @return array 作品记录
      */
-    public function get_by_name($name){
-        return $this->_get_by(array('name'=>$name));
+    public function get_by_name($name)
+    {
+        return $this->_get_by(array('name' => $name));
+    }
+
+
+    /**
+     * 增加作品排序
+     * @param $work_id int 作品ID
+     */
+    public function add_sn($work_id)
+    {
+        $sql = 'update work set sn=sn+1 where id=?';
+        $this->_execute($sql, array($work_id));
     }
 }

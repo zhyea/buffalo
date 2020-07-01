@@ -266,4 +266,14 @@ class WorkService
         }
         return $this->workModel->get_by_name($name);
     }
+
+
+    /**
+     * 增加作品排序
+     * @param $work_id int 作品ID
+     */
+    public function add_sn($work_id)
+    {
+        $this->workModel->add_sn($work_id);
+    }
 }

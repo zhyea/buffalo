@@ -94,6 +94,7 @@ class FrontController extends AbstractController
         if (empty($work)) {
             $this->error_404();
         }
+        $this->workService->add_sn($work_id);
         $vols = $this->chapterService->volumes($work_id);
         $relates = $this->workService->relate($work_id, $work['author_id']);
         $this->theme_view('work', array('w' => $work, 'vols' => $vols, 'relates' => $relates), $work['name']);
@@ -122,4 +123,6 @@ class FrontController extends AbstractController
         $authors = $this->authorService->all();
         $this->theme_view('authors', array('all' => $authors), '作家');
     }
+
+
 }

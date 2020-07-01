@@ -90,12 +90,18 @@ include_once 'common/navigator.php';
 <script type="text/javascript">
     window.addEventListener('load', LoadReadSet, false);
 
+    <?php if(!empty($last)){ ?>
     let last_page = "<?=$ctx?>/chapter/<?=$last?>.html";
+    <?php   }else{?>
+    let last_page = "<?= $ctx ?>/work/<?= $w['id'] ?>.html";
+    <?php }?>
+
     <?php if(!empty($next)){ ?>
     let next_page = "<?=$ctx?>/chapter/<?=$next?>.html";
     <?php   }else{?>
     let next_page = "<?= $ctx ?>/work/<?= $w['id'] ?>.html";
     <?php }?>
+
     document.onkeydown = function (evt) {
         let e = window.event || evt;
         if (e.keyCode == 37) location.href = last_page;

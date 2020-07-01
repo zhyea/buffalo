@@ -22,7 +22,7 @@ class Router
 
         $p = $this->obtain_path();
 
-        if (array_key_exists('preHandle', _CFG_['hooks'])) {
+        if (array_key_exists('hooks', _CFG_) && array_key_exists('preHandle', _CFG_['hooks'])) {
             $hooks = _CFG_['hooks']['preHandle'];
             foreach ($hooks as $h) {
                 $hook = new $h;
