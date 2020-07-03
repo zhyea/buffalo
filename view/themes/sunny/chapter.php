@@ -42,7 +42,7 @@ include_once 'common/navigator.php';
 				<a>无</a>
             <?php } ?>
 			←
-			<a href="<?= $ctx ?>/work/<?= $w['id'] ?>" .html#vol_<?= $chp['volume_id'] ?>">返回目录</a>
+			<a href="<?= $ctx ?>/work/<?= $w['id'] ?>.html#vol_<?= $chp['volume_id'] ?>">返回目录</a>
 			→
 
             <?php if (!empty($next)) { ?>
@@ -64,7 +64,7 @@ include_once 'common/navigator.php';
 				<a>无</a>
             <?php } ?>
 			←
-			<a href="<?= $ctx ?>/work/<?= $w['id'] ?>" .html#vol_<?= $chp['volume_id'] ?>">返回目录</a>
+			<a href="<?= $ctx ?>/work/<?= $w['id'] ?>.html#vol_<?= $chp['volume_id'] ?>">返回目录</a>
 			→
 
             <?php if (!empty($next)) { ?>
