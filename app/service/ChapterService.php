@@ -118,6 +118,10 @@ class ChapterService
     {
         $vol = $this->volumeModel->get_by_work_and_name($work_id, $vol_name);
         if (!empty($vol)) {
+            if ($vol_name != $vol['name']) {
+                $vol['name'] = $vol_name;
+                $this->volumeModel->update($vol);
+            }
             return $vol['id'];
         }
         $vol = array('work_id' => $work_id, 'name' => $vol_name);
@@ -142,6 +146,12 @@ class ChapterService
         if (0 == $vol_id && !empty($data['volume'])) {
             $vol_id = $this->get_volume_id($work_id, $data['volume']);
             $data['volume_id'] = $vol_id;
+        } else if (0 != $vol_id && empty($data['new_volume']) && !empty($data['volume'])) {
+            $vol = $this->volumeModel->get_by_id($vol_id);
+            if ($vol['name'] != $data['volume']) {
+                $vol['name'] = $data['volume'];
+                $this->volumeModel->update($vol);
+            }
         }
 
         $data = array_key_rm('volume', $data);
@@ -191,7 +201,7 @@ class ChapterService
     public function upload($work_id, $file)
     {
         $pattern = '/^第?[\s]{0,9}[\d〇零一二三四五六七八九十百千万上中下０１２３４５６７８９ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ　\s]{1,6}[\s]{0,9}[、，．\.]?[章回节卷部篇讲集分]{0,2}([\s]{1,9}.{0,32})?$/iu';
-        $arr = array("楔子", "引子", "引言", "前言", "序章", "序言", "序曲", "尾声", "终章", "后记", "序", "序幕", "跋", "附", "附言");
+        $arr = array("楔子", "引子", "引言", "前言", "序章", "序言", "序曲", "尾声", "终章", "后记", "序", "序幕", "跋", "附", "附言", "简介");
         $f = file(_UPLOAD_PATH_ . '/' . $file);
         $chapter_name = '';
         $vol_name = '';
@@ -218,7 +228,6 @@ class ChapterService
                     $chapter_name = $line;
                 }
             } else {
-                $line = str_replace(' ', '', $line);
                 $content = $content . '<p>' . $line . '</p>';
             }
         }

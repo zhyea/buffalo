@@ -64,4 +64,15 @@ class CategoryModel extends Z_Model
         return $this->_get_by(array('slug' => $slug));
     }
 
+
+    /**
+     * 查询全部分类
+     * @return array 全部记录
+     */
+    public function all()
+    {
+        $sql = "select * from category order by sn desc, id asc";
+        return $this->_find($sql, array());
+    }
+
 }

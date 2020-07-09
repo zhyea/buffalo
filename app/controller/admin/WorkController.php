@@ -105,7 +105,10 @@ class WorkController extends AbstractController
         $cover = $this->_upload('cover');
         if ($cover[0]) {
             if (!empty($data['former_cover'])) {
-                del_upload_file($data['former_cover']);
+                $former_cover = $data['former_cover'];
+                if (strcmp($former_cover, 'nocover.png') != 0) {
+                    del_upload_file($data['former_cover']);
+                }
             }
             $data['cover'] = $cover[1];
         }

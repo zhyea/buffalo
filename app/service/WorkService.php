@@ -38,7 +38,7 @@ class WorkService
     public function home_works()
     {
         $all = array();
-        $cats = $this->catModel->find_all('id', 'asc');
+        $cats = $this->catModel->all();
         foreach ($cats as $c) {
             $works = $this->workModel->find_with_cat($c['id'], 'id', 'desc', 0, 18);
             if (!empty($works)) {
