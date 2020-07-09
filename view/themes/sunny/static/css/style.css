@@ -5,6 +5,12 @@ h2, h3, h4, h5, h6 {
     font-size: 15px;
 }
 
+em {
+    font-family: "仿宋", "宋体", "楷体", "Sans-serif", serif;
+    font-size: 1em;
+    font-style: normal;
+}
+
 body {
     background: #A8ABA8;
     font-size: 13px;
