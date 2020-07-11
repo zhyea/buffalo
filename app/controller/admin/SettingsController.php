@@ -26,6 +26,7 @@ class SettingsController extends AbstractController
         $notice = $this->model->get_by_key('notice');
         $keywords = $this->model->get_by_key('keywords');
         $bg_repeat = $this->model->get_by_key('bg_repeat', 1);
+        $bg_color = $this->model->get_by_key('bg_color', '');
         $logo = $this->model->get_by_key('logo', '');
         $background = $this->model->get_by_key('background', '');
 
@@ -35,6 +36,7 @@ class SettingsController extends AbstractController
                 'description' => $desc,
                 'keywords' => $keywords,
                 'bg_repeat' => $bg_repeat,
+                'bg_color' => $bg_color,
                 'logo' => $logo,
                 'background' => $background), "网站配置");
     }
@@ -49,6 +51,7 @@ class SettingsController extends AbstractController
         $logo = $this->_upload('logo');
         $background = $this->_upload('background');
         $bg_repeat = $_POST['bg_repeat'];
+        $bg_color = $_POST['bg_color'];
 
         $this->model->change('site_name', $name);
         $this->model->change('description', $desc);
@@ -63,6 +66,7 @@ class SettingsController extends AbstractController
             $this->model->change('background', $background[1]);
         }
         $this->model->change('bg_repeat', $bg_repeat);
+        $this->model->change('bg_color', $bg_color);
 
         $this->alert_success('更新网站设置成功');
 

@@ -14,7 +14,8 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 
 	<link rel="icon" href="<?= $uri_theme ?>/static/imgs/favicon.ico">
 
-	<link rel="stylesheet" type="text/css" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css"
+	      href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="<?= $uri_theme ?>/static/css/style.css"/>
 
 	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -27,7 +28,7 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 
 	<style>
 		body {
-			background: #f5f5f5 <?=(empty($background) ? '' : 'url('.$uri_upload . '/'.$background.')')?> <?=(!empty($background) && !empty($bg_repeat) && 1==$bg_repeat ? 'repeat' : 'no-repeat')?>;
+			background: <?=(empty($bg_color) ? '#F0F0F0' : $bg_color)?> <?=(empty($background) ? '' : 'url('.$uri_upload . '/'.$background.')')?> <?=(!empty($background) && !empty($bg_repeat) && 1==$bg_repeat ? 'repeat' : 'no-repeat')?>;
 		<?=(!empty($background) && !empty($bg_repeat) && 2==$bg_repeat ? 'background-position: center; background-size: 100% auto; background-attachment: fixed;' : '')?>
 		}
 

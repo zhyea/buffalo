@@ -85,6 +85,13 @@ include_once 'common/navigator.php';
 		</div>
 
 		<div class="row">
+			<div class="form-label col-md-2 col-xs-12">背景色</div>
+			<div class="form-input col-md-10 col-xs-12">
+				<input type="text" class="form-control" name="bg_color" value="<?= $bg_color ?>"/>
+			</div>
+		</div>
+
+		<div class="row">
 			<div class="col-md-6 col-xs-12">&nbsp;</div>
 			<div class="form-input col-md-6 col-xs-12">
 				<button type="submit" class="btn btn-success">保存设置</button>
