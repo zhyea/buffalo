@@ -51,7 +51,7 @@ include_once 'common/navigator.php';
 			<div class="row">
 					<textarea name="content"
 					          id="calf_chapter_editor"><?= (empty($content) ? '' : $content) ?></textarea>
-				<script> CKEDITOR.replace('calf_chapter_editor');</script>
+				<script> CKEDITOR.replace('calf_chapter_editor', {height: 480});</script>
 			</div>
 			
 			
@@ -81,6 +81,6 @@ include_once 'common/navigator.php';
         keyField: "name",
         effectiveFields: ["id", "name"]
     }).on('onSetSelectValue', function (e, keyword, data) {
-        $("#volumeId").val(data.id)
+        $("#volume_id").val(data.id)
     });
 </script>
