@@ -22,9 +22,21 @@ class FeatureRecordModel extends Z_Model
      */
     public function count_with_alias($feature_alias)
     {
-        $sql = "select count(r.id) from feature_record r left join feature f on r.feature_id ";
+        $sql = "select count(r.id) from feature_record r left join feature f on r.feature_id=f.id ";
         $sql = $sql . "where f.alias=?";
         return $this->_count($sql, array($feature_alias));
+    }
+
+    /**
+     * 调整排序
+     * @param $id int 记录ID
+     * @param $step int 排序步长
+     * @return bool 是否修改成功
+     */
+    public function change_order($id, $step)
+    {
+        $sql = 'update feature_record set sn=(sn+?) where id=?';
+        return $this->_execute($sql, array($step, $id));
     }
 
 }

@@ -41,12 +41,16 @@ $routes['/admin/settings/delete/background'] = 'admin/settings/delete_bg';
 $routes['/admin/category/change-order/{id}'] = 'admin/category/change_order';
 // 打开导航列表
 $routes['/admin/nav'] = 'admin/navigator';
+// 打开导航列表
+$routes['/admin/nav/change-order/{id}'] = 'admin/navigator/change_order';
 // 打开脚本列表
 $routes['/admin/spt'] = 'admin/script';
 // 删除专题封面
 $routes['/admin/feature/delete/cover/{id}'] = 'admin/feature/delete_cover';
 // 删除专题背景图
 $routes['/admin/feature/delete/bg/{id}'] = 'admin/feature/delete_bg';
+// 调整专题记录的顺序
+$routes['/admin/feature/record/change-order/{recordId}'] = 'admin/feature/change_record_order';
 // 删除作品封面图
 $routes['/admin/work/delete/cover/{id}'] = 'admin/work/delete_cover';
 // 删除专题作品

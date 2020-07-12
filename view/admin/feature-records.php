@@ -54,6 +54,7 @@ include_once 'common/navigator.php';
 			<th data-align="center" data-checkbox="true"></th>
 			<th data-align="left" data-sortable="true" data-field="author">作者</th>
 			<th data-align="left" data-sortable="true" data-field="name">作品</th>
+			<th data-halign="center" data-align="center" data-field="sn" data-formatter="orderFormatter">排序</th>
 		</tr>
 		</thead>
 	</table>
@@ -66,7 +67,7 @@ include_once 'common/navigator.php';
 <script>
     let $table = $('#featureRecordTable');
 
-    
+
     $("#featureRecordSelectInput").bsSuggest({
         clearable: true,
         url: "<?=$ctx?>admin/work/suggest?key=",
@@ -87,7 +88,6 @@ include_once 'common/navigator.php';
     });
 
 
-
     // 删除按钮事件
     $("#btnDelete").on("click", function () {
         let rows = $table.bootstrapTable('getSelections');// 获得要删除的数据
@@ -100,4 +100,17 @@ include_once 'common/navigator.php';
             sendBootstrapTableRequest($table, 'post', '<?=$ctx?>admin/feature/records/delete', ids);
         }
     });
+
+    function orderFormatter(value, row, index) {
+        let arr = [
+            '<a href="javascript:changeOrder(' + row.record_id + ', 1)"><i class="glyphicon glyphicon-arrow-up"></i></a>',
+            '<a href="javascript:changeOrder(' + row.record_id + ', -1)"><i class="glyphicon glyphicon-arrow-down"></i></a>'
+        ];
+        return arr.join('&nbsp;');
+    }
+
+    function changeOrder(id, step) {
+        $table.bootstrapTable('showLoading');
+        sendBootstrapTableRequest($table, 'post', '<?= $ctx?>admin/feature/record/change-order/' + id, step);
+    }
 </script>

@@ -33,7 +33,7 @@ include_once 'common/navigator.php';
 	<div class="pagination">
 		<a>共 <?= $total ?> 部</a>
         <?php for ($i = 1; $i <= $total; $i++) { ?>
-			<a href="<?=$ctx?>/c/<?= $feature['alias'] ?>/<?= $i ?>.html"
+			<a href="<?=$ctx?>/f/<?= $feature['alias'] ?>/<?= $i ?>.html"
 			   class="<?= ($page == $i ? 'active' : '') ?>"><?= $i ?></a>
         <?php } ?>
 	</div>

@@ -185,4 +185,13 @@ class FeatureController extends AbstractController
     }
 
 
+    /**
+     * 调整排序
+     * @param $id int 记录ID
+     */
+    public function change_record_order($id)
+    {
+        $step = $this->_post_body();
+        echo $this->recordModel->change_order($id, $step);
+    }
 }

@@ -81,7 +81,7 @@ include_once 'common/navigator.php';
         if (row.sub_count > 0) {
             arr.push('<a href="<?=$ctx?>admin/nav/list/' + row.id + '" target="_self">查看</a>');
         } else {
-            arr.push('<a href="<?=$ctx?>admin/nav/settings/'+ row.parent + '/' + row.id + '" target="_self">新增</a>');
+            arr.push('<a href="<?=$ctx?>admin/nav/settings/' + row.id + '" target="_self">新增</a>');
         }
         return arr.join('&nbsp;');
     }
