@@ -31,30 +31,6 @@ include_once 'common/navigator.php';
 		</script>
 	</div>
 
-	<script type="text/javascript">
-        window.addEventListener('load', LoadReadSet, false);
-
-        <?php if(!empty($last)){ ?>
-        let last_page = "<?=$ctx?>/chapter/<?=$last?>.html";
-        <?php   }else{?>
-        let last_page = "<?= $ctx ?>/work/<?= $w['id'] ?>.html";
-        <?php }?>
-
-        <?php if(!empty($next)){ ?>
-        let next_page = "<?=$ctx?>/chapter/<?=$next?>.html";
-        <?php   }else{?>
-        let next_page = "<?= $ctx ?>/work/<?= $w['id'] ?>.html";
-        <?php }?>
-
-        document.onkeydown = function (evt) {
-            let e = window.event || evt;
-            if (e.keyCode == 37) location.href = last_page;
-            if (e.keyCode == 39) location.href = next_page;
-        };
-
-        backToTop();
-	</script>
-
 	<div class="row" id="contentContainer">
 
 		<div class="row chapter-name"><?= $chp['name'] ?></div>
@@ -97,7 +73,6 @@ include_once 'common/navigator.php';
 				<a>没有了</a>
             <?php } ?>
 		</div>
-
         <?php if (!empty($chapter_bottom_ad)) { ?>
 			<div><?= $chapter_bottom_ad ?></div>
         <?php } ?>
@@ -112,3 +87,26 @@ include_once 'common/navigator.php';
 <?php include_once 'common/footer.php'; ?>
 
 
+<script type="text/javascript">
+    window.addEventListener('load', LoadReadSet, false);
+
+    <?php if(!empty($last)){ ?>
+    let last_page = "<?=$ctx?>/chapter/<?=$last?>.html";
+    <?php   }else{?>
+    let last_page = "<?= $ctx ?>/work/<?= $w['id'] ?>.html";
+    <?php }?>
+
+    <?php if(!empty($next)){ ?>
+    let next_page = "<?=$ctx?>/chapter/<?=$next?>.html";
+    <?php   }else{?>
+    let next_page = "<?= $ctx ?>/work/<?= $w['id'] ?>.html";
+    <?php }?>
+
+    document.onkeydown = function (evt) {
+        let e = window.event || evt;
+        if (e.keyCode == 37) location.href = last_page;
+        if (e.keyCode == 39) location.href = next_page;
+    };
+
+    backToTop();
+</script>
