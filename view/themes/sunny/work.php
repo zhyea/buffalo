@@ -49,6 +49,13 @@ include_once 'common/navigator.php';
 			</div>
         <?php } ?>
 	</div>
+
+    <?php if (!empty($volume_bottom_ad)) { ?>
+		<div><?= $volume_bottom_ad ?></div>
+    <?php } ?>
+    <?php if (!empty($third_party_comments)) { ?>
+		<div><?= $third_party_comments ?></div>
+    <?php } ?>
 </div>
 
 

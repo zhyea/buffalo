@@ -103,8 +103,11 @@ class ChapterService
         $next = $this->chapterModel->get_next($work_id, $chapter_id);
         $next = empty($next) ? null : $next['id'];
 
+        $brief = empty($chapter['content']) ? '' : (strlen($chapter['content']) > 260 ? substr($chapter['content'], 0, 256) : $chapter['content']);
+        $brief = str_replace('<p>', '', $brief);
+        $brief = str_replace('</p>', '', $brief);
         $title = $work['name'] . '-' . $chapter['name'];
-        return array('w' => $work, 'chp' => $chapter, 'last' => $last, 'next' => $next, '_title' => $title);
+        return array('w' => $work, 'chp' => $chapter, 'last' => $last, 'next' => $next, '_title' => $title, 'keywords' => $chapter['name'], 'description' => $brief);
     }
 
 

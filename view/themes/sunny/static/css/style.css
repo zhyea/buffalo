@@ -431,7 +431,7 @@ body {
     margin: 0 0 12px 0;
     border-top: 1px solid #ddd;
     padding: 21px 24px 0;
-    height: 81px;
+    min-height: 81px;
     text-align: center;
     vertical-align: bottom;
 }

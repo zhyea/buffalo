@@ -55,6 +55,11 @@ include_once 'common/navigator.php';
 						href="<?= $ctx ?>/author/<?= $w['author_id'] ?>.html"><?= $w['author'] ?></a></span>
 		</div>
 
+
+        <?php if (!empty($chapter_top_ad)) { ?>
+			<div><?= $chapter_top_ad ?></div>
+        <?php } ?>
+
 		<div class="row chapter-content" id="contentText" style=""><?= $chp['content'] ?></div>
 
 		<div class="row chapter-nav">

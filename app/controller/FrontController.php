@@ -97,7 +97,9 @@ class FrontController extends AbstractController
         $this->workService->add_sn($work_id);
         $vols = $this->chapterService->volumes($work_id);
         $relates = $this->workService->relate($work_id, $work['author_id']);
-        $this->theme_view('work', array('w' => $work, 'vols' => $vols, 'relates' => $relates), $work['name']);
+        $this->theme_view('work', array('w' => $work,
+            'vols' => $vols, 'relates' => $relates,
+            'keywords' => $work['name'], 'description' => $work['brief']), $work['name']);
     }
 
 
@@ -121,7 +123,7 @@ class FrontController extends AbstractController
     public function authors()
     {
         $authors = $this->authorService->all();
-        $this->theme_view('authors', array('all' => $authors), '作家');
+        $this->theme_view('authors', array('all' => $authors, 'description' => '作家信息集合'), '作家');
     }
 
 

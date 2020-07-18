@@ -127,7 +127,14 @@ class WorkService
         $total = $this->workModel->count_with_cat($cat['id']);
         $total = ceil($total / $length);
         $recommend = $this->workModel->find_with_feature('recommend');
-        return array('cat' => $cat, 'works' => $works, 'recommend' => $recommend, 'page' => $page, 'total' => $total, '_title' => $cat['name']);
+        return array('cat' => $cat,
+            'keywords' => $cat['name'],
+            'description' => $cat['remark'],
+            'works' => $works,
+            'recommend' => $recommend,
+            'page' => $page,
+            'total' => $total,
+            '_title' => $cat['name']);
     }
 
 
@@ -150,7 +157,13 @@ class WorkService
         $rows = $this->workModel->find_with_feature($feature_alias, $sort, $order, $offset, $length);
         $total = $this->recordModel->count_with_alias($feature_alias);
         $total = ceil($total / $length);
-        $data = array('feature' => $f, 'works' => $rows, 'page' => $page, 'total' => $total, '_title' => $f['name']);
+        $data = array('feature' => $f,
+            'keywords' => $f['name'],
+            'description' => $f['brief'],
+            'works' => $rows,
+            'page' => $page,
+            'total' => $total,
+            '_title' => $f['name']);
         if (!empty($f['background'])) {
             $data['background'] = $f['background'];
         }
@@ -183,7 +196,13 @@ class WorkService
         $rows = $this->workModel->find_with_author($author_id, $sort, $order, $offset, $length);
         $total = $this->workModel->count_with_author($author_id);
         $total = ceil($total / $length);
-        return array('author' => $author, 'works' => $rows, 'page' => $page, 'total' => $total, '_title' => $author['name']);
+        return array('author' => $author,
+            'keywords' => $author['name'],
+            'description' => $author['bio'],
+            'works' => $rows,
+            'page' => $page,
+            'total' => $total,
+            '_title' => $author['name']);
     }
 
 
