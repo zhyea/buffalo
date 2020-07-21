@@ -106,8 +106,7 @@ class ChapterService
         $keywords = $work['name'] . ',' . $chapter['name'] . ',' . $work['author'];
 
         $brief = empty($chapter['content']) ? '' : (strlen($chapter['content']) > 550 ? substr($chapter['content'], 0, 512) : $chapter['content']);
-        $brief = str_replace('<p>', '', $brief);
-        $brief = str_replace('</p>', '', $brief);
+        $brief = strip_tags($brief);
 
         $title = $work['name'] . '-' . $chapter['name'];
         return array('w' => $work, 'chp' => $chapter, 'last' => $last, 'next' => $next, '_title' => $title, 'keywords' => $keywords, 'description' => $brief);

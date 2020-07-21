@@ -97,9 +97,11 @@ class FrontController extends AbstractController
         $this->workService->add_sn($work_id);
         $vols = $this->chapterService->volumes($work_id);
         $relates = $this->workService->relate($work_id, $work['author_id']);
+        $keywords = $work['name'] . ',' . $work['author'] . ',' . $work['cat'];
         $this->theme_view('work', array('w' => $work,
             'vols' => $vols, 'relates' => $relates,
-            'keywords' => $work['name'], 'description' => $work['brief']), $work['name']);
+            'keywords' => $keywords,
+            'description' => $work['brief']), $work['name']);
     }
 
 
