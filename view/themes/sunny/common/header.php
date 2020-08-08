@@ -19,6 +19,7 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 	<link rel="stylesheet" type="text/css" href="<?= $uri_theme ?>/static/css/style.css"/>
 
 	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="<?= $uri_theme ?>/static/js/custom.js"></script>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>

@@ -30,11 +30,11 @@ include_once 'common/navigator.php';
             }
 		</script>
 	</div>
-
+	
 	<div class="row" id="contentContainer">
-
+		
 		<div class="row chapter-name"><?= $chp['name'] ?></div>
-
+		
 		<div class="row chapter-nav">
             <?php if (!empty($last)) { ?>
 				<a href="<?= $ctx ?>/chapter/<?= $last ?>.html">上一章</a>
@@ -50,7 +50,7 @@ include_once 'common/navigator.php';
             <?php } else { ?>
 				<a>没有了</a>
             <?php } ?>
-
+			
 			<span class="chapter-author">作者：<a
 						href="<?= $ctx ?>/author/<?= $w['author_id'] ?>.html"><?= $w['author'] ?></a></span>
 		</div>
@@ -59,9 +59,9 @@ include_once 'common/navigator.php';
         <?php if (!empty($chapter_top_ad)) { ?>
 			<div><?= $chapter_top_ad ?></div>
         <?php } ?>
-
+		
 		<div class="row chapter-content" id="contentText" style=""><?= $chp['content'] ?></div>
-
+		
 		<div class="row chapter-nav">
             <?php if (!empty($last)) { ?>
 				<a href="<?= $ctx ?>/chapter/<?= $last ?>.html">上一章</a>
@@ -78,6 +78,12 @@ include_once 'common/navigator.php';
 				<a>没有了</a>
             <?php } ?>
 		</div>
+		
+		
+		<script type="text/javascript">
+            window.addEventListener('load', LoadReadSet, false);
+		</script>
+
         <?php if (!empty($chapter_bottom_ad)) { ?>
 			<div><?= $chapter_bottom_ad ?></div>
         <?php } ?>
@@ -93,7 +99,6 @@ include_once 'common/navigator.php';
 
 
 <script type="text/javascript">
-    window.addEventListener('load', LoadReadSet, false);
 
     <?php if(!empty($last)){ ?>
     let last_page = "<?=$ctx?>/chapter/<?=$last?>.html";
