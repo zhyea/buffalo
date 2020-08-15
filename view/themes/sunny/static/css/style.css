@@ -300,8 +300,8 @@ body {
 
 .work-neck .cover {
     float: left;
-    width: 82px;
-    height: 108px;
+    width: 125px;
+    height: 150px;
     overflow: hidden;
 }
 
@@ -312,7 +312,7 @@ body {
 .work-neck .brief .intro {
     padding: 6px 0;
     overflow: hidden;
-    height: 75px;
+    height: 120px;
     color: #737383;
     line-height: 180%;
     text-indent: 2em;
@@ -410,12 +410,12 @@ body {
     position: absolute;
     z-index: 999;
     top: 0;
-    right: 0;
+    right: 9px;
 }
 
 .chapter-content {
     margin: 0;
-    padding: 24px 11px;
+    padding: 24px 16px;
     min-height: 90px;
     line-height: 180%;
     border-bottom: 1px dotted #ddd;

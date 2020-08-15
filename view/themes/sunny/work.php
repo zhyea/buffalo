@@ -21,7 +21,7 @@ include_once 'common/navigator.php';
 
 	<div class="work-neck row">
 		<div class="cover">
-			<img src="<?= $uri_upload . '/' . $w['cover'] ?>" width="80px" height="100px"/>
+			<img src="<?= $uri_upload . '/' . $w['cover'] ?>" width="116px" height="150px"/>
 		</div>
 
 		<div class="brief">

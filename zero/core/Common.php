@@ -303,3 +303,39 @@ if (!function_exists('mb_trim')) {
         return $str;
     }
 }
+
+
+if (!function_exists('sub_string')) {
+    /**
+     * enhance the core sub_str function
+     * @param $str string the source string
+     * @param int $length the length to sub
+     * @param bool $append add '...' as end
+     * @param string $charset charset
+     * @return string
+     */
+    function sub_string($str, $length = 0, $append = true, $charset = 'UTF-8')
+    {
+        $str = trim($str);
+        $str_length = strlen($str);
+        if ($length == 0 || $length >= $str_length) {
+            return $str;
+        } elseif ($length < 0) {
+            $length = $str_length + $length;
+            if ($length < 0) {
+                $length = $str_length;
+            }
+        }
+        if (function_exists('mb_substr')) {
+            $new_str = mb_substr($str, 0, $length, $charset);
+        } elseif (function_exists('iconv_substr')) {
+            $new_str = iconv_substr($str, 0, $length, $charset);
+        } else {
+            $new_str = substr($str, 0, $length);
+        }
+        if ($append && $str != $new_str) {
+            $new_str .= '...';
+        }
+        return $new_str;
+    }
+}
