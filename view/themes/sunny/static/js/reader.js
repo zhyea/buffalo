@@ -40,7 +40,7 @@ let ReadSet = {
     },
     LoadCSS: function () {
         let style = "";
-        style += ".readSet{padding:3px;clear:both;line-height:20px;max-width:700px;margin:auto;}\n";
+        style += ".readSet{padding:6px;clear:both;line-height:20px;max-width:700px;margin:auto;}\n";
         style += ".readSet .rc{color:#333333;float:left;padding-left:20px;}\n";
         style += ".readSet a.ra{float:left;border:1px solid #cccccc;display:inline-block;width:16px;height:16px;margin-left:6px;overflow:hidden;}\n";
         style += ".readSet .rf{float:left;}\n";

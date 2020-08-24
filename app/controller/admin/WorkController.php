@@ -112,7 +112,7 @@ class WorkController extends AbstractController
             }
             $data['cover'] = $cover[1];
         }
-        if (!isset($data['cover'])) {
+        if (empty($data['cover']) && empty($data['former_cover'])) {
             $data['cover'] = 'nocover.png';
         }
         $data = array_key_rm('cat', $data);

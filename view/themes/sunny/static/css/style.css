@@ -76,9 +76,11 @@ body {
     padding: 2px 0 0 16px;
     line-height: 42px;
     border-bottom: 1px solid #ddd;
+    overflow: hidden;
 }
 
 .notice .breadcrumb {
+    display: inline;
     background-color: transparent;
     padding: 0;
     margin: 0;
@@ -370,10 +372,13 @@ body {
 
 /* ------------------------------------ chapter ------------------------------------ */
 .readerTools {
+    overflow: hidden;
     margin: 0;
+    height: 32px;
     border-bottom: 1px solid #ddd;
     font-size: 12px;
 }
+
 
 #contentContainer {
     margin: 0;
@@ -496,6 +501,10 @@ body {
     }
 
     .chapter-author {
+        display: none;
+    }
+
+    .readerTools {
         display: none;
     }
 }
