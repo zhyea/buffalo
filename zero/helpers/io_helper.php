@@ -56,7 +56,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . {ctx}/index.php [L]
 </IfModule>
-# END Buffalo';
+# END Buffalo
+';
 
         $content = str_replace('{ctx}', $context, $content);
 

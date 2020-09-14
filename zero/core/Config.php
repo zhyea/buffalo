@@ -197,6 +197,15 @@ if (!is_dir(_UPLOAD_PATH_)) {
     mkdir(_UPLOAD_PATH_, 0777, true);
 }
 
+/**
+ * define cache path
+ */
+define('_CACHE_PATH_', _VIEW_PATH_ . DIRECTORY_SEPARATOR . 'cache');
+
+if (!is_dir(_CACHE_PATH_)) {
+    mkdir(_CACHE_PATH_, 0777, true);
+}
+
 
 if (!empty(_CFG_['time_zone'])) {
     date_default_timezone_set('Asia/Shanghai');

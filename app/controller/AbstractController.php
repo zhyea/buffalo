@@ -99,7 +99,7 @@ class AbstractController extends Z_Controller
         }
         $_page = $dir . DIRECTORY_SEPARATOR . $_page;
         parent::render_view($_page, $params);
-        exit();
+        //exit();
     }
 
 

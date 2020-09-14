@@ -12,6 +12,8 @@ class Router
      */
     private $controller_config;
 
+    private $path;
+
 
     /**
      * Router constructor.
@@ -30,6 +32,8 @@ class Router
             }
         }
 
+        $this->path = $p;
+
         if (_CFG_['suffix'] && str_end_with($p, _CFG_['suffix'])) {
             $p = substr($p, 0, strpos($p, _CFG_['suffix']));
         }
@@ -39,10 +43,38 @@ class Router
     }
 
 
+    public function dispatch()
+    {
+        $use_cache = false;
+        $cache = NULL;
+        if (array_key_exists('enable_cache', _CFG_)) {
+            $enable_cache = _CFG_['enable_cache'];
+            $cache_exclude = "";
+            if (array_key_exists('cache_exclude', _CFG_)) {
+                $cache_exclude = _CFG_['cache_exclude'];
+            }
+            $need_exclude = preg_match($cache_exclude, $this->path);
+            if ($enable_cache && !$need_exclude) {
+                $use_cache = true;
+                $cache = new Z_Cache($this->path);
+                $cache->load();
+            }
+        }
+
+        $this->dispatch0();
+
+        if ($use_cache && isset($cache)) {
+            $cache->write();
+        }
+
+        exit();
+    }
+
+
     /**
      * 执行路由
      */
-    public function dispatch()
+    public function dispatch0()
     {
         if (null == $this->controller_config) {
             error_404_pag();

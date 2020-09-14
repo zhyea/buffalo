@@ -5,3 +5,5 @@ $config['theme'] = 'sunny';
 $config['suffix'] = '.html';
 $config['max_file_zie'] = 36 * 1024 * 1024;
 $config['time_zone'] = 'Asia/Shanghai';
+$config['enable_cache'] = true;
+$config['cache_exclude'] = "/\/admin\/*/";
