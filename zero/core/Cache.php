@@ -25,10 +25,10 @@ class Z_Cache
      */
     function __construct($path)
     {
-        if(empty($path)){
+        if (empty($path)) {
             $path = "/index";
         }
-        if(str_end_with($path, "/")){
+        if (str_end_with($path, "/")) {
             $path = $path . "index";
         }
 
@@ -65,12 +65,13 @@ class Z_Cache
     /**
      * 写缓存
      */
-    public function write(){
+    public function write()
+    {
 
         $content = ob_get_contents();
         //写入到缓存内容到指定的文件夹
-        $fp = fopen($this->cache_file,'w');
-        fwrite($fp,$content);
+        $fp = fopen($this->cache_file, 'w');
+        fwrite($fp, $content);
         fclose($fp);
         //从PHP内存中释放出来缓存（取出数据）
         ob_flush();
@@ -105,6 +106,50 @@ class Z_Cache
     public function clean()
     {
         unlink($this->cache_file);
+    }
+
+
+    /**
+     * 检查是否应用缓存
+     * @param $path string 请求路径
+     * @return bool 是否应用缓存
+     */
+    public static function use_cache($path)
+    {
+        if (!array_key_exists('enable_cache', _CFG_)) {
+            return false;
+        }
+
+        if (!_CFG_['enable_cache']) {
+            return false;
+        }
+
+
+        $cache_include = [];
+
+        if (array_key_exists('cache_include', _CFG_)) {
+            $cache_include = _CFG_['cache_include'];
+        }
+
+        foreach ($cache_include as $pattern) {
+            if (preg_match($pattern, $path)) {
+                return true;
+            }
+        }
+
+        $cache_exclude = [];
+        if (array_key_exists('cache_exclude', _CFG_)) {
+            $cache_exclude = _CFG_['cache_exclude'];
+        }
+
+        foreach ($cache_exclude as $pattern) {
+            if (preg_match($pattern, $path)) {
+                return false;
+            }
+        }
+
+
+        return false;
     }
 
 }

@@ -47,18 +47,11 @@ class Router
     {
         $use_cache = false;
         $cache = NULL;
-        if (array_key_exists('enable_cache', _CFG_)) {
-            $enable_cache = _CFG_['enable_cache'];
-            $cache_exclude = "";
-            if (array_key_exists('cache_exclude', _CFG_)) {
-                $cache_exclude = _CFG_['cache_exclude'];
-            }
-            $need_exclude = preg_match($cache_exclude, $this->path);
-            if ($enable_cache && !$need_exclude) {
-                $use_cache = true;
-                $cache = new Z_Cache($this->path);
-                $cache->load();
-            }
+
+        if(Z_Cache::use_cache($this->path)){
+            $use_cache = true;
+            $cache = new Z_Cache($this->path);
+            $cache->load();
         }
 
         $this->dispatch0();
