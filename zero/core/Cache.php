@@ -116,12 +116,23 @@ class Z_Cache
      */
     public static function use_cache($path)
     {
-        if (!array_key_exists('enable_cache', _CFG_)) {
+        if (!array_key_exists('cache_enable', _CFG_)) {
             return false;
         }
 
-        if (!_CFG_['enable_cache']) {
+        if (!_CFG_['cache_enable']) {
             return false;
+        }
+
+        $cache_exclude = [];
+        if (array_key_exists('cache_exclude', _CFG_)) {
+            $cache_exclude = _CFG_['cache_exclude'];
+        }
+
+        foreach ($cache_exclude as $pattern) {
+            if (preg_match($pattern, $path)) {
+                return false;
+            }
         }
 
 
@@ -137,17 +148,14 @@ class Z_Cache
             }
         }
 
-        $cache_exclude = [];
-        if (array_key_exists('cache_exclude', _CFG_)) {
-            $cache_exclude = _CFG_['cache_exclude'];
+        if(!empty($cache_include)){
+            return false;
         }
 
-        foreach ($cache_exclude as $pattern) {
-            if (preg_match($pattern, $path)) {
-                return false;
-            }
-        }
 
+        if(!empty($cache_exclude)){
+            return true;
+        }
 
         return false;
     }
