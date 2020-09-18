@@ -58,7 +58,7 @@ abstract class Z_Controller
         if (empty($file_name)) {
             return array(false, 'No file is uploaded.');
         }
-        $arr = explode('.', $_FILES[$name]['name']);
+        $arr = explode('.', $file_name);
         $ext = end($arr);
         if (!empty($allowed_ext) && !in_array($ext, $allowed_ext)) {
             return array(false, 'The ext of file is not allowed.');

@@ -6,3 +6,5 @@ Disallow: /app
 Disallow: /view
 Disallow: /zero
 Disallow: /doc
+Disallow: /admin
+Disallow: /login
