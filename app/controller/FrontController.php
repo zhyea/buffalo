@@ -48,7 +48,7 @@ class FrontController extends AbstractController
     {
         $data = $this->workService->find_with_cat($alias, $page);
         if (empty($data)) {
-            $this->error_404();
+            error_404_page();
         }
         $this->theme_view('category', $data, $data['_title']);
     }
@@ -63,7 +63,7 @@ class FrontController extends AbstractController
     {
         $data = $this->workService->find_with_feature($alias, $page);
         if (empty($data)) {
-            $this->error_404();
+            error_404_page();
         }
         $this->theme_view('feature', $data, $data['_title']);
     }
@@ -78,7 +78,7 @@ class FrontController extends AbstractController
     {
         $data = $this->workService->find_with_author($id, $page);
         if (empty($data)) {
-            $this->error_404();
+            error_404_page();
         }
         $this->theme_view('author', $data, $data['_title']);
     }
@@ -92,7 +92,7 @@ class FrontController extends AbstractController
     {
         $work = $this->workService->get_work($work_id);
         if (empty($work)) {
-            $this->error_404();
+            error_404_page();
         }
         $this->workService->add_sn($work_id);
         $vols = $this->chapterService->volumes($work_id);
@@ -113,7 +113,7 @@ class FrontController extends AbstractController
     {
         $chapter = $this->chapterService->get_chapter($chapter_id);
         if (empty($chapter)) {
-            $this->error_404();
+            error_404_page();
         }
         $this->theme_view('chapter', $chapter, $chapter['_title']);
     }

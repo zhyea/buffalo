@@ -31,6 +31,7 @@
 						<li class="navbar-child-item"><a href="<?= $ctx ?>admin/settings">网站设置</a></li>
 						<li class="navbar-child-item"><a href="<?= $ctx ?>admin/spt/list">脚本设置</a></li>
 						<li class="navbar-child-item"><a href="<?= $ctx ?>admin/nav/list">导航设置</a></li>
+						<li class="navbar-child-item"><a href="<?= $ctx ?>admin/other">其他设置</a></li>
 					</ul>
 				</li>
 

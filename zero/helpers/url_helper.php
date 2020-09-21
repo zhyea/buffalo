@@ -154,17 +154,18 @@ if (!function_exists('from_header')) {
 }
 
 
-if (!function_exists('error_404_pag')) {
+if (!function_exists('error_404_page')) {
 
     /**
      * 404 错误处理
      */
-    function error_404_pag()
+    function error_404_page()
     {
         if (array_key_exists('404', _R_) && !empty(_R_['404'])) {
             redirect(_R_['404']);
         } else {
-            println('404 Error');
+            echo('<h1>Error 404</h1>');
+            header('HTTP/1.1 404 Not Found');
         }
         http_response_code(404);
         exit();
@@ -181,7 +182,8 @@ if (!function_exists('error_500_page')) {
         if (array_key_exists('500', _R_) && !empty(_R_['500'])) {
             redirect(_R_['500']);
         } else {
-            println('500 Error');
+            echo('<h1>Error 500</h1>');
+            header('HTTP/1.1 500 Internal Error');
         }
         http_response_code(500);
         exit();

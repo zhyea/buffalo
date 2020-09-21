@@ -14,7 +14,7 @@ abstract class Z_Controller
     protected function render_view($_page, $params = array())
     {
         if (!file_exists(_VIEW_PATH_ . $_page . '.php')) {
-            $this->error_404();
+            error_404_page();
         } else {
             extract($params);
             include_once _VIEW_PATH_ . $_page . '.php';
@@ -32,15 +32,6 @@ abstract class Z_Controller
         echo json_encode($obj);
     }
 
-
-    /**
-     * 跳转404
-     */
-    protected function error_404()
-    {
-        println('404 Error');
-        die();
-    }
 
 
     /**

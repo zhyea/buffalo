@@ -48,7 +48,7 @@ class Router
         $use_cache = false;
         $cache = NULL;
 
-        if(Z_Cache::use_cache($this->path)){
+        if (Z_Cache::use_cache($this->path)) {
             $use_cache = true;
             $cache = new Z_Cache($this->path);
             $cache->load();
@@ -70,7 +70,7 @@ class Router
     public function dispatch0()
     {
         if (null == $this->controller_config) {
-            error_404_pag();
+            error_404_page();
         } else {
             $class = $this->controller_config[1];
             $method = $this->controller_config[2];
@@ -79,7 +79,7 @@ class Router
             try {
                 $c = new ReflectionClass($class);
                 if (!$c->hasMethod($method)) {
-                    error_404_pag();
+                    error_404_page();
                 }
 
                 $i = $c->newInstanceArgs();
@@ -135,6 +135,10 @@ class Router
         // 3. 模糊匹配用户配置路径
         if (NULL == $cfg) {
             foreach (_R_ as $key => $value) {
+                if ($key === '' || $key === '/') {
+                    // 不默认匹配首页
+                    continue;
+                }
                 if (str_start_with($path, $key)) {
                     $p = $value;
                     $sub = substr($path, strlen($key));
