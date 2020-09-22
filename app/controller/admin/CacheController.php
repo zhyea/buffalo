@@ -19,9 +19,23 @@ class CacheController extends AbstractController
     }
 
 
+    /**
+     * 进入缓存管理页
+     */
     public function index()
     {
+        $this->admin_view('cache-settings', array(), '缓存设置');
+    }
 
+
+    /**
+     * 清理缓存
+     */
+    public function clean()
+    {
+        $this->cacheService->clean();
+        $this->alert_success("缓存清理成功");
+        $this->redirect('/admin/cache');
     }
 
 }
