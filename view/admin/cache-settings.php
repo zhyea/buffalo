@@ -12,7 +12,7 @@ include_once 'common/navigator.php';
 
     <?php include_once 'common/alert.php'; ?>
 
-	<h3>一键清空</h3>
+	<h3><a href="<?= $ctx ?>admin/cache/clean">一键清空</a></h3>
 </div>
 
 <?php include_once 'common/footer.php'; ?>

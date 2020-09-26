@@ -11,6 +11,7 @@ class CacheService
         $dir = scandir(_CACHE_PATH_);
         foreach ($dir as $child) {
             if ($child != "." && $child != "..") {
+                $child = _CACHE_PATH_ . DIRECTORY_SEPARATOR . $child;
                 del_dir($child);
             }
         }
