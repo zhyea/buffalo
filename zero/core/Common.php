@@ -66,6 +66,9 @@ if (!function_exists('str_start_with')) {
      */
     function str_start_with($str1, $str2)
     {
+        if (empty($str2)) {
+            return false;
+        }
         return strpos($str1, $str2) === 0;
     }
 }

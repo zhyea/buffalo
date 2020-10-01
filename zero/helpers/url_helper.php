@@ -59,8 +59,17 @@ if (!function_exists('site_url')) {
             $context = '/' . $context . '/';
         }
 
+        if (is_https() && $server_port == 443) {
+            $server_port = '';
+        }
+
+        if (!is_https() && $server_port == 80) {
+            $server_port = '';
+        }
+
+
         $base_url = (is_https() ? 'https' : 'http') . '://' . $base_url
-            . ($server_port == 80 ? '' : ':' . $server_port)
+            . (empty($server_port) ? '' : ':' . $server_port)
             . $context;
 
         return $base_url;
@@ -203,5 +212,22 @@ if (!function_exists('error_code')) {
         echo $msg;
         http_response_code($code);
         die();
+    }
+}
+
+
+if (!function_exists('getallheaders')) {
+    /**
+     * Fetches all HTTP headers from the current request.
+     */
+    function getallheaders()
+    {
+        $headers = array();
+        foreach ($_SERVER as $name => $value) {
+            if (substr($name, 0, 5) == 'HTTP_') {
+                $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
+            }
+        }
+        return $headers;
     }
 }
