@@ -12,7 +12,11 @@ class CacheService
         foreach ($dir as $child) {
             if ($child != "." && $child != "..") {
                 $child = _CACHE_PATH_ . DIRECTORY_SEPARATOR . $child;
-                del_dir($child);
+                if (is_file($child)) {
+                    del_file($child);
+                } else {
+                    del_dir($child);
+                }
             }
         }
     }
