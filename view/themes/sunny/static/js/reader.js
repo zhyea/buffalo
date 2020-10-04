@@ -13,7 +13,7 @@ system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
 let ReadSet = {
     backgroundColor: ["#e7f4fe", "#FBFBB0", "#efefef", "#fcefff", "#ffffff", "#eefaee"],
     colorName: ["淡蓝海洋", "明黄淡雅", "灰色世界", "红粉世家", "白雪天地", "绿意春色"],
-    backgroundColorValue: "#eefaee",
+    backgroundColorValue: "#ffffff",
     fontColor: ["#333333", "#ff0000", "#008000", "#0000ff"],
     fontColorName: ["黑色", "红色", "绿色", "蓝色"],
     fontColorValue: "#008000",
