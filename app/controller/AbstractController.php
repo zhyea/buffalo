@@ -71,6 +71,7 @@ class AbstractController extends Z_Controller
         $params['uri_theme'] = _THEME_URI_;
         $params['uri_upload'] = _UPLOAD_URI_;
         $params['ctx'] = _APP_CONTEXT_;
+        $params['site_url'] = site_url();
         $params = $params + $this->siteCfg;
 
         $nav = $this->navService->navigator();

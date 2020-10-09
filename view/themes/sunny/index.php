@@ -15,16 +15,16 @@ include_once 'common/navigator.php';
 
     <?php foreach ($all as $cat) { ?>
 		<div class="page-header">
-			<h3><a href="<?= $ctx ?>/c/<?= $cat['slug'] ?>.html">
+			<h3><a href="<?= $site_url ?>/c/<?= $cat['slug'] ?>.html">
 					<i class="glyphicon glyphicon-book"></i> <?= $cat['name'] ?></a>
 			</h3>
 		</div>
 		<div class="row popular">
             <?php foreach ($cat['works'] as $w) { ?>
 				<div class="item col-md-4 col-xs-12">
-					■ <a href="<?= $ctx ?>/work/<?= $w['id'] ?>.html" title="<?= $w['name'] ?>"><?= $w['name'] ?></a>
+					■ <a href="<?= $site_url ?>/work/<?= $w['id'] ?>.html" title="<?= $w['name'] ?>"><?= $w['name'] ?></a>
 					<span class="author">
-                        <a href="<?= $ctx ?>/author/<?= $w['author_id'] ?>.html"
+                        <a href="<?= $site_url ?>/author/<?= $w['author_id'] ?>.html"
                            title="<?= $w['author'] ?>"><?= $w['author'] ?></a>
                     </span>
 				</div>

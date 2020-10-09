@@ -8,7 +8,7 @@ include_once 'common/navigator.php';
 	
 	<div class="container notice">
 		<ol class="breadcrumb">
-			<li><a href="<?= $ctx ?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
+			<li><a href="<?= $site_url ?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
 			<li><?= empty($cat) ? '不存在' : $cat['name'] ?></li>
 		</ol>
 	</div>
@@ -19,7 +19,7 @@ include_once 'common/navigator.php';
 
         <?php if (!empty($cat)) { ?>
 			<div class="page-header">
-				<h3><a href="<?= $ctx ?>/c/<?= $cat['slug'] ?>.html">
+				<h3><a href="<?= $site_url ?>/c/<?= $cat['slug'] ?>.html">
 						<i class="glyphicon glyphicon-book"></i> <?= $cat['name'] ?>
 					</a>
 				</h3>
@@ -30,7 +30,7 @@ include_once 'common/navigator.php';
 			<div class="pagination">
 				<a>共 <?= $total ?> 部</a>
                 <?php for ($i = 1; $i <= $total; $i++) { ?>
-					<a href="<?= $ctx ?>/c/<?= $cat['slug'] ?>/<?= $i ?>.html"
+					<a href="<?= $site_url ?>/c/<?= $cat['slug'] ?>/<?= $i ?>.html"
 					   class="<?= ($page == $i ? 'active' : '') ?>"><?= $i ?></a>
                 <?php } ?>
 			</div>

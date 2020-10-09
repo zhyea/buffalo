@@ -76,7 +76,7 @@ XML;
     {
         $all = $this->workModel->find_all();
         foreach ($all as $r) {
-            $url = site_url() . 'work/' . $r['id'] . '.html';
+            $url = site_url() . '/work/' . $r['id'] . '.html';
             $op_time = $r['op_time'];
             $array = array(
                 'loc' => $url,
@@ -97,7 +97,7 @@ XML;
     {
         $all = $this->authorModel->find_all();
         foreach ($all as $r) {
-            $url = site_url() . 'author/' . $r['id'] . '.html';
+            $url = site_url() . '/author/' . $r['id'] . '.html';
             $op_time = $r['op_time'];
             $array = array(
                 'loc' => $url,
@@ -118,7 +118,7 @@ XML;
     {
         $all = $this->categoryModel->find_all();
         foreach ($all as $r) {
-            $url = site_url() . 'c/' . $r['slug'] . '.html';
+            $url = site_url() . '/c/' . $r['slug'] . '.html';
             $op_time = $r['op_time'];
             $array = array(
                 'loc' => $url,
@@ -139,7 +139,7 @@ XML;
     {
         $all = $this->featureModel->find_all();
         foreach ($all as $r) {
-            $url = site_url() . 'f/' . $r['alias'] . '.html';
+            $url = site_url() . '/f/' . $r['alias'] . '.html';
             $op_time = $r['op_time'];
             $array = array(
                 'loc' => $url,

@@ -59,6 +59,10 @@ if (!function_exists('site_url')) {
             $context = '/' . $context . '/';
         }
 
+        if (str_end_with($context, '/')) {
+            $context = substr($context, 0, strlen($context) - 1);
+        }
+
         if (is_https() && $server_port == 443) {
             $server_port = '';
         }

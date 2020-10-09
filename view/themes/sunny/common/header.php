@@ -9,7 +9,6 @@ defined('_APP_PATH_') or exit('You shall not pass!');
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<meta name="keywords" content="<?= empty($keywords) ? '' : $keywords ?>"/>
 	<meta name="description" content="<?= empty($description) ? '' : $description ?>"/>
 
 	<link rel="icon" href="<?= $uri_theme ?>/static/imgs/favicon.ico">

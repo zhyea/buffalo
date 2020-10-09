@@ -8,7 +8,7 @@ include_once 'common/navigator.php';
 
 <div class="container notice">
 	<ol class="breadcrumb">
-		<li><a href="<?= $ctx ?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
+		<li><a href="<?= $site_url ?>/"><i class="glyphicon glyphicon-folder-open">&nbsp;首页</i></a></li>
 		<li>作家</li>
 		<li class="active"><?= $author['name'] ?></li>
 	</ol>
@@ -33,7 +33,7 @@ include_once 'common/navigator.php';
 	<div class="pagination">
 		<a>共 <?= $total ?> 部</a>
         <?php for ($i = 1; $i <= $total; $i++) { ?>
-			<a href="<?= $ctx ?>/author/<?= $author['id'] ?>/<?= $i ?>.html"
+			<a href="<?= $site_url ?>/author/<?= $author['id'] ?>/<?= $i ?>.html"
 			   class="<?= ($page == $i ? 'active' : '') ?>"><?= $i ?></a>
         <?php } ?>
 	</div>
