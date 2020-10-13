@@ -41,4 +41,13 @@ class SettingService
     }
 
 
+    /**
+     * 获取首页标题
+     * @return string 首页标题
+     */
+    public function home_title()
+    {
+        return $this->settingModel->get_by_key('home_title');
+    }
+
 }

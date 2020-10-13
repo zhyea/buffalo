@@ -29,6 +29,13 @@ include_once 'common/navigator.php';
 		</div>
 
 		<div class="row">
+			<div class="form-label col-md-2 col-xs-12">首页标题</div>
+			<div class="form-input col-md-10 col-xs-12">
+				<input type="text" class="form-control" name="home_title" value="<?= $home_title ?>" required autofocus/>
+			</div>
+		</div>
+
+		<div class="row">
 			<div class="form-label col-md-2 col-xs-12">关键词</div>
 			<div class="form-input col-md-10 col-xs-12">
 				<input type="text" class="form-control" name="keywords" value="<?= $keywords ?>"/>

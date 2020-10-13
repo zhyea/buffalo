@@ -22,6 +22,7 @@ class SettingsController extends AbstractController
     public function index()
     {
         $name = $this->model->get_by_key('site_name');
+        $home_title = $this->model->get_by_key('home_title');
         $desc = $this->model->get_by_key('description');
         $notice = $this->model->get_by_key('notice');
         $keywords = $this->model->get_by_key('keywords');
@@ -32,6 +33,7 @@ class SettingsController extends AbstractController
 
         $this->admin_view('settings',
             array('site_name' => $name,
+                'home_title' => $home_title,
                 'notice' => $notice,
                 'description' => $desc,
                 'keywords' => $keywords,
@@ -45,6 +47,7 @@ class SettingsController extends AbstractController
     public function maintain()
     {
         $name = $_POST['site_name'];
+        $home_title = $_POST['home_title'];
         $desc = $_POST['description'];
         $keywords = $_POST['keywords'];
         $notice = $_POST['notice'];
@@ -54,6 +57,7 @@ class SettingsController extends AbstractController
         $bg_color = $_POST['bg_color'];
 
         $this->model->change('site_name', $name);
+        $this->model->change('home_title', $home_title);
         $this->model->change('description', $desc);
         $this->model->change('keywords', $keywords);
         $this->model->change('notice', $notice);
@@ -98,7 +102,6 @@ class SettingsController extends AbstractController
      * 执行删除及跳转操作
      *
      * @param $key string 文件配置项
-     * @param $name string 配置项名称
      */
     private function _delete($key)
     {

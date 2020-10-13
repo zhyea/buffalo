@@ -16,6 +16,8 @@ class FrontController extends AbstractController
 
     private $authorService;
 
+    private $settingService;
+
 
     /**
      * constructor.
@@ -26,6 +28,7 @@ class FrontController extends AbstractController
         $this->workService = new WorkService();
         $this->chapterService = new ChapterService();
         $this->authorService = new AuthorService();
+        $this->settingService = new SettingService();
     }
 
 
@@ -34,8 +37,10 @@ class FrontController extends AbstractController
      */
     public function index()
     {
+        $home_title = $this->settingService->home_title();
+        $home_title = empty($home_title) ? "首页" : $home_title;
         $data = $this->workService->home_works();
-        $this->theme_view('index', $data, "首页");
+        $this->theme_view('index', $data, $home_title);
     }
 
 
