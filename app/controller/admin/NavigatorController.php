@@ -9,7 +9,9 @@ class NavigatorController extends AbstractController
 {
     private $model;
 
-    private $service;
+    private $navService;
+
+    private $cacheService;
 
     /**
      * constructor.
@@ -18,7 +20,8 @@ class NavigatorController extends AbstractController
     {
         parent::__construct();
         $this->model = new NavigatorModel();
-        $this->service = new NavigatorService();
+        $this->navService = new NavigatorService();
+        $this->cacheService = new CacheService();
     }
 
 
@@ -45,7 +48,7 @@ class NavigatorController extends AbstractController
      */
     public function data($parent = 0)
     {
-        $data = $this->service->list_data($parent);
+        $data = $this->navService->list_data($parent);
         $this->render_json($data);
     }
 
@@ -59,7 +62,7 @@ class NavigatorController extends AbstractController
     {
         $nav = $this->model->get_by_id($id);
         $parent = array_value_of('parent', $nav, $parent);
-        $candidates = $this->service->candidate_parent($id, $parent);
+        $candidates = $this->navService->candidate_parent($id, $parent);
         $nav['candidates'] = $candidates;
         $nav['id'] = $id;
         $nav['parent'] = $parent;
@@ -76,6 +79,7 @@ class NavigatorController extends AbstractController
         $cat = $this->_post();
 
         $this->model->insert_or_update($cat);
+        $this->cacheService->clean();
 
         $this->redirect('admin/nav/list');
     }
@@ -83,7 +87,6 @@ class NavigatorController extends AbstractController
 
     /**
      * 根据ID删除记录
-     * //TODO 删除分类，执行迭代删除
      */
     public function delete()
     {
@@ -91,6 +94,7 @@ class NavigatorController extends AbstractController
         foreach ($ids as $id) {
             $this->model->delete_recursively($id);
         }
+        $this->cacheService->clean();
         echo true;
     }
 
@@ -102,6 +106,7 @@ class NavigatorController extends AbstractController
     public function change_order($id)
     {
         $step = $this->_post_body();
+        $this->cacheService->clean();
         echo $this->model->change_order($id, $step);
     }
 
@@ -111,7 +116,7 @@ class NavigatorController extends AbstractController
      */
     public function candidates()
     {
-        $data = $this->service->candidate_tree();
+        $data = $this->navService->candidate_tree();
         $this->render_json($data);
     }
 

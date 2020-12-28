@@ -14,6 +14,9 @@ class WorkController extends AbstractController
 
     private $workModel;
 
+    private $cacheService;
+
+
     /**
      * WorkController constructor.
      */
@@ -22,6 +25,7 @@ class WorkController extends AbstractController
         parent::__construct();
         $this->workService = new WorkService();
         $this->workModel = new WorkModel();
+        $this->cacheService = new CacheService();
     }
 
 
@@ -76,6 +80,7 @@ class WorkController extends AbstractController
 
         $this->workModel->update($w);
         $this->alert_success('删除封面成功');
+        $this->cacheService->clean();
         $this->redirect('admin/work/settings/' . $id);
     }
 
@@ -93,6 +98,7 @@ class WorkController extends AbstractController
             }
             $this->workModel->delete_by_id($id);
         }
+        $this->cacheService->clean();
         echo true;
     }
 
@@ -122,6 +128,7 @@ class WorkController extends AbstractController
 
         $this->workModel->insert_or_update($data);
         $this->alert_success('维护作品信息成功');
+        $this->cacheService->clean();
 
         if (empty($data['id'])) {
             $this->redirect('admin/work/list');
