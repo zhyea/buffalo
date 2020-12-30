@@ -12,11 +12,14 @@ class FeatureController extends AbstractController
 
     private $recordModel;
 
+    private $cacheService;
+
     public function __construct()
     {
         parent::__construct();
         $this->featureModel = new FeatureModel();
         $this->recordModel = new FeatureRecordModel();
+        $this->cacheService = new CacheService();
     }
 
 
@@ -52,6 +55,7 @@ class FeatureController extends AbstractController
         if ($id > 1) {
             $this->featureModel->delete_by_id($id);
         }
+        $this->cacheService->clean();
         $this->redirect('admin/feature/list');
     }
 
@@ -96,6 +100,8 @@ class FeatureController extends AbstractController
         $data = array_key_rm('former_background', $data);
 
         $this->featureModel->insert_or_update($data);
+        $this->cacheService->clean();
+
         $this->alert_success('维护专题信息成功');
         if (empty($data['id'])) {
             $this->redirect('admin/feature/list');
@@ -114,6 +120,7 @@ class FeatureController extends AbstractController
         $f = $this->featureModel->get_by_id($id);
         $this->_delete_file($f, 'cover');
         $this->featureModel->update($f);
+        $this->cacheService->clean();
         $this->alert_success('删除封面成功');
         $this->redirect('admin/feature/settings/' . $id);
     }
@@ -128,6 +135,7 @@ class FeatureController extends AbstractController
         $f = $this->featureModel->get_by_id($id);
         $this->_delete_file($f, 'background');
         $this->featureModel->update($f);
+        $this->cacheService->clean();
         $this->alert_success('删除背景图成功');
         $this->redirect('admin/feature/settings/' . $id);
     }
